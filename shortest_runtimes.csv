@@ -20,10 +20,10 @@ db_size,group,sql_file,time_ms,pkg_j,versions
 1 GB,tpch/Core/01_scan_access,bitmap_scan.sql,94.16,1.033,3
 1 GB,tpch/Core/01_scan_access,index_scan.sql,97.59,1.076,3
 2 GB,tpch/Core/04_join_scale,join_25x5.sql,5.91,0.072,3
-2 GB,tpch/Core/00_baseline,no_table.sql,8.03,0.097,3
-2 GB,tpch/Core/00_baseline,scan_nation.sql,8.03,0.1,3
-2 GB,tpch/Core/00_baseline,scan_region.sql,8.03,0.098,3
 2 GB,tpch/Core/10_subqueries_ctes,values_scan.sql,8.03,0.101,3
+2 GB,tpch/Core/00_baseline,scan_region.sql,8.03,0.098,3
+2 GB,tpch/Core/00_baseline,scan_nation.sql,8.03,0.1,3
+2 GB,tpch/Core/00_baseline,no_table.sql,8.03,0.097,3
 2 GB,tpch/Core/01_scan_access,index_point_lookup.sql,8.25,0.102,3
 2 GB,tpch/Core/02_filter_projection,limit_100.sql,8.26,0.105,3
 2 GB,tpch/Core/04_join_scale,join_10kx25.sql,9.52,0.119,3
