@@ -1,2 +1,5 @@
 plans/
 presentation/
+
+# SQLStorm: 17k pulled query files — cached locally, never committed (see sqlstorm_analysis.ipynb)
+cache/sqlstorm_cache/queries/
