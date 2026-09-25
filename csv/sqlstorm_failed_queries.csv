@@ -474,7 +474,7 @@ qid,query,elapsed_sec,rapl_pkg_j,n_tables,n_join,category
 20634,queries/tpch/SQLStorm/20634.sql,0.060355,0.37786865234375,8,9,error
 20635,queries/tpch/SQLStorm/20635.sql,15.057622,92.73431396484376,7,7,timeout
 20647,queries/tpch/SQLStorm/20647.sql,15.182593,86.31280517578125,7,7,timeout
-20648,queries/tpch/SQLStorm/20648.sql,15.056884,90.27716064453124,6,6,timeout
+20648,queries/tpch/SQLStorm/20648.sql,15.056884,90.27716064453124,5,6,timeout
 2065,queries/tpch/SQLStorm/2065.sql,15.091432,83.12896728515625,5,8,timeout
 20651,queries/tpch/SQLStorm/20651.sql,15.054877,77.7750244140625,5,5,timeout
 20654,queries/tpch/SQLStorm/20654.sql,15.078596,90.51275634765624,6,5,timeout
@@ -1468,7 +1468,7 @@ qid,query,elapsed_sec,rapl_pkg_j,n_tables,n_join,category
 29917,queries/tpch/SQLStorm/29917.sql,15.102522,98.06243896484376,5,4,timeout
 2992,queries/tpch/SQLStorm/2992.sql,15.092372,84.96820068359375,8,6,timeout
 29923,queries/tpch/SQLStorm/29923.sql,15.145724,107.47869873046876,6,5,timeout
-29926,queries/tpch/SQLStorm/29926.sql,15.082793,85.38275146484375,4,2,timeout
+29926,queries/tpch/SQLStorm/29926.sql,15.082793,85.38275146484375,3,2,timeout
 2993,queries/tpch/SQLStorm/2993.sql,15.060029,91.52203369140624,5,5,timeout
 29945,queries/tpch/SQLStorm/29945.sql,15.144726,107.03204345703124,6,5,timeout
 29960,queries/tpch/SQLStorm/29960.sql,15.11551,100.281982421875,8,7,timeout
@@ -1508,7 +1508,7 @@ qid,query,elapsed_sec,rapl_pkg_j,n_tables,n_join,category
 30331,queries/tpch/SQLStorm/30331.sql,16.247357,97.85980224609376,7,8,timeout
 30339,queries/tpch/SQLStorm/30339.sql,15.054965,79.66400146484375,7,8,timeout
 30340,queries/tpch/SQLStorm/30340.sql,0.054597,0.34637451171875,5,7,error
-30366,queries/tpch/SQLStorm/30366.sql,15.281733,86.4212646484375,7,10,timeout
+30366,queries/tpch/SQLStorm/30366.sql,15.281733,86.4212646484375,6,10,timeout
 30379,queries/tpch/SQLStorm/30379.sql,15.053801,85.42828369140625,7,8,timeout
 30384,queries/tpch/SQLStorm/30384.sql,15.08677,81.49603271484375,6,6,timeout
 30387,queries/tpch/SQLStorm/30387.sql,15.060122,91.12432861328125,6,7,timeout
@@ -2102,7 +2102,7 @@ qid,query,elapsed_sec,rapl_pkg_j,n_tables,n_join,category
 4474,queries/tpch/SQLStorm/4474.sql,15.249842,87.7376708984375,7,5,timeout
 448,queries/tpch/SQLStorm/448.sql,15.278237,88.95465087890625,5,4,timeout
 4483,queries/tpch/SQLStorm/4483.sql,15.163667,93.67620849609376,6,7,timeout
-4489,queries/tpch/SQLStorm/4489.sql,15.06353,82.50555419921875,6,5,timeout
+4489,queries/tpch/SQLStorm/4489.sql,15.06353,82.50555419921875,5,5,timeout
 4490,queries/tpch/SQLStorm/4490.sql,15.253124,88.00994873046875,6,7,timeout
 4511,queries/tpch/SQLStorm/4511.sql,15.087364,96.3228759765625,5,5,timeout
 454,queries/tpch/SQLStorm/454.sql,0.058562,0.37451171875,5,6,error
