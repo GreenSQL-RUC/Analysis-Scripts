@@ -1,0 +1,453 @@
+group,n_queries,n_sql,kind,n_in_query_energy,rows,capped,ncol,sim_min,queries,header
+G1,98,2,copies + different SQL,98,10,False,5,0.9714,15027 = 15043 = 15063 = 15147 = 15199 = 15243 = 15319 = 15324 = 15325 = 15386 = 15396 = 15427 = 15446 = 15494 = 15506 = 15644 = 15663 = 15784 = 15836 = 15847 = 15849 = 15850 = 15954 = 15987 = 16003 = 16019 = 16045 = 16106 = 16139 = 16148 = 16173 = 16364 = 16447 = 16504 = 16563 = 16594 = 16601 = 16610 = 16772 = 16787 = 16822 = 16885 = 16942 = 17025 = 17080 = 17145 = 17157 = 17177 = 17230 = 17262 = 17297 = 17495 = 17588 = 17697 = 17710 = 17727 = 17784 = 17870 = 17888 = 17902 = 17941 = 17989 = 18053 = 18122 = 18133 = 18261 = 18282 = 18289 = 18308 = 18393 = 18414 = 18459 = 18535 = 18542 = 18545 = 18700 = 18827 = 18905 = 18974 = 18976 = 18980 = 19021 = 19120 = 19201 = 19227 = 19250 = 19267 = 19313 = 19324 = 19364 = 19416 = 19436 = 19654 = 19803 = 19892 = 19920 | 16207 = 19334,postid|title|creationdate|ownerdisplayname|commentcount
+G2,67,4,copies + different SQL,67,10,False,5,0.6809,15015 = 15068 = 15117 = 15118 = 15149 = 15200 = 15350 = 15416 = 15477 = 15498 = 15565 = 15597 = 15630 = 15705 = 15754 = 15923 = 15924 = 15999 = 16028 = 16081 = 16099 = 16126 = 16160 = 16249 = 16539 = 16573 = 16683 = 16707 = 16709 = 16717 = 16798 = 16827 = 16944 = 16971 = 16995 = 17012 = 17052 = 17054 = 17118 = 17224 = 17375 = 17487 = 17630 = 17799 = 18059 = 18131 = 18256 = 18318 = 18660 = 18704 = 18725 = 18819 = 18837 = 19098 = 19101 = 19265 = 19282 = 19330 = 19661 = 19720 = 19774 = 19795 = 19846 = 19878 | 16351 | 16839 | 19084,displayname|title|creationdate|score|viewcount
+G3,64,6,copies + different SQL,64,10,False,4,0.6517,15011 = 15019 = 15058 = 15143 = 15167 = 15169 = 15181 = 15251 = 15334 = 15435 = 15487 = 15788 = 15834 = 15947 = 16077 = 16203 = 16221 = 16372 = 16390 = 16486 = 16706 = 16757 = 16778 = 16799 = 16876 = 16887 = 16994 = 17217 = 17293 = 17301 = 17329 = 17400 = 17411 = 17446 = 17551 = 17605 = 17698 = 17738 = 17972 = 18114 = 18130 = 18166 = 18298 = 18448 = 19080 = 19253 = 19694 = 19706 = 19838 | 15024 = 17680 | 15316 = 15328 = 15342 = 15382 = 16053 = 16426 = 18601 = 18981 = 19597 | 15696 = 19649 | 15724 | 19371,displayname|title|creationdate|score
+G4,64,6,copies + different SQL,64,10,False,7,0.7855,15109 = 15308 = 15499 = 15677 = 15718 = 15798 = 15894 = 15950 = 16091 = 16165 = 16184 = 16187 = 16212 = 16242 = 16265 = 16274 = 16278 = 16517 = 16560 = 16722 = 16956 = 17024 = 17089 = 17113 = 17511 = 17623 = 17651 = 17748 = 17776 = 17883 = 17934 = 18155 = 18203 = 18286 = 18320 = 18427 = 18618 = 18699 = 18705 = 18864 = 19009 = 19047 = 19161 = 19239 = 19240 = 19363 = 19466 = 19491 = 19528 = 19747 = 19782 = 19988 | 16011 = 16602 = 17033 = 17612 = 18563 | 16813 = 17341 = 17911 = 19829 | 17380 | 19011 | 19557,postid|title|creationdate|ownerdisplayname|commentcount|upvotes|downvotes
+G5,55,4,copies + different SQL,55,10,False,7,0.6023,15010 = 15126 = 15220 = 15295 = 15335 = 15351 = 15357 = 15377 = 15395 = 15472 = 15549 = 15609 = 15655 = 15740 = 15914 = 15933 = 16005 = 16022 = 16087 = 16195 = 16235 = 16402 = 16837 = 16840 = 16987 = 17298 = 17388 = 17457 = 17494 = 17778 = 17828 = 17864 = 17938 = 17947 = 18143 = 18415 = 18568 = 18635 = 18687 = 18711 = 18934 = 19221 = 19281 = 19284 = 19413 = 19806 | 15152 = 15647 = 16973 = 17038 = 17333 = 19283 | 15591 | 15910 = 17575,postid|title|ownerdisplayname|creationdate|score|viewcount|commentcount
+G6,54,2,copies + different SQL,54,10,False,6,0.8,15033 = 15093 = 15121 = 15216 = 15268 = 15306 = 15320 = 15391 = 15411 = 15602 = 15722 = 15750 = 15832 = 15985 = 16056 = 16335 = 16368 = 16399 = 16420 = 16457 = 16462 = 16652 = 16718 = 16738 = 16774 = 16788 = 16851 = 16853 = 17300 = 17359 = 17402 = 17409 = 17504 = 17515 = 17792 = 17813 = 17939 = 18220 = 18246 = 18280 = 18418 = 18500 = 18779 = 18811 = 19003 = 19093 = 19435 = 19689 = 19736 = 19780 = 19910 | 15383 = 16871 = 18865,postid|title|creationdate|ownerdisplayname|score|viewcount
+G7,54,9,copies + different SQL,54,10,False,7,0.5778,15034 = 15112 = 15173 = 15180 = 15188 = 15205 = 15473 = 15479 = 15493 = 15576 = 15777 = 16264 = 16338 = 16564 = 16617 = 16694 = 16818 = 16894 = 16937 = 17050 = 17414 = 17674 = 17678 = 17773 = 17775 = 17977 = 18442 = 18460 = 18566 = 18773 = 19306 = 19509 = 19556 = 19630 = 19903 | 15336 | 15447 = 15736 = 15771 = 16135 = 16295 = 18017 = 18580 | 15590 | 16241 = 18255 | 16603 = 17614 = 19385 = 19852 | 17707 = 19525 | 17819 | 18630,postid|title|creationdate|ownerdisplayname|commentcount|upvotecount|downvotecount
+G8,48,3,copies + different SQL,48,10,False,4,0.9615,15137 = 15201 = 15361 = 15387 = 15430 = 15520 = 15564 = 15611 = 15645 = 15672 = 15698 = 15742 = 15768 = 15874 = 16116 = 16152 = 16180 = 16298 = 16401 = 16404 = 16553 = 16568 = 16622 = 16655 = 16715 = 17036 = 17055 = 17091 = 17152 = 17260 = 17349 = 17950 = 18015 = 18049 = 18339 = 18391 = 18519 = 18655 = 18843 = 18939 = 18998 = 19163 = 19428 = 19703 = 19820 | 15701 | 16229 = 17311,title|creationdate|ownerdisplayname|commentcount
+G9,47,2,copies + different SQL,47,10,False,6,0.8,15054 = 15085 = 15125 = 15186 = 15503 = 15572 = 15650 = 15687 = 15817 = 15888 = 15913 = 16009 = 16049 = 16063 = 16218 = 16255 = 16333 = 16478 = 16570 = 16623 = 16660 = 16721 = 16857 = 16880 = 16924 = 17084 = 17125 = 17259 = 17337 = 17638 = 17861 = 17952 = 18006 = 18173 = 18217 = 18309 = 18389 = 18892 = 18922 = 19311 = 19446 = 19500 = 19739 = 19919 = 19983 = 19985 | 18507,postid|title|ownerdisplayname|creationdate|score|viewcount
+G10,41,2,copies + different SQL,41,10,False,5,0.7959,15049 = 15087 = 15104 = 15163 = 15337 = 15464 = 15604 = 15659 = 15690 = 15695 = 15843 = 15929 = 16172 = 16276 = 16473 = 16548 = 16614 = 16782 = 16809 = 16856 = 16882 = 17202 = 17747 = 18096 = 18368 = 18625 = 18648 = 18693 = 18894 = 18999 = 19105 = 19162 = 19469 = 19476 = 19539 = 19612 = 19886 = 19889 = 19922 = 19927 | 18095,title|creationdate|ownerdisplayname|score|viewcount
+G11,39,6,copies + different SQL,39,10,False,5,0.6585,15001 = 15133 = 15352 = 15407 = 15658 = 15728 = 15776 = 15927 = 16320 = 16322 = 16606 = 16815 = 17076 = 17083 = 17088 = 17168 = 17986 = 18103 = 18129 = 18515 = 18749 = 18767 = 19061 = 19224 = 19273 = 19564 = 19700 | 15037 = 16633 = 17378 = 18284 | 15443 | 16168 = 18271 = 19030 | 17593 | 18278 = 18838 = 19617,displayname|title|creationdate|score|commentcount
+G12,39,5,copies + different SQL,39,10,False,6,0.8561,15029 = 15269 = 15270 = 15514 = 15532 = 15561 = 15769 = 15955 = 15980 = 16094 = 16137 = 16154 = 16245 = 16273 = 16499 = 16802 = 16814 = 16946 = 17186 = 17241 = 17264 = 17295 = 17355 = 17412 = 17655 = 17659 = 17672 = 17704 = 17878 = 18810 = 19365 = 19786 | 15654 = 16452 = 17201 = 17583 | 18626 | 19087 | 19984,title|creationdate|ownerdisplayname|commentcount|upvotes|downvotes
+G13,38,4,copies + different SQL,38,10,False,7,0.9808,15059 = 15092 = 15138 = 15150 = 15183 = 15195 = 15218 = 15280 = 15455 = 15612 = 15868 = 15944 = 16008 = 16027 = 16046 = 16114 = 16431 = 16621 = 16629 = 16929 = 17166 = 17234 = 17449 = 17581 = 17626 = 18091 = 18215 = 18292 = 18480 = 18763 = 19233 = 19395 = 19566 = 19576 = 19737 | 15140 | 19157 | 19440,postid|title|creationdate|ownerdisplayname|score|viewcount|commentcount
+G14,37,3,copies + different SQL,37,10,False,4,0.6744,15061 = 15110 = 15172 = 15287 = 15353 = 15895 = 15996 = 16054 = 16104 = 16530 = 17318 = 17665 = 18055 = 18069 = 18305 = 18661 = 18709 = 18748 = 19145 = 19506 = 19614 = 19711 = 19857 = 19873 | 15246 = 15848 = 16375 = 16566 = 17001 = 17304 = 17935 = 17959 = 18074 | 16607 = 18321 = 19562 = 20000,displayname|title|creationdate|score
+G15,34,6,copies + different SQL,34,10,False,6,0.9636,15131 = 15156 = 15256 = 15298 = 15300 = 15333 = 15379 = 15495 = 15515 = 15723 = 16018 = 16326 = 16977 = 17567 = 17668 = 17869 = 17880 = 17884 = 18098 = 18907 = 19168 = 19516 = 19811 | 15235 = 17781 = 18044 = 18169 = 18463 | 15653 = 19515 | 17315 | 17925 = 18208 | 18797,postid|title|creationdate|ownerdisplayname|commentcount|votecount
+G16,30,6,copies + different SQL,30,10,False,3,0.65,15065 = 15206 = 15372 = 15373 = 15555 = 16397 = 16792 = 16935 = 17206 = 17266 = 17512 = 17513 = 17845 = 19096 = 19110 = 19272 | 15231 = 16636 = 18384 = 19042 | 16090 = 16144 = 16220 = 16592 = 16761 = 16863 | 16434 = 18944 | 18468 | 19760,displayname|title|creationdate
+G17,29,6,copies + different SQL,29,10,False,5,0.9442,15028 = 15608 = 15789 = 15818 = 15973 = 16035 = 16893 = 16936 = 17343 = 17988 = 18275 = 18784 = 19335 = 19480 = 19552 = 19763 = 19950 = 19970 | 15185 = 17069 | 15434 = 16561 = 17467 = 18342 | 15903 | 15956 = 18267 = 19709 | 17563,title|creationdate|ownerdisplayname|commentcount|votecount
+G18,29,2,copies + different SQL,29,10,False,5,0.7872,15190 = 15257 = 15588 = 15744 = 15785 = 16227 = 16247 = 16730 = 16762 = 16786 = 16810 = 16828 = 17108 = 17179 = 17219 = 17226 = 17820 = 17906 = 18007 = 18241 = 18636 = 19260 = 19488 = 19644 = 19766 | 16749 = 17019 = 18358 = 18791,displayname|title|creationdate|viewcount|score
+G19,28,5,copies + different SQL,28,10,False,6,0.9302,15023 = 15135 = 15168 = 15226 = 15428 = 15667 = 15731 = 16225 = 16829 = 16960 = 17191 = 17703 = 17994 = 18132 = 18236 = 18364 = 19130 = 19321 = 19605 = 19714 = 19738 = 19900 = 19978 | 16140 = 17966 | 16308 | 16527 | 19876,title|creationdate|ownerdisplayname|commentcount|upvotecount|downvotecount
+G20,27,2,copies + different SQL,27,10,False,5,0.7959,15283 = 15420 = 15466 = 15688 = 15797 = 16033 = 16343 = 16460 = 16729 = 16922 = 17005 = 17032 = 17292 = 17601 = 17802 = 18060 = 18090 = 18484 = 18571 = 18804 = 18818 = 19234 = 19236 = 19374 = 19570 = 19814 | 18583,title|ownerdisplayname|creationdate|score|viewcount
+G21,26,3,copies + different SQL,26,10,False,5,0.9659,15053 = 15067 = 15170 = 15207 = 15415 = 16161 = 16217 = 16301 = 16406 = 16506 = 16983 = 17245 = 17590 = 17929 = 18076 = 18117 = 18663 = 18830 = 19190 = 19195 = 19433 = 19543 = 19734 | 16785 = 19182 | 19656,postid|title|creationdate|author|commentcount
+G22,25,1,same SQL (copies),25,10,False,4,,15096 = 15213 = 15426 = 15474 = 15568 = 15582 = 15919 = 15931 = 16031 = 16206 = 16226 = 16612 = 16645 = 16865 = 16875 = 16930 = 17476 = 17596 = 17732 = 17793 = 18378 = 19251 = 19354 = 19519 = 19643,id|title|displayname|creationdate
+G23,25,2,copies + different SQL,25,10,False,4,0.9669,15111 = 15129 = 15228 = 15292 = 15346 = 15603 = 15759 = 15887 = 16042 = 16157 = 16302 = 16515 = 16797 = 17175 = 17718 = 17996 = 18187 = 18371 = 18989 = 19349 = 19407 = 19651 = 19804 | 16632 = 19645,title|creationdate|displayname|commentcount
+G24,25,4,copies + different SQL,25,10,False,4,0.8861,15253 = 16435 = 16518 | 15304 = 15575 = 18369 = 19493 | 15399 = 15511 = 15544 = 15982 = 17425 = 17945 = 18036 = 18078 = 19646 | 15457 = 15717 = 16043 = 16058 = 16289 = 16438 = 18047 = 18112 = 18665,username|posttitle|postdate|commentcount
+G25,24,2,copies + different SQL,24,10,False,5,0.9512,15134 = 15164 = 15198 = 15749 = 15765 = 15781 = 15953 = 15970 = 16062 = 16216 = 16260 = 16293 = 16588 = 16627 = 16953 = 17558 = 17729 = 18356 = 19095 = 19298 = 19924 = 19937 = 19943 | 19213,id|title|creationdate|displayname|commentcount
+G26,24,2,copies + different SQL,24,10,False,6,0.9825,15265 = 15327 = 15458 = 15512 = 15801 = 16281 = 16579 = 16736 = 16855 = 16883 = 17064 = 17222 = 17250 = 17520 = 17689 = 17700 = 17832 = 17859 = 17917 = 18915 = 19058 = 19088 = 19585 | 19504,postid|title|creationdate|ownerdisplayname|viewcount|score
+G27,23,6,copies + different SQL,23,10,False,7,0.9181,15160 = 15211 = 15217 = 15275 = 15624 = 16369 = 16389 = 16394 = 16424 = 17126 = 17526 = 17611 = 17840 = 18116 = 19340 = 19699 | 15689 = 15716 = 17559 | 16332 | 17779 | 18454 | 19112,postid|title|creationdate|author|commentcount|upvotes|downvotes
+G28,22,4,copies + different SQL,22,10,False,5,0.6667,15018 = 15086 = 15681 = 15867 = 15890 = 15909 = 16699 = 17200 = 17617 = 17666 = 17932 = 18222 = 18481 = 18656 = 18720 = 19031 = 19647 = 19677 = 19830 | 15517 | 15878 | 16098,displayname|title|creationdate|score|viewcount
+G29,22,7,copies + different SQL,22,10,False,5,0.6957,15370 | 15431 | 15963 = 16454 | 16097 = 16429 = 16559 = 16850 = 17489 = 17771 = 17838 = 18070 = 18081 = 18529 = 18627 = 18629 = 18777 = 19158 = 19290 | 18510 | 18592 | 19797,displayname|title|creationdate|score|commentcount
+G30,22,1,same SQL (copies),22,10,False,5,,15421 = 15509 = 15720 = 15790 = 16083 = 16113 = 16469 = 16536 = 16595 = 16950 = 17009 = 17468 = 17597 = 17724 = 17736 = 18182 = 18680 = 18712 = 18775 = 18946 = 19418 = 19851,postid|title|creationdate|ownername|commentcount
+G31,22,2,copies + different SQL,22,10,False,6,0.7305,15507 = 15613 = 15709 = 15864 = 16129 = 16417 = 16472 = 17386 = 17455 = 17557 = 17669 = 18019 = 18223 = 18736 = 18899 = 19159 = 19355 = 19639 = 19691 = 19744 | 17946 = 18929,postid|title|ownerdisplayname|creationdate|score|commentcount
+G32,21,3,copies + different SQL,21,6,False,4,0.8682,10085 = 10749 = 11537 = 11757 = 12040 = 12367 = 12424 = 13065 = 13422 = 13455 = 13525 = 13950 = 13963 = 13969 = 14237 = 14350 = 14351 = 14441 = 14641 | 12376 | 12903,posttype|totalposts|averagescore|averageviewcount
+G33,21,1,same SQL (copies),21,10,False,5,,15035 = 15081 = 15293 = 15441 = 15634 = 15794 = 15808 = 15962 = 15995 = 16175 = 16556 = 16965 = 17008 = 17376 = 17460 = 17556 = 18147 = 18160 = 18334 = 19731 = 19855,id|title|creationdate|displayname|score
+G34,20,1,same SQL (copies),20,6,False,4,,10190 = 10199 = 10230 = 10367 = 10456 = 10774 = 10940 = 11128 = 11271 = 11344 = 11867 = 12066 = 12356 = 12716 = 13208 = 13215 = 14225 = 14382 = 14568 = 14580,posttype|totalposts|averagescore|totalviews
+G35,20,1,same SQL (copies),20,10,False,6,,15056 = 15202 = 15259 = 15345 = 15502 = 15526 = 15569 = 16074 = 16177 = 16228 = 16735 = 16752 = 16826 = 16988 = 18033 = 18585 = 18985 = 19132 = 19574 = 19955,postid|title|creationdate|score|ownerdisplayname|commentcount
+G36,19,1,same SQL (copies),19,10,False,8,,15013 = 15534 = 15981 = 16463 = 16852 = 16904 = 17490 = 17496 = 17569 = 17687 = 17720 = 18025 = 18803 = 18861 = 19725 = 19743 = 19764 = 19800 = 19902,postid|title|ownerdisplayname|creationdate|score|viewcount|answercount|commentcount
+G37,18,5,copies + different SQL,18,10,False,4,0.6759,15151 = 15442 = 15539 = 15805 = 17074 = 17384 = 17579 = 17725 = 17744 = 18158 = 19388 = 19696 | 15478 = 16635 | 16258 = 18558 | 17390 | 18441,displayname|title|creationdate|commentcount
+G38,17,1,same SQL (copies),17,10,False,5,,15075 = 15084 = 15233 = 15260 = 15323 = 16491 = 16972 = 17015 = 17037 = 17106 = 17443 = 18087 = 18329 = 18550 = 19059 = 19863 = 19887,title|creationdate|ownerdisplayname|viewcount|score
+G39,17,1,same SQL (copies),17,10,False,6,,15105 = 15115 = 15219 = 15307 = 15475 = 15753 = 15800 = 15949 = 16040 = 16064 = 16523 = 17077 = 17764 = 18595 = 19381 = 19822 = 19888,postid|title|creationdate|viewcount|ownerdisplayname|commentcount
+G40,17,4,copies + different SQL,17,10,False,6,0.7011,15107 = 15177 = 15232 = 15779 = 16783 = 17000 = 17143 = 17432 = 17660 = 17663 = 18381 = 18721 = 19468 = 19641 | 18054 | 19669 | 19953,postid|title|creationdate|ownerdisplayname|score|commentcount
+G41,16,2,copies + different SQL,16,10,False,6,0.9801,15005 = 15460 = 15703 = 15707 = 16176 = 16393 = 16586 = 16927 = 17162 = 17348 = 18168 = 18403 = 18745 = 19560 | 19697 = 19930,title|creationdate|author|commentcount|upvotes|downvotes
+G42,16,4,copies + different SQL,16,10,False,4,0.8889,15008 = 15162 = 15166 = 15282 = 15375 = 15452 = 15833 = 17205 = 17607 = 18245 = 19173 = 19294 = 19805 | 18845 | 19071 | 19558,title|creationdate|ownername|commentcount
+G43,16,3,copies + different SQL,16,10,False,6,0.7784,15031 = 15483 = 15858 = 15986 = 16512 = 16758 = 17618 = 17641 = 17916 = 18785 = 18902 = 19205 = 19823 | 16162 = 17165 | 19464,title|ownerdisplayname|creationdate|score|viewcount|commentcount
+G44,15,1,same SQL (copies),15,10,False,6,,15583 = 16052 = 16300 = 16550 = 17171 = 17516 = 17909 = 18079 = 18302 = 18792 = 18853 = 19417 = 19423 = 19537 = 19987,postid|title|author|creationdate|score|viewcount
+G45,14,4,copies + different SQL,14,10,False,7,0.9065,15044 = 15051 = 15780 = 16153 = 16451 = 17082 = 17685 = 18094 = 18852 = 19231 = 19377 | 15261 | 19263 | 19813,postid|title|creationdate|owner|commentcount|upvotes|downvotes
+G46,14,2,copies + different SQL,14,10,False,6,0.9787,15338 = 15371 = 15710 = 17094 = 17147 = 17780 = 18035 = 18111 = 18221 = 18244 = 18619 = 19640 | 17208 = 17408,title|creationdate|ownerdisplayname|score|viewcount|commentcount
+G47,14,4,copies + different SQL,14,10,False,4,0.8861,15413 = 17908 = 18347 = 18675 | 15674 = 17059 = 17067 = 17207 | 16624 = 18897 = 19459 | 17502 = 17562 = 18556,userdisplayname|posttitle|postcreationdate|commentcount
+G48,14,1,same SQL (copies),14,10,False,6,,15821 = 15827 = 15862 = 16505 = 16905 = 17258 = 17742 = 17933 = 18018 = 18199 = 18366 = 18399 = 18401 = 18593,postid|title|ownername|creationdate|score|viewcount
+G49,14,2,copies + different SQL,14,10,False,5,0.9714,15884 = 16565 = 16896 = 16900 = 17391 = 18163 = 18439 = 18863 = 19522 = 19559 = 19603 = 19604 = 19627 | 19420,postid|title|creationdate|owner|commentcount
+G50,13,1,same SQL (copies),13,10,False,7,,15139 = 15394 = 15882 = 15943 = 16740 = 17016 = 17267 = 17844 = 18151 = 18844 = 18882 = 19421 = 19901,postid|title|ownerdisplayname|creationdate|score|viewcount|answercount
+G51,13,4,copies + different SQL,13,10,False,4,0.6744,15144 = 15244 = 15368 = 16006 = 16964 = 17670 = 18706 = 18952 = 19966 | 15254 = 18150 | 15367 | 19336,displayname|title|creationdate|viewcount
+G52,13,1,same SQL (copies),13,10,False,8,,15745 = 15934 = 16147 = 16552 = 16689 = 17436 = 18380 = 18880 = 19068 = 19082 = 19439 = 19510 = 19513,postid|title|creationdate|ownerdisplayname|score|viewcount|answercount|commentcount
+G53,12,1,same SQL (copies),12,10,False,4,,15003 = 15204 = 15444 = 15737 = 15799 = 16001 = 16906 = 17007 = 17474 = 17854 = 18969 = 19958,title|displayname|creationdate|score
+G54,12,4,copies + different SQL,12,10,False,5,0.8989,15095 = 19821 | 15332 = 15796 = 16836 = 18799 | 15554 = 17944 = 18113 = 19578 | 17006 = 17279,userdisplayname|posttitle|postcreationdate|postscore|commentcount
+G55,12,1,same SQL (copies),12,10,False,6,,15197 = 15595 = 17161 = 17190 = 17471 = 18357 = 18702 = 18768 = 19230 = 19429 = 19794 = 19816,postid|title|ownerdisplayname|creationdate|viewcount|score
+G56,12,1,same SQL (copies),12,10,False,7,,15262 = 15500 = 15505 = 15666 = 18068 = 18092 = 18303 = 18602 = 18953 = 19094 = 19244 = 19790,postid|title|creationdate|ownerdisplayname|score|viewcount|answercount
+G57,12,1,same SQL (copies),12,10,False,5,,15340 = 15412 = 15795 = 15846 = 16521 = 16777 = 17030 = 17644 = 17863 = 18440 = 18594 = 19277,id|title|creationdate|displayname|viewcount
+G58,12,2,copies + different SQL,12,10,False,7,0.7263,15401 = 15656 = 15945 = 16414 = 16926 = 17286 = 17637 = 18513 = 18965 = 19007 = 19160 | 16443,postid|title|ownerdisplayname|creationdate|viewcount|score|commentcount
+G59,12,1,same SQL (copies),12,10,False,5,,15513 = 15543 = 15901 = 16096 = 16681 = 17706 = 18062 = 18228 = 18525 = 18587 = 19139 = 19526,title|owner|creationdate|score|viewcount
+G60,12,2,copies + different SQL,12,10,False,5,0.7872,15828 | 15959 = 16167 = 17135 = 17578 = 17594 = 17872 = 18485 = 18703 = 19235 = 19840 = 19993,title|creationdate|displayname|score|viewcount
+G61,11,1,same SQL (copies),11,10,False,5,,15046 = 15214 = 16146 = 16350 = 16733 = 17358 = 18201 = 18324 = 18637 = 19166 = 19527,id|title|displayname|creationdate|score
+G62,11,3,copies + different SQL,11,10,False,4,0.7816,15074 = 15381 = 15496 = 15599 = 15610 = 16115 = 16619 = 18487 = 18488 | 16488 | 19942,displayname|title|creationdate|viewcount
+G63,11,4,copies + different SQL,11,10,False,7,0.9353,15158 = 15450 = 15844 = 16067 = 17533 = 17898 = 18936 = 19622 | 15668 | 15756 | 19680,postid|title|creationdate|ownername|commentcount|upvotes|downvotes
+G64,11,4,copies + different SQL,11,10,False,5,0.7013,15161 = 15486 = 15760 = 16849 = 18052 = 18740 = 19749 | 16037 = 18751 | 17679 | 18042,title|ownerdisplayname|creationdate|score|commentcount
+G65,11,2,copies + different SQL,11,10,False,5,0.9767,15221 = 16793 = 18197 | 15547 = 16103 = 16341 = 16413 = 16952 = 17317 = 18107 = 19193,title|creationdate|ownerdisplayname|score|commentcount
+G66,11,1,same SQL (copies),11,10,False,5,,15311 = 15322 = 15629 = 16577 = 16682 = 17797 = 18530 = 19155 = 19402 = 19796 = 19941,postid|title|ownerdisplayname|creationdate|score
+G67,11,1,same SQL (copies),11,10,False,4,,15535 = 15734 = 15738 = 15860 = 16925 = 17416 = 17477 = 17576 = 18527 = 18548 = 19593,title|creationdate|displayname|score
+G68,10,2,copies + different SQL,10,6,False,4,0.9825,10477 = 10755 = 10817 = 11470 = 12327 = 13288 = 13294 = 14627 = 14826 | 12022,posttype|postcount|averagescore|averageviewcount
+G69,10,3,copies + different SQL,10,10,False,5,0.7429,15227 = 15436 = 16932 = 17761 = 18179 = 18555 = 18755 | 16095 = 18514 | 19452,username|posttitle|postdate|postscore|commentcount
+G70,10,2,copies + different SQL,10,10,False,6,0.8,15376 = 15853 = 16174 = 16269 = 16807 = 17610 = 18996 = 19141 = 19935 | 16605,postid|title|creationdate|author|score|viewcount
+G71,10,1,same SQL (copies),10,10,False,7,,15606 = 15676 = 16124 = 16409 = 16631 = 17086 = 17246 = 17527 = 18692 = 19102,postid|title|author|creationdate|score|viewcount|commentcount
+G72,9,1,same SQL (copies),9,6,False,3,,10647 = 12508 = 12543 = 12565 = 13530 = 13549 = 14449 = 14472 = 14897,posttype|totalposts|averagescore
+G73,9,1,same SQL (copies),9,10,False,4,,15007 = 15546 = 15584 = 16130 = 16442 = 18971 = 19172 = 19320 = 19954,id|title|creationdate|displayname
+G74,9,2,copies + different SQL,9,10,False,6,0.9612,15080 = 16448 | 15840 = 15925 = 16313 = 16430 = 17547 = 17714 = 19366,title|creationdate|ownername|commentcount|upvotes|downvotes
+G75,9,4,copies + different SQL,9,10,False,7,0.9323,15083 = 18198 | 15318 = 15770 = 16015 = 18744 = 19079 | 18450 | 19960,postid|title|creationdate|ownerdisplayname|commentcount|upvotes|downvotes
+G76,9,3,copies + different SQL,9,10,False,6,0.9425,15100 = 15783 = 16468 = 16781 = 17619 = 18239 | 15123 | 17184 = 17308,title|creationdate|owner|commentcount|upvotes|downvotes
+G77,9,3,copies + different SQL,9,10,False,6,0.6267,15178 = 15930 = 16142 = 16163 = 16830 = 18657 = 19348 | 16205 | 16325,postid|title|creationdate|ownerdisplayname|commentcount|upvotecount
+G78,9,3,copies + different SQL,9,10,False,7,0.952,15258 = 15440 = 16136 = 16723 = 17020 = 17361 = 17798 | 16958 | 19111,postid|title|creationdate|author|commentcount|upvotecount|downvotecount
+G79,9,3,copies + different SQL,9,10,False,4,0.9494,15281 = 16820 = 17137 = 18167 = 18260 = 18432 = 19001 | 16256 | 16708,title|creationdate|owner|commentcount
+G80,9,3,copies + different SQL,9,10,False,7,0.7614,15476 = 16282 = 16657 = 17130 = 19297 = 19606 = 19912 | 17360 | 19611,postid|title|ownername|creationdate|score|viewcount|commentcount
+G81,9,1,same SQL (copies),9,10,False,6,,15636 = 15671 = 16110 = 16684 = 17004 = 17133 = 17197 = 18396 = 18800,id|title|creationdate|displayname|score|viewcount
+G82,9,2,copies + different SQL,9,10,False,5,0.9714,15679 = 15952 = 16060 = 16066 = 16519 = 17178 = 18776 = 19634 | 18257,postid|title|ownerdisplayname|creationdate|commentcount
+G83,9,4,copies + different SQL,9,10,False,5,0.8973,15682 = 19255 | 15997 = 18247 = 19271 = 19707 | 16107 = 18686 | 16479,username|posttitle|postdate|postscore|commentcount
+G84,9,2,copies + different SQL,9,10,False,6,0.8448,15976 | 16861 = 17733 = 17991 = 18521 = 18551 = 18782 = 18935 = 19136,title|creationdate|ownerdisplayname|commentcount|upvotes|downvotes
+G85,9,1,same SQL (copies),9,10,False,6,,16093 = 16370 = 16392 = 16418 = 16803 = 16916 = 16998 = 18478 = 19625,title|ownerdisplayname|creationdate|score|viewcount|answercount
+G86,8,6,copies + different SQL,8,,True,8,0.8639,10152 | 10163 | 10474 | 12093 | 13364 = 14144 = 14496 | 13673,userid|displayname|totalposts|totalquestions|totalanswers|totalviews|totalscore|scorerank
+G87,8,3,copies + different SQL,8,10,False,5,0.9652,15006 = 16312 = 16540 = 16593 = 18164 | 16219 = 17371 | 19824,title|creationdate|ownerdisplayname|commentcount|answercount
+G88,8,3,copies + different SQL,8,10,False,6,0.9296,15040 = 18115 | 15302 = 15550 = 15984 = 16483 | 16076 = 19512,postid|title|creationdate|ownerdisplayname|commentcount|votecount
+G89,8,3,copies + different SQL,8,10,False,7,0.9619,15041 | 16210 = 16427 = 17021 = 17383 = 17914 = 19684 | 18509,postid|title|creationdate|author|score|viewcount|commentcount
+G90,8,3,copies + different SQL,8,10,False,4,0.8844,15045 = 15113 = 15966 = 18230 | 17953 = 18412 = 18470 | 18750,displayname|postcount|questioncount|answercount
+G91,8,1,same SQL (copies),8,10,False,7,,15048 = 15091 = 15122 = 15187 = 15618 = 16374 = 17216 = 18757,postid|title|author|creationdate|viewcount|score|commentcount
+G92,8,2,copies + different SQL,8,10,False,7,0.9701,15057 | 16352 = 16790 = 17040 = 18397 = 19152 = 19792 = 19916,postid|title|ownerdisplayname|creationdate|commentcount|upvotecount|downvotecount
+G93,8,2,copies + different SQL,8,10,False,5,0.7959,15157 = 15414 = 16474 = 17265 = 18642 = 19859 | 15978 = 18080,title|author|creationdate|score|viewcount
+G94,8,1,same SQL (copies),8,10,False,5,,15184 = 16805 = 17043 = 17395 = 17546 = 17662 = 18995 = 19834,title|owner|creationdate|viewcount|score
+G95,8,3,copies + different SQL,8,10,False,5,0.7789,15285 | 16895 = 17387 = 17435 = 18327 = 19140 = 19545 | 17816,displayname|title|creationdate|viewcount|score
+G96,8,1,same SQL (copies),8,10,False,6,,15305 = 15438 = 15680 = 17039 = 17751 = 18917 = 19405 = 19770,postid|title|ownername|creationdate|score|commentcount
+G97,8,1,same SQL (copies),8,10,False,6,,15537 = 15692 = 17439 = 17807 = 17992 = 18073 = 19305 = 19396,displayname|title|creationdate|score|viewcount|commentcount
+G98,8,1,same SQL (copies),8,10,False,6,,15635 = 15708 = 16013 = 16041 = 16768 = 17235 = 18405 = 18679,postid|title|owner|creationdate|score|viewcount
+G99,8,1,same SQL (copies),8,10,False,5,,15711 = 16480 = 16938 = 17550 = 18200 = 19054 = 19270 = 19735,postid|title|score|ownerdisplayname|creationdate
+G100,8,2,copies + different SQL,8,10,False,5,0.9625,15811 = 15863 = 16331 = 16638 = 17282 = 18101 = 19104 | 18895,postid|title|creationdate|ownerdisplayname|commentcount
+G101,8,2,copies + different SQL,8,10,False,4,0.8054,15854 | 15972 = 16494 = 16765 = 16806 = 18532 = 18822 = 19293,title|creationdate|author|commentcount
+G102,8,2,copies + different SQL,8,10,False,7,0.796,16016 = 16796 = 17209 = 17347 = 18808 = 19164 = 19787 | 19961,postid|title|owner|creationdate|score|viewcount|commentcount
+G103,7,1,same SQL (copies),7,6,False,4,,10018 = 11506 = 13798 = 14005 = 14125 = 14229 = 14959,posttype|totalposts|averagescore|totalviewcount
+G104,7,1,same SQL (copies),7,6,False,2,,10117 = 11780 = 12937 = 13010 = 13388 = 14147 = 14340,posttype|postcount
+G105,7,1,same SQL (copies),7,10,False,7,,15020 = 15052 = 15524 = 16511 = 16917 = 18788 = 18956,postid|title|ownerdisplayname|creationdate|commentcount|upvotes|downvotes
+G106,7,1,same SQL (copies),7,10,False,7,,15036 = 15321 = 16188 = 17189 = 18650 = 18774 = 18904,postid|title|creationdate|ownerdisplayname|viewcount|score|commentcount
+G107,7,3,copies + different SQL,7,,True,6,0.9313,15038 = 15727 = 15942 = 17382 = 17507 | 17185 | 17584,title|creationdate|ownerdisplayname|commentcount|upvotes|downvotes
+G108,7,3,copies + different SQL,7,10,False,6,0.6667,15078 = 16048 = 17891 = 18997 | 15194 = 15470 | 17164,postid|title|creationdate|owner|commentcount|votecount
+G109,7,1,same SQL (copies),7,10,False,5,,15238 = 16327 = 17101 = 17690 = 18046 = 18388 = 19458,postid|title|creationdate|score|ownerdisplayname
+G110,7,2,copies + different SQL,7,10,False,5,0.9222,15348 = 16311 = 17566 = 19309 = 19975 | 16208 = 17894,userdisplayname|posttitle|postcreationdate|postscore|commentcount
+G111,7,2,copies + different SQL,7,10,False,7,0.9624,15409 = 15735 = 15803 = 16244 = 16305 = 17231 | 19188,postid|title|creationdate|ownerdisplayname|commentcount|upvotecount|downvotecount
+G112,7,2,copies + different SQL,7,10,False,7,0.9701,15570 = 15574 = 15873 = 15936 = 16133 = 17756 | 17936,postid|title|creationdate|ownername|commentcount|upvotecount|downvotecount
+G113,7,1,same SQL (copies),7,10,False,5,,15580 = 15715 = 16734 = 17243 = 17247 = 17943 = 19998,title|creationdate|owner|viewcount|score
+G114,7,1,same SQL (copies),7,10,False,5,,15596 = 16918 = 17093 = 17419 = 17850 = 18734 = 19174,displayname|title|creationdate|viewcount|commentcount
+G115,7,2,copies + different SQL,7,10,False,6,0.8,15621 = 15751 = 16966 = 16968 = 19246 = 19256 | 19226,postid|title|owner|creationdate|viewcount|score
+G116,7,2,copies + different SQL,7,10,False,5,0.9091,15622 = 15892 = 16492 = 18738 = 19791 = 19918 | 19755,title|creationdate|ownerdisplayname|commentcount|upvotecount
+G117,7,6,copies + different SQL,7,10,False,2,0.7654,15657 | 15791 | 15920 = 18872 | 17357 | 17868 | 17876,displayname|postcount
+G118,7,2,copies + different SQL,7,,True,7,0.9635,15665 | 16531 = 16542 = 17180 = 17745 = 18972 = 19048,postid|title|creationdate|ownerdisplayname|commentcount|upvotecount|downvotecount
+G119,7,2,copies + different SQL,7,10,False,5,0.9643,15670 = 16934 = 17537 = 18937 = 19861 = 19925 | 17394,title|creationdate|score|ownerdisplayname|commentcount
+G120,7,1,same SQL (copies),7,10,False,6,,15812 = 17417 = 17664 = 18003 = 18411 = 18726 = 18871,displayname|title|creationdate|commentcount|upvotes|downvotes
+G121,6,2,copies + different SQL,6,6,False,3,0.8103,10507 = 12453 = 13841 = 14177 = 14937 | 13568,posttype|postcount|averagescore
+G122,6,3,copies + different SQL,6,6,False,4,0.8816,10818 = 10840 = 11484 = 13129 | 12894 | 14598,posttype|totalposts|averagescore|totalcomments
+G123,6,2,copies + different SQL,6,10,False,7,0.9588,15025 = 15360 = 15700 = 19390 = 19430 | 17976,postid|title|creationdate|author|commentcount|upvotes|downvotes
+G124,6,3,copies + different SQL,6,10,False,4,0.915,15127 = 18614 = 18940 | 15898 = 19121 | 18283,title|creationdate|ownerdisplayname|answercount
+G125,6,1,same SQL (copies),6,10,False,5,,15141 = 15385 = 15404 = 16021 = 16349 = 16919,id|title|score|displayname|creationdate
+G126,6,1,same SQL (copies),6,10,False,5,,15245 = 15558 = 16440 = 16476 = 16667 = 19409,title|ownername|creationdate|score|viewcount
+G127,6,2,copies + different SQL,6,10,False,5,0.7959,15264 = 15573 = 16088 = 17330 = 19414 | 17682,title|creationdate|owner|score|viewcount
+G128,6,1,same SQL (copies),6,10,False,8,,15317 = 15774 = 16248 = 17642 = 17821 = 19898,postid|title|author|creationdate|score|viewcount|answercount|commentcount
+G129,6,1,same SQL (copies),6,10,False,5,,15437 = 17552 = 17920 = 18273 = 18406 = 19447,id|title|creationdate|displayname|score
+G130,6,1,same SQL (copies),6,10,False,8,,15633 = 16061 = 16754 = 16858 = 17068 = 19442,postid|title|ownerdisplayname|creationdate|score|viewcount|commentcount|votecount
+G131,6,1,same SQL (copies),6,10,False,5,,15646 = 15842 = 15948 = 16444 = 18805 = 18878,title|ownerdisplayname|creationdate|score|viewcount
+G132,6,3,copies + different SQL,6,10,False,5,0.9677,15761 | 16445 | 17305 = 18259 = 18957 = 19771,title|creationdate|ownerdisplayname|commentcount|votecount
+G133,6,2,copies + different SQL,6,10,False,7,0.9761,15869 = 16285 = 16330 = 18394 = 18741 | 16546,postid|title|ownerdisplayname|creationdate|score|viewcount|commentcount
+G134,6,1,same SQL (copies),6,10,False,5,,15872 = 16164 = 17957 = 18102 = 18328 = 18582,title|owner|creationdate|score|viewcount
+G135,6,1,same SQL (copies),6,10,False,5,,16378 = 17691 = 18243 = 18469 = 19688 = 19701,id|title|creationdate|ownerdisplayname|commentcount
+G136,6,1,same SQL (copies),6,10,False,6,,16529 = 16532 = 16920 = 17654 = 18395 = 19890,title|creationdate|ownerdisplayname|score|viewcount|answercount
+G137,6,2,copies + different SQL,6,10,False,5,0.9524,16817 = 17841 = 17851 = 18012 = 18821 | 17466,title|creationdate|ownerdisplayname|score|viewcount
+G138,6,1,same SQL (copies),6,10,False,4,,17223 = 17274 = 17765 = 18040 = 18909 = 18979,username|posttitle|postdate|postscore
+G139,5,2,copies + different SQL,5,10,False,5,0.9941,15097 = 17306 = 17826 = 18489 | 18333,title|creationdate|viewcount|ownerdisplayname|commentcount
+G140,5,1,same SQL (copies),5,10,False,6,,15130 = 15958 = 17346 = 19062 = 19572,postid|title|creationdate|ownerdisplayname|score|viewcount
+G141,5,2,copies + different SQL,5,10,False,7,1.0,15171 | 15384 = 15562 = 15857 = 17548,postid|title|creationdate|ownerdisplayname|score|viewcount|commentcount
+G142,5,2,copies + different SQL,5,10,False,7,0.9963,15196 | 15314 = 17522 = 18647 = 19343,postid|title|creationdate|owner|commentcount|upvotecount|downvotecount
+G143,5,1,same SQL (copies),5,10,False,7,,15286 = 16367 = 17389 = 17629 = 18336,postid|title|author|creationdate|score|viewcount|answercount
+G144,5,1,same SQL (copies),5,10,False,4,,15290 = 15826 = 18387 = 18491 = 19685,title|displayname|creationdate|score
+G145,5,1,same SQL (copies),5,,True,7,,15425 = 16224 = 16630 = 17048 = 18502,postid|title|creationdate|ownerdisplayname|commentcount|upvotes|downvotes
+G146,5,2,copies + different SQL,5,10,False,6,0.9953,15433 = 16182 = 16912 | 16646 = 19144,postid|title|creationdate|author|commentcount|votecount
+G147,5,4,copies + different SQL,5,10,False,3,0.7959,15528 = 19027 | 17071 | 17465 | 18645,displayname|postcount|totalscore
+G148,5,2,copies + different SQL,5,10,False,8,0.9014,15541 | 16336 = 18051 = 19178 = 19326,postid|title|owner|creationdate|score|viewcount|answercount|commentcount
+G149,5,1,same SQL (copies),5,10,False,6,,15741 = 18456 = 18634 = 18753 = 19833,postid|title|author|creationdate|viewcount|score
+G150,5,2,copies + different SQL,5,10,False,5,0.7872,15762 = 16755 = 19819 | 17730 = 19666,title|displayname|creationdate|score|viewcount
+G151,5,1,same SQL (copies),5,10,False,6,,15824 = 16119 = 18009 = 18180 = 18835,postid|title|creationdate|author|viewcount|score
+G152,5,2,copies + different SQL,5,10,False,6,0.9756,15883 = 16537 = 16993 = 19996 | 17956,postid|title|creationdate|ownerdisplayname|posttypename|commentcount
+G153,5,1,same SQL (copies),5,10,False,6,,16307 = 17236 = 17269 = 19569 = 19607,title|ownerdisplayname|creationdate|viewcount|score|commentcount
+G154,5,2,copies + different SQL,5,10,False,7,0.9773,16345 = 17362 = 18499 = 19217 | 19254,postid|title|ownerdisplayname|creationdate|score|viewcount|commentcount
+G155,5,1,same SQL (copies),5,10,False,6,,16353 = 17392 = 17429 = 19026 = 19850,postid|title|creationdate|ownername|commentcount|votecount
+G156,5,1,same SQL (copies),5,10,False,5,,16461 = 16687 = 17708 = 17772 = 19198,postid|title|creationdate|ownerdisplayname|score
+G157,5,1,same SQL (copies),5,10,False,7,,16668 = 17051 = 17399 = 18913 = 19664,postid|title|owner|creationdate|score|viewcount|answercount
+G158,5,1,same SQL (copies),5,10,False,5,,16808 = 18021 = 18057 = 18379 = 19722,postid|title|owner|creationdate|score
+G159,5,2,copies + different SQL,5,10,False,6,0.9843,17225 = 17900 = 18407 = 19575 | 17369,username|posttitle|postdate|commentcount|upvotes|downvotes
+G160,4,2,copies + different SQL,4,6,False,5,0.9268,10253 = 12139 = 14179 | 10937,posttype|totalposts|averagescore|averageviewcount|totalvotes
+G161,4,4,different SQL,4,10,False,5,0.9189,11094 | 13545 | 13842 | 14696,displayname|reputation|postcount|questioncount|answercount
+G162,4,2,copies + different SQL,4,6,False,4,0.9912,11540 = 11898 = 14997 | 14975,posttype|postcount|averagescore|totalviews
+G163,4,4,different SQL,4,10,False,4,0.6298,11549 | 14910 | 17964 | 19380,displayname|postcount|questioncount|answercount
+G164,4,2,copies + different SQL,4,10,False,5,0.9949,15012 = 16728 = 19705 | 15594,title|creationdate|author|commentcount|votecount
+G165,4,3,copies + different SQL,4,10,False,4,0.6744,15022 | 16999 | 17352 = 18690,displayname|reputation|title|creationdate
+G166,4,1,same SQL (copies),4,10,False,8,,15076 = 16598 = 18072 = 18938,postid|title|ownername|creationdate|score|viewcount|answercount|commentcount
+G167,4,2,copies + different SQL,4,10,False,7,0.9948,15094 = 18020 = 18140 | 19261,postid|title|ownerdisplayname|creationdate|score|viewcount|commentcount
+G168,4,2,copies + different SQL,4,10,False,4,0.8654,15239 = 15459 = 17962 | 19115,username|posttitle|postdate|postscore
+G169,4,3,copies + different SQL,4,10,False,6,0.9291,15252 = 17634 | 18171 | 18854,userdisplayname|posttitle|postcreationdate|commentcount|upvotes|downvotes
+G170,4,1,same SQL (copies),4,10,False,6,,15255 = 15419 = 15484 = 19914,postid|title|ownerdisplayname|creationdate|viewcount|commentcount
+G171,4,1,same SQL (copies),4,10,False,6,,15313 = 16432 = 17881 = 18340,title|owner|creationdate|score|viewcount|commentcount
+G172,4,2,copies + different SQL,4,10,False,7,0.7263,15369 = 15813 = 17501 | 18312,postid|title|owner|creationdate|viewcount|score|commentcount
+G173,4,2,copies + different SQL,4,,True,6,0.9292,15390 | 16980 = 18684 = 19997,postid|title|creationdate|ownerdisplayname|commentcount|votecount
+G174,4,1,same SQL (copies),4,10,False,7,,15402 = 16873 = 18609 = 19963,postid|title|ownername|creationdate|score|viewcount|commentcount
+G175,4,1,same SQL (copies),4,10,False,5,,15423 = 15567 = 19218 = 19773,title|creationdate|ownername|commentcount|votecount
+G176,4,1,same SQL (copies),4,10,False,6,,15489 = 17314 = 17510 = 19153,postid|title|creationdate|owner|score|viewcount
+G177,4,1,same SQL (copies),4,10,False,5,,15675 = 16132 = 19078 = 19880,postid|title|ownerdisplayname|score|creationdate
+G178,4,1,same SQL (copies),4,10,False,6,,15755 = 15804 = 18786 = 19359,postid|title|creationdate|score|ownername|commentcount
+G179,4,4,different SQL,4,10,False,6,0.9352,15786 | 16659 | 16674 | 19269,postid|title|creationdate|ownerdisplayname|posttype|commentcount
+G180,4,4,different SQL,4,10,False,3,0.9362,15793 | 16014 | 16071 | 16628,displayname|postcount|totalbounty
+G181,4,1,same SQL (copies),4,10,False,6,,16105 = 16190 = 16196 = 19843,postid|title|creationdate|ownername|score|commentcount
+G182,4,2,copies + different SQL,4,10,False,6,0.9947,16149 | 16310 = 16489 = 16703,postid|title|ownerdisplayname|score|creationdate|commentcount
+G183,4,1,same SQL (copies),4,10,False,6,,16170 = 16437 = 17263 = 17671,id|title|creationdate|ownerdisplayname|score|viewcount
+G184,4,1,same SQL (copies),4,10,False,6,,16356 = 17506 = 17716 = 18958,title|author|creationdate|score|viewcount|answercount
+G185,4,1,same SQL (copies),4,10,False,6,,16661 = 17968 = 18646 = 19199,postid|title|ownerdisplayname|creationdate|score|viewcount
+G186,4,1,same SQL (copies),4,10,False,5,,16701 = 18787 = 19180 = 19404,id|title|displayname|creationdate|score
+G187,4,1,same SQL (copies),4,10,False,5,,16843 = 17014 = 17233 = 19508,postid|posttitle|postcreationdate|ownerdisplayname|commentcount
+G188,4,2,copies + different SQL,4,10,False,6,0.9733,16978 = 17441 = 18889 | 17848,title|creationdate|ownerdisplayname|viewcount|score|commentcount
+G189,4,1,same SQL (copies),4,10,False,5,,17031 = 17281 = 18195 = 19775,title|ownerdisplayname|creationdate|viewcount|score
+G190,4,4,different SQL,4,10,False,4,0.915,17509 | 17517 | 19219 | 19431,title|creationdate|owner|answercount
+G191,4,1,same SQL (copies),4,10,False,6,,17532 = 17717 = 18136 = 19165,postid|title|creationdate|ownername|score|viewcount
+G192,3,2,copies + different SQL,3,6,False,4,0.988,10099 = 13440 | 10347,posttype|postcount|averagescore|totalcomments
+G193,3,3,different SQL,3,10,False,8,0.6556,10102 | 11127 | 12574,userid|displayname|totalposts|totalquestions|totalanswers|totalviews|totalscore|scorerank
+G194,3,3,different SQL,3,10,False,4,0.7891,10363 | 10801 | 14926,userid|displayname|reputation|postcount
+G195,3,2,copies + different SQL,3,4,False,4,0.9189,10514 | 11932 = 13005,posttype|totalposts|averagescore|averageviewcount
+G196,3,1,same SQL (copies),3,6,False,2,,10767 = 13187 = 14082,posttype|totalposts
+G197,3,1,same SQL (copies),3,6,False,4,,12212 = 14114 = 14743,posttype|totalposts|avgscore|avgviewcount
+G198,3,1,same SQL (copies),3,1,False,1,,12616 = 13313 = 14524,totalusers
+G199,3,3,different SQL,3,6,False,4,0.911,12768 | 13287 | 13303,posttype|totalposts|averagescore|totalcomments
+G200,3,3,different SQL,3,10,False,5,0.7636,14967 | 17160 | 19586,userid|displayname|postcount|questioncount|answercount
+G201,3,2,copies + different SQL,3,10,False,5,0.9353,15017 = 16373 | 19034,id|title|creationdate|displayname|tagname
+G202,3,2,copies + different SQL,3,10,False,6,0.7925,15021 | 15358 = 19553,id|title|ownerdisplayname|creationdate|score|viewcount
+G203,3,2,copies + different SQL,3,10,False,7,0.9957,15047 = 18604 | 19633,postid|title|creationdate|score|ownerdisplayname|commentcount|votecount
+G204,3,1,same SQL (copies),3,10,False,5,,15055 = 15748 = 19126,username|posttitle|postdate|postscore|postviews
+G205,3,1,same SQL (copies),3,10,False,4,,15069 = 16159 = 19032,postid|title|ownerdisplayname|creationdate
+G206,3,2,copies + different SQL,3,10,False,5,0.9775,15182 = 16835 | 18194,userdisplayname|posttitle|postcreationdate|postviewcount|commentcount
+G207,3,1,same SQL (copies),3,10,False,5,,15193 = 15553 = 17600,postid|title|creationdate|ownerdisplayname|ownerreputation
+G208,3,1,same SQL (copies),3,10,False,4,,15210 = 18662 = 18685,title|creationdate|displayname|score
+G209,3,1,same SQL (copies),3,10,False,5,,15215 = 15545 = 17049,id|title|creationdate|score|displayname
+G210,3,2,copies + different SQL,3,10,False,5,0.8246,15223 | 18317 = 19006,username|posttitle|postdate|views|score
+G211,3,1,same SQL (copies),3,10,False,4,,15241 = 16775 = 18562,title|viewcount|ownerdisplayname|creationdate
+G212,3,2,copies + different SQL,3,10,False,6,0.9612,15273 = 18771 | 19247,title|creationdate|author|commentcount|upvotecount|downvotecount
+G213,3,1,same SQL (copies),3,10,False,6,,15274 = 16410 = 18815,postid|title|ownerdisplayname|creationdate|commentcount|votecount
+G214,3,1,same SQL (copies),3,10,False,7,,15296 = 16582 = 17066,postid|title|ownername|creationdate|viewcount|score|commentcount
+G215,3,2,copies + different SQL,3,10,False,6,0.7305,15303 | 16156 = 16664,postid|title|creationdate|author|score|commentcount
+G216,3,1,same SQL (copies),3,0,False,7,,15343 = 17199 = 18262,postid|title|creationdate|ownerdisplayname|score|viewcount|tagname
+G217,3,1,same SQL (copies),3,10,False,4,,15347 = 16493 = 16640,id|title|creationdate|ownerdisplayname
+G218,3,1,same SQL (copies),3,10,False,7,,15354 = 17404 = 18559,postid|title|ownerdisplayname|creationdate|score|commentcount|votecount
+G219,3,1,same SQL (copies),3,10,False,5,,15393 = 18011 = 18307,title|creationdate|author|viewcount|score
+G220,3,1,same SQL (copies),3,10,False,5,,15418 = 16082 = 16191,id|title|ownerdisplayname|creationdate|score
+G221,3,1,same SQL (copies),3,100,False,6,,15469 = 17251 = 17273,postid|title|creationdate|ownerdisplayname|commentcount|votecount
+G222,3,1,same SQL (copies),3,10,False,6,,15488 = 16870 = 17723,displayname|title|creationdate|viewcount|score|commentcount
+G223,3,1,same SQL (copies),3,10,False,5,,15527 = 16252 = 17827,title|ownername|creationdate|score|viewcount
+G224,3,1,same SQL (copies),3,10,False,4,,15577 = 16459 = 18032,title|score|ownerdisplayname|commentcount
+G225,3,2,copies + different SQL,3,10,False,6,0.9744,15615 = 18022 | 18402,postid|title|creationdate|ownerdisplayname|ownerreputation|commentcount
+G226,3,1,same SQL (copies),3,10,False,6,,15739 = 17762 = 18212,postid|title|creationdate|ownerdisplayname|commentcount|score
+G227,3,1,same SQL (copies),3,10,False,6,,15747 = 15977 = 17198,title|owner|creationdate|score|viewcount|answercount
+G228,3,1,same SQL (copies),3,10,False,5,,15763 = 15778 = 18449,title|score|ownerdisplayname|creationdate|viewcount
+G229,3,1,same SQL (copies),3,10,False,5,,15841 = 17213 = 19328,username|posttitle|postdate|viewcount|score
+G230,3,1,same SQL (copies),3,10,False,6,,15964 = 16047 = 18138,postid|title|author|creationdate|score|viewcount
+G231,3,2,copies + different SQL,3,10,False,5,0.8862,16023 = 16355 | 17599,displayname|postcount|questioncount|answercount|averagereputation
+G232,3,1,same SQL (copies),3,10,False,4,,16131 = 19350 = 19948,title|creationdate|ownerdisplayname|score
+G233,3,1,same SQL (copies),3,10,False,5,,16150 = 16555 = 17518,title|creationdate|ownername|viewcount|score
+G234,3,1,same SQL (copies),3,,True,4,,16304 = 17485 = 17497,title|creationdate|ownerdisplayname|commentcount
+G235,3,1,same SQL (copies),3,10,False,5,,16329 = 17321 = 18666,title|creationdate|displayname|commentcount|votecount
+G236,3,1,same SQL (copies),3,10,False,6,,16386 = 17540 = 19412,title|creationdate|ownername|commentcount|upvotecount|downvotecount
+G237,3,2,copies + different SQL,3,100,False,7,0.964,16516 = 18596 | 16859,postid|title|creationdate|ownerdisplayname|commentcount|upvotecount|downvotecount
+G238,3,1,same SQL (copies),3,10,False,6,,16554 = 17183 = 17275,postid|title|author|creationdate|score|commentcount
+G239,3,2,copies + different SQL,3,10,False,5,0.9008,16649 = 16899 | 19785,postid|title|creationdate|ownerdisplayname|posttype
+G240,3,1,same SQL (copies),3,10,False,4,,16658 = 18285 = 18962,title|creationdate|ownerdisplayname|votecount
+G241,3,2,copies + different SQL,3,10,False,6,0.9843,16698 = 17636 | 17017,userdisplayname|posttitle|postcreationdate|commentcount|upvotecount|downvotecount
+G242,3,1,same SQL (copies),3,10,False,6,,16732 = 18758 = 19702,postid|title|creationdate|score|ownerdisplayname|commentcount
+G243,3,1,same SQL (copies),3,10,False,7,,16743 = 17760 = 19455,postid|title|ownername|creationdate|score|viewcount|answercount
+G244,3,1,same SQL (copies),3,10,False,9,,16791 = 18355 = 19264,postid|title|ownerdisplayname|creationdate|score|viewcount|answercount|commentcount|favoritecount
+G245,3,1,same SQL (copies),3,10,False,6,,16800 = 18314 = 19114,title|creationdate|ownerdisplayname|commentcount|upvotecount|downvotecount
+G246,3,3,different SQL,3,10,False,6,0.686,16901 | 19301 | 19658,title|author|creationdate|score|viewcount|commentcount
+G247,3,1,same SQL (copies),3,10,False,6,,17073 = 17482 = 19626,postid|title|score|viewcount|ownerdisplayname|creationdate
+G248,3,1,same SQL (copies),3,10,False,7,,17119 = 17686 = 19704,postid|title|creationdate|author|viewcount|score|commentcount
+G249,3,1,same SQL (copies),3,10,False,5,,17420 = 18067 = 18443,title|creationdate|ownername|score|viewcount
+G250,3,1,same SQL (copies),3,10,False,5,,17835 = 18159 = 18490,title|author|creationdate|score|viewcount
+G251,3,2,copies + different SQL,3,10,False,8,0.9732,17912 = 19149 | 19673,postid|title|creationdate|ownerdisplayname|posttypename|commentcount|upvotecount|downvotecount
+G252,3,3,different SQL,3,10,False,4,0.6744,18477 | 18664 | 19196,displayname|title|score|creationdate
+G253,3,1,same SQL (copies),3,10,False,7,,18780 = 19393 = 19967,displayname|title|creationdate|score|commentcount|upvotes|downvotes
+G254,2,2,different SQL,2,10,False,7,0.9367,6148 | 7633,displayname|reputation|postcount|questioncount|answercount|upvotes|downvotes
+G255,2,2,different SQL,2,10,False,8,0.9299,6530 | 9312,displayname|reputation|postcount|questioncount|answercount|upvotes|downvotes|netvotes
+G256,2,2,different SQL,2,0,False,7,0.8008,7372 | 9212,displayname|reputation|title|score|viewcount|commentcount|votecount
+G257,2,1,same SQL (copies),2,6,False,6,,10247 = 13668,posttype|totalposts|averagescore|averageviewcount|totalusers|totalbadges
+G258,2,2,different SQL,2,,True,11,0.8889,10314 | 14192,userid|displayname|totalposts|totalquestions|totalanswers|totalscore|totalviews|totalbadges|goldbadges|silverbadges|bronzebadges
+G259,2,2,different SQL,2,100,False,9,0.9677,10333 | 13249,postid|title|creationdate|score|viewcount|ownerdisplayname|commentcount|upvotes|downvotes
+G260,2,2,different SQL,2,,True,8,0.9877,10453 | 13159,userid|displayname|postcount|questioncount|answercount|totalviews|totalscore|scorerank
+G261,2,1,same SQL (copies),2,6,False,5,,10488 = 12502,posttype|totalposts|averagescore|averageviewcount|averagecommentcount
+G262,2,1,same SQL (copies),2,6,False,2,,10576 = 13231,posttypeid|postcount
+G263,2,1,same SQL (copies),2,6,False,5,,10656 = 11616,posttype|postcount|averagescore|totalviews|acceptedanswers
+G264,2,2,different SQL,2,100,False,11,0.9436,10791 | 14101,userid|displayname|totalposts|totalquestions|totalanswers|totalscore|totalviews|totalbadges|goldbadges|silverbadges|bronzebadges
+G265,2,1,same SQL (copies),2,100,False,8,,10845 = 13810,postid|title|creationdate|score|viewcount|ownerdisplayname|commentcount|votecount
+G266,2,2,different SQL,2,100,False,9,0.9487,10850 | 12598,postid|title|creationdate|score|viewcount|ownerdisplayname|commentcount|upvotes|downvotes
+G267,2,2,different SQL,2,6,False,5,0.9897,11034 | 13794,posttype|totalposts|averagescore|totalviews|totalcomments
+G268,2,1,same SQL (copies),2,6,False,5,,11039 = 13644,posttype|totalposts|averagescore|averageviewcount|totalusers
+G269,2,2,different SQL,2,6,False,5,0.9464,11210 | 14709,posttype|totalposts|averagescore|totalupvotes|totaldownvotes
+G270,2,1,same SQL (copies),2,,True,4,,11884 = 14425,userid|displayname|reputation|postcount
+G271,2,2,different SQL,2,10,False,6,0.9061,11951 | 12772,displayname|reputation|creationdate|postcount|questioncount|answercount
+G272,2,1,same SQL (copies),2,6,False,5,,12140 = 13968,posttype|totalposts|averagescore|totalviews|uniqueusers
+G273,2,2,different SQL,2,6,False,5,0.9639,12143 | 14098,posttype|totalposts|averagescore|totalcomments|totalusers
+G274,2,1,same SQL (copies),2,6,False,4,,12223 = 13681,posttype|totalposts|avgscore|totalviews
+G275,2,1,same SQL (copies),2,6,False,3,,12412 = 13672,posttypename|totalposts|averagescore
+G276,2,2,different SQL,2,10,False,5,0.7929,12492 | 14865,userid|displayname|reputation|postcount|totalscore
+G277,2,1,same SQL (copies),2,1,False,1,,12558 = 13123,totalposts
+G278,2,1,same SQL (copies),2,6,False,4,,12703 = 14994,posttype|totalposts|averageviewcount|averagescore
+G279,2,2,different SQL,2,6,False,4,0.9831,12718 | 12961,posttype|postcount|averagescore|totalcomments
+G280,2,2,different SQL,2,,True,5,0.963,12891 | 13110,userid|displayname|totalposts|averagescore|mostrecentpostdate
+G281,2,1,same SQL (copies),2,6,False,4,,12914 = 13616,posttypename|totalposts|averagescore|averageviewcount
+G282,2,1,same SQL (copies),2,6,False,4,,13400 = 14849,posttype|totalposts|averageviews|averagescore
+G283,2,1,same SQL (copies),2,100,False,8,,13524 = 13754,postid|title|creationdate|viewcount|score|ownerdisplayname|commentcount|votecount
+G284,2,2,different SQL,2,6,False,4,0.9215,13719 | 14110,posttype|postcount|avgscore|totalcomments
+G285,2,1,same SQL (copies),2,6,False,5,,13829 = 13881,posttype|totalposts|averagescore|averageviewcount|averageanswercount
+G286,2,1,same SQL (copies),2,6,False,4,,13860 = 14978,posttype|postcount|averagescore|averageuserreputation
+G287,2,1,same SQL (copies),2,6,False,4,,14070 = 14532,posttypename|totalposts|averageviewcount|averagescore
+G288,2,1,same SQL (copies),2,10,False,6,,15009 = 17079,postid|title|creationdate|ownerdisplayname|viewcount|commentcount
+G289,2,1,same SQL (copies),2,10,False,5,,15014 = 17335,id|title|displayname|creationdate|commentcount
+G290,2,1,same SQL (copies),2,10,False,6,,15060 = 17896,title|creationdate|author|score|viewcount|answercount
+G291,2,1,same SQL (copies),2,10,False,4,,15066 = 19940,username|posttitle|postscore|postdate
+G292,2,1,same SQL (copies),2,10,False,5,,15073 = 15191,id|title|viewcount|displayname|commentcount
+G293,2,1,same SQL (copies),2,10,False,6,,15079 = 17479,title|ownername|creationdate|viewcount|score|commentcount
+G294,2,1,same SQL (copies),2,100,False,7,,15082 = 16974,postid|title|author|creationdate|score|viewcount|commentcount
+G295,2,1,same SQL (copies),2,10,False,9,,15089 = 16933,postid|title|owner|creationdate|score|viewcount|answercount|commentcount|favoritecount
+G296,2,1,same SQL (copies),2,10,False,7,,15090 = 15521,postid|title|ownerdisplayname|creationdate|commentcount|upvotecount|downvotecount
+G297,2,2,different SQL,2,10,False,5,0.8039,15101 | 15775,postid|title|creationdate|ownerdisplayname|reputation
+G298,2,1,same SQL (copies),2,10,False,4,,15102 = 15694,title|creationdate|displayname|viewcount
+G299,2,1,same SQL (copies),2,10,False,5,,15106 = 16641,id|title|displayname|creationdate|viewcount
+G300,2,1,same SQL (copies),2,10,False,8,,15114 = 16996,postid|title|ownerdisplayname|creationdate|score|viewcount|answercount|commentcount
+G301,2,1,same SQL (copies),2,10,False,6,,15132 = 17980,postid|title|ownerdisplayname|commentcount|upvotecount|downvotecount
+G302,2,1,same SQL (copies),2,10,False,5,,15145 = 17999,postid|title|creationdate|score|ownerdisplayname
+G303,2,1,same SQL (copies),2,10,False,7,,15148 = 15983,postid|title|ownerdisplayname|creationdate|commentcount|upvotes|downvotes
+G304,2,2,different SQL,2,10,False,4,0.9028,15155 | 16844,displayname|title|creationdate|commentcount
+G305,2,1,same SQL (copies),2,10,False,4,,15175 = 19524,postid|title|creationdate|ownerdisplayname
+G306,2,1,same SQL (copies),2,10,False,6,,15189 = 16485,postid|title|creationdate|ownerdisplayname|commentcount|upvotes
+G307,2,2,different SQL,2,10,False,5,0.8986,15222 | 17488,userdisplayname|posttitle|postcreationdate|commenttext|commentcreationdate
+G308,2,2,different SQL,2,10,False,4,0.8353,15266 | 16502,username|postcount|questioncount|answercount
+G309,2,1,same SQL (copies),2,,True,7,,15271 = 16526,postid|title|creationdate|author|commentcount|upvotes|downvotes
+G310,2,2,different SQL,2,10,False,8,0.7019,15276 | 16931,postid|title|ownerdisplayname|creationdate|score|viewcount|commentcount|answercount
+G311,2,1,same SQL (copies),2,10,False,6,,15297 = 15886,postid|title|creationdate|score|author|commentcount
+G312,2,1,same SQL (copies),2,10,False,5,,15341 = 18344,id|title|score|displayname|creationdate
+G313,2,1,same SQL (copies),2,10,False,5,,15349 = 15685,postid|title|ownername|creationdate|score
+G314,2,2,different SQL,2,10,False,5,0.8772,15356 | 15699,title|creationdate|ownerdisplayname|viewcount|answercount
+G315,2,1,same SQL (copies),2,,True,6,,15362 = 19399,title|creationdate|ownerdisplayname|commentcount|upvotecount|downvotecount
+G316,2,1,same SQL (copies),2,10,False,2,,15374 = 19437,displayname|totalposts
+G317,2,2,different SQL,2,10,False,5,0.9333,15388 | 19317,title|creationdate|owner|posttype|commentcount
+G318,2,1,same SQL (copies),2,10,False,5,,15405 = 17535,postid|title|creationdate|ownerdisplayname|posttypename
+G319,2,2,different SQL,2,10,False,5,0.7097,15417 | 19044,title|owner|creationdate|score|commentcount
+G320,2,1,same SQL (copies),2,10,False,4,,15504 = 16845,displayname|title|score|creationdate
+G321,2,1,same SQL (copies),2,10,False,6,,15530 = 16989,postid|title|ownerdisplayname|creationdate|score|commentcount
+G322,2,1,same SQL (copies),2,10,False,4,,15538 = 19531,title|ownerdisplayname|creationdate|score
+G323,2,1,same SQL (copies),2,10,False,5,,15581 = 16889,postid|title|score|ownerdisplayname|creationdate
+G324,2,2,different SQL,2,10,False,4,0.797,15616 | 16945,title|creationdate|displayname|commentcount
+G325,2,1,same SQL (copies),2,10,False,5,,15617 = 18153,id|title|creationdate|ownerdisplayname|score
+G326,2,2,different SQL,2,10,False,8,0.5984,15619 | 19911,postid|title|ownerdisplayname|creationdate|viewcount|score|commentcount|answercount
+G327,2,1,same SQL (copies),2,10,False,7,,15620 = 18842,postid|title|ownerdisplayname|creationdate|score|viewcount|tags
+G328,2,1,same SQL (copies),2,10,False,4,,15638 = 18290,userdisplayname|posttitle|postcreationdate|postscore
+G329,2,1,same SQL (copies),2,10,False,4,,15649 = 16981,id|title|creationdate|owner
+G330,2,1,same SQL (copies),2,10,False,6,,15660 = 19432,postid|title|owner|creationdate|score|commentcount
+G331,2,1,same SQL (copies),2,10,False,6,,15662 = 17647,title|ownerdisplayname|creationdate|score|viewcount|commentcount
+G332,2,1,same SQL (copies),2,10,False,4,,15678 = 16309,title|creationdate|ownername|votecount
+G333,2,1,same SQL (copies),2,10,False,4,,15704 = 18423,title|creationdate|score|ownerdisplayname
+G334,2,1,same SQL (copies),2,10,False,6,,15721 = 17463,postid|title|ownername|commentcount|upvotes|downvotes
+G335,2,1,same SQL (copies),2,10,False,8,,15730 = 19717,postid|title|creationdate|score|ownerdisplayname|commentcount|upvotes|downvotes
+G336,2,2,different SQL,2,10,False,4,0.8861,15766 | 19383,username|posttitle|postcreationdate|commentcount
+G337,2,1,same SQL (copies),2,10,False,5,,15772 = 18043,username|posttitle|creationdate|score|commentcount
+G338,2,1,same SQL (copies),2,10,False,6,,15807 = 16725,postid|title|ownerdisplayname|commentcount|upvotes|downvotes
+G339,2,1,same SQL (copies),2,10,False,5,,15815 = 16991,title|creationdate|owner|score|commentcount
+G340,2,2,different SQL,2,10,False,3,0.9905,15825 | 18210,displayname|postcount|totalviews
+G341,2,2,different SQL,2,10,False,4,0.9313,15835 | 16507,title|creationdate|displayname|tagname
+G342,2,2,different SQL,2,10,False,4,0.9365,15837 | 18346,userdisplayname|posttitle|historycreationdate|postscore
+G343,2,1,same SQL (copies),2,10,False,5,,15838 = 18572,displayname|title|creationdate|score|tagname
+G344,2,1,same SQL (copies),2,10,False,6,,15871 = 19826,postid|title|body|creationdate|ownerdisplayname|commentcount
+G345,2,1,same SQL (copies),2,10,False,7,,15875 = 18960,id|title|creationdate|ownerdisplayname|score|viewcount|answercount
+G346,2,1,same SQL (copies),2,10,False,5,,15879 = 16007,title|creationdate|ownerdisplayname|viewcount|score
+G347,2,1,same SQL (copies),2,10,False,6,,15881 = 19353,postid|title|creationdate|ownerdisplayname|viewcount|score
+G348,2,2,different SQL,2,10,False,6,0.9783,15897 | 19143,title|creationdate|displayname|score|viewcount|commentcount
+G349,2,1,same SQL (copies),2,10,False,5,,15899 = 19621,title|creationdate|ownername|commentcount|upvotecount
+G350,2,1,same SQL (copies),2,10,False,6,,15902 = 18766,postid|title|ownername|creationdate|viewcount|score
+G351,2,1,same SQL (copies),2,10,False,5,,15908 = 16339,title|creationdate|ownerdisplayname|commentcount|score
+G352,2,1,same SQL (copies),2,10,False,7,,15912 = 17163,postid|title|creationdate|ownerdisplayname|score|viewcount|commentcount
+G353,2,1,same SQL (copies),2,10,False,5,,15939 = 18409,title|score|ownerdisplayname|creationdate|commentcount
+G354,2,2,different SQL,2,10,False,3,0.7959,15988 | 17151,displayname|postcount|totalscore
+G355,2,2,different SQL,2,10,False,3,0.9897,16034 | 16591,userid|displayname|postcount
+G356,2,1,same SQL (copies),2,10,False,4,,16070 = 16618,title|ownerdisplayname|score|creationdate
+G357,2,2,different SQL,2,10,False,5,0.8772,16121 | 16487,title|creationdate|ownerdisplayname|answercount|viewcount
+G358,2,2,different SQL,2,10,False,7,0.9957,16134 | 18108,postid|title|author|creationdate|score|commentcount|votecount
+G359,2,1,same SQL (copies),2,10,False,7,,16151 = 19400,postid|title|userdisplayname|creationdate|score|viewcount|commentcount
+G360,2,1,same SQL (copies),2,10,False,5,,16213 = 19870,postid|title|creationdate|viewcount|ownerdisplayname
+G361,2,1,same SQL (copies),2,0,False,6,,16253 = 19266,title|ownerdisplayname|creationdate|score|viewcount|tagname
+G362,2,1,same SQL (copies),2,10,False,6,,16266 = 18429,postid|title|creationdate|ownername|viewcount|score
+G363,2,2,different SQL,2,10,False,5,0.8986,16279 | 18948,userdisplayname|posttitle|postcreationdate|commenttext|commentcreationdate
+G364,2,2,different SQL,2,10,False,5,0.9714,16288 | 16647,postid|title|owner|creationdate|commentcount
+G365,2,2,different SQL,2,10,False,7,0.9448,16290 | 19002,postid|title|creationdate|ownerdisplayname|score|viewcount|tagname
+G366,2,1,same SQL (copies),2,10,False,7,,16294 = 16380,postid|title|creationdate|score|viewcount|ownerdisplayname|commentcount
+G367,2,1,same SQL (copies),2,10,False,5,,16297 = 18226,displayname|totalposts|totalquestions|totalanswers|totalwikis
+G368,2,1,same SQL (copies),2,10,False,5,,16316 = 19568,id|title|creationdate|displayname|reputation
+G369,2,1,same SQL (copies),2,10,False,5,,16348 = 16890,postid|title|author|creationdate|commentcount
+G370,2,1,same SQL (copies),2,10,False,6,,16360 = 19895,postid|title|creationdate|owner|viewcount|score
+G371,2,1,same SQL (copies),2,10,False,5,,16361 = 19035,id|title|creationdate|displayname|commentcount
+G372,2,1,same SQL (copies),2,10,False,5,,16365 = 17428,title|author|creationdate|score|commentcount
+G373,2,1,same SQL (copies),2,10,False,5,,16388 = 18576,title|ownername|creationdate|viewcount|score
+G374,2,2,different SQL,2,10,False,6,0.9951,16411 | 16789,postid|title|creationdate|owner|commentcount|votecount
+G375,2,2,different SQL,2,10,False,3,0.7949,16416 | 19346,title|displayname|creationdate
+G376,2,1,same SQL (copies),2,,True,6,,16464 = 16672,postid|title|creationdate|ownerdisplayname|commentcount|upvotecount
+G377,2,2,different SQL,2,10,False,6,0.9733,16482 | 19745,title|ownername|creationdate|score|viewcount|commentcount
+G378,2,1,same SQL (copies),2,10,False,6,,16497 = 17098,postid|title|creationdate|viewcount|ownername|commentcount
+G379,2,1,same SQL (copies),2,,True,8,,16500 = 17327,postid|title|ownerdisplayname|creationdate|score|viewcount|commentcount|votecount
+G380,2,1,same SQL (copies),2,10,False,7,,16541 = 19999,postid|title|creationdate|ownername|score|viewcount|commentcount
+G381,2,1,same SQL (copies),2,,True,4,,16549 = 19245,title|creationdate|ownerdisplayname|answercount
+G382,2,2,different SQL,2,10,False,6,0.9843,16569 | 18438,username|posttitle|postcreationdate|commentcount|upvotes|downvotes
+G383,2,1,same SQL (copies),2,10,False,5,,16576 = 19484,postid|title|creationdate|authorname|commentcount
+G384,2,2,different SQL,2,10,False,4,0.9796,16584 | 19675,username|posttitle|postdate|commentcount
+G385,2,1,same SQL (copies),2,10,False,5,,16604 = 17011,displayname|title|creationdate|commentcount|upvotecount
+G386,2,1,same SQL (copies),2,10,False,8,,16625 = 19917,postid|title|creationdate|ownerdisplayname|score|commentcount|upvotes|downvotes
+G387,2,2,different SQL,2,10,False,5,0.9643,16669 | 17047,title|ownername|creationdate|score|commentcount
+G388,2,2,different SQL,2,10,False,5,0.7959,16712 | 18628,userid|displayname|title|creationdate|score
+G389,2,1,same SQL (copies),2,10,False,5,,16713 = 17746,displayname|title|score|viewcount|creationdate
+G390,2,1,same SQL (copies),2,10,False,7,,16795 = 17294,postid|title|creationdate|author|commentcount|viewcount|score
+G391,2,1,same SQL (copies),2,10,False,5,,16832 = 17692,displayname|reputation|title|creationdate|commentcount
+G392,2,1,same SQL (copies),2,10,False,7,,16834 = 17121,postid|title|creationdate|ownerdisplayname|posttype|commentcount|votecount
+G393,2,1,same SQL (copies),2,10,False,5,,16847 = 19485,userdisplayname|posttitle|postcreationdate|viewcount|commentcount
+G394,2,2,different SQL,2,10,False,5,0.7349,16864 | 17752,title|displayname|creationdate|score|commentcount
+G395,2,1,same SQL (copies),2,10,False,8,,16868 = 17673,postid|title|creationdate|ownername|score|viewcount|answercount|commentcount
+G396,2,2,different SQL,2,10,False,5,0.9953,16908 | 19923,title|creationdate|ownerdisplayname|answercount|upvotes
+G397,2,1,same SQL (copies),2,10,False,6,,16949 = 19238,postid|title|owner|score|viewcount|creationdate
+G398,2,1,same SQL (copies),2,10,False,5,,16969 = 19977,postid|title|creationdate|ownerdisplayname|posttypename
+G399,2,1,same SQL (copies),2,10,False,9,,16985 = 18828,postid|title|creationdate|ownerdisplayname|score|viewcount|answercount|commentcount|favoritecount
+G400,2,2,different SQL,2,10,False,4,0.8462,17063 | 19973,displayname|postcount|upvotes|downvotes
+G401,2,1,same SQL (copies),2,10,False,8,,17085 = 19302,postid|title|body|ownerdisplayname|creationdate|viewcount|score|commentcount
+G402,2,1,same SQL (copies),2,10,False,6,,17104 = 18139,userdisplayname|posttitle|postcreationdate|postscore|commenttext|commentcreationdate
+G403,2,1,same SQL (copies),2,10,False,7,,17131 = 18177,postid|title|creationdate|owner|score|viewcount|commentcount
+G404,2,1,same SQL (copies),2,,True,5,,17140 = 17790,postid|title|creationdate|ownerdisplayname|commentcount
+G405,2,1,same SQL (copies),2,10,False,8,,17169 = 19463,postid|title|creationdate|author|score|viewcount|answercount|commentcount
+G406,2,1,same SQL (copies),2,10,False,4,,17173 = 17899,displayname|numberofposts|numberofquestions|numberofanswers
+G407,2,1,same SQL (copies),2,10,False,7,,17188 = 17903,id|title|creationdate|ownerdisplayname|commentcount|upvotes|downvotes
+G408,2,1,same SQL (copies),2,0,False,7,,17195 = 17534,postid|title|ownerdisplayname|creationdate|score|viewcount|tagname
+G409,2,2,different SQL,2,10,False,4,0.9028,17276 | 17919,userdisplayname|posttitle|postcreationdate|commentcount
+G410,2,1,same SQL (copies),2,,True,5,,17288 = 19376,id|title|creationdate|displayname|commentcount
+G411,2,2,different SQL,2,10,False,9,0.9444,17299 | 19176,postid|title|owner|creationdate|score|viewcount|answercount|commentcount|tagname
+G412,2,1,same SQL (copies),2,10,False,6,,17310 = 19223,title|author|creationdate|commentcount|upvotes|downvotes
+G413,2,2,different SQL,2,10,False,5,0.7578,17363 | 18886,displayname|title|creationdate|viewcount|commentcount
+G414,2,1,same SQL (copies),2,10,False,3,,17367 = 17905,title|creationdate|displayname
+G415,2,1,same SQL (copies),2,10,False,7,,17373 = 17598,postid|title|creationdate|authorname|commentcount|upvotecount|downvotecount
+G416,2,1,same SQL (copies),2,10,False,5,,17398 = 18058,username|posttitle|postdate|commentcount|upvotecount
+G417,2,2,different SQL,2,,True,4,0.8552,17405 | 19482,displayname|title|creationdate|commentcount
+G418,2,2,different SQL,2,10,False,7,0.9961,17469 | 17574,postid|title|creationdate|owner|commentcount|upvotes|downvotes
+G419,2,1,same SQL (copies),2,10,False,3,,17472 = 18299,title|creationdate|owner
+G420,2,1,same SQL (copies),2,,True,4,,17701 = 19072,title|creationdate|displayname|commentcount
+G421,2,1,same SQL (copies),2,10,False,6,,17702 = 17924,title|owner|creationdate|score|viewcount|answercount
+G422,2,2,different SQL,2,10,False,6,0.9486,17711 | 18676,title|creationdate|ownerdisplayname|answercount|upvotes|downvotes
+G423,2,1,same SQL (copies),2,10,False,8,,17715 = 18554,postid|title|creationdate|ownerdisplayname|score|viewcount|commentcount|answercount
+G424,2,1,same SQL (copies),2,10,False,6,,17753 = 18859,id|title|creationdate|ownerdisplayname|commentcount|votecount
+G425,2,2,different SQL,2,10,False,8,0.9965,17810 | 19024,postid|title|ownerdisplayname|creationdate|viewcount|commentcount|upvotes|downvotes
+G426,2,1,same SQL (copies),2,10,False,4,,17815 = 17970,title|score|ownerdisplayname|creationdate
+G427,2,1,same SQL (copies),2,10,False,6,,17856 = 19580,postid|title|creationdate|author|viewcount|commentcount
+G428,2,1,same SQL (copies),2,,True,7,,17860 = 18713,postid|title|creationdate|ownername|commentcount|upvotes|downvotes
+G429,2,1,same SQL (copies),2,10,False,6,,17892 = 19391,postid|title|owner|creationdate|score|viewcount
+G430,2,1,same SQL (copies),2,10,False,4,,17937 = 18497,user|posttitle|postdate|commentcount
+G431,2,1,same SQL (copies),2,10,False,8,,17951 = 18943,postid|title|creationdate|ownerdisplayname|ownerreputation|commentcount|upvotecount|downvotecount
+G432,2,1,same SQL (copies),2,10,False,5,,17955 = 19460,title|creationdate|owner|commentcount|votecount
+G433,2,1,same SQL (copies),2,10,False,5,,18001 = 18539,postid|title|viewcount|ownerdisplayname|creationdate
+G434,2,1,same SQL (copies),2,10,False,5,,18118 = 18783,displayname|title|creationdate|score|commentcount
+G435,2,1,same SQL (copies),2,10,False,4,,18218 = 19753,title|ownerdisplayname|creationdate|score
+G436,2,1,same SQL (copies),2,10,False,5,,18253 = 19865,title|creationdate|ownerdisplayname|commentcount|viewcount
+G437,2,1,same SQL (copies),2,10,False,8,,18300 = 18643,postid|title|ownerdisplayname|creationdate|score|viewcount|answercount|commentcount
+G438,2,1,same SQL (copies),2,10,False,4,,18341 = 19448,title|creationdate|ownername|answercount
+G439,2,1,same SQL (copies),2,10,False,6,,18351 = 19650,title|creationdate|displayname|commentcount|upvotes|downvotes
+G440,2,1,same SQL (copies),2,10,False,5,,18353 = 19601,postid|title|creationdate|ownername|commentcount
+G441,2,1,same SQL (copies),2,10,False,5,,18536 = 19683,displayname|reputation|title|creationdate|score
+G442,2,1,same SQL (copies),2,10,False,6,,18541 = 18984,displayname|title|creationdate|score|viewcount|commentcount
+G443,2,1,same SQL (copies),2,10,False,5,,18574 = 18823,title|creationdate|author|score|viewcount
+G444,2,1,same SQL (copies),2,10,False,5,,18620 = 19075,postid|title|viewcount|ownerdisplayname|commentcount
+G445,2,1,same SQL (copies),2,10,False,6,,18678 = 19259,postid|title|ownerdisplayname|score|viewcount|creationdate
+G446,2,1,same SQL (copies),2,10,False,5,,18698 = 19573,userdisplayname|posttitle|postcreationdate|viewcount|score
+G447,2,1,same SQL (copies),2,10,False,4,,18737 = 19980,title|score|displayname|creationdate
+G448,2,2,different SQL,2,0,False,6,0.9846,18862 | 18870,title|owner|creationdate|score|viewcount|tagname
+G449,2,1,same SQL (copies),2,10,False,6,,18951 = 19659,id|title|ownername|creationdate|score|viewcount
+G450,2,2,different SQL,2,10,False,6,0.9953,18973 | 19992,postid|title|creationdate|ownerdisplayname|commentcount|answercount
+G451,2,1,same SQL (copies),2,10,False,5,,19097 = 19113,title|ownerdisplayname|creationdate|score|commentcount
+G452,2,2,different SQL,2,10,False,6,0.9787,19229 | 19501,title|creationdate|author|score|viewcount|commentcount

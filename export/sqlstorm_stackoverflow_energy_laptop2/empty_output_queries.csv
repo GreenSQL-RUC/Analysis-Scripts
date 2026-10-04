@@ -1,0 +1,945 @@
+query,in_query_energy,likely_reason,wallclock_dependent,date_window_days,duplicate_queries,energy_j
+29,True,wall-clock date window (NOW / CURRENT_DATE),True,30.4,,0.907
+32,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,6.8112
+57,True,5 or more joins,False,365.0,,9.6081
+63,True,HAVING threshold,False,365.0,,7.3567
+90,True,HAVING threshold,False,30.0,,7.6573
+121,True,"lookup table (tags, links, history/close types)",False,365.0,,14.2789
+139,True,none of the listed features,False,365.0,,12.659
+142,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,8.8687
+152,True,HAVING threshold,False,7.0,,8.7137
+185,True,none of the listed features,False,365.0,,5.2207
+188,True,HAVING threshold,False,,,7.1152
+196,True,5 or more joins,False,365.0,,2.0852
+235,True,fixed-date window of 31 days or less,False,30.0,,1.9116
+240,True,fixed-date window of 31 days or less,False,30.0,,11.1868
+271,True,5 or more joins,False,365.0,,3.1308
+284,True,none of the listed features,False,,,1.3071
+289,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.077
+292,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,3.2531
+294,True,5 or more joins,False,365.0,,3.4316
+305,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,5.1646
+310,True,none of the listed features,False,365.0,,24.4185
+312,True,5 or more joins,False,365.0,,6.7801
+317,True,5 or more joins,False,365.0,,18.436
+325,True,"lookup table (tags, links, history/close types)",False,365.0,,13.6967
+342,True,"lookup table (tags, links, history/close types)",False,365.0,,4.5121
+362,True,EXISTS / IN (SELECT),False,365.0,,1.2381
+369,False,LIKE pattern,False,365.0,,
+371,True,none of the listed features,False,365.0,,4.0464
+374,True,fixed-date window of 31 days or less,False,30.0,,4.7884
+380,True,none of the listed features,False,,,1.5653
+401,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.0231
+435,True,fixed-date window of 31 days or less,False,30.0,,6.2354
+531,True,"lookup table (tags, links, history/close types)",False,365.0,,0.9558
+558,True,wall-clock date window (NOW / CURRENT_DATE),True,91.19999999999999,,0.4409
+574,True,EXISTS / IN (SELECT),False,,,2.1164
+692,True,5 or more joins,False,365.0,,0.9803
+806,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4352
+808,True,HAVING threshold,False,,,3.5281
+813,True,HAVING threshold,False,365.0,,3.2259
+826,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.9692
+834,False,HAVING threshold,False,365.0,,
+842,True,5 or more joins,False,,,1.5355
+849,True,5 or more joins,False,365.0,,7.166
+854,False,EXISTS / IN (SELECT),False,,,
+864,True,fixed-date window of 31 days or less,False,30.0,,4.9649
+889,True,EXISTS / IN (SELECT),False,,,50.6619
+925,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,1.4294
+952,True,none of the listed features,False,365.0,,2.1908
+953,True,5 or more joins,False,,,7.5256
+967,True,5 or more joins,False,365.0,,14.5332
+968,True,"lookup table (tags, links, history/close types)",False,365.0,,5.1754
+975,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.7465
+990,True,none of the listed features,False,365.0,,4.2847
+995,True,none of the listed features,False,365.0,,2.8931
+1066,True,none of the listed features,False,365.0,,11.0291
+1080,True,fixed-date window of 31 days or less,False,30.0,,12.2352
+1127,True,fixed-date window of 31 days or less,False,30.4,,14.8841
+1223,True,none of the listed features,False,182.39999999999998,,5.6825
+1251,True,none of the listed features,False,365.0,,1.1623
+1254,True,HAVING threshold,False,365.0,,4.0709
+1270,True,HAVING threshold,False,365.0,,4.6871
+1274,True,5 or more joins,False,,,14.1182
+1288,True,EXISTS / IN (SELECT),False,365.0,,1.9831
+1292,True,"lookup table (tags, links, history/close types)",False,365.0,,4.9994
+1299,True,none of the listed features,False,,,9.6946
+1300,True,none of the listed features,False,365.0,,1.2819
+1325,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.1372
+1362,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.3873
+1376,True,none of the listed features,False,365.0,,2.8402
+1379,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,2.7713
+1402,True,none of the listed features,False,365.0,,0.9395
+1421,True,fixed-date window of 31 days or less,False,30.0,,9.2128
+1443,True,EXISTS / IN (SELECT),False,182.39999999999998,,3.9912
+1458,True,"lookup table (tags, links, history/close types)",False,365.0,,17.1955
+1473,True,none of the listed features,False,365.0,,2.7033
+1479,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,5.4533
+1492,True,none of the listed features,False,365.0,,8.3266
+1500,True,EXISTS / IN (SELECT),False,365.0,,9.375
+1504,True,"lookup table (tags, links, history/close types)",False,30.0,,3.0621
+1518,True,fixed-date window of 31 days or less,False,30.0,,13.3027
+1532,True,none of the listed features,False,365.0,,0.8539
+1557,True,HAVING threshold,False,365.0,,2.2189
+1561,True,fixed-date window of 31 days or less,False,30.0,,1.9735
+1616,True,5 or more joins,False,365.0,,6.7606
+1655,True,none of the listed features,False,,,10.2033
+1693,True,5 or more joins,False,365.0,,3.0022
+1748,True,5 or more joins,False,30.4,,3.4262
+1776,True,"lookup table (tags, links, history/close types)",False,365.0,,3.2082
+1890,True,HAVING threshold,False,,,1.045
+1908,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,11.5062
+1910,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,11.3306
+1919,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,3.9232
+1965,True,fixed-date window of 31 days or less,False,30.0,,9.3583
+2038,True,fixed-date window of 31 days or less,False,30.0,,14.7111
+2084,True,none of the listed features,False,365.0,,0.9679
+2096,True,fixed-date window of 31 days or less,False,30.0,,36.7651
+2102,True,none of the listed features,False,365.0,,2.4168
+2106,True,none of the listed features,False,365.0,,1.1119
+2114,True,EXISTS / IN (SELECT),False,,,24.7248
+2116,True,EXISTS / IN (SELECT),False,365.0,,0.9521
+2141,True,fixed-date window of 31 days or less,False,30.0,,1.9174
+2174,True,none of the listed features,False,,,1.9558
+2199,True,fixed-date window of 31 days or less,False,30.0,,0.9127
+2218,True,EXISTS / IN (SELECT),False,365.0,,8.7342
+2294,True,HAVING threshold,False,365.0,,11.8451
+2346,True,5 or more joins,False,365.0,,12.3948
+2372,True,EXISTS / IN (SELECT),False,,,11.5885
+2373,True,5 or more joins,False,365.0,,3.9388
+2460,True,none of the listed features,False,182.39999999999998,,4.5084
+2499,True,none of the listed features,False,365.0,,1.7067
+2543,True,EXISTS / IN (SELECT),False,365.0,,6.8317
+2569,True,5 or more joins,False,,,8.7472
+2603,True,none of the listed features,False,,,4.9254
+2613,True,HAVING threshold,False,365.0,,16.2061
+2638,True,fixed-date window of 31 days or less,False,30.0,,4.6042
+2658,False,fixed-date window of 31 days or less,False,30.0,,
+2665,True,5 or more joins,False,,,25.9311
+2709,True,fixed-date window of 31 days or less,False,30.0,,1.9603
+2711,True,5 or more joins,False,365.0,,12.821
+2726,True,none of the listed features,False,182.39999999999998,,3.6024
+2758,True,none of the listed features,False,365.0,,1.2515
+2831,True,none of the listed features,False,365.0,,6.4114
+2836,True,EXISTS / IN (SELECT),False,365.0,,5.7227
+2849,True,5 or more joins,False,365.0,,1.2365
+2883,True,none of the listed features,False,182.39999999999998,,2.4981
+2894,True,none of the listed features,False,365.0,,23.0076
+2924,True,none of the listed features,False,365.0,,4.7604
+2986,True,5 or more joins,False,365.0,,16.1956
+3044,True,none of the listed features,False,365.0,,0.9941
+3049,True,none of the listed features,False,365.0,,17.8476
+3067,True,5 or more joins,False,,,2.0786
+3090,True,none of the listed features,False,,,5.2488
+3091,True,fixed-date window of 31 days or less,False,30.0,,35.0552
+3112,True,fixed-date window of 31 days or less,False,30.0,,4.8101
+3159,True,none of the listed features,False,365.0,,8.2279
+3167,True,fixed-date window of 31 days or less,False,30.0,,4.7678
+3205,True,fixed-date window of 31 days or less,False,30.0,,41.9105
+3250,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.6873
+3251,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.6973
+3260,True,"lookup table (tags, links, history/close types)",False,,,6.0208
+3295,True,none of the listed features,False,365.0,,3.5501
+3301,True,"lookup table (tags, links, history/close types)",False,,,7.1051
+3340,True,EXISTS / IN (SELECT),False,,,4.4921
+3347,True,"lookup table (tags, links, history/close types)",False,,,1.9658
+3367,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9433
+3377,True,"lookup table (tags, links, history/close types)",False,,,0.5871
+3392,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4389
+3394,True,none of the listed features,False,365.0,,1.6439
+3434,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.798
+3449,True,fixed-date window of 31 days or less,False,30.0,,0.9257
+3472,False,5 or more joins,False,365.0,,
+3510,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,7.5611
+3519,True,"lookup table (tags, links, history/close types)",False,,,5.816
+3530,True,none of the listed features,False,365.0,,61.7133
+3540,True,5 or more joins,False,365.0,,10.2515
+3609,True,none of the listed features,False,,,2.8001
+3628,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4415
+3655,True,fixed-date window of 31 days or less,False,7.0,,2.5331
+3681,True,none of the listed features,False,365.0,,10.9505
+3695,True,"lookup table (tags, links, history/close types)",False,365.0,,9.4994
+3696,True,none of the listed features,False,,,2.645
+3709,True,none of the listed features,False,,,9.7326
+3718,True,none of the listed features,False,365.0,,1.4359
+3721,True,none of the listed features,False,365.0,,4.9257
+3737,False,5 or more joins,False,365.0,,
+3765,True,EXISTS / IN (SELECT),False,365.0,,16.8576
+3784,True,5 or more joins,False,30.0,,10.1421
+3804,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.0225
+3855,True,none of the listed features,False,365.0,,5.9348
+3858,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.6732
+3865,True,EXISTS / IN (SELECT),False,,,6.9661
+3866,True,none of the listed features,False,182.39999999999998,,12.2446
+3868,True,none of the listed features,False,365.0,,1.593
+3874,True,HAVING threshold,False,365.0,,2.2247
+3879,True,5 or more joins,False,365.0,,5.7181
+3880,True,5 or more joins,False,30.0,,17.9915
+3897,True,"lookup table (tags, links, history/close types)",False,,,19.0392
+3917,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.2107
+3980,True,fixed-date window of 31 days or less,False,30.0,,8.0843
+4003,True,5 or more joins,False,365.0,,3.6701
+4025,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.148
+4027,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.6191
+4061,True,"lookup table (tags, links, history/close types)",False,365.0,,6.7559
+4109,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,6.5451
+4170,True,none of the listed features,False,365.0,,12.4636
+4174,True,none of the listed features,False,365.0,,144.8611
+4175,True,none of the listed features,False,365.0,,3.6107
+4191,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,1.7282
+4203,True,5 or more joins,False,365.0,,33.0058
+4208,True,5 or more joins,False,365.0,,4.5062
+4216,True,none of the listed features,False,,,3.8885
+4217,True,fixed-date window of 31 days or less,False,30.4,,1.4817
+4232,True,none of the listed features,False,365.0,,1.1093
+4233,True,"lookup table (tags, links, history/close types)",False,91.19999999999999,,6.1406
+4299,True,HAVING threshold,False,365.0,,2.637
+4341,True,EXISTS / IN (SELECT),False,182.39999999999998,,1.7019
+4363,True,fixed-date window of 31 days or less,False,30.0,,3.8507
+4379,True,none of the listed features,False,,,2.722
+4395,True,5 or more joins,False,365.0,,2.0137
+4412,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.5777
+4420,True,wall-clock date window (NOW / CURRENT_DATE),True,30.4,,2.7892
+4436,False,5 or more joins,False,365.0,,
+4457,True,5 or more joins,False,365.0,,5.4113
+4465,True,fixed-date window of 31 days or less,False,30.4,,5.2425
+4474,True,none of the listed features,False,,,6.9652
+4510,True,none of the listed features,False,365.0,,1.4255
+4550,True,"lookup table (tags, links, history/close types)",False,30.0,,6.467
+4643,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,4.6114
+4685,True,"lookup table (tags, links, history/close types)",False,365.0,,6.9887
+4689,True,fixed-date window of 31 days or less,False,30.0,,2.5849
+4751,True,EXISTS / IN (SELECT),False,365.0,,4.08
+4752,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,2.8877
+4764,True,HAVING threshold,False,,,6.1779
+4767,True,none of the listed features,False,365.0,,3.09
+4801,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.8853
+4815,True,fixed-date window of 31 days or less,False,30.0,,5.4429
+4819,True,none of the listed features,False,365.0,,5.5325
+4826,True,none of the listed features,False,365.0,,35.2794
+4843,True,5 or more joins,False,365.0,,7.4179
+4850,True,"lookup table (tags, links, history/close types)",False,365.0,,3.6788
+4888,True,fixed-date window of 31 days or less,False,30.0,,2.6605
+4922,True,5 or more joins,False,,,11.7064
+4965,True,none of the listed features,False,365.0,,5.8983
+4968,True,EXISTS / IN (SELECT),False,365.0,,37.9873
+4979,True,none of the listed features,False,,,11.9845
+4981,True,none of the listed features,False,,,5.7611
+4999,True,none of the listed features,False,365.0,,1.3315
+5030,True,LIKE pattern,False,365.0,,1.5575
+5042,True,none of the listed features,False,365.0,,1.7391
+5049,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.5785
+5170,True,none of the listed features,False,365.0,,6.7218
+5171,True,none of the listed features,False,365.0,,1.2476
+5183,True,none of the listed features,False,,,9.7057
+5211,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.2643
+5234,True,none of the listed features,False,365.0,,1.3043
+5314,True,none of the listed features,False,365.0,,3.0031
+5369,True,none of the listed features,False,,,8.6892
+5376,True,"lookup table (tags, links, history/close types)",False,365.0,,1.6485
+5437,True,HAVING threshold,False,365.0,,2.3931
+5464,True,none of the listed features,False,365.0,,1.7208
+5491,True,5 or more joins,False,365.0,,39.6827
+5516,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4004
+5591,True,fixed-date window of 31 days or less,False,30.0,,2.7754
+5680,True,fixed-date window of 31 days or less,False,30.0,,1.348
+5690,True,none of the listed features,False,,,13.4384
+5700,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.5365
+5719,True,5 or more joins,False,365.0,,7.4794
+5722,True,HAVING threshold,False,365.0,,10.2877
+5724,True,5 or more joins,False,,,23.6194
+5730,False,"lookup table (tags, links, history/close types)",False,365.0,,
+5732,True,fixed-date window of 31 days or less,False,30.4,,1.7316
+5748,True,none of the listed features,False,,,4.2913
+5753,True,5 or more joins,False,365.0,,7.6682
+5764,True,none of the listed features,False,365.0,,10.6595
+5792,True,none of the listed features,False,365.0,,0.5
+5871,True,none of the listed features,False,,,12.5978
+5936,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.5138
+5964,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.5447
+5984,True,5 or more joins,False,,,9.6837
+6006,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,2.5455
+6034,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.3043
+6081,True,LIKE pattern,False,,,7.4363
+6083,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.1907
+6092,True,5 or more joins,False,365.0,,4.6035
+6103,True,none of the listed features,False,365.0,,1.3068
+6111,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4369
+6128,True,fixed-date window of 31 days or less,False,30.0,,9.2868
+6132,True,"lookup table (tags, links, history/close types)",False,365.0,,0.3988
+6153,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.458
+6159,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,8.2891
+6187,True,HAVING threshold,False,365.0,,1.6668
+6201,True,HAVING threshold,False,30.0,,8.5601
+6218,True,5 or more joins,False,,,16.7504
+6260,True,5 or more joins,False,,,5.8344
+6265,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.491
+6283,True,HAVING threshold,False,,,12.4418
+6288,True,EXISTS / IN (SELECT),False,,,11.2823
+6290,True,5 or more joins,False,365.0,,36.6332
+6291,True,none of the listed features,False,365.0,,1.4201
+6302,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,2.5942
+6308,True,5 or more joins,False,365.0,,12.7246
+6328,True,EXISTS / IN (SELECT),False,182.39999999999998,,4.3513
+6348,True,none of the listed features,False,,,5.5526
+6402,True,none of the listed features,False,365.0,,2.5628
+6423,True,none of the listed features,False,,,2.8112
+6434,True,none of the listed features,False,30.0,,2.6237
+6457,False,fixed-date window of 31 days or less,False,30.0,,
+6473,True,none of the listed features,False,365.0,,2.8836
+6507,False,5 or more joins,False,365.0,,
+6518,True,HAVING threshold,False,365.0,,0.1717
+6520,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.1902
+6523,True,HAVING threshold,False,,,5.5269
+6562,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,5.7429
+6576,True,wall-clock date window (NOW / CURRENT_DATE),True,7.0,,1.5724
+6591,True,5 or more joins,False,,,24.9965
+6599,True,fixed-date window of 31 days or less,False,30.0,,4.0213
+6605,False,fixed-date window of 31 days or less,False,30.4,,
+6607,True,EXISTS / IN (SELECT),False,,,10.6541
+6628,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.4478
+6632,True,none of the listed features,False,,,9.578
+6640,True,none of the listed features,False,365.0,,14.3789
+6641,True,none of the listed features,False,,,1.6048
+6645,True,5 or more joins,False,365.0,,4.3758
+6721,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,3.3366
+6722,False,LIKE pattern,False,30.0,,
+6726,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,9.1427
+6755,True,none of the listed features,False,365.0,,1.734
+6760,True,EXISTS / IN (SELECT),False,365.0,,11.7143
+6780,True,fixed-date window of 31 days or less,False,30.0,,5.0654
+6783,True,"lookup table (tags, links, history/close types)",False,365.0,,8.6368
+6788,True,fixed-date window of 31 days or less,False,30.4,,2.4226
+6865,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.0104
+6868,True,fixed-date window of 31 days or less,False,30.0,,1.077
+6879,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,105.3148
+6902,True,fixed-date window of 31 days or less,False,30.0,,4.7837
+6957,True,5 or more joins,False,,,3.9694
+6982,True,EXISTS / IN (SELECT),False,365.0,,8.3145
+6995,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4776
+7035,True,none of the listed features,False,365.0,,1.7057
+7073,True,5 or more joins,False,,,14.705
+7109,True,HAVING threshold,False,365.0,,1.9262
+7123,True,5 or more joins,False,,,17.5341
+7146,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.5335
+7169,True,fixed-date window of 31 days or less,False,30.0,,4.8769
+7182,True,HAVING threshold,False,365.0,,4.442
+7188,True,LIKE pattern,False,365.0,,13.9987
+7193,True,none of the listed features,False,365.0,,1.246
+7201,True,fixed-date window of 31 days or less,False,30.0,,4.7366
+7215,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.4023
+7216,True,5 or more joins,False,365.0,,2.3872
+7223,True,none of the listed features,False,365.0,,0.735
+7224,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,2.8925
+7250,True,5 or more joins,False,365.0,,6.5459
+7263,True,none of the listed features,False,365.0,,2.5389
+7275,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.5477
+7280,True,none of the listed features,False,365.0,,3.2611
+7287,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,1.1308
+7322,True,none of the listed features,False,,,17.3326
+7325,True,LIKE pattern,False,365.0,,4.3779
+7349,True,"lookup table (tags, links, history/close types)",False,,,4.5722
+7372,True,none of the listed features,False,365.0,,1.7418
+7428,True,HAVING threshold,False,365.0,,1.2948
+7442,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.3941
+7459,True,none of the listed features,False,,,1.177
+7538,True,none of the listed features,False,365.0,,1.1532
+7575,True,EXISTS / IN (SELECT),False,365.0,,2.0108
+7576,False,"lookup table (tags, links, history/close types)",False,365.0,,
+7611,False,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,
+7623,True,none of the listed features,False,365.0,,1.0199
+7637,False,fixed-date window of 31 days or less,False,30.4,,
+7685,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,4.3117
+7701,True,none of the listed features,False,365.0,,1.6581
+7717,True,EXISTS / IN (SELECT),False,365.0,,5.6727
+7747,True,fixed-date window of 31 days or less,False,30.0,,38.9814
+7749,True,5 or more joins,False,,,5.8761
+7776,True,none of the listed features,False,365.0,,1.6552
+7784,True,none of the listed features,False,182.39999999999998,,0.9452
+7786,True,none of the listed features,False,365.0,,1.6252
+7793,True,5 or more joins,False,365.0,,37.8511
+7804,True,none of the listed features,False,365.0,,1.4678
+7806,True,5 or more joins,False,365.0,,9.677
+7875,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.2715
+7924,True,fixed-date window of 31 days or less,False,30.4,,1.0871
+7937,True,none of the listed features,False,365.0,,0.3762
+7994,True,5 or more joins,False,365.0,,17.6309
+8009,True,fixed-date window of 31 days or less,False,30.0,,13.6887
+8017,True,5 or more joins,False,,,61.7319
+8019,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,6.375
+8077,True,fixed-date window of 31 days or less,False,30.0,,1.0703
+8111,True,none of the listed features,False,365.0,,1.0801
+8156,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9967
+8177,True,"lookup table (tags, links, history/close types)",False,365.0,,7.1757
+8208,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,7.7417
+8231,True,fixed-date window of 31 days or less,False,30.0,,2.0122
+8232,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4391
+8235,True,none of the listed features,False,365.0,,1.1354
+8239,True,none of the listed features,False,,,4.7463
+8263,True,5 or more joins,False,365.0,,4.6431
+8285,True,5 or more joins,False,,,38.3966
+8293,True,none of the listed features,False,365.0,,1.4669
+8299,True,none of the listed features,False,365.0,,1.656
+8305,True,none of the listed features,False,365.0,,1.6794
+8323,True,fixed-date window of 31 days or less,False,30.0,,1.3577
+8326,True,LIKE pattern,False,,,8.2677
+8340,True,fixed-date window of 31 days or less,False,30.0,,3.63
+8360,True,5 or more joins,False,365.0,,8.4129
+8386,True,"lookup table (tags, links, history/close types)",False,,,12.787
+8396,True,EXISTS / IN (SELECT),False,,,7.5143
+8401,True,5 or more joins,False,365.0,,8.1506
+8413,True,none of the listed features,False,365.0,,1.5787
+8422,True,"lookup table (tags, links, history/close types)",False,,,15.0601
+8425,True,5 or more joins,False,,,6.6583
+8458,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4605
+8459,True,fixed-date window of 31 days or less,False,30.0,,4.2674
+8468,True,fixed-date window of 31 days or less,False,30.0,,39.8858
+8491,True,5 or more joins,False,365.0,,4.9586
+8529,True,HAVING threshold,False,365.0,,0.6472
+8572,True,5 or more joins,False,365.0,,3.5877
+8617,True,none of the listed features,False,365.0,,9.9001
+8636,True,none of the listed features,False,,,7.7193
+8651,True,5 or more joins,False,,,2.5267
+8652,True,wall-clock date window (NOW / CURRENT_DATE),True,91.19999999999999,,0.3973
+8660,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.3692
+8692,True,5 or more joins,False,365.0,,8.0845
+8702,True,none of the listed features,False,,,4.9214
+8706,True,none of the listed features,False,,,11.5014
+8757,True,fixed-date window of 31 days or less,False,30.0,,2.0542
+8758,True,EXISTS / IN (SELECT),False,1825.0,,6.4957
+8774,True,fixed-date window of 31 days or less,False,30.0,,1.0771
+8800,True,fixed-date window of 31 days or less,False,30.0,,2.6052
+8802,True,5 or more joins,False,365.0,,11.6388
+8832,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.5177
+8853,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4377
+8856,True,none of the listed features,False,365.0,,1.2993
+8865,True,EXISTS / IN (SELECT),False,365.0,,2.598
+8866,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.4113
+8868,True,none of the listed features,False,365.0,,2.1918
+8893,False,LIKE pattern,False,,,
+8919,True,5 or more joins,False,365.0,,19.382
+8928,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.5901
+8957,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,7.8092
+8995,True,none of the listed features,False,365.0,,1.7314
+9003,True,none of the listed features,False,30.0,,1.2597
+9017,True,fixed-date window of 31 days or less,False,30.0,,8.0021
+9058,True,fixed-date window of 31 days or less,False,30.0,,6.3768
+9072,True,none of the listed features,False,365.0,,1.414
+9095,False,HAVING threshold,False,365.0,,
+9106,True,5 or more joins,False,365.0,,55.4551
+9122,True,none of the listed features,False,365.0,,140.4129
+9136,True,none of the listed features,False,,,12.8571
+9163,True,none of the listed features,False,365.0,,0.517
+9178,True,fixed-date window of 31 days or less,False,30.0,,1.6711
+9199,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.416
+9212,True,none of the listed features,False,365.0,,1.6988
+9218,True,fixed-date window of 31 days or less,False,30.0,,17.3517
+9251,True,fixed-date window of 31 days or less,False,30.0,,36.0708
+9303,True,fixed-date window of 31 days or less,False,30.0,,0.3972
+9307,True,none of the listed features,False,365.0,,1.3793
+9321,True,5 or more joins,False,365.0,,32.4572
+9326,True,EXISTS / IN (SELECT),False,365.0,,11.17
+9389,True,EXISTS / IN (SELECT),False,,,6.0373
+9404,True,none of the listed features,False,,,7.5405
+9417,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,1.7303
+9434,True,EXISTS / IN (SELECT),False,,,3.1083
+9441,True,none of the listed features,False,7.0,,0.2944
+9490,True,HAVING threshold,False,,,0.4406
+9493,True,"lookup table (tags, links, history/close types)",False,365.0,,3.9432
+9503,True,"lookup table (tags, links, history/close types)",False,365.0,,1.6256
+9521,True,none of the listed features,False,365.0,,14.2345
+9522,True,EXISTS / IN (SELECT),False,365.0,,8.9992
+9542,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4381
+9562,True,EXISTS / IN (SELECT),False,365.0,,7.1951
+9572,True,5 or more joins,False,182.39999999999998,,22.8623
+9588,True,none of the listed features,False,365.0,,1.7841
+9614,True,fixed-date window of 31 days or less,False,30.0,,8.4968
+9623,True,"lookup table (tags, links, history/close types)",False,365.0,,1.5765
+9650,True,fixed-date window of 31 days or less,False,30.0,,3.1458
+9667,True,fixed-date window of 31 days or less,False,30.4,,20.1056
+9721,True,"lookup table (tags, links, history/close types)",False,365.0,,4.8816
+9722,True,5 or more joins,False,365.0,,3.6247
+9791,True,none of the listed features,False,,,5.5535
+9826,True,none of the listed features,False,365.0,,2.313
+9852,True,none of the listed features,False,30.0,,0.6213
+9859,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4503
+9869,True,fixed-date window of 31 days or less,False,30.0,,1.6395
+9886,True,LIKE pattern,False,,,15.8016
+9902,True,none of the listed features,False,365.0,,2.2092
+9925,True,fixed-date window of 31 days or less,False,30.0,,1.0011
+9971,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.5401
+9976,True,5 or more joins,False,,,14.3032
+9981,True,fixed-date window of 31 days or less,False,30.0,,0.7957
+10000,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.443
+10064,True,5 or more joins,False,,,11.2725
+10256,True,5 or more joins,False,365.0,,3.1188
+10359,True,5 or more joins,False,,,18.1475
+10360,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.7537
+10378,True,none of the listed features,False,,,10.4431
+10414,True,wall-clock date window (NOW / CURRENT_DATE),True,91.19999999999999,,1.24
+10422,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.4135
+10437,True,5 or more joins,False,,,34.5919
+10440,True,5 or more joins,False,365.0,,13.1892
+10452,True,none of the listed features,False,365.0,,0.9598
+10490,True,5 or more joins,False,365.0,,40.1555
+10523,True,"lookup table (tags, links, history/close types)",False,,,3.5023
+10756,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.9564
+10964,True,none of the listed features,False,,,8.3254
+10982,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.4403
+11053,True,5 or more joins,False,365.0,,11.9184
+11068,True,5 or more joins,False,365.0,,14.4345
+11148,True,none of the listed features,False,365.0,,2.6255
+11226,True,5 or more joins,False,,,10.9348
+11293,True,"lookup table (tags, links, history/close types)",False,,,6.9862
+11476,True,wall-clock date window (NOW / CURRENT_DATE),True,30.4,,11.3854
+11576,True,"lookup table (tags, links, history/close types)",False,,,0.0146
+11809,True,5 or more joins,False,,,10.1874
+11924,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4338
+12058,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.3992
+12160,True,5 or more joins,False,365.0,,7.6029
+12171,True,none of the listed features,False,365.0,,2.8272
+12518,True,none of the listed features,False,365.0,,11.4876
+12552,True,5 or more joins,False,365.0,,14.1517
+12745,False,5 or more joins,False,365.0,,
+12895,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4474
+12994,True,"lookup table (tags, links, history/close types)",False,,,2.0026
+13199,True,fixed-date window of 31 days or less,False,30.0,,0.9291
+13200,True,fixed-date window of 31 days or less,False,30.4,,3.5005
+13250,False,5 or more joins,False,365.0,,
+13434,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,8.1942
+13471,True,5 or more joins,False,,,8.835
+13585,True,5 or more joins,False,,,12.8827
+13665,True,none of the listed features,False,,,6.3891
+13918,True,wall-clock date window (NOW / CURRENT_DATE),True,30.4,,0.422
+14068,True,5 or more joins,False,365.0,,39.6972
+14157,True,5 or more joins,False,,,15.0984
+14214,True,LIKE pattern,False,,,25.2476
+14543,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.411
+14604,True,none of the listed features,False,,,10.0295
+14655,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4298
+14719,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,3.4494
+14727,True,none of the listed features,False,,,7.452
+14728,True,"lookup table (tags, links, history/close types)",False,,,2.4476
+14790,True,5 or more joins,False,365.0,,3.6752
+14828,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,4.9283
+14838,False,5 or more joins,False,,,
+14880,True,5 or more joins,False,365.0,,12.2526
+15343,True,"lookup table (tags, links, history/close types)",False,,17199;18262,0.0143
+15536,True,"lookup table (tags, links, history/close types)",False,,,0.0138
+16000,True,"lookup table (tags, links, history/close types)",False,,,0.0144
+16044,True,"lookup table (tags, links, history/close types)",False,,,0.0135
+16253,True,"lookup table (tags, links, history/close types)",False,,19266,0.0134
+16359,True,"lookup table (tags, links, history/close types)",False,,,0.0121
+17109,True,"lookup table (tags, links, history/close types)",False,,,0.0137
+17195,True,"lookup table (tags, links, history/close types)",False,,17534,0.0154
+17199,True,"lookup table (tags, links, history/close types)",False,,15343;18262,0.014
+17534,True,"lookup table (tags, links, history/close types)",False,,17195,0.0133
+17728,True,"lookup table (tags, links, history/close types)",False,,,0.0132
+18178,True,"lookup table (tags, links, history/close types)",False,,,0.016
+18262,True,"lookup table (tags, links, history/close types)",False,,15343;17199,0.0133
+18862,True,"lookup table (tags, links, history/close types)",False,,,0.0129
+18870,True,"lookup table (tags, links, history/close types)",False,,,0.0139
+19012,True,"lookup table (tags, links, history/close types)",False,,,0.0142
+19015,True,"lookup table (tags, links, history/close types)",False,,,0.0135
+19266,True,"lookup table (tags, links, history/close types)",False,,16253,0.0136
+19329,True,"lookup table (tags, links, history/close types)",False,,,0.0127
+19373,True,"lookup table (tags, links, history/close types)",False,,,0.0143
+19384,True,"lookup table (tags, links, history/close types)",False,,,0.0129
+20026,True,none of the listed features,False,365.0,,8.104
+20034,True,none of the listed features,False,365.0,,1.6469
+20065,True,fixed-date window of 31 days or less,False,30.0,,9.2594
+20086,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.9169
+20116,True,"lookup table (tags, links, history/close types)",False,,,5.1011
+20122,True,fixed-date window of 31 days or less,False,30.0,,7.7752
+20195,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,6.2584
+20205,True,EXISTS / IN (SELECT),False,,,2.5222
+20234,True,none of the listed features,False,365.0,,3.6248
+20274,True,none of the listed features,False,365.0,,0.4219
+20277,True,EXISTS / IN (SELECT),False,365.0,,7.2031
+20335,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,10.4546
+20337,True,none of the listed features,False,,,2.1788
+20378,True,fixed-date window of 31 days or less,False,30.0,,2.2692
+20384,True,5 or more joins,False,365.0,,11.9968
+20389,True,fixed-date window of 31 days or less,False,30.0,,4.205
+20449,True,5 or more joins,False,365.0,,4.1613
+20533,True,LIKE pattern,False,,,6.4192
+20565,True,EXISTS / IN (SELECT),False,365.0,,0.9973
+20576,True,none of the listed features,False,,,13.0259
+20596,True,none of the listed features,False,365.0,,1.8547
+20609,True,fixed-date window of 31 days or less,False,30.0,,1.7466
+20663,True,fixed-date window of 31 days or less,False,30.0,,1.4441
+20678,True,"lookup table (tags, links, history/close types)",False,,,2.6291
+20755,True,EXISTS / IN (SELECT),False,,,6.973
+20758,True,fixed-date window of 31 days or less,False,30.0,,13.6437
+20768,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9272
+20804,True,"lookup table (tags, links, history/close types)",False,365.0,,6.789
+20820,True,"lookup table (tags, links, history/close types)",False,,,2.8641
+20827,True,"lookup table (tags, links, history/close types)",False,365.0,,0.9805
+20849,True,5 or more joins,False,182.39999999999998,,4.749
+20853,True,HAVING threshold,False,365.0,,1.367
+20861,True,fixed-date window of 31 days or less,False,30.0,,2.7735
+20864,True,5 or more joins,False,30.0,,1.6198
+20866,True,none of the listed features,False,182.39999999999998,,7.7592
+20874,True,5 or more joins,False,365.0,,4.2965
+20887,True,HAVING threshold,False,,,1.6012
+20911,True,none of the listed features,False,365.0,,6.2694
+20913,True,"lookup table (tags, links, history/close types)",False,365.0,,8.5441
+21109,False,"lookup table (tags, links, history/close types)",False,365.0,,
+21112,True,fixed-date window of 31 days or less,False,30.0,,5.0898
+21130,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,6.753
+21161,True,none of the listed features,False,365.0,,1.1854
+21168,True,none of the listed features,False,,,10.3578
+21187,True,fixed-date window of 31 days or less,False,30.0,,3.5926
+21211,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.1173
+21213,True,fixed-date window of 31 days or less,False,30.0,,1.0751
+21216,True,fixed-date window of 31 days or less,False,30.0,,10.1718
+21220,True,EXISTS / IN (SELECT),False,,,7.3314
+21230,True,fixed-date window of 31 days or less,False,30.0,,1.6198
+21250,True,"lookup table (tags, links, history/close types)",False,,,15.6974
+21281,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.0465
+21314,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,3.3164
+21357,True,HAVING threshold,False,365.0,,5.8441
+21364,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,1.057
+21366,True,EXISTS / IN (SELECT),False,,,7.5585
+21467,True,none of the listed features,False,30.0,,2.4682
+21497,True,"lookup table (tags, links, history/close types)",False,365.0,,5.1263
+21521,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.1856
+21526,True,HAVING threshold,False,,,6.4806
+21549,True,"lookup table (tags, links, history/close types)",False,365.0,,4.1238
+21555,True,5 or more joins,False,,,5.2589
+21561,True,fixed-date window of 31 days or less,False,30.0,,3.731
+21724,True,none of the listed features,False,365.0,,4.7272
+21754,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.7922
+21769,True,none of the listed features,False,365.0,,2.4979
+21818,True,HAVING threshold,False,182.39999999999998,,4.1379
+21820,True,none of the listed features,False,365.0,,1.4455
+21853,True,fixed-date window of 31 days or less,False,30.4,,17.0461
+21866,True,"lookup table (tags, links, history/close types)",False,365.0,,1.5783
+21867,True,none of the listed features,False,365.0,,9.1258
+21878,True,LIKE pattern,False,,,15.8601
+21916,True,EXISTS / IN (SELECT),False,30.4,,4.4336
+21922,True,5 or more joins,False,,,5.7031
+21926,True,EXISTS / IN (SELECT),False,365.0,,56.1206
+21928,True,fixed-date window of 31 days or less,False,30.0,,11.5576
+21931,True,none of the listed features,False,,,20.132
+21992,True,none of the listed features,False,,,3.225
+21999,True,"lookup table (tags, links, history/close types)",False,182.39999999999998,,3.9846
+22021,True,"lookup table (tags, links, history/close types)",False,365.0,,3.0029
+22024,True,EXISTS / IN (SELECT),False,,,48.4592
+22028,True,5 or more joins,False,365.0,,2.6882
+22066,True,HAVING threshold,False,365.0,,8.6687
+22085,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.9151
+22105,True,HAVING threshold,False,182.39999999999998,,1.7024
+22117,True,"lookup table (tags, links, history/close types)",False,,,8.3565
+22126,True,5 or more joins,False,365.0,,3.0909
+22166,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,1.1182
+22188,True,5 or more joins,False,,,5.1208
+22249,True,"lookup table (tags, links, history/close types)",False,182.39999999999998,,3.4103
+22266,True,"lookup table (tags, links, history/close types)",False,365.0,,3.0404
+22284,True,EXISTS / IN (SELECT),False,182.39999999999998,,1.2737
+22290,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,14.9243
+22349,True,none of the listed features,False,365.0,,3.074
+22357,True,LIKE pattern,False,,,13.1629
+22416,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,3.3236
+22458,True,"lookup table (tags, links, history/close types)",False,365.0,,7.3185
+22470,True,5 or more joins,False,365.0,,2.6776
+22506,True,"lookup table (tags, links, history/close types)",False,365.0,,16.9483
+22547,True,fixed-date window of 31 days or less,False,30.0,,10.8805
+22558,True,EXISTS / IN (SELECT),False,,,25.5203
+22619,True,none of the listed features,False,,,3.6677
+22634,True,HAVING threshold,False,730.0,,4.3011
+22635,True,none of the listed features,False,365.0,,1.0238
+22662,True,"lookup table (tags, links, history/close types)",False,,,3.0353
+22682,True,none of the listed features,False,365.0,,1.7882
+22750,True,HAVING threshold,False,365.0,,7.5912
+22767,True,none of the listed features,False,365.0,,1.3961
+22769,True,5 or more joins,False,365.0,,2.0488
+22789,True,wall-clock date window (NOW / CURRENT_DATE),True,730.0,,5.5717
+22792,True,HAVING threshold,False,182.39999999999998,,6.9807
+22822,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,9.7021
+22829,True,"lookup table (tags, links, history/close types)",False,91.19999999999999,,9.4211
+22840,True,LIKE pattern,False,365.0,,1.4584
+22867,True,fixed-date window of 31 days or less,False,30.4,,0.9837
+22868,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,6.7647
+22899,True,none of the listed features,False,365.0,,2.0091
+22949,True,HAVING threshold,False,365.0,,25.6997
+22963,True,fixed-date window of 31 days or less,False,7.0,,19.7672
+23016,True,fixed-date window of 31 days or less,False,30.0,,17.8311
+23040,True,HAVING threshold,False,,,17.615
+23052,True,fixed-date window of 31 days or less,False,30.0,,9.4916
+23059,True,"lookup table (tags, links, history/close types)",False,365.0,,2.6396
+23077,True,none of the listed features,False,365.0,,5.9617
+23079,True,5 or more joins,False,182.39999999999998,,3.9616
+23162,True,fixed-date window of 31 days or less,False,30.0,,9.0616
+23217,True,none of the listed features,False,365.0,,9.9362
+23269,True,EXISTS / IN (SELECT),False,365.0,,4.1847
+23297,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,5.7378
+23299,True,none of the listed features,False,365.0,,3.041
+23368,True,none of the listed features,False,365.0,,15.5372
+23379,True,fixed-date window of 31 days or less,False,30.0,,16.1145
+23394,True,fixed-date window of 31 days or less,False,30.4,,10.4056
+23397,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.0328
+23415,True,none of the listed features,False,,,8.7197
+23454,True,5 or more joins,False,,,6.1525
+23505,True,none of the listed features,False,,,8.4111
+23530,True,"lookup table (tags, links, history/close types)",False,365.0,,4.0043
+23571,True,5 or more joins,False,,,57.5144
+23578,True,5 or more joins,False,,,9.43
+23784,True,none of the listed features,False,365.0,,1.7465
+23791,True,"lookup table (tags, links, history/close types)",False,30.4,,6.2712
+23835,True,fixed-date window of 31 days or less,False,30.0,,6.3216
+23846,False,5 or more joins,False,365.0,,
+23860,True,fixed-date window of 31 days or less,False,30.0,,4.48
+23866,True,none of the listed features,False,182.39999999999998,,11.9864
+23893,True,EXISTS / IN (SELECT),False,,,7.3237
+23902,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.9212
+23969,True,"lookup table (tags, links, history/close types)",False,365.0,,18.7106
+23975,True,none of the listed features,False,365.0,,1.2799
+23985,True,none of the listed features,False,,,4.6082
+23991,True,5 or more joins,False,,,11.1227
+24008,True,"lookup table (tags, links, history/close types)",False,,,3.2499
+24009,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,10.4859
+24043,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,9.4521
+24054,True,none of the listed features,False,365.0,,3.0382
+24081,True,none of the listed features,False,365.0,,2.3612
+24136,True,5 or more joins,False,,,7.5676
+24181,True,wall-clock date window (NOW / CURRENT_DATE),True,730.0,,0.4476
+24204,True,fixed-date window of 31 days or less,False,30.4,,17.5233
+24215,True,wall-clock date window (NOW / CURRENT_DATE),True,7.0,,1.0434
+24216,True,5 or more joins,False,365.0,,4.9381
+24220,True,HAVING threshold,False,365.0,,9.3456
+24223,True,none of the listed features,False,30.0,,8.7858
+24277,True,none of the listed features,False,365.0,,4.1998
+24299,True,5 or more joins,False,365.0,,8.7544
+24304,True,5 or more joins,False,,,10.1813
+24317,True,wall-clock date window (NOW / CURRENT_DATE),True,91.19999999999999,,2.8219
+24424,True,fixed-date window of 31 days or less,False,30.0,,4.8715
+24427,True,LIKE pattern,False,182.39999999999998,,0.9402
+24431,True,5 or more joins,False,,,17.7313
+24444,True,5 or more joins,False,,,13.3685
+24461,True,"lookup table (tags, links, history/close types)",False,182.39999999999998,,6.3322
+24494,True,LIKE pattern,False,,,5.8081
+24512,True,fixed-date window of 31 days or less,False,30.4,,3.2774
+24520,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.1202
+24533,True,none of the listed features,False,182.39999999999998,,2.3643
+24538,True,"lookup table (tags, links, history/close types)",False,365.0,,3.7924
+24577,True,"lookup table (tags, links, history/close types)",False,365.0,,1.1203
+24582,False,HAVING threshold,False,,,
+24594,True,EXISTS / IN (SELECT),False,,,13.4825
+24602,True,"lookup table (tags, links, history/close types)",False,,,5.5974
+24608,True,"lookup table (tags, links, history/close types)",False,365.0,,4.2083
+24610,True,5 or more joins,False,365.0,,2.8861
+24635,True,5 or more joins,False,365.0,,5.1098
+24699,True,LIKE pattern,False,,,27.9476
+24700,True,EXISTS / IN (SELECT),False,365.0,,5.7122
+24744,True,"lookup table (tags, links, history/close types)",False,365.0,,6.7874
+24758,True,none of the listed features,False,365.0,,3.2399
+24763,True,EXISTS / IN (SELECT),False,,,12.8888
+24777,True,"lookup table (tags, links, history/close types)",False,30.0,,13.4573
+24805,True,EXISTS / IN (SELECT),False,182.39999999999998,,19.9298
+24856,True,fixed-date window of 31 days or less,False,7.0,,2.6204
+24945,True,none of the listed features,False,365.0,,8.5632
+24981,True,"lookup table (tags, links, history/close types)",False,365.0,,17.6766
+24986,True,none of the listed features,False,365.0,,1.3842
+25041,True,none of the listed features,False,,,11.0184
+25050,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.4479
+25060,False,EXISTS / IN (SELECT),False,,,
+25096,True,none of the listed features,False,,,12.3862
+25111,True,"lookup table (tags, links, history/close types)",False,,,9.4618
+25128,True,"lookup table (tags, links, history/close types)",False,365.0,,8.6665
+25154,True,HAVING threshold,False,,,16.4458
+25162,True,"lookup table (tags, links, history/close types)",False,365.0,,1.2308
+25221,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.2923
+25319,True,none of the listed features,False,,,13.0702
+25446,True,EXISTS / IN (SELECT),False,,,2.3806
+25514,True,fixed-date window of 31 days or less,False,30.0,,6.8501
+25546,True,"lookup table (tags, links, history/close types)",False,365.0,,15.0803
+25570,True,"lookup table (tags, links, history/close types)",False,,,13.5473
+25681,True,LIKE pattern,False,365.0,,1.3
+25711,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,109.661
+25859,True,wall-clock date window (NOW / CURRENT_DATE),True,30.4,,17.4341
+25882,True,none of the listed features,False,,,12.265
+25913,True,5 or more joins,False,365.0,,2.2516
+25942,True,"lookup table (tags, links, history/close types)",False,,,5.9023
+25958,True,none of the listed features,False,,,6.49
+25963,True,"lookup table (tags, links, history/close types)",False,,,5.1189
+26034,True,HAVING threshold,False,365.0,,3.3447
+26058,False,fixed-date window of 31 days or less,False,30.0,,
+26076,True,LIKE pattern,False,,,167.6516
+26124,True,none of the listed features,False,365.0,,0.4114
+26221,True,"lookup table (tags, links, history/close types)",False,,,12.0969
+26304,False,"lookup table (tags, links, history/close types)",False,,,
+26306,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,8.6855
+26370,True,"lookup table (tags, links, history/close types)",False,,,27.3472
+26408,True,5 or more joins,False,365.0,,6.0936
+26450,True,"lookup table (tags, links, history/close types)",False,,,0.1829
+26787,True,none of the listed features,False,,,2.7765
+26835,False,LIKE pattern,False,365.0,,
+26911,True,fixed-date window of 31 days or less,False,30.0,,20.6724
+26960,False,LIKE pattern,False,,,
+27030,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.5667
+27114,True,fixed-date window of 31 days or less,False,30.0,,1.122
+27117,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.471
+27132,True,none of the listed features,False,,,65.1979
+27185,True,EXISTS / IN (SELECT),False,,,47.6789
+27229,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4086
+27348,True,"lookup table (tags, links, history/close types)",False,,,6.3244
+27391,True,"lookup table (tags, links, history/close types)",False,,,17.4224
+27420,True,5 or more joins,False,365.0,,2.1221
+27428,True,HAVING threshold,False,365.0,,6.1567
+27529,True,none of the listed features,False,,,6.2007
+27635,True,EXISTS / IN (SELECT),False,,,13.6343
+27754,True,"lookup table (tags, links, history/close types)",False,,,50.5897
+27771,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9364
+27925,False,LIKE pattern,False,,,
+27949,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.7861
+27953,True,"lookup table (tags, links, history/close types)",False,,,3.1473
+27976,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.435
+28022,False,EXISTS / IN (SELECT),False,365.0,,
+28027,True,LIKE pattern,False,,,15.7401
+28037,True,none of the listed features,False,,,22.7141
+28038,True,fixed-date window of 31 days or less,False,30.0,,19.8779
+28101,True,HAVING threshold,False,182.39999999999998,,4.2287
+28192,True,none of the listed features,False,365.0,,0.6424
+28195,True,"lookup table (tags, links, history/close types)",False,365.0,,1.8451
+28267,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,7.2815
+28279,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.4079
+28292,False,HAVING threshold,False,,,
+28296,True,none of the listed features,False,365.0,,0.5915
+28309,True,fixed-date window of 31 days or less,False,30.0,,7.9153
+28312,True,"lookup table (tags, links, history/close types)",False,,,8.4984
+28356,True,wall-clock date window (NOW / CURRENT_DATE),True,7.0,,0.4427
+28477,True,5 or more joins,False,,,37.2521
+28523,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.2165
+28593,True,LIKE pattern,False,365.0,,7.2211
+28650,True,"lookup table (tags, links, history/close types)",False,,,17.8161
+28659,True,fixed-date window of 31 days or less,False,30.0,,8.0609
+28665,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,3.2918
+28829,True,fixed-date window of 31 days or less,False,30.0,,15.9468
+28839,True,LIKE pattern,False,365.0,,12.3901
+28879,True,LIKE pattern,False,,,11.1488
+28955,True,none of the listed features,False,,,14.6156
+28965,True,fixed-date window of 31 days or less,False,30.0,,0.8447
+28975,True,EXISTS / IN (SELECT),False,365.0,,7.0625
+28976,True,none of the listed features,False,365.0,,0.4603
+29016,True,LIKE pattern,False,,,3.6509
+29126,True,HAVING threshold,False,,,19.3121
+29235,True,EXISTS / IN (SELECT),False,30.0,,8.6262
+29389,True,LIKE pattern,False,,,9.8692
+29391,True,HAVING threshold,False,365.0,,4.3867
+29430,True,LIKE pattern,False,182.39999999999998,,13.9254
+29508,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.417
+29556,True,EXISTS / IN (SELECT),False,,,51.1678
+29583,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4392
+29608,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.2752
+29831,True,HAVING threshold,False,,,2.9119
+29944,True,LIKE pattern,False,,,5.5232
+29982,True,fixed-date window of 31 days or less,False,30.4,,4.0139
+29994,True,5 or more joins,False,365.0,,24.2374
+29996,True,HAVING threshold,False,,,18.6215
+30053,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,7.9097
+30067,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,2.5781
+30071,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4381
+30115,True,fixed-date window of 31 days or less,False,30.0,,3.7794
+30120,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,9.2229
+30174,True,HAVING threshold,False,365.0,,8.5507
+30222,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.3968
+30228,True,fixed-date window of 31 days or less,False,30.0,,7.593
+30249,True,fixed-date window of 31 days or less,False,30.0,,0.7844
+30254,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,10.2925
+30355,True,fixed-date window of 31 days or less,False,30.0,,5.7471
+30385,True,5 or more joins,False,30.0,,32.5542
+30444,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.1159
+30454,True,fixed-date window of 31 days or less,False,30.0,,10.2839
+30459,True,5 or more joins,False,,,4.6458
+30505,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9663
+30509,True,wall-clock date window (NOW / CURRENT_DATE),True,91.19999999999999,,1.0021
+30695,True,fixed-date window of 31 days or less,False,30.0,,8.3991
+30899,True,fixed-date window of 31 days or less,False,7.0,,2.3494
+30947,True,5 or more joins,False,182.39999999999998,,2.1646
+30968,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,22.1712
+31037,True,none of the listed features,False,365.0,,2.7562
+31048,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9494
+31099,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.461
+31131,True,HAVING threshold,False,365.0,,2.5639
+31136,True,EXISTS / IN (SELECT),False,365.0,,6.6983
+31144,True,HAVING threshold,False,,,10.7752
+31194,True,fixed-date window of 31 days or less,False,30.0,,3.2528
+31219,True,EXISTS / IN (SELECT),False,30.0,,0.5224
+31229,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,12.1363
+31238,True,HAVING threshold,False,,,7.9453
+31317,True,HAVING threshold,False,365.0,,8.3845
+31482,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,1.1354
+31504,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9938
+31614,True,none of the listed features,False,,,2.9155
+31629,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.4494
+31635,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,3.3987
+31659,True,HAVING threshold,False,365.0,,9.9727
+31681,True,5 or more joins,False,365.0,,9.9491
+31874,True,wall-clock date window (NOW / CURRENT_DATE),True,91.19999999999999,,10.7385
+31905,True,HAVING threshold,False,365.0,,12.6611
+31981,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,3.1887
+32097,True,5 or more joins,False,,,51.8107
+32139,True,"lookup table (tags, links, history/close types)",False,365.0,,1.8277
+32181,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.0542
+32230,True,"lookup table (tags, links, history/close types)",False,365.0,,13.5058
+32290,True,none of the listed features,False,365.0,,6.9288
+32329,True,HAVING threshold,False,,,19.6119
+32355,True,fixed-date window of 31 days or less,False,30.4,,0.6233
+32369,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,5.9823
+32383,True,"lookup table (tags, links, history/close types)",False,365.0,,5.3131
+32386,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,2.6836
+32415,True,fixed-date window of 31 days or less,False,30.0,,1.7958
+32482,True,"lookup table (tags, links, history/close types)",False,365.0,,9.2932
+32493,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,8.0639
+32518,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,0.417
+32526,True,fixed-date window of 31 days or less,False,30.0,,1.5111
+32544,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,2.2448
+32648,True,fixed-date window of 31 days or less,False,30.4,,9.4096
+32702,True,none of the listed features,False,365.0,,1.046
+32796,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,6.7981
+32815,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.4614
+32841,True,EXISTS / IN (SELECT),False,365.0,,1.5328
+32846,True,"lookup table (tags, links, history/close types)",False,365.0,,10.535
+32893,True,fixed-date window of 31 days or less,False,30.4,,9.1565
+32899,True,5 or more joins,False,365.0,,4.1971
+32966,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.0252
+32987,True,LIKE pattern,False,,,9.9234
+33006,True,5 or more joins,False,365.0,,9.9528
+33015,True,EXISTS / IN (SELECT),False,182.39999999999998,,7.6141
+33044,True,5 or more joins,False,,,5.425
+33081,True,none of the listed features,False,,,2.2897
+33254,True,wall-clock date window (NOW / CURRENT_DATE),True,182.39999999999998,,1.0218
+33285,True,"lookup table (tags, links, history/close types)",False,365.0,,1.1308
+33391,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.9609
+33427,True,none of the listed features,False,,,18.552
+33524,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9841
+33639,False,HAVING threshold,False,365.0,,
+33721,True,EXISTS / IN (SELECT),False,365.0,,3.9146
+33771,True,fixed-date window of 31 days or less,False,30.0,,3.5937
+33785,True,"lookup table (tags, links, history/close types)",False,182.39999999999998,,5.0203
+33789,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,0.444
+33801,True,none of the listed features,False,182.39999999999998,,0.5469
+33891,True,5 or more joins,False,365.0,,0.0353
+33954,True,"lookup table (tags, links, history/close types)",False,,,7.0982
+33974,True,"lookup table (tags, links, history/close types)",False,365.0,,3.3621
+33976,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9537
+33982,False,5 or more joins,False,365.0,,
+33993,True,5 or more joins,False,365.0,,5.5195
+34051,True,"lookup table (tags, links, history/close types)",False,,,4.5423
+34092,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,8.8658
+34265,True,none of the listed features,False,,,1.6811
+34292,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,0.9796
+34320,True,5 or more joins,False,365.0,,1.5634
+34400,True,none of the listed features,False,30.0,,13.945
+34440,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.0759
+34443,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,1.6525
+34544,True,5 or more joins,False,,,11.882
+34552,True,none of the listed features,False,,,3.0904
+34613,True,5 or more joins,False,365.0,,9.1642
+34634,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.0018
+34669,True,wall-clock date window (NOW / CURRENT_DATE),True,365.0,,1.0783
+34673,True,fixed-date window of 31 days or less,False,30.4,,11.3299
+34915,True,none of the listed features,False,365.0,,1.6779
+34961,True,wall-clock date window (NOW / CURRENT_DATE),True,30.0,,6.7062
+34974,True,none of the listed features,False,365.0,,1.4519

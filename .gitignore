@@ -7,3 +7,6 @@ cache/sqlstorm_cache/stackoverflow/queries/
 
 # SQLStorm outputs: 210 MB of result files — cached locally, never committed (see sqlstorm_outputs.ipynb)
 cache/outputs_cache/
+
+# laptop2 run logs (84 MB) — cached locally, never committed (see laptop2_export.ipynb)
+cache/laptop2_cache/

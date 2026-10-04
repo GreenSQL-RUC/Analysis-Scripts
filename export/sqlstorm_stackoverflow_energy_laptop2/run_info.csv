@@ -1,0 +1,51 @@
+section,key,value,source
+dataset,name,SQLStorm StackOverflow queries on the StackOverflow (dba.stackexchange) 1 GB database,README
+dataset,query_source,"SQLStorm v1.0, stackoverflow/queries, commit b3bb0b96",query file header
+dataset,query_id,the file name number: query 15407 = 15407.sql,README
+dataset,queries_in_run,11794,run order
+dataset,queries_fully_successful,11431,this notebook
+dataset,distinct_sql_texts,9519,this notebook
+dataset,query_files_identical_to_laptop2,True,md5 of all .sql files
+dataset,executed_statement,"EXPLAIN (ANALYZE, TIMING OFF, COSTS ON, SUMMARY ON, BUFFERS) <query>",query files
+database,name,stackoverflow_1gb,summary.txt
+database,tables,13,query_catalog
+database,total_size_mb,1167.8,query_catalog
+database,same_size_as_output_run_database,True,catalog of both machines
+run,run_id,so_uniform_1_16_20260930T094325Z,summary.txt
+run,started_utc,2026-09-30T09:43:47Z,summary.txt
+run,finished_utc,2026-10-03T19:32:30Z,summary.txt
+run,duration_h,81.81,summary.txt
+run,harness,GreenSQL run_warm_stepup.sh / query_runner (make warm-stepup),console.log
+run,batch_sizes,1 16,summary.txt
+run,measured_runs_per_size,1,summary.txt
+run,warmups,2,summary.txt
+run,warmup_fail_skip,1,summary.txt
+run,repeats,1,summary.txt
+run,statement_timeout,15s,summary.txt
+run,batch_cap_slow,none (slow_copy_sec 1),summary.txt
+run,query_order,"random (one fixed shuffle, saved run order)",run_order
+run,thermal_policy,gate T_LO=40 T_HI=60 PREHEAT_MAX_S=60 COOLDOWN_MAX_S=120,summary.txt
+run,clock,"fixed, max 2500 MHz, governor performance",summary.txt
+run,rapl_power_limits,"PL1 22.0 W (tau 27.98 s), PL2 44.0 W",summary.txt
+run,throttle_events,0 during run (0 total),summary.txt
+run,energy_counter,"powercap, 1 package, domains: pkg core gpu/uncore dram",query_runinfo
+run,parallel_workers,planner default,summary.txt
+machine,product,Dell Inc. Latitude 7490,summary.txt
+machine,cpu,Intel(R) Core(TM) i5-8350U CPU @ 1.70GHz,summary.txt
+machine,cpu_threads,8,summary.txt
+machine,microcode,0xf6,summary.txt
+machine,bios,Dell Inc. 1.25.0 (03/24/2022),summary.txt
+machine,memory_gb,7.6,free -b
+machine,disk,nvme0n1 KXG60ZNV256G NVMe TOSHIBA 256GB 238.5G 0,lsblk
+machine,os,Ubuntu 24.04.1 LTS,/etc/os-release
+machine,kernel,6.8.0-41-generic,summary.txt
+machine,cpufreq_driver,intel_pstate,summary.txt
+machine,machine_identity_constant_during_run,True,query_runinfo (every query)
+postgresql,version,18.6,query_runinfo
+postgresql,config,stock postgresql.conf; conf.d empty,postgresql.conf
+postgresql,shared_buffers,128MB,postgresql.conf
+postgresql,max_connections,100,postgresql.conf
+postgresql,other_settings,PostgreSQL 18 defaults (postgresql.auto.conf not readable without sudo),postgresql.conf
+labels,energy_definition,RAPL package energy per execution = (E16 - E1) / 15,this notebook
+labels,energy_se_model,"sqrt((0.8 mJ)^2 + (0.89% * energy)^2), from 2727 duplicate measurements",this notebook
+outputs,source,"output_runner on a second identical laptop, same database and query files, 60 s timeout, started 2026-09-29T10:07:21Z",output run console
