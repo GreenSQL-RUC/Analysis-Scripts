@@ -10,3 +10,6 @@ cache/outputs_cache/
 
 # laptop2 run logs (84 MB) — cached locally, never committed (see laptop2_export.ipynb)
 cache/laptop2_cache/
+
+# compare-session logs from both laptops — cached locally (see compare_laptops.ipynb)
+cache/compare_cache/
