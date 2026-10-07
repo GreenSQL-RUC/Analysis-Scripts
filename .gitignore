@@ -13,3 +13,6 @@ cache/laptop2_cache/
 
 # compare-session logs from both laptops — cached locally (see compare_laptops.ipynb)
 cache/compare_cache/
+
+# StackOverflow EXPLAIN ANALYZE plans from laptop2 plan_builder (81 MB) — cached locally, never committed
+cache/plans_cache/
