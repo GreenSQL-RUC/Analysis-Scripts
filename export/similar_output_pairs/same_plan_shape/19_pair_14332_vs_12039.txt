@@ -1,0 +1,113 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 19 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   2 SQL variants, 2 query files (copies of one SQL text count as one variant)
+energy:  min 0.529 J   median 1.161 J   max 1.792 J   ->  3.39x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   2 distinct plan(s), 1 distinct plan shape(s)
+outputs: 2 distinct result(s) (rows compared, column names ignored)
+members: 14332 12039  (cheapest first)
+
+The two below are the cheapest and the most expensive of the group (0.529 J vs 1.792 J).
+
+====================================================================================================
+CHEAPEST: query 14332
+====================================================================================================
+query 14332
+energy 0.529 J ± 0.005
+output 199 rows, 5 columns
+plan: execution 107 ms, 6 nodes, buffers 32 k, parallel workers 0
+
+-- SQL
+SELECT 
+    pt.Name AS PostType,
+    DATE_TRUNC('month', p.CreationDate) AS PostMonth,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+WHERE 
+    p.CreationDate >= '2020-01-01' 
+GROUP BY 
+    pt.Name, PostMonth
+ORDER BY 
+    PostMonth, pt.Name;
+
+-- first rows of the output
+posttype|postmonth|postcount|averagescore|totalviews
+Answer|2020-01-01 00:00:00|883|2.0147225368063420|
+Question|2020-01-01 00:00:00|732|1.1762295081967213|1357246
+TagWiki|2020-01-01 00:00:00|3|0.00000000000000000000|
+TagWikiExcerpt|2020-01-01 00:00:00|3|0.00000000000000000000|
+Answer|2020-02-01 00:00:00|956|1.5240585774058577|
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 12039
+====================================================================================================
+query 12039
+energy 1.792 J ± 0.016
+output 680 rows, 4 columns
+plan: execution 281 ms, 6 nodes, buffers 32 k, parallel workers 0
+
+-- SQL
+SELECT 
+    pt.Name AS PostType,
+    DATE_TRUNC('month', p.CreationDate) AS CreationMonth,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name, DATE_TRUNC('month', p.CreationDate)
+ORDER BY 
+    pt.Name, CreationMonth;
+
+-- first rows of the output
+posttype|creationmonth|postcount|averagescore
+Answer|2008-09-01 00:00:00|8|17.2500000000000000
+Answer|2008-10-01 00:00:00|10|14.1000000000000000
+Answer|2008-11-01 00:00:00|14|8.5000000000000000
+Answer|2009-01-01 00:00:00|7|9.0000000000000000
+Answer|2009-02-01 00:00:00|1|0.00000000000000000000
+…
+
+====================================================================================================
+PLAN of 14332 (cheapest)
+====================================================================================================
+GroupAggregate [Group Key=(date_trunc('month', posts.creationdate)), posttypes.name]
+  Sort [Sort Key=(date_trunc('month', posts.creationdate)), posttypes.name]
+    Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+      Seq Scan on posts [Filter=(creationdate >= '2020-01-01 00:00:00')]
+      Hash
+        Seq Scan on posttypes
+
+====================================================================================================
+PLAN of 12039 (most expensive)
+====================================================================================================
+GroupAggregate [Group Key=posttypes.name, (date_trunc('month', posts.creationdate))]
+  Sort [Sort Key=posttypes.name, (date_trunc('month', posts.creationdate))]
+    Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+      Seq Scan on posts
+      Hash
+        Seq Scan on posttypes
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 14332
++++ 12039
+@@ -1,2 +1,2 @@
+-GroupAggregate [Group Key=(date_trunc('month', posts.creationdate)), posttypes.name]
+-  Sort [Sort Key=(date_trunc('month', posts.creationdate)), posttypes.name]
++GroupAggregate [Group Key=posttypes.name, (date_trunc('month', posts.creationdate))]
++  Sort [Sort Key=posttypes.name, (date_trunc('month', posts.creationdate))]
+@@ -4 +4 @@
+-      Seq Scan on posts [Filter=(creationdate >= '2020-01-01 00:00:00')]
++      Seq Scan on posts
+

@@ -1,0 +1,1102 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 3 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   53 SQL variants, 168 query files (copies of one SQL text count as one variant)
+energy:  min 0.663 J   median 0.792 J   max 1.188 J   ->  1.79x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 47 distinct result(s) (rows compared, column names ignored) over 53 saved outputs
+members: 10117 12046 13568 10065 12007 12981 11731 11886 11369 12903 14975 14548 10085 10018 12741 13880 11234 12397 10656 10534 11289 11755 13502 13002 13012 10620 11492 12472 13246 13416 10435 13829 14665 13711 10488 10397 10596 10941 13701 13468 …  (cheapest first)
+
+pair file: 03_pair_10117_vs_12196.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   10117      10       0.663        1.00     6        2       44           32 96fafa5c
+   12046       1       0.718        1.08     6        3       45           32 96fafa5c
+   13568       1       0.720        1.09     6        3       43           32 96fafa5c
+   10065      17       0.724        1.09     6        3       43           32 96fafa5c
+   12007       1       0.727        1.10     6        4       45           32 96fafa5c
+   12981       2       0.729        1.10     6        4       44           32 96fafa5c
+   11731       1       0.732        1.10     6        5       43           32 96fafa5c
+   11886       2       0.733        1.11     6        4       43           32 96fafa5c
+   11369       9       0.735        1.11     6        4       43           32 96fafa5c
+   12903       1       0.735        1.11     6        4       43           32 96fafa5c
+   14975       1       0.735        1.11     6        4       44           32 96fafa5c
+   14548       1       0.736        1.11     6        4       44           32 96fafa5c
+   10085      37       0.739        1.11     6        4       43           32 96fafa5c
+   10018      37       0.741        1.12     6        4       43           32 96fafa5c
+   12741       1       0.744        1.12     6        5       45           32 96fafa5c
+   13880       1       0.752        1.13     6        4       45           32 96fafa5c
+   11234       1       0.755        1.14     6        5       44           32 96fafa5c
+   12397       1       0.756        1.14     6        4       43           32 96fafa5c
+   10656       3       0.758        1.14     6        5       43           32 96fafa5c
+   10534       1       0.758        1.14     6        6       45           32 96fafa5c
+   11289       1       0.760        1.15     6        6       44           32 96fafa5c
+   11755       3       0.760        1.15     6        5       44           32 96fafa5c
+   13502       1       0.767        1.16     6        5       44           32 96fafa5c
+   13002       1       0.767        1.16     6        5       45           32 96fafa5c
+   13012       1       0.775        1.17     6        6       45           32 96fafa5c
+   10620       1       0.792        1.19     6        4       49           32 96fafa5c
+   11492       1       0.792        1.19     6        4       48           32 96fafa5c
+   12472       1       0.803        1.21     6        5       48           32 96fafa5c
+   13246       1       0.806        1.22     6        5       49           32 96fafa5c
+   13416       1       0.808        1.22     6        5       49           32 96fafa5c
+   10435       1       0.811        1.22     6        6       48           32 96fafa5c
+   13829       2       0.812        1.22     6        5       48           32 96fafa5c
+   14665       1       0.813        1.23     6        5       49           32 96fafa5c
+   13711       1       0.816        1.23     6        5       49           32 96fafa5c
+   10488       3       0.821        1.24     6        5       48           32 96fafa5c
+   10397       1       0.823        1.24     6        5       50           32 96fafa5c
+   10596       1       0.829        1.25     6        6       49           32 96fafa5c
+   10941       1       0.833        1.26     6        6       50           32 96fafa5c
+   13701       1       0.837        1.26     6        6       49           32 96fafa5c
+   13468       1       0.839        1.26     6        6       49           32 96fafa5c
+   13058       1       0.841        1.27     6        6       50           32 96fafa5c
+   13903       1       0.848        1.28     6        6       51           32 96fafa5c
+   13628       1       0.852        1.29     6        7       50           32 96fafa5c
+   14954       1       0.854        1.29     6        9       49           32 96fafa5c
+   11286       1       0.856        1.29     6        6       53           32 96fafa5c
+   12811       1       0.858        1.29     6        7       52           32 96fafa5c
+   12148       1       0.876        1.32     6        8       51           32 96fafa5c
+   10119       2       0.985        1.49     6        3       60           32 96fafa5c
+   10694       1       0.990        1.49     6        5       54           32 96fafa5c
+   11087       1       0.999        1.51     6        4       58           32 96fafa5c
+   14948       1       1.051        1.59     6        7       62           32 96fafa5c
+   13017       1       1.063        1.60     6        8       60           32 96fafa5c
+   12196       1       1.188        1.79     6        6       65           32 96fafa5c
+
+====================================================================================================
+1/53  query 10117   (copies: 10117 10767 11780 12937 13010 13187 13388 14082 14147 14340)   energy 0.663 J ± 0.002   output 6 rows, 2 columns   plan: execution 44 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+2/53  query 12046   energy 0.718 J ± 0.006   output 6 rows, 3 columns   plan: execution 45 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+WITH PostStatistics AS (
+    SELECT 
+        pt.Name AS PostTypeName,
+        COUNT(p.Id) AS TotalPosts,
+        AVG(p.ViewCount) AS AverageViewCount
+    FROM 
+        Posts p
+    JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    GROUP BY 
+        pt.Name
+)
+
+SELECT 
+    PostTypeName,
+    TotalPosts,
+    AverageViewCount
+FROM 
+    PostStatistics
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+3/53  query 13568   energy 0.720 J ± 0.006   output 6 rows, 3 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+WITH PostStats AS (
+    SELECT 
+        pt.Name AS PostType, 
+        COUNT(p.Id) AS PostCount, 
+        AVG(p.Score) AS AverageScore
+    FROM 
+        Posts p
+    JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    GROUP BY 
+        pt.Name
+)
+
+SELECT 
+    ps.PostType, 
+    ps.PostCount, 
+    ps.AverageScore
+FROM 
+    PostStats ps
+ORDER BY 
+    ps.PostCount DESC;
+
+====================================================================================================
+4/53  query 10065   (copies: 10065 10507 10647 12412 12453 12508 12543 12565 13530 13549 13672 13841 14177 14449 14472 14897 14937)   energy 0.724 J ± 0.002   output 6 rows, 3 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS NumberOfPosts,
+    AVG(p.Score) AS AverageScore
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    NumberOfPosts DESC;
+
+====================================================================================================
+5/53  query 12007   energy 0.727 J ± 0.007   output 6 rows, 4 columns   plan: execution 45 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    SUM(p.Score) AS TotalScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+6/53  query 12981   (copies: 12981 12998)   energy 0.729 J ± 0.005   output 6 rows, 4 columns   plan: execution 44 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostTypeName,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.ViewCount) AS AverageViewCount,
+    SUM(p.Score) AS TotalScore
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+7/53  query 11731   energy 0.732 J ± 0.007   output 6 rows, 5 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.ViewCount) AS AverageViewCount,
+    MIN(p.ViewCount) AS MinViewCount,
+    MAX(p.ViewCount) AS MaxViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+8/53  query 11886   (copies: 11886 12156)   energy 0.733 J ± 0.005   output 6 rows, 4 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    MAX(p.ViewCount) AS MaxViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+9/53  query 11369   (copies: 11369 11604 12703 13400 14070 14532 14600 14849 14994)   energy 0.735 J ± 0.002   output 6 rows, 4 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.ViewCount) AS AverageViewCount,
+    AVG(p.Score) AS AverageScore
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+10/53  query 12903   energy 0.735 J ± 0.007   output 6 rows, 4 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+WITH PostStats AS (
+    SELECT 
+        pt.Name AS PostType,
+        COUNT(p.Id) AS TotalPosts,
+        AVG(p.Score) AS AverageScore,
+        AVG(p.ViewCount) AS AverageViewCount
+    FROM 
+        Posts p
+    JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    GROUP BY 
+        pt.Name
+)
+
+SELECT 
+    PostType,
+    TotalPosts,
+    AverageScore,
+    AverageViewCount
+FROM 
+    PostStats
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+11/53  query 14975   energy 0.735 J ± 0.007   output 6 rows, 4 columns   plan: execution 44 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews
+FROM 
+    Posts p
+INNER JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+12/53  query 14548   energy 0.736 J ± 0.007   output 6 rows, 4 columns   plan: execution 44 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+WITH PostMetrics AS (
+    SELECT 
+        pt.Name AS PostType,
+        COUNT(p.Id) AS PostCount,
+        AVG(p.Score) AS AvgScore,
+        SUM(p.ViewCount) AS TotalViewCount
+    FROM 
+        Posts p
+    JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    GROUP BY 
+        pt.Name
+)
+
+
+SELECT 
+    PostType, 
+    PostCount, 
+    AvgScore, 
+    TotalViewCount
+FROM 
+    PostMetrics
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+13/53  query 10085   (copies: 10085 10176 10477 10749 10755 10817 10820 11387 11470 11537 11757 12040 12212 12327 12367 12424 12914 13065 13103 13288 13294 13422 13455 13525 13616 13950 13963 13969 14114 14237 14350 14351 14441 14627 14641 14743 14826)   energy 0.739 J ± 0.001   output 6 rows, 4 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+14/53  query 10018   (copies: 10018 10165 10186 10190 10199 10230 10367 10456 10774 10940 11128 11164 11271 11344 11506 11540 11867 11898 12015 12066 12223 12356 12716 13208 13215 13681 13798 13991 14005 14125 14225 14229 14382 14568 14580 14959 14997)   energy 0.741 J ± 0.001   output 6 rows, 4 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+15/53  query 12741   energy 0.744 J ± 0.007   output 6 rows, 5 columns   plan: execution 45 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    MAX(p.Score) AS MaxScore,
+    MIN(p.Score) AS MinScore
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+16/53  query 13880   energy 0.752 J ± 0.007   output 6 rows, 4 columns   plan: execution 45 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+WITH PostStats AS (
+    SELECT 
+        pt.Name AS PostTypeName,
+        COUNT(p.Id) AS PostCount,
+        AVG(p.ViewCount) AS AvgViewCount,
+        AVG(p.Score) AS AvgScore
+    FROM 
+        Posts p
+    INNER JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    GROUP BY 
+        pt.Name
+)
+
+SELECT 
+    PostTypeName,
+    PostCount,
+    AvgViewCount,
+    AvgScore
+FROM 
+    PostStats
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+17/53  query 11234   energy 0.755 J ± 0.007   output 6 rows, 5 columns   plan: execution 44 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.ViewCount) AS AvgViewCount,
+    MAX(p.ViewCount) AS MaxViewCount,
+    MIN(p.ViewCount) AS MinViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+18/53  query 12397   energy 0.756 J ± 0.007   output 6 rows, 4 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType, 
+    COUNT(p.Id) AS TotalPosts, 
+    AVG(p.ViewCount) AS AverageViewCount, 
+    SUM(CASE WHEN p.Score IS NOT NULL THEN 1 ELSE 0 END) AS TotalScoredPosts
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+19/53  query 10656   (copies: 10656 11616 14591)   energy 0.758 J ± 0.004   output 6 rows, 5 columns   plan: execution 43 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews,
+    SUM(CASE WHEN p.AcceptedAnswerId IS NOT NULL THEN 1 ELSE 0 END) AS AcceptedAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+20/53  query 10534   energy 0.758 J ± 0.007   output 6 rows, 6 columns   plan: execution 45 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    MAX(p.Score) AS MaxScore,
+    MIN(p.Score) AS MinScore
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+21/53  query 11289   energy 0.760 J ± 0.007   output 6 rows, 6 columns   plan: execution 44 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    MIN(p.CreationDate) AS EarliestPostDate,
+    MAX(p.CreationDate) AS LatestPostDate
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+22/53  query 11755   (copies: 11755 12539 14878)   energy 0.760 J ± 0.004   output 6 rows, 5 columns   plan: execution 44 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews,
+    MAX(p.CreationDate) AS LatestPostDate
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+23/53  query 13502   energy 0.767 J ± 0.007   output 6 rows, 5 columns   plan: execution 44 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.ViewCount) AS AverageViewCount,
+    SUM(CASE WHEN p.Score > 0 THEN 1 ELSE 0 END) AS PositiveScorePosts,
+    SUM(CASE WHEN p.Score <= 0 THEN 1 ELSE 0 END) AS NonPositiveScorePosts
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+24/53  query 13002   energy 0.767 J ± 0.007   output 6 rows, 5 columns   plan: execution 45 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType, 
+    COUNT(p.Id) AS TotalPosts, 
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews,
+    COUNT(CASE WHEN p.AcceptedAnswerId IS NOT NULL THEN 1 END) AS AcceptedAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+25/53  query 13012   energy 0.775 J ± 0.007   output 6 rows, 6 columns   plan: execution 45 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType, 
+    COUNT(p.Id) AS TotalPosts, 
+    AVG(p.Score) AS AverageScore, 
+    SUM(p.ViewCount) AS TotalViews,
+    MAX(p.CreationDate) AS MostRecentPost,
+    MIN(p.CreationDate) AS OldestPost
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+26/53  query 10620   energy 0.792 J ± 0.007   output 6 rows, 4 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    MAX(p.LastActivityDate) AS MostRecentActivity
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+27/53  query 11492   energy 0.792 J ± 0.007   output 6 rows, 4 columns   plan: execution 48 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.AnswerCount) AS TotalAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+28/53  query 12472   energy 0.803 J ± 0.007   output 6 rows, 5 columns   plan: execution 48 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(CASE WHEN p.OwnerUserId IS NOT NULL THEN 1 ELSE 0 END) AS TotalOwnedPosts,
+    SUM(CASE WHEN p.AcceptedAnswerId IS NOT NULL THEN 1 ELSE 0 END) AS TotalAcceptedAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+29/53  query 13246   energy 0.806 J ± 0.007   output 6 rows, 5 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews,
+    SUM(p.AnswerCount) AS TotalAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+30/53  query 13416   energy 0.808 J ± 0.007   output 6 rows, 5 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViewCount,
+    MAX(p.LastActivityDate) AS MostRecentActivity
+FROM
+    Posts p
+JOIN
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY
+    pt.Name
+ORDER BY
+    PostCount DESC;
+
+====================================================================================================
+31/53  query 10435   energy 0.811 J ± 0.007   output 6 rows, 6 columns   plan: execution 48 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.ViewCount) AS AverageViewCount,
+    MAX(p.Score) AS MaxScore,
+    SUM(CASE WHEN p.OwnerUserId IS NOT NULL THEN 1 ELSE 0 END) AS PostsWithOwners,
+    SUM(CASE WHEN p.AcceptedAnswerId IS NOT NULL THEN 1 ELSE 0 END) AS QuestionsWithAcceptedAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Users u ON p.OwnerUserId = u.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+32/53  query 13829   (copies: 13829 13881)   energy 0.812 J ± 0.005   output 6 rows, 5 columns   plan: execution 48 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType, 
+    COUNT(p.Id) AS TotalPosts, 
+    AVG(p.Score) AS AverageScore, 
+    AVG(p.ViewCount) AS AverageViewCount, 
+    AVG(p.AnswerCount) AS AverageAnswerCount 
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id 
+GROUP BY 
+    pt.Name 
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+33/53  query 14665   energy 0.813 J ± 0.007   output 6 rows, 5 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.AnswerCount) AS AverageAnswerCount,
+    AVG(p.CommentCount) AS AverageCommentCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+34/53  query 13711   energy 0.816 J ± 0.007   output 6 rows, 5 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.ViewCount) AS AverageViewCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.AnswerCount) AS AverageAnswerCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+35/53  query 10488   (copies: 10488 11783 12502)   energy 0.821 J ± 0.004   output 6 rows, 5 columns   plan: execution 48 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    AVG(p.CommentCount) AS AverageCommentCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+36/53  query 10397   energy 0.823 J ± 0.007   output 6 rows, 5 columns   plan: execution 50 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS NumberOfPosts,
+    AVG(p.ViewCount) AS AverageViewCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.CommentCount) AS AverageComments
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    NumberOfPosts DESC;
+
+====================================================================================================
+37/53  query 10596   energy 0.829 J ± 0.007   output 6 rows, 6 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    SUM(p.AnswerCount) AS TotalAnswers,
+    SUM(p.CommentCount) AS TotalComments
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+38/53  query 10941   energy 0.833 J ± 0.007   output 6 rows, 6 columns   plan: execution 50 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    SUM(p.ViewCount) AS TotalViews,
+    AVG(p.Score) AS AverageScore,
+    SUM(CASE WHEN p.OwnerUserId IS NOT NULL THEN 1 ELSE 0 END) AS TotalPostsByUsers,
+    SUM(p.AnswerCount) AS TotalAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+39/53  query 13701   energy 0.837 J ± 0.007   output 6 rows, 6 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews,
+    SUM(p.AnswerCount) AS TotalAnswers,
+    SUM(p.CommentCount) AS TotalComments
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+40/53  query 13468   energy 0.839 J ± 0.008   output 6 rows, 6 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType, 
+    COUNT(p.Id) AS TotalPosts,
+    SUM(CASE WHEN p.Score IS NOT NULL THEN p.Score ELSE 0 END) AS TotalScore,
+    SUM(p.ViewCount) AS TotalViews,
+    AVG(p.CommentCount) AS AverageComments,
+    AVG(p.AnswerCount) AS AverageAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+41/53  query 13058   energy 0.841 J ± 0.008   output 6 rows, 6 columns   plan: execution 50 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    SUM(CASE WHEN p.Score > 0 THEN 1 ELSE 0 END) AS PositiveScoredPosts,
+    SUM(p.ViewCount) AS TotalViews,
+    AVG(p.CommentCount) AS AvgCommentsPerPost,
+    AVG(p.AnswerCount) AS AvgAnswersPerPost
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+42/53  query 13903   energy 0.848 J ± 0.008   output 6 rows, 6 columns   plan: execution 51 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViews,
+    SUM(CASE WHEN p.PostTypeId = 1 THEN p.AnswerCount ELSE 0 END) AS TotalAnswers,
+    SUM(CASE WHEN p.PostTypeId = 1 THEN p.CommentCount ELSE 0 END) AS TotalComments
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+43/53  query 13628   energy 0.852 J ± 0.008   output 6 rows, 7 columns   plan: execution 50 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViews,
+    SUM(p.AnswerCount) AS TotalAnswers,
+    SUM(p.CommentCount) AS TotalComments,
+    SUM(p.FavoriteCount) AS TotalFavorites
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;
+
+====================================================================================================
+44/53  query 14954   energy 0.854 J ± 0.008   output 6 rows, 9 columns   plan: execution 49 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+    SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+    SUM(CASE WHEN p.PostTypeId = 3 THEN 1 ELSE 0 END) AS TotalWikis,
+    SUM(CASE WHEN p.PostTypeId = 10 THEN 1 ELSE 0 END) AS TotalClosedPosts,
+    SUM(CASE WHEN p.PostTypeId = 11 THEN 1 ELSE 0 END) AS TotalReopenedPosts
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+45/53  query 11286   energy 0.856 J ± 0.008   output 6 rows, 6 columns   plan: execution 53 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews,
+    SUM(CASE WHEN p.AcceptedAnswerId IS NOT NULL THEN 1 ELSE 0 END) AS AcceptedAnswers,
+    SUM(CASE WHEN p.ClosedDate IS NOT NULL THEN 1 ELSE 0 END) AS ClosedPosts
+FROM
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY
+    pt.Name
+ORDER BY
+    PostCount DESC;
+
+====================================================================================================
+46/53  query 12811   energy 0.858 J ± 0.008   output 6 rows, 7 columns   plan: execution 52 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+WITH PostMetrics AS (
+    SELECT
+        pt.Name AS PostType,
+        COUNT(p.Id) AS TotalPosts,
+        SUM(p.Score) AS TotalScore,
+        AVG(p.ViewCount) AS AverageViewCount,
+        SUM(CASE WHEN p.AcceptedAnswerId IS NOT NULL THEN 1 ELSE 0 END) AS TotalAcceptedAnswers,
+        SUM(CASE WHEN p.CommentCount > 0 THEN 1 ELSE 0 END) AS PostsWithComments,
+        SUM(CASE WHEN p.FavoriteCount > 0 THEN 1 ELSE 0 END) AS PostsWithFavorites
+    FROM
+        Posts p
+    JOIN
+        PostTypes pt ON p.PostTypeId = pt.Id
+    GROUP BY
+        pt.Name
+)
+SELECT
+    PostType,
+    TotalPosts,
+    TotalScore,
+    AverageViewCount,
+    TotalAcceptedAnswers,
+    PostsWithComments,
+    PostsWithFavorites
+FROM
+    PostMetrics
+ORDER BY
+    TotalPosts DESC;
+
+====================================================================================================
+47/53  query 12148   energy 0.876 J ± 0.008   output 6 rows, 8 columns   plan: execution 51 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    SUM(CASE WHEN p.OwnerUserId IS NOT NULL THEN 1 ELSE 0 END) AS UserCreatedPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(CASE WHEN p.AnswerCount > 0 THEN 1 ELSE 0 END) AS QuestionsWithAnswers,
+    SUM(p.ViewCount) AS TotalViews,
+    SUM(p.CommentCount) AS TotalComments,
+    SUM(p.FavoriteCount) AS TotalFavorites
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+48/53  query 10119   (copies: 10119 14326)   energy 0.985 J ± 0.006   output 6 rows, 3 columns   plan: execution 60 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(EXTRACT(EPOCH FROM (p.LastActivityDate - p.CreationDate))) AS AvgTimeInSeconds
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+49/53  query 10694   energy 0.990 J ± 0.009   output 6 rows, 5 columns   plan: execution 54 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    SUM(CASE WHEN p.Score IS NOT NULL THEN p.Score ELSE 0 END) AS TotalScore,
+    SUM(CASE WHEN p.ViewCount IS NOT NULL THEN p.ViewCount ELSE 0 END) AS TotalViews,
+    AVG(CASE WHEN p.CreationDate IS NOT NULL THEN EXTRACT(EPOCH FROM (cast('2024-10-01 12:34:56' as timestamp) - p.CreationDate)) ELSE NULL END) AS AvgPostAgeInSeconds
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+50/53  query 11087   energy 0.999 J ± 0.009   output 6 rows, 4 columns   plan: execution 58 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(EXTRACT(EPOCH FROM (p.LastActivityDate - p.CreationDate))) AS AvgResponseTimeSeconds,
+    SUM(COALESCE(p.Score, 0)) AS TotalScore
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+51/53  query 14948   energy 1.051 J ± 0.009   output 6 rows, 7 columns   plan: execution 62 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    AVG(p.AnswerCount) AS AverageAnswerCount,
+    MAX(p.LastActivityDate) AS MostRecentActivity,
+    AVG(EXTRACT(EPOCH FROM (p.LastActivityDate - p.CreationDate))) AS AverageTimeToActivity 
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+52/53  query 13017   energy 1.063 J ± 0.009   output 6 rows, 8 columns   plan: execution 60 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+WITH PostMetrics AS (
+    SELECT 
+        pt.Name AS PostType,
+        COUNT(p.Id) AS TotalPosts,
+        AVG(p.Score) AS AvgScore,
+        SUM(p.ViewCount) AS TotalViews,
+        SUM(p.AnswerCount) AS TotalAnswers,
+        AVG(p.CommentCount) AS AvgComments,
+        AVG(p.FavoriteCount) AS AvgFavorites,
+        AVG(EXTRACT(EPOCH FROM (p.LastActivityDate - p.CreationDate))) AS AvgTimeToActivitySeconds
+    FROM 
+        Posts p 
+    INNER JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    GROUP BY 
+        pt.Name
+)
+
+SELECT 
+    PostType,
+    TotalPosts,
+    AvgScore,
+    TotalViews,
+    TotalAnswers,
+    AvgComments,
+    AvgFavorites,
+    AvgTimeToActivitySeconds
+FROM 
+    PostMetrics
+ORDER BY 
+    TotalPosts DESC;
+
+====================================================================================================
+53/53  query 12196   energy 1.188 J ± 0.011   output 6 rows, 6 columns   plan: execution 65 ms, 9 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    SUM(CASE WHEN p.PostTypeId = 1 THEN p.AnswerCount ELSE 0 END) AS TotalAnswers,
+    AVG(EXTRACT(EPOCH FROM (p.LastActivityDate - p.CreationDate)) / 3600) AS AverageTimeToActivityHours
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+

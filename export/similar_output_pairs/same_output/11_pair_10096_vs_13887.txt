@@ -1,0 +1,189 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 11 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   2 SQL variants, 2 query files (copies of one SQL text count as one variant)
+energy:  min 6.204 J   median 12.193 J   max 18.182 J   ->  2.93x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   2 distinct plan(s), 2 distinct plan shape(s)
+outputs: 2 distinct result(s) (rows compared, column names ignored)
+members: 10096 13887  (cheapest first)
+
+The two below are the cheapest and the most expensive of the group (6.204 J vs 18.182 J).
+
+====================================================================================================
+CHEAPEST: query 10096
+====================================================================================================
+query 10096
+energy 6.204 J ± 0.055
+output 100 rows, 5 columns
+plan: execution 1166 ms, 17 nodes, buffers 55 k, parallel workers 0
+
+-- SQL
+WITH UserPostStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(p.Id) AS PostCount,
+        COALESCE(SUM(c.CommentCount), 0) AS TotalComments,
+        COALESCE(SUM(v.VoteCount), 0) AS TotalVotes
+    FROM Users u
+    LEFT JOIN Posts p ON u.Id = p.OwnerUserId
+    LEFT JOIN (
+        SELECT 
+            PostId,
+            COUNT(*) AS CommentCount
+        FROM Comments
+        GROUP BY PostId
+    ) c ON p.Id = c.PostId
+    LEFT JOIN (
+        SELECT 
+            PostId,
+            COUNT(*) AS VoteCount
+        FROM Votes
+        GROUP BY PostId
+    ) v ON p.Id = v.PostId
+    GROUP BY u.Id, u.DisplayName
+)
+
+SELECT 
+    UserId,
+    DisplayName,
+    PostCount,
+    TotalComments,
+    TotalVotes
+FROM UserPostStats
+ORDER BY PostCount DESC, TotalVotes DESC
+LIMIT 100;
+
+-- first rows of the output
+userid|displayname|postcount|totalcomments|totalvotes
+1876|Rick James|5609|8875|7319
+877|RolandoMySQLDBA|3314|5543|17671
+1186|Aaron Bertrand|2361|3817|18121
+3684|Erwin Brandstetter|2239|3556|17213
+176905|Laurenz Albe|2091|3377|4932
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 13887
+====================================================================================================
+query 13887
+energy 18.182 J ± 0.162
+output 100 rows, 5 columns
+plan: execution 2658 ms, 14 nodes, buffers 64 k, parallel workers 0
+
+-- SQL
+WITH UserActivity AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(DISTINCT p.Id) AS PostCount,
+        COUNT(DISTINCT pc.Id) AS CommentCount,
+        COUNT(DISTINCT v.Id) AS VoteCount
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    LEFT JOIN 
+        Comments pc ON p.Id = pc.PostId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    GROUP BY 
+        u.Id, u.DisplayName
+)
+SELECT 
+    UserId, 
+    DisplayName, 
+    PostCount, 
+    CommentCount, 
+    VoteCount
+FROM 
+    UserActivity
+ORDER BY 
+    PostCount DESC, 
+    CommentCount DESC, 
+    VoteCount DESC
+LIMIT 100;
+
+-- first rows of the output
+userid|displayname|postcount|commentcount|votecount
+1876|Rick James|5609|8875|7319
+877|RolandoMySQLDBA|3314|5543|17671
+1186|Aaron Bertrand|2361|3817|18121
+3684|Erwin Brandstetter|2239|3556|17213
+176905|Laurenz Albe|2091|3377|4932
+…
+
+====================================================================================================
+PLAN of 10096 (cheapest)
+====================================================================================================
+Limit
+  Sort [Sort Key=(count(posts.id)) DESC, (COALESCE(sum(q.votecount), '0'::numeric)) DESC]
+    HashAggregate [Group Key=users.id]
+      Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+        Hash Left Join [Hash Cond=(posts.id = q.postid)]
+          Hash Left Join [Hash Cond=(posts.id = q.postid)]
+            Seq Scan on posts
+            Hash
+              Subquery Scan
+                HashAggregate [Group Key=comments.postid]
+                  Seq Scan on comments
+          Hash
+            Subquery Scan
+              HashAggregate [Group Key=votes.postid]
+                Seq Scan on votes
+        Hash
+          Seq Scan on users
+
+====================================================================================================
+PLAN of 13887 (most expensive)
+====================================================================================================
+Limit
+  Sort [Sort Key=(count(DISTINCT posts.id)) DESC, (count(DISTINCT comments.id)) DESC, (count(DISTINCT votes.id)) DESC]
+    GroupAggregate [Group Key=users.id]
+      Sort [Sort Key=users.id, posts.id]
+        Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+          Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+            Seq Scan on votes
+            Hash
+              Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                Seq Scan on comments
+                Hash
+                  Seq Scan on posts
+          Hash
+            Seq Scan on users
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 10096
++++ 13887
+@@ -2,6 +2,6 @@
+-  Sort [Sort Key=(count(posts.id)) DESC, (COALESCE(sum(q.votecount), '0'::numeric)) DESC]
+-    HashAggregate [Group Key=users.id]
+-      Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+-        Hash Left Join [Hash Cond=(posts.id = q.postid)]
+-          Hash Left Join [Hash Cond=(posts.id = q.postid)]
+-            Seq Scan on posts
++  Sort [Sort Key=(count(DISTINCT posts.id)) DESC, (count(DISTINCT comments.id)) DESC, (count(DISTINCT votes.id)) DESC]
++    GroupAggregate [Group Key=users.id]
++      Sort [Sort Key=users.id, posts.id]
++        Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
++          Hash Right Join [Hash Cond=(votes.postid = posts.id)]
++            Seq Scan on votes
+@@ -9,3 +9,4 @@
+-              Subquery Scan
+-                HashAggregate [Group Key=comments.postid]
+-                  Seq Scan on comments
++              Hash Right Join [Hash Cond=(comments.postid = posts.id)]
++                Seq Scan on comments
++                Hash
++                  Seq Scan on posts
+@@ -13,5 +14 @@
+-            Subquery Scan
+-              HashAggregate [Group Key=votes.postid]
+-                Seq Scan on votes
+-        Hash
+-          Seq Scan on users
++            Seq Scan on users
+

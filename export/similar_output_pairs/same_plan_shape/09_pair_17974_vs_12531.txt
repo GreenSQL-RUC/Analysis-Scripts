@@ -1,0 +1,135 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 9 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   3 SQL variants, 4 query files (copies of one SQL text count as one variant)
+energy:  min 9.714 J   median 9.776 J   max 61.232 J   ->  6.30x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 3 distinct result(s) (rows compared, column names ignored)
+members: 17974 16241 12531  (cheapest first)
+all 3 statements: 09_group.txt
+
+The two below are the cheapest and the most expensive of the group (9.714 J vs 61.232 J).
+
+====================================================================================================
+CHEAPEST: query 17974
+====================================================================================================
+query 17974
+energy 9.714 J ± 0.086
+output 10 rows, 8 columns
+plan: execution 1299 ms, 13 nodes, buffers 266 k, parallel workers 4, per-row subquery
+
+-- SQL
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName,
+    (SELECT COUNT(*) FROM Comments c WHERE c.PostId = p.Id) AS CommentCount,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = p.Id AND v.VoteTypeId = 2) AS UpVoteCount,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = p.Id AND v.VoteTypeId = 3) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+-- first rows of the output
+postid|title|creationdate|score|ownerdisplayname|commentcount|upvotecount|downvotecount
+342707|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|2024-09-30 22:49:25.743|0|J. Mini|0|0|0
+342706|Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|2024-09-30 22:05:14.587|2|Lucas David Ferre
+342704|Varbinary column taking lots of space|2024-09-30 18:22:14.783|-1|PhillysDBA|0|0|1
+342703|Which DSE version is compatible to import Cassandra 4.x SSTables?|2024-09-30 17:53:03.78|0|Nahush|0|0|0
+342702|Show SQL Execution Plan on Trace Replay|2024-09-30 16:38:40.863|0|Neil Laslett|0|0|0
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 12531
+====================================================================================================
+query 12531
+energy 61.232 J ± 0.545
+output 100 rows, 11 columns
+plan: execution 9122 ms, 13 nodes, buffers 2379 k, parallel workers 4, per-row subquery
+
+-- SQL
+SELECT 
+    P.Id AS PostId,
+    P.Title,
+    P.Score,
+    P.ViewCount,
+    P.AnswerCount,
+    P.CommentCount,
+    P.CreationDate,
+    U.DisplayName AS OwnerDisplayName,
+    (SELECT COUNT(*) 
+     FROM Comments C 
+     WHERE C.PostId = P.Id) AS TotalComments,
+    (SELECT COUNT(*) 
+     FROM Votes V 
+     WHERE V.PostId = P.Id AND V.VoteTypeId = 2) AS UpVotes,
+    (SELECT COUNT(*) 
+     FROM Votes V 
+     WHERE V.PostId = P.Id AND V.VoteTypeId = 3) AS DownVotes
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 100;
+
+-- first rows of the output
+postid|title|score|viewcount|answercount|commentcount|creationdate|ownerdisplayname|totalcomments|upvotes|downvotes
+342707|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|0|50|1|0|2024-09-30 22:49:25.743|J. Mini|0|0|0
+342706|Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|2|19|1|0|2024-09-30 22:05:14.587|Lucas Davi
+342704|Varbinary column taking lots of space|-1|36|1|0|2024-09-30 18:22:14.783|PhillysDBA|0|0|1
+342703|Which DSE version is compatible to import Cassandra 4.x SSTables?|0|29|1|0|2024-09-30 17:53:03.78|Nahush|0|0|0
+342702|Show SQL Execution Plan on Trace Replay|0|34|1|2|2024-09-30 16:38:40.863|Neil Laslett|0|0|0
+…
+
+====================================================================================================
+PLAN of 17974 (cheapest)
+====================================================================================================
+Limit
+  Nested Loop
+    Gather Merge
+      Sort [Sort Key=posts.creationdate DESC]
+        Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+    Memoize [Cache Key=posts.owneruserid]
+      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+      Aggregate
+        Seq Scan on comments [Filter=(postid = posts.id)]
+      Aggregate
+        Seq Scan on votes [Filter=((postid = posts.id) AND (votetypeid = 2))]
+      Aggregate
+        Seq Scan on votes [Filter=((postid = posts.id) AND (votetypeid = 3))]
+
+====================================================================================================
+PLAN of 12531 (most expensive)
+====================================================================================================
+Limit
+  Nested Loop
+    Gather Merge
+      Sort [Sort Key=posts.creationdate DESC]
+        Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+    Memoize [Cache Key=posts.owneruserid]
+      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+      Aggregate
+        Seq Scan on comments [Filter=(postid = posts.id)]
+      Aggregate
+        Seq Scan on votes [Filter=((postid = posts.id) AND (votetypeid = 2))]
+      Aggregate
+        Seq Scan on votes [Filter=((postid = posts.id) AND (votetypeid = 3))]
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+(same plan)
+

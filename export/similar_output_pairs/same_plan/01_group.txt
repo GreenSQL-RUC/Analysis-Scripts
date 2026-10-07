@@ -1,0 +1,92 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 1 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   3 SQL variants, 4 query files (copies of one SQL text count as one variant)
+energy:  min 9.714 J   median 9.776 J   max 61.232 J   ->  6.30x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 3 distinct result(s) (rows compared, column names ignored)
+members: 17974 16241 12531  (cheapest first)
+
+pair file: 01_pair_17974_vs_12531.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   17974       1       9.714        1.00    10        8     1299          266 8bd1966e
+   16241       2       9.776        1.01    10        7     1291          266 8bd1966e
+   12531       1      61.232        6.30   100       11     9122         2379 8bd1966e
+
+====================================================================================================
+1/3  query 17974   energy 9.714 J ± 0.086   output 10 rows, 8 columns   plan: execution 1299 ms, 13 nodes, buffers 266 k, parallel workers 4, per-row subquery
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName,
+    (SELECT COUNT(*) FROM Comments c WHERE c.PostId = p.Id) AS CommentCount,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = p.Id AND v.VoteTypeId = 2) AS UpVoteCount,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = p.Id AND v.VoteTypeId = 3) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+2/3  query 16241   (copies: 16241 18255)   energy 9.776 J ± 0.062   output 10 rows, 7 columns   plan: execution 1291 ms, 13 nodes, buffers 266 k, parallel workers 4, per-row subquery
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    (SELECT COUNT(*) FROM Comments c WHERE c.PostId = p.Id) AS CommentCount,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = p.Id AND v.VoteTypeId = 2) AS UpVoteCount,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = p.Id AND v.VoteTypeId = 3) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+3/3  query 12531   energy 61.232 J ± 0.545   output 100 rows, 11 columns   plan: execution 9122 ms, 13 nodes, buffers 2379 k, parallel workers 4, per-row subquery
+====================================================================================================
+SELECT 
+    P.Id AS PostId,
+    P.Title,
+    P.Score,
+    P.ViewCount,
+    P.AnswerCount,
+    P.CommentCount,
+    P.CreationDate,
+    U.DisplayName AS OwnerDisplayName,
+    (SELECT COUNT(*) 
+     FROM Comments C 
+     WHERE C.PostId = P.Id) AS TotalComments,
+    (SELECT COUNT(*) 
+     FROM Votes V 
+     WHERE V.PostId = P.Id AND V.VoteTypeId = 2) AS UpVotes,
+    (SELECT COUNT(*) 
+     FROM Votes V 
+     WHERE V.PostId = P.Id AND V.VoteTypeId = 3) AS DownVotes
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 100;
+

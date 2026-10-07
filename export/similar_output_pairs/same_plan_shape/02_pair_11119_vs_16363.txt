@@ -1,0 +1,138 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 2 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   4 SQL variants, 4 query files (copies of one SQL text count as one variant)
+energy:  min 2.061 J   median 13.707 J   max 22.864 J   ->  11.09x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   4 distinct plan(s), 1 distinct plan shape(s)
+outputs: 4 distinct result(s) (rows compared, column names ignored)
+members: 11119 10764 19542 16363  (cheapest first)
+all 4 statements: 02_group.txt
+
+The two below are the cheapest and the most expensive of the group (2.061 J vs 22.864 J).
+
+====================================================================================================
+CHEAPEST: query 11119
+====================================================================================================
+query 11119
+energy 2.061 J ± 0.018
+output 1000 rows (capped at 1000 lines), 8 columns
+plan: execution 188 ms, 14 nodes, buffers 55 k, parallel workers 2
+
+-- SQL
+SELECT
+    U.Id AS UserId,
+    U.DisplayName,
+    COUNT(DISTINCT P.Id) AS PostCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,
+    COUNT(DISTINCT C.Id) AS TotalComments,
+    AVG(P.Score) AS AveragePostScore,
+    SUM(P.ViewCount) AS TotalViews
+FROM
+    Users U
+JOIN
+    Posts P ON U.Id = P.OwnerUserId
+LEFT JOIN
+    Votes V ON P.Id = V.PostId
+LEFT JOIN
+    Comments C ON P.Id = C.PostId
+WHERE
+    P.CreationDate >= '2023-01-01' 
+GROUP BY
+    U.Id, U.DisplayName
+ORDER BY
+    PostCount DESC, TotalUpVotes DESC;
+
+-- first rows of the output
+userid|displayname|postcount|totalupvotes|totaldownvotes|totalcomments|averagepostscore|totalviews
+176905|Laurenz Albe|545|1332|19|825|2.8405931417979611|
+1876|Rick James|430|629|12|809|0.97340425531914893617|
+150011|J.D.|375|1296|35|715|2.8169312169312169|17334
+41723|Sean Gallardy|241|1345|4|383|4.4490543014032947|
+255786|Erick Ramirez|241|249|3|193|1.3686440677966102|3540
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 16363
+====================================================================================================
+query 16363
+energy 22.864 J ± 0.203
+output 1000 rows (capped at 1000 lines), 5 columns
+plan: execution 2052 ms, 14 nodes, buffers 55 k, parallel workers 2
+
+-- SQL
+SELECT u.DisplayName, 
+       p.Title, 
+       COUNT(c.Id) AS CommentCount, 
+       SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+       SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+LEFT JOIN Votes v ON p.Id = v.PostId
+GROUP BY u.DisplayName, p.Title
+ORDER BY CommentCount DESC, UpVotes DESC;
+
+-- first rows of the output
+displayname|title|commentcount|upvotes|downvotes
+RolandoMySQLDBA||55553|55194|139
+Erwin Brandstetter||39864|41797|34
+Aaron Bertrand||32507|36869|115
+ypercubeᵀᴹ||18118|20049|48
+Rick James||17507|14098|291
+…
+
+====================================================================================================
+PLAN of 11119 (cheapest)
+====================================================================================================
+Sort [Sort Key=(count(DISTINCT posts.id)) DESC, (sum(CASE WHEN (votes.votetypeid = 2) THEN 1 ELSE 0 END)) DESC]
+  GroupAggregate [Group Key=users.id]
+    Gather Merge
+      Sort [Sort Key=users.id, posts.id]
+        Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+          Parallel Seq Scan on votes
+          Parallel Hash
+            Parallel Hash Join [Hash Cond=(posts.owneruserid = users.id)]
+              Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                Parallel Seq Scan on comments
+                Parallel Hash
+                  Parallel Seq Scan on posts [Filter=(creationdate >= '2023-01-01 00:00:00')]
+              Parallel Hash
+                Parallel Seq Scan on users
+
+====================================================================================================
+PLAN of 16363 (most expensive)
+====================================================================================================
+Sort [Sort Key=(count(comments.id)) DESC, (sum(CASE WHEN (votes.votetypeid = 2) THEN 1 ELSE 0 END)) DESC]
+  GroupAggregate [Group Key=users.displayname, posts.title]
+    Gather Merge
+      Sort [Sort Key=users.displayname, posts.title]
+        Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+          Parallel Seq Scan on votes
+          Parallel Hash
+            Parallel Hash Join [Hash Cond=(posts.owneruserid = users.id)]
+              Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                Parallel Seq Scan on comments
+                Parallel Hash
+                  Parallel Seq Scan on posts
+              Parallel Hash
+                Parallel Seq Scan on users
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 11119
++++ 16363
+@@ -1,2 +1,2 @@
+-Sort [Sort Key=(count(DISTINCT posts.id)) DESC, (sum(CASE WHEN (votes.votetypeid = 2) THEN 1 ELSE 0 END)) DESC]
+-  GroupAggregate [Group Key=users.id]
++Sort [Sort Key=(count(comments.id)) DESC, (sum(CASE WHEN (votes.votetypeid = 2) THEN 1 ELSE 0 END)) DESC]
++  GroupAggregate [Group Key=users.displayname, posts.title]
+@@ -4 +4 @@
+-      Sort [Sort Key=users.id, posts.id]
++      Sort [Sort Key=users.displayname, posts.title]
+@@ -12 +12 @@
+-                  Parallel Seq Scan on posts [Filter=(creationdate >= '2023-01-01 00:00:00')]
++                  Parallel Seq Scan on posts
+

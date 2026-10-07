@@ -1,0 +1,162 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 1 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   5 SQL variants, 5 query files (copies of one SQL text count as one variant)
+energy:  min 2.580 J   median 28.261 J   max 38.116 J   ->  14.77x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   5 distinct plan(s), 1 distinct plan shape(s)
+outputs: 5 distinct result(s) (rows compared, column names ignored)
+members: 12857 11454 13174 12485 12074  (cheapest first)
+all 5 statements: 01_group.txt
+
+The two below are the cheapest and the most expensive of the group (2.580 J vs 38.116 J).
+
+====================================================================================================
+CHEAPEST: query 12857
+====================================================================================================
+query 12857
+energy 2.580 J ± 0.023
+output 537 rows, 11 columns
+plan: execution 235 ms, 16 nodes, buffers 55 k, parallel workers 2
+
+-- SQL
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.ViewCount,
+    p.Score,
+    p.CreationDate,
+    u.Id AS UserId,
+    u.DisplayName,
+    u.Reputation,
+    COUNT(v.Id) AS VoteCount,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(b.Id) AS BadgeCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Badges b ON u.Id = b.UserId
+WHERE 
+    p.CreationDate >= cast('2024-10-01' as date) - INTERVAL '1 month' 
+GROUP BY 
+    p.Id, u.Id
+ORDER BY 
+    p.CreationDate DESC;
+
+-- first rows of the output
+postid|title|viewcount|score|creationdate|userid|displayname|reputation|votecount|commentcount|badgecount
+342708|||1|2024-09-30 22:49:43.85|2703|Bill Karwin|15548|0|0|75
+342707|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|50|0|2024-09-30 22:49:25.743|277982|J. Mini|649|0|0|26
+342706|Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|19|2|2024-09-30 22:05:14.587|279503|Lucas D
+342705|||0|2024-09-30 20:17:43.423|223595|PhillysDBA|9|0|0|3
+342704|Varbinary column taking lots of space|36|-1|2024-09-30 18:22:14.783|223595|PhillysDBA|9|3|0|3
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 12074
+====================================================================================================
+query 12074
+energy 38.116 J ± 0.339
+output 1000 rows (capped at 1000 lines), 10 columns
+plan: execution 2948 ms, 16 nodes, buffers 112 k, parallel workers 2
+
+-- SQL
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount,
+    u.DisplayName AS UserDisplayName,
+    u.Reputation AS UserReputation,
+    COUNT(DISTINCT b.Id) AS BadgeCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Badges b ON u.Id = b.UserId
+WHERE 
+    p.CreationDate >= '2024-10-01 12:34:56'::timestamp - INTERVAL '1 year'
+GROUP BY 
+    p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score,
+    u.DisplayName, u.Reputation
+ORDER BY 
+    p.CreationDate DESC;
+
+-- first rows of the output
+postid|title|creationdate|viewcount|score|commentcount|votecount|userdisplayname|userreputation|badgecount
+342708||2024-09-30 22:49:43.85||1|0|0|Bill Karwin|15548|75
+342707|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|2024-09-30 22:49:25.743|50|0|0|0|J. Mini|649|26
+342706|Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|2024-09-30 22:05:14.587|19|2|0|0|Lucas Davi
+342705||2024-09-30 20:17:43.423||0|0|0|PhillysDBA|9|3
+342704|Varbinary column taking lots of space|2024-09-30 18:22:14.783|36|-1|0|3|PhillysDBA|9|3
+…
+
+====================================================================================================
+PLAN of 12857 (cheapest)
+====================================================================================================
+Sort [Sort Key=posts.creationdate DESC]
+  GroupAggregate [Group Key=posts.id, users.id]
+    Gather Merge
+      Sort [Sort Key=posts.id, users.id]
+        Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+          Parallel Seq Scan on votes
+          Parallel Hash
+            Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]
+              Parallel Seq Scan on badges
+              Parallel Hash
+                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                  Parallel Seq Scan on comments
+                  Parallel Hash
+                    Nested Loop
+                      Parallel Seq Scan on posts [Filter=(creationdate >= '2024-09-01 00:00:00')]
+                      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN of 12074 (most expensive)
+====================================================================================================
+Sort [Sort Key=posts.creationdate DESC]
+  GroupAggregate [Group Key=posts.id, users.displayname, users.reputation]
+    Gather Merge
+      Sort [Sort Key=posts.id, users.displayname, users.reputation, badges.id]
+        Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+          Parallel Seq Scan on votes
+          Parallel Hash
+            Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]
+              Parallel Seq Scan on badges
+              Parallel Hash
+                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                  Parallel Seq Scan on comments
+                  Parallel Hash
+                    Nested Loop
+                      Parallel Seq Scan on posts [Filter=(creationdate >= '2023-10-01 12:34:56')]
+                      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 12857
++++ 12074
+@@ -2 +2 @@
+-  GroupAggregate [Group Key=posts.id, users.id]
++  GroupAggregate [Group Key=posts.id, users.displayname, users.reputation]
+@@ -4 +4 @@
+-      Sort [Sort Key=posts.id, users.id]
++      Sort [Sort Key=posts.id, users.displayname, users.reputation, badges.id]
+@@ -15 +15 @@
+-                      Parallel Seq Scan on posts [Filter=(creationdate >= '2024-09-01 00:00:00')]
++                      Parallel Seq Scan on posts [Filter=(creationdate >= '2023-10-01 12:34:56')]
+

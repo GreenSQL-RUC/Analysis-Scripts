@@ -1,0 +1,89 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 14 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   16 SQL variants, 19 query files (copies of one SQL text count as one variant)
+energy:  min 2.605 J   median 3.220 J   max 3.650 J   ->  1.40x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 15 distinct result(s) (rows compared, column names ignored) over 16 saved outputs
+members: 11884 10459 13110 12891 12266 13761 14166 13322 11529 14545 12050 12247 10306 14012 17442 12732  (cheapest first)
+all 16 statements: 14_group.txt
+
+The two below are the cheapest and the most expensive of the group (2.605 J vs 3.650 J).
+
+====================================================================================================
+CHEAPEST: query 11884
+====================================================================================================
+query 11884   (copies: 11884 14425)
+energy 2.605 J ± 0.016
+output 1000 rows (capped at 1000 lines), 4 columns
+plan: execution 516 ms, 6 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    U.Reputation,
+    COUNT(P.Id) AS PostCount
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName, U.Reputation
+ORDER BY 
+    PostCount DESC;
+
+-- first rows of the output
+userid|displayname|reputation|postcount
+1876|Rick James|79042|5609
+877|RolandoMySQLDBA|183985|3314
+1186|Aaron Bertrand|181258|2361
+3684|Erwin Brandstetter|180111|2239
+176905|Laurenz Albe|55057|2091
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 12732
+====================================================================================================
+query 12732
+energy 3.650 J ± 0.032
+output 1000 rows (capped at 1000 lines), 6 columns
+plan: execution 702 ms, 6 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+SELECT 
+    U.Id AS UserId,
+    U.DisplayName AS UserName,
+    COUNT(P.Id) AS PostCount,
+    SUM(P.ViewCount) AS TotalViews,
+    SUM(P.Score) AS TotalScore,
+    AVG(EXTRACT(EPOCH FROM P.CreationDate)) AS AveragePostCreationDate
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName
+ORDER BY 
+    PostCount DESC;
+
+-- first rows of the output
+userid|username|postcount|totalviews|totalscore|averagepostcreationdate
+1876|Rick James|5609|4842|5625|1540620988.84022624
+877|RolandoMySQLDBA|3314|9471|15656|1404034581.85561255
+1186|Aaron Bertrand|2361|139576|16580|1429261584.66487166
+3684|Erwin Brandstetter|2239|96628|15672|1504596508.35682001
+176905|Laurenz Albe|2091||3849|1629710155.96820038
+…
+
+====================================================================================================
+PLAN (the same for both; LIMIT values and output expressions are not shown in it)
+====================================================================================================
+Sort [Sort Key=(count(posts.id)) DESC]
+  HashAggregate [Group Key=users.id]
+    Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+      Seq Scan on posts
+      Hash
+        Seq Scan on users
+

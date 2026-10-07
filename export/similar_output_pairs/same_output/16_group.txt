@@ -1,0 +1,165 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 16 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   6 SQL variants, 9 query files (copies of one SQL text count as one variant)
+energy:  min 1.353 J   median 2.234 J   max 3.419 J   ->  2.53x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   5 distinct plan(s), 2 distinct plan shape(s)
+outputs: 5 distinct result(s) (rows compared, column names ignored) over 6 saved outputs
+members: 18541 17528 16585 17379 17062 15662  (cheapest first)
+
+pair file: 16_pair_18541_vs_15662.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   18541       2       1.353        1.00    10        6      111           43 e9117f82
+   17528       1       1.358        1.00    10        6      114           43 e9117f82
+   16585       1       2.107        1.56    10        6      180           43 8f55cb74
+   17379       1       2.361        1.74    10        6      459           49 a724a292
+   17062       1       2.374        1.75    10        6      481           49 03c5f8a9
+   15662       3       3.419        2.53    10        6      289           43 453cb866
+
+====================================================================================================
+1/6  query 18541   (copies: 18541 18984)   energy 1.353 J ± 0.009   output 10 rows, 6 columns   plan: execution 111 ms, 12 nodes, buffers 43 k, parallel workers 3
+====================================================================================================
+SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score, p.ViewCount
+ORDER BY 
+    p.Score DESC
+LIMIT 10;
+
+====================================================================================================
+2/6  query 17528   energy 1.358 J ± 0.012   output 10 rows, 6 columns   plan: execution 114 ms, 12 nodes, buffers 43 k, parallel workers 3
+====================================================================================================
+SELECT 
+    U.DisplayName,
+    P.Title,
+    P.CreationDate,
+    P.ViewCount,
+    P.Score,
+    COUNT(C.Id) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount, P.Score
+ORDER BY 
+    P.Score DESC
+LIMIT 10;
+
+====================================================================================================
+3/6  query 16585   energy 2.107 J ± 0.019   output 10 rows, 6 columns   plan: execution 180 ms, 12 nodes, buffers 43 k, parallel workers 3
+====================================================================================================
+SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.ViewCount, p.Score
+ORDER BY 
+    p.Score DESC, p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+4/6  query 17379   energy 2.361 J ± 0.021   output 10 rows, 6 columns   plan: execution 459 ms, 10 nodes, buffers 49 k, parallel workers 0
+====================================================================================================
+SELECT 
+    Posts.Title,
+    Users.DisplayName,
+    Posts.CreationDate,
+    Posts.Score,
+    Posts.ViewCount,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+WHERE 
+    Posts.PostTypeId = 1  
+GROUP BY 
+    Posts.Title, Users.DisplayName, Posts.CreationDate, Posts.Score, Posts.ViewCount, Posts.Id
+ORDER BY 
+    Posts.Score DESC, Posts.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+5/6  query 17062   energy 2.374 J ± 0.021   output 10 rows, 6 columns   plan: execution 481 ms, 10 nodes, buffers 49 k, parallel workers 0
+====================================================================================================
+SELECT
+    Posts.Title,
+    Posts.CreationDate,
+    Users.DisplayName AS Author,
+    Posts.Score,
+    Posts.ViewCount,
+    COUNT(Comments.Id) AS CommentCount
+FROM
+    Posts
+JOIN
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN
+    Comments ON Posts.Id = Comments.PostId
+WHERE
+    Posts.PostTypeId = 1 
+GROUP BY
+    Posts.Title, Posts.CreationDate, Users.DisplayName, Posts.Score, Posts.ViewCount, Posts.Id
+ORDER BY
+    Posts.Score DESC
+LIMIT 10;
+
+====================================================================================================
+6/6  query 15662   (copies: 15662 16685 17647)   energy 3.419 J ± 0.018   output 10 rows, 6 columns   plan: execution 289 ms, 12 nodes, buffers 43 k, parallel workers 3
+====================================================================================================
+SELECT 
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.Score, p.ViewCount
+ORDER BY 
+    p.Score DESC
+LIMIT 10;
+

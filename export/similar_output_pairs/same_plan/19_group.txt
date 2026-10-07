@@ -1,0 +1,140 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 19 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   6 SQL variants, 6 query files (copies of one SQL text count as one variant)
+energy:  min 2.778 J   median 3.387 J   max 3.641 J   ->  1.31x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 6 distinct result(s) (rows compared, column names ignored)
+members: 10571 13818 11753 13057 14275 14829  (cheapest first)
+
+pair file: 19_pair_10571_vs_14829.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   10571       1       2.778        1.00  1000        4      541           37 bdfc411d
+   13818       1       3.030        1.09  1000        5      625           37 bdfc411d
+   11753       1       3.322        1.20  1000        6      647           37 bdfc411d
+   13057       1       3.451        1.24  1000        8      662           37 bdfc411d
+   14275       1       3.473        1.25  1000        8      654           37 bdfc411d
+   14829       1       3.641        1.31  1000       10      689           37 bdfc411d
+
+====================================================================================================
+1/6  query 10571   energy 2.778 J ± 0.025   output 1000 rows (capped at 1000 lines), 4 columns   plan: execution 541 ms, 6 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+SELECT 
+    u.Id AS UserId,
+    u.Reputation,
+    COUNT(p.Id) AS NumberOfPosts,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.Reputation
+ORDER BY 
+    u.Reputation DESC;
+
+====================================================================================================
+2/6  query 13818   energy 3.030 J ± 0.027   output 1000 rows (capped at 1000 lines), 5 columns   plan: execution 625 ms, 6 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    U.Reputation,
+    COUNT(P.Id) AS TotalPosts,
+    AVG(P.Score) AS AvgPostScore
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName, U.Reputation
+ORDER BY 
+    U.Reputation DESC;
+
+====================================================================================================
+3/6  query 11753   energy 3.322 J ± 0.030   output 1000 rows (capped at 1000 lines), 6 columns   plan: execution 647 ms, 6 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    u.Reputation,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName, u.Reputation
+ORDER BY 
+    u.Reputation DESC;
+
+====================================================================================================
+4/6  query 13057   energy 3.451 J ± 0.031   output 1000 rows (capped at 1000 lines), 8 columns   plan: execution 662 ms, 6 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    u.Reputation,
+    COUNT(p.Id) AS PostCount,
+    SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+    SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+    AVG(p.Score) AS AveragePostScore,
+    MAX(p.CreationDate) AS LastPostDate
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName, u.Reputation
+ORDER BY 
+    u.Reputation DESC;
+
+====================================================================================================
+5/6  query 14275   energy 3.473 J ± 0.031   output 1000 rows (capped at 1000 lines), 8 columns   plan: execution 654 ms, 6 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    U.Reputation,
+    COUNT(P.Id) AS NumberOfPosts,
+    SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS NumberOfQuestions,
+    SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS NumberOfAnswers,
+    SUM(COALESCE(P.Score, 0)) AS TotalScore,
+    AVG(P.ViewCount) AS AverageViewCount
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName, U.Reputation
+ORDER BY 
+    U.Reputation DESC;
+
+====================================================================================================
+6/6  query 14829   energy 3.641 J ± 0.032   output 1000 rows (capped at 1000 lines), 10 columns   plan: execution 689 ms, 6 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    U.Reputation,
+    COUNT(P.Id) AS TotalPosts,
+    SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+    SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+    SUM(P.ViewCount) AS TotalViews,
+    SUM(P.Score) AS TotalScore,
+    AVG(P.Score) AS AverageScore,
+    MAX(P.CreationDate) AS LastPostDate
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName, U.Reputation
+ORDER BY 
+    U.Reputation DESC;
+

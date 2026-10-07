@@ -1,0 +1,92 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 8 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   3 SQL variants, 8 query files (copies of one SQL text count as one variant)
+energy:  min 0.732 J   median 2.484 J   max 2.547 J   ->  3.48x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   3 distinct plan(s), 2 distinct plan shape(s)
+outputs: 2 distinct result(s) (rows compared, column names ignored) over 3 saved outputs
+members: 15388 17831 15893  (cheapest first)
+
+pair file: 08_pair_15388_vs_15893.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   15388       1       0.732        1.00    10        5       58           43 2c2acb74
+   17831       1       2.484        3.39    10        5      225           43 c05e87e5
+   15893       6       2.547        3.48    10        5      223           43 ee250f2c
+
+====================================================================================================
+1/3  query 15388   energy 0.732 J ± 0.007   output 10 rows, 5 columns   plan: execution 58 ms, 15 nodes, buffers 43 k, parallel workers 3
+====================================================================================================
+SELECT
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Owner,
+    pt.Name AS PostType,
+    COUNT(c.Id) AS CommentCount
+FROM
+    Posts p
+JOIN
+    Users u ON p.OwnerUserId = u.Id
+JOIN
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN
+    Comments c ON p.Id = c.PostId
+WHERE
+    p.CreationDate >= '2023-01-01'
+GROUP BY
+    p.Title, p.CreationDate, u.DisplayName, pt.Name
+ORDER BY
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+2/3  query 17831   energy 2.484 J ± 0.022   output 10 rows, 5 columns   plan: execution 225 ms, 15 nodes, buffers 43 k, parallel workers 3
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    pt.Name AS PostType,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, pt.Name
+ORDER BY 
+    PostDate DESC
+LIMIT 10;
+
+====================================================================================================
+3/3  query 15893   (copies: 15893 17253 18077 18400 18543 19317)   energy 2.547 J ± 0.009   output 10 rows, 5 columns   plan: execution 223 ms, 15 nodes, buffers 43 k, parallel workers 3
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    pt.Name AS PostType, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName, 
+    pt.Name
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+

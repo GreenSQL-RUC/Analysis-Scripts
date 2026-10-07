@@ -1,0 +1,113 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 4 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   3 SQL variants, 3 query files (copies of one SQL text count as one variant)
+energy:  min 1.985 J   median 9.267 J   max 12.463 J   ->  6.28x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   3 distinct plan(s), 3 distinct plan shape(s)
+outputs: 3 distinct result(s) (rows compared, column names ignored)
+members: 11137 14464 14426  (cheapest first)
+
+pair file: 04_pair_11137_vs_14426.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   11137       1       1.985        1.00   100        8      179           55 f36ef3f5
+   14464       1       9.267        4.67   100        8      997           55 5657b112
+   14426       1      12.463        6.28   100        8     1192           55 fe25e35a
+
+====================================================================================================
+1/3  query 11137   energy 1.985 J ± 0.018   output 100 rows, 8 columns   plan: execution 179 ms, 14 nodes, buffers 55 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerName,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+LEFT JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.CreationDate >= '2023-01-01' 
+GROUP BY 
+    p.Id, p.Title, u.DisplayName, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;
+
+====================================================================================================
+2/3  query 14464   energy 9.267 J ± 0.082   output 100 rows, 8 columns   plan: execution 997 ms, 15 nodes, buffers 55 k, parallel workers 3
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+LEFT JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;
+
+====================================================================================================
+3/3  query 14426   energy 12.463 J ± 0.111   output 100 rows, 8 columns   plan: execution 1192 ms, 16 nodes, buffers 55 k, parallel workers 3
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        P.Id AS PostId,
+        P.Title,
+        P.CreationDate,
+        P.Score,
+        P.ViewCount,
+        U.DisplayName AS Author,
+        COUNT(C.ID) AS CommentCount,
+        COUNT(V.ID) AS VoteCount,
+        ROW_NUMBER() OVER (ORDER BY P.CreationDate DESC) AS Rank
+    FROM 
+        Posts P
+    LEFT JOIN 
+        Users U ON P.OwnerUserId = U.Id
+    LEFT JOIN 
+        Comments C ON P.Id = C.PostId
+    LEFT JOIN 
+        Votes V ON P.Id = V.PostId
+    GROUP BY 
+        P.Id, P.Title, P.CreationDate, P.Score, P.ViewCount, U.DisplayName
+)
+SELECT 
+    RP.PostId,
+    RP.Title,
+    RP.CreationDate,
+    RP.Score,
+    RP.ViewCount,
+    RP.Author,
+    RP.CommentCount,
+    RP.VoteCount
+FROM 
+    RankedPosts RP
+WHERE 
+    RP.Rank <= 100  
+ORDER BY 
+    RP.CreationDate DESC;
+

@@ -1,0 +1,148 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 18 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   3 SQL variants, 3 query files (copies of one SQL text count as one variant)
+energy:  min 4.380 J   median 4.865 J   max 5.857 J   ->  1.34x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 3 distinct result(s) (rows compared, column names ignored)
+members: 10835 13982 11405  (cheapest first)
+all 3 statements: 18_group.txt
+
+The two below are the cheapest and the most expensive of the group (4.380 J vs 5.857 J).
+
+====================================================================================================
+CHEAPEST: query 10835
+====================================================================================================
+query 10835
+energy 4.380 J ± 0.039
+output 19 rows, 9 columns
+plan: execution 785 ms, 12 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+WITH UserPostStats AS (
+    SELECT 
+        U.Id AS UserId,
+        U.DisplayName,
+        COUNT(P.Id) AS PostCount,
+        SUM(COALESCE(P.Score, 0)) AS TotalScore,
+        SUM(COALESCE(P.ViewCount, 0)) AS TotalViews,
+        SUM(COALESCE(P.AnswerCount, 0)) AS TotalAnswers,
+        SUM(COALESCE(P.CommentCount, 0)) AS TotalComments
+    FROM Users U
+    LEFT JOIN Posts P ON U.Id = P.OwnerUserId
+    GROUP BY U.Id, U.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        PostCount,
+        TotalScore,
+        TotalViews,
+        TotalAnswers,
+        TotalComments,
+        ROW_NUMBER() OVER (ORDER BY TotalScore DESC) AS ScoreRank,
+        ROW_NUMBER() OVER (ORDER BY TotalViews DESC) AS ViewRank
+    FROM UserPostStats
+)
+SELECT 
+    UserId,
+    DisplayName,
+    PostCount,
+    TotalScore,
+    TotalViews,
+    TotalAnswers,
+    TotalComments,
+    ScoreRank,
+    ViewRank
+FROM TopUsers
+WHERE ScoreRank <= 10 OR ViewRank <= 10
+ORDER BY ScoreRank, ViewRank;
+
+-- first rows of the output
+userid|displayname|postcount|totalscore|totalviews|totalanswers|totalcomments|scorerank|viewrank
+1186|Aaron Bertrand|2361|16580|139576|7|3817|1|489
+3684|Erwin Brandstetter|2239|15672|96628|17|3556|2|784
+877|RolandoMySQLDBA|3314|15656|9471|1|5543|3|7921
+1192|Paul White|1623|12679|206964|39|321|4|266
+993|ypercubeᵀᴹ|1715|8973|19309|14|2698|5|4432
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 11405
+====================================================================================================
+query 11405
+energy 5.857 J ± 0.052
+output 1000 rows (capped at 1000 lines), 10 columns
+plan: execution 993 ms, 12 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+WITH UserPostStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(p.Id) AS TotalPosts,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS Questions,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS Answers,
+        SUM(p.ViewCount) AS TotalViews,
+        SUM(p.Score) AS TotalScore,
+        AVG(p.ViewCount) AS AverageViewsPerPost
+    FROM Users u
+    LEFT JOIN Posts p ON u.Id = p.OwnerUserId
+    GROUP BY u.Id, u.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        TotalPosts,
+        Questions,
+        Answers,
+        TotalViews,
+        TotalScore,
+        AverageViewsPerPost,
+        RANK() OVER (ORDER BY TotalScore DESC) AS ScoreRank,
+        RANK() OVER (ORDER BY TotalViews DESC) AS ViewRank
+    FROM UserPostStats
+)
+SELECT 
+    UserId,
+    DisplayName,
+    TotalPosts,
+    Questions,
+    Answers,
+    TotalViews,
+    TotalScore,
+    AverageViewsPerPost,
+    ScoreRank,
+    ViewRank
+FROM TopUsers
+WHERE ScoreRank <= 10 OR ViewRank <= 10
+ORDER BY ScoreRank, ViewRank;
+
+-- first rows of the output
+userid|displayname|totalposts|questions|answers|totalviews|totalscore|averageviewsperpost|scorerank|viewrank
+263381|Aupr|0|0|0||||1|1
+95503|Venkatesh Avad|0|0|0||||1|1
+71653|Sidhi Ciang|0|0|0||||1|1
+210109|roies|0|0|0||||1|1
+143960|AshishRay94|0|0|0||||1|1
+…
+
+====================================================================================================
+PLAN (the same for both; LIMIT values and output expressions are not shown in it)
+====================================================================================================
+Sort [Sort Key=q.scorerank, q.viewrank]
+  Subquery Scan [Filter=((q.scorerank <= 10) OR (q.viewrank <= 10))]
+    WindowAgg [Window=w2 AS (ORDER BY q.totalscore ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=q.totalscore DESC]
+        WindowAgg [Window=w1 AS (ORDER BY q.totalviews ROWS UNBOUNDED PRECEDING)]
+          Sort [Sort Key=q.totalviews DESC]
+            Subquery Scan
+              HashAggregate [Group Key=users.id]
+                Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+                  Seq Scan on posts
+                  Hash
+                    Seq Scan on users
+

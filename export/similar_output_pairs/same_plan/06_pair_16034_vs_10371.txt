@@ -1,0 +1,88 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 6 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   22 SQL variants, 25 query files (copies of one SQL text count as one variant)
+energy:  min 2.307 J   median 2.945 J   max 3.806 J   ->  1.65x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 20 distinct result(s) (rows compared, column names ignored) over 22 saved outputs
+members: 16034 10131 15492 19586 19380 16315 15120 18701 13446 11541 17973 10035 11584 10342 15523 16986 12833 10204 12029 14402 14674 10371  (cheapest first)
+all 22 statements: 06_group.txt
+
+The two below are the cheapest and the most expensive of the group (2.307 J vs 3.806 J).
+
+====================================================================================================
+CHEAPEST: query 16034
+====================================================================================================
+query 16034
+energy 2.307 J ± 0.021
+output 10 rows, 3 columns
+plan: execution 458 ms, 7 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+SELECT u.Id AS UserId, u.DisplayName, COUNT(p.Id) AS PostCount
+FROM Users u
+LEFT JOIN Posts p ON u.Id = p.OwnerUserId
+GROUP BY u.Id, u.DisplayName
+ORDER BY PostCount DESC
+LIMIT 10;
+
+-- first rows of the output
+userid|displayname|postcount
+1876|Rick James|5609
+877|RolandoMySQLDBA|3314
+1186|Aaron Bertrand|2361
+3684|Erwin Brandstetter|2239
+176905|Laurenz Albe|2091
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 10371
+====================================================================================================
+query 10371
+energy 3.806 J ± 0.034
+output 100 rows, 10 columns
+plan: execution 739 ms, 7 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+SELECT 
+    u.Id AS UserId,
+    u.DisplayName AS UserName,
+    u.Reputation,
+    COUNT(p.Id) AS TotalPosts,
+    COUNT(CASE WHEN p.PostTypeId = 1 THEN 1 END) AS TotalQuestions,
+    COUNT(CASE WHEN p.PostTypeId = 2 THEN 1 END) AS TotalAnswers,
+    SUM(COALESCE(p.Score, 0)) AS TotalScore,
+    SUM(COALESCE(p.ViewCount, 0)) AS TotalViews,
+    AVG(COALESCE(p.Score, 0)) AS AverageScore,
+    AVG(COALESCE(p.ViewCount, 0)) AS AverageViews
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName, u.Reputation
+ORDER BY 
+    TotalPosts DESC
+LIMIT 100;
+
+-- first rows of the output
+userid|username|reputation|totalposts|totalquestions|totalanswers|totalscore|totalviews|averagescore|averageviews
+1876|Rick James|79042|5609|2|5607|5625|4842|1.0028525583883045|0.86325548226065252273
+877|RolandoMySQLDBA|183985|3314|1|3225|15656|9471|4.7242003621001811|2.8578756789378395
+1186|Aaron Bertrand|181258|2361|6|2346|16580|139576|7.0224481152054214|59.1173231681490894
+3684|Erwin Brandstetter|180111|2239|12|2194|15672|96628|6.9995533720410898|43.1567664135774900
+176905|Laurenz Albe|55057|2091|0|2082|3849|0|1.8407460545193687|0.00000000000000000000
+…
+
+====================================================================================================
+PLAN (the same for both; LIMIT values and output expressions are not shown in it)
+====================================================================================================
+Limit
+  Sort [Sort Key=(count(posts.id)) DESC]
+    HashAggregate [Group Key=users.id]
+      Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+        Seq Scan on posts
+        Hash
+          Seq Scan on users
+

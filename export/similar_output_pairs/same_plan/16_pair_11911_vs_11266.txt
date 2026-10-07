@@ -1,0 +1,91 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 16 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   11 SQL variants, 18 query files (copies of one SQL text count as one variant)
+energy:  min 2.272 J   median 2.636 J   max 3.128 J   ->  1.38x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 11 distinct result(s) (rows compared, column names ignored)
+members: 11911 12399 11039 12140 13618 12038 14458 11834 12170 10130 11266  (cheapest first)
+all 11 statements: 16_group.txt
+
+The two below are the cheapest and the most expensive of the group (2.272 J vs 3.128 J).
+
+====================================================================================================
+CHEAPEST: query 11911
+====================================================================================================
+query 11911   (copies: 11911 12545 14403)
+energy 2.272 J ± 0.012
+output 6 rows, 4 columns
+plan: execution 347 ms, 7 nodes, buffers 32 k, parallel workers 0
+
+-- SQL
+SELECT 
+    pt.Name AS PostTypeName,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    COUNT(DISTINCT p.OwnerUserId) AS UniqueUsers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+-- first rows of the output
+posttypename|totalposts|averagescore|uniqueusers
+Answer|140494|3.0050535965948724|23560
+Question|104437|2.4997941342627613|51409
+TagWiki|857|0.00000000000000000000|121
+TagWikiExcerpt|857|0.00000000000000000000|160
+ModeratorNomination|24|0.00000000000000000000|19
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 11266
+====================================================================================================
+query 11266
+energy 3.128 J ± 0.028
+output 6 rows, 7 columns
+plan: execution 463 ms, 7 nodes, buffers 32 k, parallel workers 0
+
+-- SQL
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViews,
+    AVG(EXTRACT(EPOCH FROM (p.LastActivityDate - p.CreationDate))) AS AveragePostAgeInSeconds,
+    COUNT(DISTINCT p.OwnerUserId) AS UniqueUsers,
+    SUM(CASE WHEN p.AcceptedAnswerId IS NOT NULL THEN 1 ELSE 0 END) AS AcceptedAnswers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+-- first rows of the output
+posttype|totalposts|averagescore|totalviews|averagepostageinseconds|uniqueusers|acceptedanswers
+Answer|140494|3.0050535965948724||7059110.416853125400|23560|0
+Question|104437|2.4997941342627613|476708531|30895258.450773040206|51409|50405
+TagWiki|857|0.00000000000000000000||22827712.133625437573|121|0
+TagWikiExcerpt|857|0.00000000000000000000||18559962.778212368728|160|0
+ModeratorNomination|24|0.00000000000000000000||80383.655958333333|19|0
+…
+
+====================================================================================================
+PLAN (the same for both; LIMIT values and output expressions are not shown in it)
+====================================================================================================
+Sort [Sort Key=(count(posts.id)) DESC]
+  GroupAggregate [Group Key=posttypes.name]
+    Sort [Sort Key=posttypes.name, posts.owneruserid]
+      Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+        Seq Scan on posts
+        Hash
+          Seq Scan on posttypes
+

@@ -1,0 +1,83 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 19 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   5 SQL variants, 6 query files (copies of one SQL text count as one variant)
+energy:  min 0.395 J   median 0.399 J   max 0.917 J   ->  2.32x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   2 distinct plan(s), 2 distinct plan shape(s)
+outputs: 3 distinct result(s) (rows compared, column names ignored) over 5 saved outputs
+members: 15403 15911 15039 18483 18524  (cheapest first)
+
+pair file: 19_pair_15403_vs_18524.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   15403       1       0.395        1.00    10        4       28           32 10b218f2
+   15911       1       0.397        1.00    10        4       28           32 10b218f2
+   15039       2       0.399        1.01    10        4       28           32 10b218f2
+   18483       1       0.401        1.01    10        4       28           32 10b218f2
+   18524       1       0.917        2.32    10        4       56           32 30379348
+
+====================================================================================================
+1/5  query 15403   energy 0.395 J ± 0.004   output 10 rows, 4 columns   plan: execution 28 ms, 10 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT p.Title, u.DisplayName, p.CreationDate, pt.Name AS PostType
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+JOIN PostTypes pt ON p.PostTypeId = pt.Id
+WHERE p.CreationDate >= '2023-01-01'
+ORDER BY p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+2/5  query 15911   energy 0.397 J ± 0.004   output 10 rows, 4 columns   plan: execution 28 ms, 10 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT p.Title, p.CreationDate, u.DisplayName, pt.Name AS PostType
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+JOIN PostTypes pt ON p.PostTypeId = pt.Id
+WHERE p.CreationDate >= '2023-01-01'
+ORDER BY p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+3/5  query 15039   (copies: 15039 15099)   energy 0.399 J ± 0.003   output 10 rows, 4 columns   plan: execution 28 ms, 10 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    pt.Name AS PostTypeName
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+WHERE 
+    p.CreationDate >= '2023-01-01'
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+4/5  query 18483   energy 0.401 J ± 0.004   output 10 rows, 4 columns   plan: execution 28 ms, 10 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT u.DisplayName, p.Title, p.CreationDate, pt.Name AS PostType
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+JOIN PostTypes pt ON p.PostTypeId = pt.Id
+WHERE p.CreationDate >= '2023-01-01'
+ORDER BY p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+5/5  query 18524   energy 0.917 J ± 0.008   output 10 rows, 4 columns   plan: execution 56 ms, 10 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+SELECT p.Title, p.CreationDate, u.DisplayName, pt.Name AS PostTypeName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+JOIN PostTypes pt ON p.PostTypeId = pt.Id
+ORDER BY p.CreationDate DESC
+LIMIT 10;
+

@@ -1,0 +1,186 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 4 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   3 SQL variants, 3 query files (copies of one SQL text count as one variant)
+energy:  min 1.985 J   median 9.267 J   max 12.463 J   ->  6.28x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   3 distinct plan(s), 3 distinct plan shape(s)
+outputs: 3 distinct result(s) (rows compared, column names ignored)
+members: 11137 14464 14426  (cheapest first)
+all 3 statements: 04_group.txt
+
+The two below are the cheapest and the most expensive of the group (1.985 J vs 12.463 J).
+
+====================================================================================================
+CHEAPEST: query 11137
+====================================================================================================
+query 11137
+energy 1.985 J ± 0.018
+output 100 rows, 8 columns
+plan: execution 179 ms, 14 nodes, buffers 55 k, parallel workers 2
+
+-- SQL
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerName,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+LEFT JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.CreationDate >= '2023-01-01' 
+GROUP BY 
+    p.Id, p.Title, u.DisplayName, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;
+
+-- first rows of the output
+postid|title|ownername|creationdate|viewcount|score|commentcount|votecount
+342708||Bill Karwin|2024-09-30 22:49:43.85||1|0|0
+342707|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|J. Mini|2024-09-30 22:49:25.743|50|0|0|0
+342706|Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|Lucas David Ferrero|2024-09-30 22:05:14.587
+342705||PhillysDBA|2024-09-30 20:17:43.423||0|0|0
+342704|Varbinary column taking lots of space|PhillysDBA|2024-09-30 18:22:14.783|36|-1|0|1
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 14426
+====================================================================================================
+query 14426
+energy 12.463 J ± 0.111
+output 100 rows, 8 columns
+plan: execution 1192 ms, 16 nodes, buffers 55 k, parallel workers 3
+
+-- SQL
+WITH RankedPosts AS (
+    SELECT 
+        P.Id AS PostId,
+        P.Title,
+        P.CreationDate,
+        P.Score,
+        P.ViewCount,
+        U.DisplayName AS Author,
+        COUNT(C.ID) AS CommentCount,
+        COUNT(V.ID) AS VoteCount,
+        ROW_NUMBER() OVER (ORDER BY P.CreationDate DESC) AS Rank
+    FROM 
+        Posts P
+    LEFT JOIN 
+        Users U ON P.OwnerUserId = U.Id
+    LEFT JOIN 
+        Comments C ON P.Id = C.PostId
+    LEFT JOIN 
+        Votes V ON P.Id = V.PostId
+    GROUP BY 
+        P.Id, P.Title, P.CreationDate, P.Score, P.ViewCount, U.DisplayName
+)
+SELECT 
+    RP.PostId,
+    RP.Title,
+    RP.CreationDate,
+    RP.Score,
+    RP.ViewCount,
+    RP.Author,
+    RP.CommentCount,
+    RP.VoteCount
+FROM 
+    RankedPosts RP
+WHERE 
+    RP.Rank <= 100  
+ORDER BY 
+    RP.CreationDate DESC;
+
+-- first rows of the output
+postid|title|creationdate|score|viewcount|author|commentcount|votecount
+342708||2024-09-30 22:49:43.85|1||Bill Karwin|0|0
+342707|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|2024-09-30 22:49:25.743|0|50|J. Mini|0|0
+342706|Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|2024-09-30 22:05:14.587|2|19|Lucas David Fe
+342705||2024-09-30 20:17:43.423|0||PhillysDBA|0|0
+342704|Varbinary column taking lots of space|2024-09-30 18:22:14.783|-1|36|PhillysDBA|0|1
+…
+
+====================================================================================================
+PLAN of 11137 (cheapest)
+====================================================================================================
+Limit
+  Sort [Sort Key=posts.creationdate DESC]
+    HashAggregate [Group Key=posts.id, users.displayname]
+      Gather
+        Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+          Parallel Seq Scan on votes
+          Parallel Hash
+            Parallel Hash Left Join [Hash Cond=(posts.owneruserid = users.id)]
+              Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                Parallel Seq Scan on comments
+                Parallel Hash
+                  Parallel Seq Scan on posts [Filter=(creationdate >= '2023-01-01 00:00:00')]
+              Parallel Hash
+                Parallel Seq Scan on users
+
+====================================================================================================
+PLAN of 14426 (most expensive)
+====================================================================================================
+Subquery Scan
+  WindowAgg [Run Condition=(row_number() OVER w1 <= 100); Window=w1 AS (ORDER BY posts.creationdate ROWS UNBOUNDED PRECEDING)]
+    Sort [Sort Key=posts.creationdate DESC]
+      GroupAggregate [Group Key=posts.id, users.displayname]
+        Merge Left Join [Merge Cond=(posts.id = votes.postid)]
+          Gather Merge
+            Sort [Sort Key=posts.id, users.displayname]
+              Parallel Hash Left Join [Hash Cond=(posts.owneruserid = users.id)]
+                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                  Parallel Seq Scan on comments
+                  Parallel Hash
+                    Parallel Seq Scan on posts
+                Parallel Hash
+                  Parallel Seq Scan on users
+          Sort [Sort Key=votes.postid]
+            Seq Scan on votes
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 11137
++++ 14426
+@@ -1,10 +1,12 @@
+-Limit
+-  Sort [Sort Key=posts.creationdate DESC]
+-    HashAggregate [Group Key=posts.id, users.displayname]
+-      Gather
+-        Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+-          Parallel Seq Scan on votes
+-          Parallel Hash
+-            Parallel Hash Left Join [Hash Cond=(posts.owneruserid = users.id)]
+-              Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+-                Parallel Seq Scan on comments
++Subquery Scan
++  WindowAgg [Run Condition=(row_number() OVER w1 <= 100); Window=w1 AS (ORDER BY posts.creationdate ROWS UNBOUNDED PRECEDING)]
++    Sort [Sort Key=posts.creationdate DESC]
++      GroupAggregate [Group Key=posts.id, users.displayname]
++        Merge Left Join [Merge Cond=(posts.id = votes.postid)]
++          Gather Merge
++            Sort [Sort Key=posts.id, users.displayname]
++              Parallel Hash Left Join [Hash Cond=(posts.owneruserid = users.id)]
++                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
++                  Parallel Seq Scan on comments
++                  Parallel Hash
++                    Parallel Seq Scan on posts
+@@ -12,3 +14,3 @@
+-                  Parallel Seq Scan on posts [Filter=(creationdate >= '2023-01-01 00:00:00')]
+-              Parallel Hash
+-                Parallel Seq Scan on users
++                  Parallel Seq Scan on users
++          Sort [Sort Key=votes.postid]
++            Seq Scan on votes
+

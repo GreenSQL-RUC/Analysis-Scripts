@@ -1,0 +1,229 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 6 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   2 SQL variants, 2 query files (copies of one SQL text count as one variant)
+energy:  min 1.323 J   median 3.840 J   max 6.356 J   ->  4.80x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   2 distinct plan(s), 2 distinct plan shape(s)
+outputs: 2 distinct result(s) (rows compared, column names ignored)
+members: 9422 8123  (cheapest first)
+
+The two below are the cheapest and the most expensive of the group (1.323 J vs 6.356 J).
+
+====================================================================================================
+CHEAPEST: query 9422
+====================================================================================================
+query 9422
+energy 1.323 J ± 0.012
+output 35 rows, 9 columns
+plan: execution 160 ms, 15 nodes, buffers 82 k, parallel workers 4
+
+-- SQL
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        p.OwnerUserId,
+        u.DisplayName AS OwnerName,
+        ROW_NUMBER() OVER(PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    WHERE 
+        p.CreationDate > cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year'
+)
+SELECT 
+    rp.PostId,
+    rp.Title,
+    rp.CreationDate,
+    rp.Score,
+    rp.ViewCount,
+    rp.OwnerName,
+    COUNT(c.Id) AS CommentCount,
+    COALESCE(SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END), 0) AS UpVoteCount,
+    COALESCE(SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END), 0) AS DownVoteCount
+FROM 
+    RankedPosts rp
+LEFT JOIN 
+    Comments c ON rp.PostId = c.PostId
+LEFT JOIN 
+    Votes v ON rp.PostId = v.PostId
+WHERE 
+    rp.Rank <= 10
+GROUP BY 
+    rp.PostId, rp.Title, rp.CreationDate, rp.Score, rp.ViewCount, rp.OwnerName
+ORDER BY 
+    rp.Score DESC, rp.ViewCount DESC;
+
+-- first rows of the output
+postid|title|creationdate|score|viewcount|ownername|commentcount|upvotecount|downvotecount
+339077||2024-04-28 13:09:58.31|51||Paul White|0|51|0
+341210||2024-07-26 07:00:02.24|34||Paul White|0|34|0
+334394||2023-12-28 14:32:07.443|29||Martin Smith|60|58|0
+334386|Is "+" slower than "CONCAT" for large strings?|2023-12-28 10:12:28.89|23|4920|gotqn|23|23|0
+339076|Why is COALESCE not a function?|2024-04-28 12:12:57.393|22|5541|J. Mini|0|23|1
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 8123
+====================================================================================================
+query 8123
+energy 6.356 J ± 0.057
+output 35 rows, 9 columns
+plan: execution 909 ms, 18 nodes, buffers 83 k, parallel workers 4
+
+-- SQL
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        p.OwnerUserId,
+        u.DisplayName AS OwnerDisplayName,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    WHERE 
+        p.CreationDate >= TIMESTAMP '2024-10-01 12:34:56' - INTERVAL '1 YEAR'
+),
+TopRankedPosts AS (
+    SELECT 
+        PostId,
+        Title,
+        CreationDate,
+        Score,
+        ViewCount,
+        OwnerDisplayName
+    FROM 
+        RankedPosts
+    WHERE 
+        Rank <= 10
+),
+PostStats AS (
+    SELECT 
+        p.Id AS PostId,
+        COUNT(c.Id) AS CommentCount,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    GROUP BY 
+        p.Id
+)
+SELECT 
+    trp.PostId,
+    trp.Title,
+    trp.CreationDate,
+    trp.Score,
+    trp.ViewCount,
+    trp.OwnerDisplayName,
+    ps.CommentCount,
+    ps.UpVotes,
+    ps.DownVotes
+FROM 
+    TopRankedPosts trp
+JOIN 
+    PostStats ps ON trp.PostId = ps.PostId
+ORDER BY 
+    trp.Score DESC, trp.ViewCount DESC;
+
+-- first rows of the output
+postid|title|creationdate|score|viewcount|ownerdisplayname|commentcount|upvotes|downvotes
+339077||2024-04-28 13:09:58.31|51||Paul White|0|51|0
+341210||2024-07-26 07:00:02.24|34||Paul White|0|34|0
+334394||2023-12-28 14:32:07.443|29||Martin Smith|60|58|0
+334386|Is "+" slower than "CONCAT" for large strings?|2023-12-28 10:12:28.89|23|4920|gotqn|23|23|0
+339076|Why is COALESCE not a function?|2024-04-28 12:12:57.393|22|5541|J. Mini|0|23|1
+…
+
+====================================================================================================
+PLAN of 9422 (cheapest)
+====================================================================================================
+Sort [Sort Key=q.score DESC, q.viewcount DESC]
+  HashAggregate [Group Key=q.score, q.viewcount, q.postid, q.title, q.creationdate, q.ownername]
+    Hash Right Join [Hash Cond=(votes.postid = q.postid)]
+      Seq Scan on votes
+      Hash
+        Hash Right Join [Hash Cond=(comments.postid = q.postid)]
+          Seq Scan on comments
+          Hash
+            Subquery Scan
+              WindowAgg [Run Condition=(row_number() OVER w1 <= 10); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
+                Gather Merge
+                  Sort [Sort Key=posts.posttypeid, posts.score DESC, posts.creationdate DESC]
+                    Nested Loop
+                      Parallel Seq Scan on posts [Filter=(creationdate > '2023-10-01 12:34:56')]
+                      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN of 8123 (most expensive)
+====================================================================================================
+Sort [Sort Key=q.score DESC, q.viewcount DESC]
+  Hash Join [Hash Cond=(posts.id = q.postid)]
+    HashAggregate [Group Key=posts.id]
+      Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+        Seq Scan on votes
+        Hash
+          Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+            Seq Scan on comments
+            Hash
+              Index Only Scan on posts
+    Hash
+      Subquery Scan
+        WindowAgg [Run Condition=(row_number() OVER w1 <= 10); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
+          Gather Merge
+            Sort [Sort Key=posts.posttypeid, posts.score DESC, posts.creationdate DESC]
+              Nested Loop
+                Parallel Seq Scan on posts [Filter=(creationdate >= '2023-10-01 12:34:56')]
+                Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 9422
++++ 8123
+@@ -2,14 +2,17 @@
+-  HashAggregate [Group Key=q.score, q.viewcount, q.postid, q.title, q.creationdate, q.ownername]
+-    Hash Right Join [Hash Cond=(votes.postid = q.postid)]
+-      Seq Scan on votes
+-      Hash
+-        Hash Right Join [Hash Cond=(comments.postid = q.postid)]
+-          Seq Scan on comments
+-          Hash
+-            Subquery Scan
+-              WindowAgg [Run Condition=(row_number() OVER w1 <= 10); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
+-                Gather Merge
+-                  Sort [Sort Key=posts.posttypeid, posts.score DESC, posts.creationdate DESC]
+-                    Nested Loop
+-                      Parallel Seq Scan on posts [Filter=(creationdate > '2023-10-01 12:34:56')]
+-                      Index Scan on users [Index Cond=(id = posts.owneruserid)]
++  Hash Join [Hash Cond=(posts.id = q.postid)]
++    HashAggregate [Group Key=posts.id]
++      Hash Right Join [Hash Cond=(votes.postid = posts.id)]
++        Seq Scan on votes
++        Hash
++          Hash Right Join [Hash Cond=(comments.postid = posts.id)]
++            Seq Scan on comments
++            Hash
++              Index Only Scan on posts
++    Hash
++      Subquery Scan
++        WindowAgg [Run Condition=(row_number() OVER w1 <= 10); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
++          Gather Merge
++            Sort [Sort Key=posts.posttypeid, posts.score DESC, posts.creationdate DESC]
++              Nested Loop
++                Parallel Seq Scan on posts [Filter=(creationdate >= '2023-10-01 12:34:56')]
++                Index Scan on users [Index Cond=(id = posts.owneruserid)]
+

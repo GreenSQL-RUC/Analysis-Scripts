@@ -1,0 +1,124 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 10 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   4 SQL variants, 7 query files (copies of one SQL text count as one variant)
+energy:  min 3.120 J   median 6.294 J   max 9.517 J   ->  3.05x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   2 distinct plan(s), 2 distinct plan shape(s)
+outputs: 1 distinct result(s) (rows compared, column names ignored) over 4 saved outputs
+members: 16513 16023 15726 17599  (cheapest first)
+all 4 statements: 10_group.txt
+
+The two below are the cheapest and the most expensive of the group (3.120 J vs 9.517 J).
+
+====================================================================================================
+CHEAPEST: query 16513
+====================================================================================================
+query 16513   (copies: 16513 17871)
+energy 3.120 J ± 0.020
+output 10 rows, 5 columns
+plan: execution 597 ms, 7 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+SELECT 
+    u.DisplayName AS UserDisplayName,
+    COUNT(p.Id) AS TotalPosts,
+    SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+    SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+    AVG(u.Reputation) AS AverageReputation
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.DisplayName
+ORDER BY 
+    TotalPosts DESC
+LIMIT 10;
+
+-- first rows of the output
+userdisplayname|totalposts|totalquestions|totalanswers|averagereputation
+Rick James|5622|13|5609|78848.159701227103
+RolandoMySQLDBA|3314|1|3225|183985.000000000000
+Aaron Bertrand|2361|6|2346|181258.000000000000
+Erwin Brandstetter|2239|12|2194|180111.000000000000
+Laurenz Albe|2091|0|2082|55057.000000000000
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 17599
+====================================================================================================
+query 17599
+energy 9.517 J ± 0.085
+output 10 rows, 5 columns
+plan: execution 1376 ms, 8 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+SELECT 
+    Users.DisplayName,
+    COUNT(DISTINCT Posts.Id) AS PostCount,
+    SUM(CASE WHEN Posts.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+    SUM(CASE WHEN Posts.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+    AVG(Users.Reputation) AS AverageReputation
+FROM 
+    Users
+LEFT JOIN 
+    Posts ON Users.Id = Posts.OwnerUserId
+GROUP BY 
+    Users.DisplayName
+ORDER BY 
+    PostCount DESC
+LIMIT 10;
+
+-- first rows of the output
+displayname|postcount|questioncount|answercount|averagereputation
+Rick James|5622|13|5609|78848.159701227103
+RolandoMySQLDBA|3314|1|3225|183985.000000000000
+Aaron Bertrand|2361|6|2346|181258.000000000000
+Erwin Brandstetter|2239|12|2194|180111.000000000000
+Laurenz Albe|2091|0|2082|55057.000000000000
+…
+
+====================================================================================================
+PLAN of 16513 (cheapest)
+====================================================================================================
+Limit
+  Sort [Sort Key=(count(posts.id)) DESC]
+    HashAggregate [Group Key=users.displayname]
+      Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+        Seq Scan on posts
+        Hash
+          Seq Scan on users
+
+====================================================================================================
+PLAN of 17599 (most expensive)
+====================================================================================================
+Limit
+  Sort [Sort Key=(count(DISTINCT posts.id)) DESC]
+    GroupAggregate [Group Key=users.displayname]
+      Sort [Sort Key=users.displayname, posts.id]
+        Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+          Seq Scan on posts
+          Hash
+            Seq Scan on users
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 16513
++++ 17599
+@@ -2,6 +2,7 @@
+-  Sort [Sort Key=(count(posts.id)) DESC]
+-    HashAggregate [Group Key=users.displayname]
+-      Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+-        Seq Scan on posts
+-        Hash
+-          Seq Scan on users
++  Sort [Sort Key=(count(DISTINCT posts.id)) DESC]
++    GroupAggregate [Group Key=users.displayname]
++      Sort [Sort Key=users.displayname, posts.id]
++        Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
++          Seq Scan on posts
++          Hash
++            Seq Scan on users
+

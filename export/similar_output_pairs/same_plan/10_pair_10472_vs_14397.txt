@@ -1,0 +1,158 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 10 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   3 SQL variants, 3 query files (copies of one SQL text count as one variant)
+energy:  min 5.315 J   median 5.565 J   max 7.834 J   ->  1.47x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 3 distinct result(s) (rows compared, column names ignored)
+members: 10472 13177 14397  (cheapest first)
+all 3 statements: 10_group.txt
+
+The two below are the cheapest and the most expensive of the group (5.315 J vs 7.834 J).
+
+====================================================================================================
+CHEAPEST: query 10472
+====================================================================================================
+query 10472
+energy 5.315 J ± 0.047
+output 1000 rows (capped at 1000 lines), 9 columns
+plan: execution 916 ms, 12 nodes, buffers 41 k, parallel workers 0
+
+-- SQL
+WITH UserStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.Reputation,
+        COUNT(DISTINCT p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(CASE WHEN p.ViewCount IS NOT NULL THEN p.ViewCount ELSE 0 END) AS TotalViews,
+        SUM(p.Score) AS TotalScore,
+        AVG(p.ViewCount) AS AvgViewsPerPost
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    GROUP BY 
+        u.Id, u.Reputation
+), BadgeStats AS (
+    SELECT 
+        b.UserId,
+        COUNT(b.Id) AS BadgeCount
+    FROM 
+        Badges b
+    GROUP BY 
+        b.UserId
+)
+SELECT 
+    u.UserId,
+    u.Reputation,
+    u.PostCount,
+    u.QuestionCount,
+    u.AnswerCount,
+    u.TotalViews,
+    u.TotalScore,
+    u.AvgViewsPerPost,
+    COALESCE(b.BadgeCount, 0) AS BadgeCount
+FROM 
+    UserStats u
+LEFT JOIN 
+    BadgeStats b ON u.UserId = b.UserId
+ORDER BY 
+    u.Reputation DESC;
+
+-- first rows of the output
+userid|reputation|postcount|questioncount|answercount|totalviews|totalscore|avgviewsperpost|badgecount
+877|183985|3314|1|3225|9471|15656|9471.0000000000000000|880
+1186|181258|2361|6|2346|139576|16580|23262.666666666667|1048
+3684|180111|2239|12|2194|96628|15672|8052.3333333333333333|1091
+993|98516|1715|5|1702|19309|8973|3861.8000000000000000|533
+1192|88406|1623|23|1390|206964|12679|8998.4347826086956522|1102
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 14397
+====================================================================================================
+query 14397
+energy 7.834 J ± 0.070
+output 1000 rows (capped at 1000 lines), 13 columns
+plan: execution 1250 ms, 12 nodes, buffers 41 k, parallel workers 0
+
+-- SQL
+WITH UserStats AS (
+    SELECT 
+        U.Id AS UserId,
+        U.Reputation,
+        U.CreationDate,
+        COUNT(DISTINCT P.Id) AS TotalPosts,
+        COUNT(DISTINCT CASE WHEN P.PostTypeId = 1 THEN P.Id END) AS Questions,
+        COUNT(DISTINCT CASE WHEN P.PostTypeId = 2 THEN P.Id END) AS Answers,
+        SUM(COALESCE(P.Score, 0)) AS TotalScore,
+        SUM(COALESCE(P.ViewCount, 0)) AS TotalViews,
+        SUM(COALESCE(P.CommentCount, 0)) AS TotalComments
+    FROM 
+        Users U
+    LEFT JOIN 
+        Posts P ON U.Id = P.OwnerUserId
+    GROUP BY 
+        U.Id, U.Reputation, U.CreationDate
+),
+BadgeStats AS (
+    SELECT 
+        B.UserId,
+        COUNT(B.Id) AS TotalBadges,
+        SUM(CASE WHEN B.Class = 1 THEN 1 ELSE 0 END) AS GoldBadges,
+        SUM(CASE WHEN B.Class = 2 THEN 1 ELSE 0 END) AS SilverBadges,
+        SUM(CASE WHEN B.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges
+    FROM 
+        Badges B
+    GROUP BY 
+        B.UserId
+)
+SELECT 
+    U.UserId,
+    U.Reputation,
+    U.CreationDate,
+    U.TotalPosts,
+    U.Questions,
+    U.Answers,
+    U.TotalScore,
+    U.TotalViews,
+    U.TotalComments,
+    COALESCE(B.TotalBadges, 0) AS TotalBadges,
+    COALESCE(B.GoldBadges, 0) AS GoldBadges,
+    COALESCE(B.SilverBadges, 0) AS SilverBadges,
+    COALESCE(B.BronzeBadges, 0) AS BronzeBadges
+FROM 
+    UserStats U
+LEFT JOIN 
+    BadgeStats B ON U.UserId = B.UserId
+ORDER BY 
+    U.Reputation DESC;
+
+-- first rows of the output
+userid|reputation|creationdate|totalposts|questions|answers|totalscore|totalviews|totalcomments|totalbadges|goldbadges|silverbadges|bronzebadges
+877|183985|2011-02-11 07:34:10.093|3314|1|3225|15656|9471|5543|880|33|320|527
+1186|181258|2011-03-12 21:59:32.217|2361|6|2346|16580|139576|3817|1048|28|401|619
+3684|180111|2011-10-01 23:17:10.563|2239|12|2194|15672|96628|3556|1091|28|451|612
+993|98516|2011-02-22 11:34:59.74|1715|5|1702|8973|19309|2698|533|13|215|305
+1192|88406|2011-03-13 20:28:04.883|1623|23|1390|12679|206964|321|1102|30|417|655
+…
+
+====================================================================================================
+PLAN (the same for both; LIMIT values and output expressions are not shown in it)
+====================================================================================================
+Sort [Sort Key=users.reputation DESC]
+  Hash Left Join [Hash Cond=(users.id = q.userid)]
+    GroupAggregate [Group Key=users.id]
+      Sort [Sort Key=users.id, posts.id]
+        Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+          Seq Scan on posts
+          Hash
+            Seq Scan on users
+    Hash
+      Subquery Scan
+        HashAggregate [Group Key=badges.userid]
+          Seq Scan on badges
+

@@ -1,0 +1,151 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 7 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   10 SQL variants, 13 query files (copies of one SQL text count as one variant)
+energy:  min 2.900 J   median 3.766 J   max 4.568 J   ->  1.58x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 6 distinct result(s) (rows compared, column names ignored) over 10 saved outputs
+members: 10216 12574 13429 10474 10453 13364 10926 10815 12521 13171  (cheapest first)
+all 10 statements: 07_group.txt
+
+The two below are the cheapest and the most expensive of the group (2.900 J vs 4.568 J).
+
+====================================================================================================
+CHEAPEST: query 10216
+====================================================================================================
+query 10216
+energy 2.900 J ± 0.026
+output 10 rows, 8 columns
+plan: execution 590 ms, 9 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+WITH UserPostStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(CASE WHEN p.ViewCount IS NOT NULL THEN p.ViewCount ELSE 0 END) AS TotalViewCount,
+        SUM(CASE WHEN p.Score IS NOT NULL THEN p.Score ELSE 0 END) AS TotalScore
+    FROM Users u
+    LEFT JOIN Posts p ON u.Id = p.OwnerUserId
+    GROUP BY u.Id, u.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        PostCount,
+        QuestionCount,
+        AnswerCount,
+        TotalViewCount,
+        TotalScore,
+        RANK() OVER (ORDER BY TotalScore DESC) AS RankByScore
+    FROM UserPostStats
+)
+SELECT 
+    UserId,
+    DisplayName,
+    PostCount,
+    QuestionCount,
+    AnswerCount,
+    TotalViewCount,
+    TotalScore,
+    RankByScore
+FROM TopUsers
+WHERE RankByScore <= 10
+ORDER BY RankByScore;
+
+-- first rows of the output
+userid|displayname|postcount|questioncount|answercount|totalviewcount|totalscore|rankbyscore
+1186|Aaron Bertrand|2361|6|2346|139576|16580|1
+3684|Erwin Brandstetter|2239|12|2194|96628|15672|2
+877|RolandoMySQLDBA|3314|1|3225|9471|15656|3
+1192|Paul White|1623|23|1390|206964|12679|4
+993|ypercubeᵀᴹ|1715|5|1702|19309|8973|5
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 13171
+====================================================================================================
+query 13171
+energy 4.568 J ± 0.041
+output 1000 rows (capped at 1000 lines), 10 columns
+plan: execution 872 ms, 9 nodes, buffers 37 k, parallel workers 0
+
+-- SQL
+WITH UserPostStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(p.Id) AS TotalPosts,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+        SUM(p.ViewCount) AS TotalViews,
+        SUM(p.Score) AS TotalScore,
+        AVG(p.ViewCount) AS AvgViewsPerPost,
+        AVG(p.Score) AS AvgScorePerPost
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    GROUP BY 
+        u.Id, u.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        TotalPosts,
+        TotalQuestions,
+        TotalAnswers,
+        TotalViews,
+        TotalScore,
+        AvgViewsPerPost,
+        AvgScorePerPost,
+        RANK() OVER (ORDER BY TotalScore DESC) AS ScoreRank
+    FROM 
+        UserPostStats
+)
+SELECT 
+    UserId,
+    DisplayName,
+    TotalPosts,
+    TotalQuestions,
+    TotalAnswers,
+    TotalViews,
+    TotalScore,
+    AvgViewsPerPost,
+    AvgScorePerPost,
+    ScoreRank
+FROM 
+    TopUsers
+WHERE 
+    ScoreRank <= 10  
+ORDER BY 
+    ScoreRank;
+
+-- first rows of the output
+userid|displayname|totalposts|totalquestions|totalanswers|totalviews|totalscore|avgviewsperpost|avgscoreperpost|scorerank
+263381|Aupr|0|0|0|||||1
+95503|Venkatesh Avad|0|0|0|||||1
+71653|Sidhi Ciang|0|0|0|||||1
+98282|Michael Ahlers|0|0|0|||||1
+73899|zhangkaizhao|0|0|0|||||1
+…
+
+====================================================================================================
+PLAN (the same for both; LIMIT values and output expressions are not shown in it)
+====================================================================================================
+Sort [Sort Key=(rank() OVER w1)]
+  WindowAgg [Run Condition=(rank() OVER w1 <= 10); Window=w1 AS (ORDER BY q.totalscore ROWS UNBOUNDED PRECEDING)]
+    Sort [Sort Key=q.totalscore DESC]
+      Subquery Scan
+        HashAggregate [Group Key=users.id]
+          Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+            Seq Scan on posts
+            Hash
+              Seq Scan on users
+

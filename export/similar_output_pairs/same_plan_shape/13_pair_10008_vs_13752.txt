@@ -1,0 +1,155 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 13 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   38 SQL variants, 211 query files (copies of one SQL text count as one variant)
+energy:  min 1.373 J   median 3.611 J   max 5.303 J   ->  3.86x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   12 distinct plan(s), 1 distinct plan shape(s)
+outputs: 20 distinct result(s) (rows compared, column names ignored) over 38 saved outputs
+members: 10008 13408 18640 17560 17524 18171 15812 15252 19899 16604 18990 15236 17398 16108 19755 18780 15294 15185 15434 15012 16329 14503 15123 19483 18146 16644 15005 15224 16138 18351 17310 15080 16039 19984 18638 16675 10855 13752  (cheapest first)
+all 38 statements: 13_group.txt
+
+The two below are the cheapest and the most expensive of the group (1.373 J vs 5.303 J).
+
+====================================================================================================
+CHEAPEST: query 10008
+====================================================================================================
+query 10008
+energy 1.373 J ± 0.012
+output 100 rows, 9 columns
+plan: execution 121 ms, 15 nodes, buffers 49 k, parallel workers 2
+
+-- SQL
+SELECT 
+    p.Title AS PostTitle,
+    u.DisplayName AS AuthorName,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount,
+    AVG(CASE WHEN v.VoteTypeId = 2 THEN 1.0 ELSE 0 END) AS AverageUpVotes,
+    AVG(CASE WHEN v.VoteTypeId = 3 THEN 1.0 ELSE 0 END) AS AverageDownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.CreationDate >= '2023-01-01' 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;
+
+-- first rows of the output
+posttitle|authorname|postcreationdate|viewcount|score|commentcount|votecount|averageupvotes|averagedownvotes
+|Bill Karwin|2024-09-30 22:49:43.85||1|0|0|0.00000000000000000000|0.00000000000000000000
+SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|J. Mini|2024-09-30 22:49:25.743|50|0|0|0|0.0000000000000000000
+Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|Lucas David Ferrero|2024-09-30 22:05:14.587|19|2|0
+|PhillysDBA|2024-09-30 20:17:43.423||0|0|0|0.00000000000000000000|0.00000000000000000000
+Varbinary column taking lots of space|PhillysDBA|2024-09-30 18:22:14.783|36|-1|0|1|0.00000000000000000000|1.00000000000000000000
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 13752
+====================================================================================================
+query 13752
+energy 5.303 J ± 0.047
+output 100 rows, 8 columns
+plan: execution 472 ms, 15 nodes, buffers 49 k, parallel workers 2
+
+-- SQL
+SELECT 
+    U.DisplayName AS UserName, 
+    P.Title AS PostTitle, 
+    P.CreationDate AS PostCreationDate, 
+    P.ViewCount, 
+    P.Score, 
+    COUNT(C.ID) AS CommentCount, 
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Users U
+JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount, P.Score
+ORDER BY 
+    P.Score DESC, P.ViewCount DESC
+LIMIT 100;
+
+-- first rows of the output
+username|posttitle|postcreationdate|viewcount|score|commentcount|upvotes|downvotes
+Jonas|How do I list all databases and tables using psql?|2011-02-17 08:45:49.61|3260864|1572|0|1572|0
+Stephane Rolland|List all columns for a specified table|2012-08-13 12:44:44.887|1211394|566|0|566|0
+markdorison|How do you mysqldump specific table(s)?|2011-12-16 20:39:37.727|1042515|546|1110|1100|8
+Martin Smith|What's the difference between a temp table and table variable in SQL Server?|2012-04-11 22:22:32.08|259405|489|498|488|0
+Stéphane|How do I list all schemas in PostgreSQL?|2013-04-15 19:19:16.907|844415|442|0|442|0
+…
+
+====================================================================================================
+PLAN of 10008 (cheapest)
+====================================================================================================
+Limit
+  GroupAggregate [Group Key=posts.creationdate, posts.title, users.displayname, posts.viewcount, posts.score]
+    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, users.displayname, posts.viewcount, posts.score; Presorted Key=posts.creationdate, posts.title]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.creationdate DESC, posts.title]
+            Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+              Parallel Seq Scan on votes
+              Parallel Hash
+                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                  Parallel Seq Scan on comments
+                  Parallel Hash
+                    Parallel Seq Scan on posts [Filter=(creationdate >= '2023-01-01 00:00:00')]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN of 13752 (most expensive)
+====================================================================================================
+Limit
+  GroupAggregate [Group Key=posts.score, posts.viewcount, users.displayname, posts.title, posts.creationdate]
+    Incremental Sort [Sort Key=posts.score DESC, posts.viewcount DESC, users.displayname, posts.title, posts.creationdate; Presorted Key=posts.score, posts.viewcount]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.score DESC, posts.viewcount DESC]
+            Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+              Parallel Seq Scan on votes
+              Parallel Hash
+                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                  Parallel Seq Scan on comments
+                  Parallel Hash
+                    Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 10008
++++ 13752
+@@ -2,2 +2,2 @@
+-  GroupAggregate [Group Key=posts.creationdate, posts.title, users.displayname, posts.viewcount, posts.score]
+-    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, users.displayname, posts.viewcount, posts.score; Presorted Key=posts.creationdate, posts.title]
++  GroupAggregate [Group Key=posts.score, posts.viewcount, users.displayname, posts.title, posts.creationdate]
++    Incremental Sort [Sort Key=posts.score DESC, posts.viewcount DESC, users.displayname, posts.title, posts.creationdate; Presorted Key=posts.score, posts.viewcount]
+@@ -6 +6 @@
+-          Sort [Sort Key=posts.creationdate DESC, posts.title]
++          Sort [Sort Key=posts.score DESC, posts.viewcount DESC]
+@@ -13 +13 @@
+-                    Parallel Seq Scan on posts [Filter=(creationdate >= '2023-01-01 00:00:00')]
++                    Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+

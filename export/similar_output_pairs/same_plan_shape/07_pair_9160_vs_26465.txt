@@ -1,0 +1,224 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 7 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   2 SQL variants, 2 query files (copies of one SQL text count as one variant)
+energy:  min 1.323 J   median 5.442 J   max 9.560 J   ->  7.23x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   2 distinct plan(s), 1 distinct plan shape(s)
+outputs: 2 distinct result(s) (rows compared, column names ignored)
+members: 9160 26465  (cheapest first)
+
+The two below are the cheapest and the most expensive of the group (1.323 J vs 9.560 J).
+
+====================================================================================================
+CHEAPEST: query 9160
+====================================================================================================
+query 9160
+energy 1.323 J ± 0.012
+output 22 rows, 9 columns
+plan: execution 119 ms, 16 nodes, buffers 49 k, parallel workers 2
+
+-- SQL
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostID,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        u.DisplayName AS OwnerDisplayName,
+        COUNT(DISTINCT c.Id) AS CommentCount,
+        COUNT(DISTINCT b.Id) AS BadgeCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    WHERE 
+        p.CreationDate >= cast('2024-10-01' as date) - INTERVAL '30 days'
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.Score, p.ViewCount, u.DisplayName
+), FilteredPosts AS (
+    SELECT 
+        rp.PostID,
+        rp.Title,
+        rp.CreationDate,
+        rp.Score,
+        rp.ViewCount,
+        rp.OwnerDisplayName,
+        rp.CommentCount,
+        rp.BadgeCount
+    FROM 
+        RankedPosts rp
+    WHERE 
+        rp.Rank <= 10
+)
+
+SELECT 
+    fp.PostID,
+    fp.Title,
+    fp.CreationDate,
+    fp.Score,
+    fp.ViewCount,
+    fp.OwnerDisplayName,
+    fp.CommentCount,
+    fp.BadgeCount,
+    CASE 
+        WHEN fp.BadgeCount > 0 THEN 'Has Badges'
+        ELSE 'No Badges'
+    END AS BadgeStatus
+FROM 
+    FilteredPosts fp
+ORDER BY 
+    fp.Score DESC, 
+    fp.CommentCount DESC;
+
+-- first rows of the output
+postid|title|creationdate|score|viewcount|ownerdisplayname|commentcount|badgecount|badgestatus
+342596||2024-09-25 12:48:56.743|12||Sean Gallardy|9|133|Has Badges
+342326||2024-09-12 13:01:07.607|12||Erik Reasonable Rates Darling|2|660|Has Badges
+342268||2024-09-10 11:04:04.26|10||Josh Darnell|1|194|Has Badges
+342275||2024-09-10 14:38:04.16|10||Sean Gallardy|1|133|Has Badges
+342140||2024-09-04 17:06:59.373|10||Sean Gallardy|0|133|Has Badges
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 26465
+====================================================================================================
+query 26465
+energy 9.560 J ± 0.085
+output 36 rows, 8 columns
+plan: execution 789 ms, 16 nodes, buffers 80 k, parallel workers 2
+
+-- SQL
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.ViewCount,
+        p.Score,
+        p.PostTypeId,
+        COALESCE(u.DisplayName, 'Community User') AS OwnerDisplayName,
+        COUNT(c.Id) AS CommentCount,
+        COUNT(DISTINCT b.Id) AS BadgeCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS PostRank
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    WHERE 
+        p.CreationDate >= TIMESTAMP '2024-10-01 12:34:56' - INTERVAL '1 year'
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score, p.PostTypeId, u.DisplayName
+),
+StringProcess AS (
+    SELECT 
+        rp.PostId,
+        rp.Title,
+        rp.OwnerDisplayName,
+        rp.CommentCount,
+        rp.BadgeCount,
+        rp.ViewCount,
+        rp.Score,
+        CASE 
+            WHEN rp.PostTypeId = 1 THEN 'Question'
+            WHEN rp.PostTypeId = 2 THEN 'Answer'
+            ELSE 'Other'
+        END AS PostType,
+        REPLACE(REPLACE(rp.Title, 'Stack Overflow', 'SO'), 'Help', 'Assistance') AS ProcessedTitle
+    FROM 
+        RankedPosts rp
+    WHERE 
+        rp.PostRank <= 10
+)
+
+SELECT 
+    sp.PostId,
+    sp.ProcessedTitle,
+    sp.OwnerDisplayName,
+    sp.CommentCount,
+    sp.BadgeCount,
+    sp.ViewCount,
+    sp.Score,
+    CASE 
+        WHEN LENGTH(sp.ProcessedTitle) > 50 THEN 'Long Title'
+        ELSE 'Short Title'
+    END AS TitleLengthCategory
+FROM 
+    StringProcess sp
+ORDER BY 
+    sp.Score DESC, sp.ViewCount DESC;
+
+-- first rows of the output
+postid|processedtitle|ownerdisplayname|commentcount|badgecount|viewcount|score|titlelengthcategory
+339077||Paul White|0|1102||51|Short Title
+341210||Paul White|0|1102||34|Short Title
+334394||Martin Smith|1214|607||29|Short Title
+334386|Is "+" slower than "CONCAT" for large strings?|gotqn|148|148|4920|23|Short Title
+339076|Why is COALESCE not a function?|J. Mini|0|26|5541|22|Short Title
+…
+
+====================================================================================================
+PLAN of 9160 (cheapest)
+====================================================================================================
+Sort [Sort Key=q.score DESC, q.commentcount DESC]
+  Subquery Scan
+    WindowAgg [Run Condition=(row_number() OVER w1 <= 10); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=posts.posttypeid, posts.score DESC, posts.creationdate DESC]
+        GroupAggregate [Group Key=posts.id, users.displayname]
+          Gather Merge
+            Sort [Sort Key=posts.id, users.displayname, comments.id]
+              Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]
+                Parallel Seq Scan on badges
+                Parallel Hash
+                  Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                    Parallel Seq Scan on comments
+                    Parallel Hash
+                      Nested Loop Left Join
+                        Parallel Seq Scan on posts [Filter=(creationdate >= '2024-09-01 00:00:00')]
+                        Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN of 26465 (most expensive)
+====================================================================================================
+Sort [Sort Key=q.score DESC, q.viewcount DESC]
+  Subquery Scan
+    WindowAgg [Run Condition=(row_number() OVER w1 <= 10); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=posts.posttypeid, posts.score DESC, posts.creationdate DESC]
+        GroupAggregate [Group Key=posts.id, users.displayname]
+          Gather Merge
+            Sort [Sort Key=posts.id, users.displayname, badges.id]
+              Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]
+                Parallel Seq Scan on badges
+                Parallel Hash
+                  Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                    Parallel Seq Scan on comments
+                    Parallel Hash
+                      Nested Loop Left Join
+                        Parallel Seq Scan on posts [Filter=(creationdate >= '2023-10-01 12:34:56')]
+                        Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 9160
++++ 26465
+@@ -1 +1 @@
+-Sort [Sort Key=q.score DESC, q.commentcount DESC]
++Sort [Sort Key=q.score DESC, q.viewcount DESC]
+@@ -7 +7 @@
+-            Sort [Sort Key=posts.id, users.displayname, comments.id]
++            Sort [Sort Key=posts.id, users.displayname, badges.id]
+@@ -15 +15 @@
+-                        Parallel Seq Scan on posts [Filter=(creationdate >= '2024-09-01 00:00:00')]
++                        Parallel Seq Scan on posts [Filter=(creationdate >= '2023-10-01 12:34:56')]
+

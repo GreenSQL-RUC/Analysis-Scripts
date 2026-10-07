@@ -1,0 +1,128 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 8 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   6 SQL variants, 10 query files (copies of one SQL text count as one variant)
+energy:  min 2.822 J   median 2.886 J   max 18.995 J   ->  6.73x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   5 distinct plan(s), 1 distinct plan shape(s)
+outputs: 5 distinct result(s) (rows compared, column names ignored) over 6 saved outputs
+members: 16304 17701 15625 16259 15209 18193  (cheapest first)
+all 6 statements: 08_group.txt
+
+The two below are the cheapest and the most expensive of the group (2.822 J vs 18.995 J).
+
+====================================================================================================
+CHEAPEST: query 16304
+====================================================================================================
+query 16304   (copies: 16304 17485 17497)
+energy 2.822 J ± 0.015
+output 1000 rows (capped at 1000 lines), 4 columns
+plan: execution 256 ms, 10 nodes, buffers 49 k, parallel workers 3
+
+-- SQL
+SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC;
+
+-- first rows of the output
+title|creationdate|ownerdisplayname|commentcount
+SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|2024-09-30 22:49:25.743|J. Mini|0
+Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|2024-09-30 22:05:14.587|Lucas David Ferrero|0
+Varbinary column taking lots of space|2024-09-30 18:22:14.783|PhillysDBA|0
+Which DSE version is compatible to import Cassandra 4.x SSTables?|2024-09-30 17:53:03.78|Nahush|0
+Show SQL Execution Plan on Trace Replay|2024-09-30 16:38:40.863|Neil Laslett|0
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 18193
+====================================================================================================
+query 18193
+energy 18.995 J ± 0.169
+output 41 rows (capped at 1000 lines), 5 columns
+plan: execution 1470 ms, 10 nodes, buffers 427 k, parallel workers 3
+
+-- SQL
+SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.Body AS PostBody,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Body
+ORDER BY 
+    p.CreationDate DESC;
+
+-- first rows of the output
+userdisplayname|posttitle|postcreationdate|postbody|commentcount
+J. Mini|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|2024-09-30 22:49:25.743|<p>I have a database in full r
+Restore-DbaDatabase -OutputScriptOnly -SqlInstance 'MyBox' -WithReplace </code></pre> <p>and it produced this</p> <pre class="lang-sql prettyprint-override"><code>RESTORE DATABASE [MyDb] FROM DISK = N
+I'm building a database model for an ecommerce application. This application needs to communicate to another system (ERP system) to get product, brands, categories and another information that is rele
+<pre><code>UPDATE Table1 SET Column1 = (CONVERT(VARBINARY(MAX), '0x')) --THIS IS NOT THE ACTUAL VALUE </code></pre> <p>However, after running the script on both databases I noticed that the table is a
+<ul> <li>DSE 6.x - protocol DSE_V2 - (sstable format <code>-bb-</code>)</li> <li>C* 4.x - protocol v5 - (sstable format <code>-nb-</code>)</li> </ul> <p>Using Apache Cassandra 4.x sstableloader -&gt; 
+…
+
+====================================================================================================
+PLAN of 16304 (cheapest)
+====================================================================================================
+GroupAggregate [Group Key=posts.creationdate, posts.title, users.displayname]
+  Gather Merge
+    Sort [Sort Key=posts.creationdate DESC, posts.title, users.displayname]
+      Parallel Hash Join [Hash Cond=(posts.owneruserid = users.id)]
+        Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+          Parallel Seq Scan on comments
+          Parallel Hash
+            Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Parallel Hash
+          Parallel Seq Scan on users
+
+====================================================================================================
+PLAN of 18193 (most expensive)
+====================================================================================================
+GroupAggregate [Group Key=posts.creationdate, users.displayname, posts.title, posts.body]
+  Gather Merge
+    Sort [Sort Key=posts.creationdate DESC, users.displayname, posts.title, posts.body]
+      Parallel Hash Join [Hash Cond=(posts.owneruserid = users.id)]
+        Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+          Parallel Seq Scan on comments
+          Parallel Hash
+            Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Parallel Hash
+          Parallel Seq Scan on users
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 16304
++++ 18193
+@@ -1 +1 @@
+-GroupAggregate [Group Key=posts.creationdate, posts.title, users.displayname]
++GroupAggregate [Group Key=posts.creationdate, users.displayname, posts.title, posts.body]
+@@ -3 +3 @@
+-    Sort [Sort Key=posts.creationdate DESC, posts.title, users.displayname]
++    Sort [Sort Key=posts.creationdate DESC, users.displayname, posts.title, posts.body]
+

@@ -1,0 +1,215 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 12 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   4 SQL variants, 4 query files (copies of one SQL text count as one variant)
+energy:  min 4.501 J   median 5.792 J   max 6.468 J   ->  1.44x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 4 distinct result(s) (rows compared, column names ignored)
+members: 14314 11043 11036 12550  (cheapest first)
+
+pair file: 12_pair_14314_vs_12550.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   14314       1       4.501        1.00    19        7      798           37 e13fa410
+   11043       1       5.322        1.18  1000        9      910           37 e13fa410
+   11036       1       6.262        1.39  1000       11     1081           37 e13fa410
+   12550       1       6.468        1.44  1000       10     1101           37 e13fa410
+
+====================================================================================================
+1/4  query 14314   energy 4.501 J ± 0.040   output 19 rows, 7 columns   plan: execution 798 ms, 12 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+WITH UserPostStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(p.Id) AS PostCount,
+        SUM(COALESCE(p.ViewCount, 0)) AS TotalViews,
+        SUM(COALESCE(p.Score, 0)) AS TotalScore
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    GROUP BY 
+        u.Id, u.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        PostCount,
+        TotalViews,
+        TotalScore,
+        RANK() OVER (ORDER BY TotalScore DESC) AS ScoreRank,
+        RANK() OVER (ORDER BY TotalViews DESC) AS ViewsRank
+    FROM 
+        UserPostStats
+)
+SELECT 
+    UserId,
+    DisplayName,
+    PostCount,
+    TotalViews,
+    TotalScore,
+    ScoreRank,
+    ViewsRank
+FROM 
+    TopUsers
+WHERE 
+    ScoreRank <= 10 OR ViewsRank <= 10
+ORDER BY 
+    ScoreRank, ViewsRank;
+
+====================================================================================================
+2/4  query 11043   energy 5.322 J ± 0.047   output 1000 rows (capped at 1000 lines), 9 columns   plan: execution 910 ms, 12 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+WITH UserPostStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(p.Id) AS TotalPosts,
+        COUNT(CASE WHEN p.PostTypeId = 1 THEN 1 END) AS Questions,
+        COUNT(CASE WHEN p.PostTypeId = 2 THEN 1 END) AS Answers,
+        SUM(p.Score) AS TotalScore,
+        SUM(p.ViewCount) AS TotalViews
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    GROUP BY 
+        u.Id, u.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        TotalPosts,
+        Questions,
+        Answers,
+        TotalScore,
+        TotalViews,
+        RANK() OVER (ORDER BY TotalScore DESC) AS ScoreRank,
+        RANK() OVER (ORDER BY TotalViews DESC) AS ViewsRank
+    FROM 
+        UserPostStats
+)
+SELECT 
+    UserId,
+    DisplayName,
+    TotalPosts,
+    Questions,
+    Answers,
+    TotalScore,
+    TotalViews,
+    ScoreRank,
+    ViewsRank
+FROM 
+    TopUsers
+WHERE 
+    ScoreRank <= 10 OR ViewsRank <= 10
+ORDER BY 
+    ScoreRank, ViewsRank;
+
+====================================================================================================
+3/4  query 11036   energy 6.262 J ± 0.056   output 1000 rows (capped at 1000 lines), 11 columns   plan: execution 1081 ms, 12 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+WITH UserPostStats AS (
+    SELECT
+        U.Id AS UserId,
+        U.DisplayName,
+        COUNT(P.Id) AS TotalPosts,
+        COUNT(CASE WHEN P.PostTypeId = 1 THEN 1 END) AS TotalQuestions,
+        COUNT(CASE WHEN P.PostTypeId = 2 THEN 1 END) AS TotalAnswers,
+        SUM(P.Score) AS TotalScore,
+        SUM(P.ViewCount) AS TotalViews,
+        AVG(P.Score) AS AvgScore,
+        AVG(P.ViewCount) AS AvgViews
+    FROM
+        Users U
+    LEFT JOIN
+        Posts P ON U.Id = P.OwnerUserId
+    GROUP BY
+        U.Id, U.DisplayName
+),
+TopUsers AS (
+    SELECT
+        *,
+        RANK() OVER (ORDER BY TotalScore DESC) AS ScoreRank,
+        RANK() OVER (ORDER BY TotalViews DESC) AS ViewsRank
+    FROM
+        UserPostStats
+)
+
+SELECT
+    UserId,
+    DisplayName,
+    TotalPosts,
+    TotalQuestions,
+    TotalAnswers,
+    TotalScore,
+    TotalViews,
+    AvgScore,
+    AvgViews,
+    ScoreRank,
+    ViewsRank
+FROM
+    TopUsers
+WHERE
+    ScoreRank <= 10 OR ViewsRank <= 10
+ORDER BY
+    ScoreRank, ViewsRank;
+
+====================================================================================================
+4/4  query 12550   energy 6.468 J ± 0.058   output 1000 rows (capped at 1000 lines), 10 columns   plan: execution 1101 ms, 12 nodes, buffers 37 k, parallel workers 0
+====================================================================================================
+WITH UserPostStats AS (
+    SELECT 
+        U.Id AS UserId,
+        U.DisplayName,
+        COUNT(P.Id) AS TotalPosts,
+        COUNT(CASE WHEN P.PostTypeId = 1 THEN 1 END) AS TotalQuestions,
+        COUNT(CASE WHEN P.PostTypeId = 2 THEN 1 END) AS TotalAnswers,
+        SUM(P.Score) AS TotalScore,
+        SUM(P.ViewCount) AS TotalViews,
+        AVG(EXTRACT(EPOCH FROM P.CreationDate)) AS AveragePostAge
+    FROM 
+        Users U
+    LEFT JOIN 
+        Posts P ON U.Id = P.OwnerUserId
+    GROUP BY 
+        U.Id, U.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        TotalPosts,
+        TotalQuestions,
+        TotalAnswers,
+        TotalScore,
+        TotalViews,
+        AveragePostAge,
+        RANK() OVER (ORDER BY TotalScore DESC) AS ScoreRank,
+        RANK() OVER (ORDER BY TotalViews DESC) AS ViewsRank
+    FROM 
+        UserPostStats
+)
+SELECT 
+    UserId,
+    DisplayName,
+    TotalPosts,
+    TotalQuestions,
+    TotalAnswers,
+    TotalScore,
+    TotalViews,
+    AveragePostAge,
+    ScoreRank,
+    ViewsRank
+FROM 
+    TopUsers
+WHERE 
+    ScoreRank <= 10 OR ViewsRank <= 10
+ORDER BY 
+    ScoreRank, ViewsRank;
+

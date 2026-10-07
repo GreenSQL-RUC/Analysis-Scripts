@@ -1,0 +1,133 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 5 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   2 SQL variants, 2 query files (copies of one SQL text count as one variant)
+energy:  min 2.053 J   median 2.743 J   max 3.433 J   ->  1.67x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 2 distinct result(s) (rows compared, column names ignored)
+members: 14903 11567  (cheapest first)
+
+The two below are the cheapest and the most expensive of the group (2.053 J vs 3.433 J).
+
+====================================================================================================
+CHEAPEST: query 14903
+====================================================================================================
+query 14903
+energy 2.053 J ± 0.018
+output 1 rows, 9 columns
+plan: execution 352 ms, 10 nodes, buffers 43 k, parallel workers 0
+
+-- SQL
+WITH PostStats AS (
+    SELECT 
+        COUNT(*) AS TotalPosts,
+        COUNT(DISTINCT OwnerUserId) AS UniqueUsers,
+        SUM(COALESCE(AnswerCount, 0)) AS TotalAnswers,
+        SUM(COALESCE(CommentCount, 0)) AS TotalComments
+    FROM Posts
+),
+VoteStats AS (
+    SELECT 
+        COUNT(*) AS TotalVotes,
+        COUNT(DISTINCT UserId) AS UniqueVoters
+    FROM Votes
+),
+UserStats AS (
+    SELECT 
+        COUNT(*) AS TotalUsers,
+        AVG(Reputation) AS AvgReputation,
+        MAX(Reputation) AS MaxReputation
+    FROM Users
+)
+
+SELECT 
+    p.TotalPosts,
+    p.UniqueUsers,
+    p.TotalAnswers,
+    p.TotalComments,
+    v.TotalVotes,
+    v.UniqueVoters,
+    u.TotalUsers,
+    u.AvgReputation,
+    u.MaxReputation
+FROM 
+    PostStats p,
+    VoteStats v,
+    UserStats u;
+
+-- first rows of the output
+totalposts|uniqueusers|totalanswers|totalcomments|totalvotes|uniquevoters|totalusers|avgreputation|maxreputation
+246673|65122|140507|351473|926084|929|267193|70.2027336045480233|183985
+
+====================================================================================================
+MOST EXPENSIVE: query 11567
+====================================================================================================
+query 11567
+energy 3.433 J ± 0.031
+output 1 rows, 11 columns
+plan: execution 529 ms, 10 nodes, buffers 43 k, parallel workers 0
+
+-- SQL
+WITH PostStats AS (
+    SELECT 
+        COUNT(*) AS TotalPosts,
+        COUNT(DISTINCT OwnerUserId) AS UniquePostOwners,
+        SUM(CASE WHEN PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+        SUM(CASE WHEN PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+        SUM(CASE WHEN PostTypeId IN (4, 5) THEN 1 ELSE 0 END) AS TotalTagWikis
+    FROM 
+        Posts
+),
+UserStats AS (
+    SELECT 
+        COUNT(*) AS TotalUsers,
+        AVG(Reputation) AS AvgReputation,
+        MAX(CreationDate) AS MostRecentUserCreation
+    FROM 
+        Users
+),
+VoteStats AS (
+    SELECT 
+        COUNT(*) AS TotalVotes,
+        COUNT(DISTINCT UserId) AS UniqueVoters,
+        COUNT(DISTINCT PostId) AS UniqueVotedPosts
+    FROM 
+        Votes
+)
+
+SELECT 
+    p.TotalPosts,
+    p.UniquePostOwners,
+    p.TotalQuestions,
+    p.TotalAnswers,
+    p.TotalTagWikis,
+    u.TotalUsers,
+    u.AvgReputation,
+    u.MostRecentUserCreation,
+    v.TotalVotes,
+    v.UniqueVoters,
+    v.UniqueVotedPosts
+FROM 
+    PostStats p,
+    UserStats u,
+    VoteStats v;
+
+-- first rows of the output
+totalposts|uniquepostowners|totalquestions|totalanswers|totaltagwikis|totalusers|avgreputation|mostrecentusercreation|totalvotes|uniquevoters|uniquevotedposts
+246673|65122|104437|140494|1714|267193|70.2027336045480233|2024-09-30 23:22:32.08|926084|929|242635
+
+====================================================================================================
+PLAN (the same for both; LIMIT values and output expressions are not shown in it)
+====================================================================================================
+Nested Loop
+  Aggregate
+    Seq Scan on users
+  Nested Loop
+    Aggregate
+      Sort [Sort Key=posts.owneruserid]
+        Seq Scan on posts
+    Aggregate
+      Sort [Sort Key=votes.userid]
+        Seq Scan on votes
+

@@ -1,0 +1,1046 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 13 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   38 SQL variants, 211 query files (copies of one SQL text count as one variant)
+energy:  min 1.373 J   median 3.611 J   max 5.303 J   ->  3.86x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   12 distinct plan(s), 1 distinct plan shape(s)
+outputs: 20 distinct result(s) (rows compared, column names ignored) over 38 saved outputs
+members: 10008 13408 18640 17560 17524 18171 15812 15252 19899 16604 18990 15236 17398 16108 19755 18780 15294 15185 15434 15012 16329 14503 15123 19483 18146 16644 15005 15224 16138 18351 17310 15080 16039 19984 18638 16675 10855 13752  (cheapest first)
+
+pair file: 13_pair_10008_vs_13752.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   10008       1       1.373        1.00   100        9      121           49 3194080e
+   13408       1       1.531        1.12   100       11      139           49 c40b9988
+   18640       1       3.433        2.50    10        5      318           49 93e13c5a
+   17560       1       3.446        2.51    10        6      319           49 93e13c5a
+   17524       1       3.451        2.51   100        6      322           49 93e13c5a
+   18171       1       3.459        2.52    10        6      320           49 93e13c5a
+   15812       8       3.461        2.52    10        6      322           49 93e13c5a
+   15252      10       3.466        2.52    10        6      321           49 93e13c5a
+   19899       1       3.472        2.53    10        6      318           49 93e13c5a
+   16604       2       3.473        2.53    10        5      320           49 93e13c5a
+   18990       1       3.478        2.53    10        5      319           49 93e13c5a
+   15236       6       3.480        2.53    10        6      317           49 93e13c5a
+   17398       2       3.488        2.54    10        5      322           49 93e13c5a
+   16108       1       3.526        2.57    10        6      332           49 fbb3c9cc
+   19755       1       3.552        2.59    10        5      334           49 e67fba63
+   18780       3       3.578        2.61    10        7      326           49 fbb3c9cc
+   15294       1       3.593        2.62    10        8      325           49 c2ba41f9
+   15185       2       3.595        2.62    10        5      334           49 366b2149
+   15434       4       3.606        2.63    10        5      335           49 af22707c
+   15012      29       3.617        2.63    10        5      338           49 af22707c
+   16329       3       3.618        2.63    10        5      333           49 af22707c
+   14503       1       3.622        2.64   100        6      333           49 af22707c
+   15123       5       3.626        2.64    10        6      334           49 af22707c
+   19483       1       3.629        2.64    10        5      336           49 af22707c
+   18146       1       3.631        2.64    10        6      335           49 af22707c
+   16644       1       3.638        2.65    10        6      339           49 af22707c
+   15005      88       3.638        2.65    10        6      339           49 af22707c
+   15224      10       3.638        2.65    10        5      334           49 af22707c
+   16138       1       3.638        2.65    10        5      334           49 418f38a3
+   18351       2       3.646        2.66    10        6      340           49 af22707c
+   17310       4       3.647        2.66    10        6      333           49 af22707c
+   15080      10       3.651        2.66    10        6      328           49 af22707c
+   16039       2       3.663        2.67    10        5      333           49 af22707c
+   19984       1       3.687        2.68    10        6      333           49 af22707c
+   18638       1       3.815        2.78    10        5      347           49 af22707c
+   16675       1       3.849        2.80    10        8      353           49 b03c80a5
+   10855       1       4.143        3.02   100        8      365           49 9dd1e75a
+   13752       1       5.303        3.86   100        8      472           49 baded529
+
+====================================================================================================
+1/38  query 10008   energy 1.373 J ± 0.012   output 100 rows, 9 columns   plan: execution 121 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title AS PostTitle,
+    u.DisplayName AS AuthorName,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount,
+    AVG(CASE WHEN v.VoteTypeId = 2 THEN 1.0 ELSE 0 END) AS AverageUpVotes,
+    AVG(CASE WHEN v.VoteTypeId = 3 THEN 1.0 ELSE 0 END) AS AverageDownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.CreationDate >= '2023-01-01' 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;
+
+====================================================================================================
+2/38  query 13408   energy 1.531 J ± 0.014   output 100 rows, 11 columns   plan: execution 139 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount,
+    p.Score AS PostScore,
+    p.ViewCount AS PostViewCount,
+    p.AnswerCount AS TotalAnswers,
+    p.FavoriteCount AS TotalFavorites,
+    p.LastActivityDate AS LastActivityDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.CreationDate >= '2023-01-01' 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score, p.ViewCount, p.AnswerCount, p.FavoriteCount, p.LastActivityDate
+ORDER BY 
+    PostScore DESC, PostCreationDate DESC
+LIMIT 100;
+
+====================================================================================================
+3/38  query 18640   energy 3.433 J ± 0.031   output 10 rows, 5 columns   plan: execution 318 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostCreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+4/38  query 17560   energy 3.446 J ± 0.031   output 10 rows, 6 columns   plan: execution 319 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserName,
+    p.Title,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+5/38  query 17524   energy 3.451 J ± 0.031   output 100 rows, 6 columns   plan: execution 322 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostDate DESC
+LIMIT 100;
+
+====================================================================================================
+6/38  query 18171   energy 3.459 J ± 0.031   output 10 rows, 6 columns   plan: execution 320 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+7/38  query 15812   (copies: 15812 17417 17664 18003 18411 18726 18871 19584)   energy 3.461 J ± 0.011   output 10 rows, 6 columns   plan: execution 322 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+8/38  query 15252   (copies: 15252 16569 16698 17225 17561 17634 17636 17900 18407 19575)   energy 3.466 J ± 0.010   output 10 rows, 6 columns   plan: execution 321 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+9/38  query 19899   energy 3.472 J ± 0.031   output 10 rows, 6 columns   plan: execution 318 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+10/38  query 16604   (copies: 16604 17011)   energy 3.473 J ± 0.022   output 10 rows, 5 columns   plan: execution 320 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+11/38  query 18990   energy 3.478 J ± 0.031   output 10 rows, 5 columns   plan: execution 319 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+12/38  query 15236   (copies: 15236 17017 17369 18438 18597 18854)   energy 3.480 J ± 0.013   output 10 rows, 6 columns   plan: execution 317 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS Author,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostDate DESC
+LIMIT 10;
+
+====================================================================================================
+13/38  query 17398   (copies: 17398 18058)   energy 3.488 J ± 0.022   output 10 rows, 5 columns   plan: execution 322 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostDate DESC
+LIMIT 10;
+
+====================================================================================================
+14/38  query 16108   energy 3.526 J ± 0.031   output 10 rows, 6 columns   plan: execution 332 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+15/38  query 19755   energy 3.552 J ± 0.032   output 10 rows, 5 columns   plan: execution 334 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    COUNT(v.Id) AS UpVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId AND v.VoteTypeId = 2  
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+16/38  query 18780   (copies: 18780 19393 19967)   energy 3.578 J ± 0.018   output 10 rows, 7 columns   plan: execution 326 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM
+    Posts p
+JOIN
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN
+    Comments c ON p.Id = c.PostId
+LEFT JOIN
+    Votes v ON p.Id = v.PostId
+WHERE
+    p.PostTypeId = 1 
+GROUP BY
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+17/38  query 15294   energy 3.593 J ± 0.032   output 10 rows, 8 columns   plan: execution 325 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score, p.ViewCount
+ORDER BY 
+    p.Score DESC
+LIMIT 10;
+
+====================================================================================================
+18/38  query 15185   (copies: 15185 17069)   energy 3.595 J ± 0.023   output 10 rows, 5 columns   plan: execution 334 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    COUNT(DISTINCT v.Id) AS VoteCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+19/38  query 15434   (copies: 15434 16561 17467 18342)   energy 3.606 J ± 0.016   output 10 rows, 5 columns   plan: execution 335 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;
+
+====================================================================================================
+20/38  query 15012   (copies: 15012 15028 15423 15567 15608 15789 15818 15903 15973 16035 16728 16893 16936 17343 17563 17955 17988 18275 18784 19218 19335 19460 19480 19552 19705 19763 19773 19950 19970)   energy 3.617 J ± 0.006   output 10 rows, 5 columns   plan: execution 338 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+21/38  query 16329   (copies: 16329 17321 18666)   energy 3.618 J ± 0.019   output 10 rows, 5 columns   plan: execution 333 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+22/38  query 14503   energy 3.622 J ± 0.032   output 100 rows, 6 columns   plan: execution 333 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;
+
+====================================================================================================
+23/38  query 15123   (copies: 15123 16140 17966 19697 19930)   energy 3.626 J ± 0.014   output 10 rows, 6 columns   plan: execution 334 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Owner,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;
+
+====================================================================================================
+24/38  query 19483   energy 3.629 J ± 0.032   output 10 rows, 5 columns   plan: execution 336 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+25/38  query 18146   energy 3.631 J ± 0.032   output 10 rows, 6 columns   plan: execution 335 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    u.DisplayName AS OwnerName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+26/38  query 16644   energy 3.638 J ± 0.032   output 10 rows, 6 columns   plan: execution 339 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Owner,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpvoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownvoteCount
+FROM 
+    Posts p
+INNER JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+27/38  query 15005   (copies: 15005 15023 15029 15100 15135 15168 15226 15269 15270 15273 15428 15460 15514 15532 15561 15667 15703 15707 15731 15769 15783 15840 15925 15955 15980 16094 16137 16154 16176 16225 16245 16273 16313 16386 16393 16430 16468 16499 16527 16586 16781 16802 16814 16829 16927 16946 16960 17162 17186 17191 17241 17264 17295 17348 17355 17412 17540 17547 17619 17655 17659 17672 17703 17704 17714 17878 17994 18132 18168 18236 18239 18364 18403 18745 18771 18810 19130 19321 19365 19366 19412 19560 19605 19714 19738 19786 19900 19978)   energy 3.638 J ± 0.003   output 10 rows, 6 columns   plan: execution 339 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+28/38  query 15224   (copies: 15224 15622 15892 15899 16492 17823 18738 19621 19791 19918)   energy 3.638 J ± 0.010   output 10 rows, 5 columns   plan: execution 334 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+29/38  query 16138   energy 3.638 J ± 0.032   output 10 rows, 5 columns   plan: execution 334 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    v.VoteTypeId, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, v.VoteTypeId
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+30/38  query 18351   (copies: 18351 19650)   energy 3.646 J ± 0.023   output 10 rows, 6 columns   plan: execution 340 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT p.Title, p.CreationDate, u.DisplayName, 
+       COUNT(c.Id) AS CommentCount, 
+       SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+       SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN Comments c ON p.Id = c.PostId 
+LEFT JOIN Votes v ON p.Id = v.PostId 
+WHERE p.PostTypeId = 1 
+GROUP BY p.Title, p.CreationDate, u.DisplayName 
+ORDER BY p.CreationDate DESC 
+LIMIT 10;
+
+====================================================================================================
+31/38  query 17310   (copies: 17310 19038 19053 19223)   energy 3.647 J ± 0.016   output 10 rows, 6 columns   plan: execution 333 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    P.Title,
+    U.DisplayName AS Author,
+    P.CreationDate,
+    COUNT(C.Id) AS CommentCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    P.Title, U.DisplayName, P.CreationDate
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+32/38  query 15080   (copies: 15080 15654 16308 16448 16452 17184 17201 17308 17583 19247)   energy 3.651 J ± 0.010   output 10 rows, 6 columns   plan: execution 328 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    COALESCE(SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END), 0) AS UpVotes,  
+    COALESCE(SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END), 0) AS DownVotes  
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+33/38  query 16039   (copies: 16039 19758)   energy 3.663 J ± 0.023   output 10 rows, 5 columns   plan: execution 333 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+34/38  query 19984   energy 3.687 J ± 0.033   output 10 rows, 6 columns   plan: execution 333 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON c.PostId = p.Id
+LEFT JOIN 
+    Votes v ON v.PostId = p.Id
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+35/38  query 18638   energy 3.815 J ± 0.034   output 10 rows, 5 columns   plan: execution 347 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(v.vote_value) AS TotalVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    (SELECT 
+        PostId, 
+        CASE 
+            WHEN VoteTypeId = 2 THEN 1 
+            WHEN VoteTypeId = 3 THEN -1 
+            ELSE 0 
+        END AS vote_value
+     FROM 
+        Votes) v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+36/38  query 16675   energy 3.849 J ± 0.034   output 10 rows, 8 columns   plan: execution 353 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.Score, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+====================================================================================================
+37/38  query 10855   energy 4.143 J ± 0.037   output 100 rows, 8 columns   plan: execution 365 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Title AS Post_Title,
+    p.CreationDate AS Post_Creation_Date,
+    p.ViewCount AS Post_View_Count,
+    p.Score AS Post_Score,
+    u.DisplayName AS Owner_Display_Name,
+    COUNT(c.Id) AS Comment_Count,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS Upvote_Count,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS Downvote_Count
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, p.ViewCount, p.Score, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;
+
+====================================================================================================
+38/38  query 13752   energy 5.303 J ± 0.047   output 100 rows, 8 columns   plan: execution 472 ms, 15 nodes, buffers 49 k, parallel workers 2
+====================================================================================================
+SELECT 
+    U.DisplayName AS UserName, 
+    P.Title AS PostTitle, 
+    P.CreationDate AS PostCreationDate, 
+    P.ViewCount, 
+    P.Score, 
+    COUNT(C.ID) AS CommentCount, 
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Users U
+JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount, P.Score
+ORDER BY 
+    P.Score DESC, P.ViewCount DESC
+LIMIT 100;
+

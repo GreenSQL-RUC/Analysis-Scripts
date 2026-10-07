@@ -1,0 +1,114 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 3 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   15 SQL variants, 22 query files (copies of one SQL text count as one variant)
+energy:  min 0.463 J   median 2.430 J   max 4.526 J   ->  9.77x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   5 distinct plan(s), 1 distinct plan shape(s)
+outputs: 14 distinct result(s) (rows compared, column names ignored) over 15 saved outputs
+members: 14843 14915 11911 12825 12399 11039 12140 13618 12038 14458 11834 12170 10130 11266 11239  (cheapest first)
+all 15 statements: 03_group.txt
+
+The two below are the cheapest and the most expensive of the group (0.463 J vs 4.526 J).
+
+====================================================================================================
+CHEAPEST: query 14843
+====================================================================================================
+query 14843
+energy 0.463 J ± 0.004
+output 4 rows, 4 columns
+plan: execution 100 ms, 7 nodes, buffers 32 k, parallel workers 0
+
+-- SQL
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    COUNT(DISTINCT p.OwnerUserId) AS TotalUsers
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+WHERE 
+    p.CreationDate >= '2022-01-01' 
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;
+
+-- first rows of the output
+posttype|totalposts|averagescore|totalusers
+Answer|14991|1.3482756320458942|3717
+Question|13120|0.64413109756097560976|8110
+TagWiki|45|0.00000000000000000000|17
+TagWikiExcerpt|45|0.00000000000000000000|23
+
+====================================================================================================
+MOST EXPENSIVE: query 11239
+====================================================================================================
+query 11239
+energy 4.526 J ± 0.040
+output 6 rows, 4 columns
+plan: execution 651 ms, 7 nodes, buffers 32 k, parallel workers 0
+
+-- SQL
+SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.ViewCount) AS AvgViewCount,
+    COUNT(DISTINCT p.Tags) AS UniqueTags
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    AvgViewCount DESC;
+
+-- first rows of the output
+posttype|totalposts|avgviewcount|uniquetags
+Answer|140494||0
+ModeratorNomination|24||0
+TagWiki|857||0
+TagWikiExcerpt|857||0
+WikiPlaceholder|4||0
+…
+
+====================================================================================================
+PLAN of 14843 (cheapest)
+====================================================================================================
+Sort [Sort Key=(count(posts.id)) DESC]
+  GroupAggregate [Group Key=posttypes.name]
+    Sort [Sort Key=posttypes.name, posts.owneruserid]
+      Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+        Seq Scan on posts [Filter=(creationdate >= '2022-01-01 00:00:00')]
+        Hash
+          Seq Scan on posttypes
+
+====================================================================================================
+PLAN of 11239 (most expensive)
+====================================================================================================
+Sort [Sort Key=(avg(posts.viewcount)) DESC]
+  GroupAggregate [Group Key=posttypes.name]
+    Sort [Sort Key=posttypes.name, posts.tags]
+      Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+        Seq Scan on posts
+        Hash
+          Seq Scan on posttypes
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 14843
++++ 11239
+@@ -1 +1 @@
+-Sort [Sort Key=(count(posts.id)) DESC]
++Sort [Sort Key=(avg(posts.viewcount)) DESC]
+@@ -3 +3 @@
+-    Sort [Sort Key=posttypes.name, posts.owneruserid]
++    Sort [Sort Key=posttypes.name, posts.tags]
+@@ -5 +5 @@
+-        Seq Scan on posts [Filter=(creationdate >= '2022-01-01 00:00:00')]
++        Seq Scan on posts
+

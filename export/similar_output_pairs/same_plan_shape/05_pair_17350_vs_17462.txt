@@ -1,0 +1,125 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 5 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   107 SQL variants, 450 query files (copies of one SQL text count as one variant)
+energy:  min 1.307 J   median 1.420 J   max 11.327 J   ->  8.66x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   33 distinct plan(s), 1 distinct plan shape(s)
+outputs: 47 distinct result(s) (rows compared, column names ignored) over 107 saved outputs
+members: 17350 18510 15554 15332 15095 18592 15431 16097 16686 15370 17006 15963 17390 15253 18541 16258 17528 15478 15151 15443 15304 15457 15399 18441 17363 15596 15182 19452 15227 15772 18141 18134 15037 15877 16759 18715 18278 18886 16168 15001 …  (cheapest first)
+all 107 statements: 05_group.txt
+
+The two below are the cheapest and the most expensive of the group (1.307 J vs 11.327 J).
+
+====================================================================================================
+CHEAPEST: query 17350
+====================================================================================================
+query 17350
+energy 1.307 J ± 0.012
+output 10 rows, 4 columns
+plan: execution 109 ms, 12 nodes, buffers 43 k, parallel workers 3
+
+-- SQL
+SELECT u.DisplayName, p.Title, p.Score, COUNT(c.Id) AS CommentCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+WHERE p.PostTypeId = 1 
+GROUP BY u.DisplayName, p.Title, p.Score
+ORDER BY p.Score DESC
+LIMIT 10;
+
+-- first rows of the output
+displayname|title|score|commentcount
+Jonas|How do I list all databases and tables using psql?|1572|0
+Stephane Rolland|List all columns for a specified table|566|0
+markdorison|How do you mysqldump specific table(s)?|546|2
+Martin Smith|What's the difference between a temp table and table variable in SQL Server?|489|1
+Stéphane|How do I list all schemas in PostgreSQL?|442|0
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 17462
+====================================================================================================
+query 17462
+energy 11.327 J ± 0.101
+output 10 rows, 6 columns
+plan: execution 619 ms, 12 nodes, buffers 286 k, parallel workers 3
+
+-- SQL
+SELECT 
+    p.Title,
+    p.Body,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.Body, u.DisplayName, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+-- first rows of the output
+title|body|ownerdisplayname|creationdate|viewcount|commentcount
+SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|<p>I have a database in full recovery mode without log backups
+Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|<p>I'll give you some context and then ask my ques
+Varbinary column taking lots of space|<p>I have restored 2 copies of the same database (I used a different backup to restore each database but both backups were taken very close to each other). After 
+Which DSE version is compatible to import Cassandra 4.x SSTables?|<p>Is there any DSE 6.x version supporting C* 4.x sstable format (-nb-)? I want to load data from apache C* 4.x using sstableloader in
+Show SQL Execution Plan on Trace Replay|<p>I'm using Microsoft SQL Server Profiler to capture production trace data for replay on a dev server to test indexing changes.  Capturing the trace is no prob
+…
+
+====================================================================================================
+PLAN of 17350 (cheapest)
+====================================================================================================
+Limit
+  GroupAggregate [Group Key=posts.score, users.displayname, posts.title]
+    Incremental Sort [Sort Key=posts.score DESC, users.displayname, posts.title; Presorted Key=posts.score]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.score DESC]
+            Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+              Parallel Seq Scan on comments
+              Parallel Hash
+                Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN of 17462 (most expensive)
+====================================================================================================
+Limit
+  GroupAggregate [Group Key=posts.creationdate, posts.title, posts.body, users.displayname, posts.viewcount]
+    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, posts.body, users.displayname, posts.viewcount; Presorted Key=posts.creationdate, posts.title, posts.body]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.creationdate DESC, posts.title, posts.body]
+            Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+              Parallel Seq Scan on comments
+              Parallel Hash
+                Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 17350
++++ 17462
+@@ -2,2 +2,2 @@
+-  GroupAggregate [Group Key=posts.score, users.displayname, posts.title]
+-    Incremental Sort [Sort Key=posts.score DESC, users.displayname, posts.title; Presorted Key=posts.score]
++  GroupAggregate [Group Key=posts.creationdate, posts.title, posts.body, users.displayname, posts.viewcount]
++    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, posts.body, users.displayname, posts.viewcount; Presorted Key=posts.creationdate, posts.title, posts.body]
+@@ -6 +6 @@
+-          Sort [Sort Key=posts.score DESC]
++          Sort [Sort Key=posts.creationdate DESC, posts.title, posts.body]
+

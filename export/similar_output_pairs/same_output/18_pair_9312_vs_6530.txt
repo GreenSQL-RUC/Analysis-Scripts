@@ -1,0 +1,216 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 18 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   3 SQL variants, 3 query files (copies of one SQL text count as one variant)
+energy:  min 4.156 J   median 4.186 J   max 9.762 J   ->  2.35x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   3 distinct plan(s), 3 distinct plan shape(s)
+outputs: 2 distinct result(s) (rows compared, column names ignored) over 3 saved outputs
+members: 9312 6734 6530  (cheapest first)
+all 3 statements: 18_group.txt
+
+The two below are the cheapest and the most expensive of the group (4.156 J vs 9.762 J).
+
+====================================================================================================
+CHEAPEST: query 9312
+====================================================================================================
+query 9312
+energy 4.156 J ± 0.037
+output 10 rows, 8 columns
+plan: execution 351 ms, 15 nodes, buffers 43 k, parallel workers 2
+
+-- SQL
+WITH UserStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        u.Reputation,
+        COUNT(DISTINCT p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    WHERE 
+        u.Reputation > 1000
+    GROUP BY 
+        u.Id, u.DisplayName, u.Reputation
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        Reputation,
+        PostCount,
+        QuestionCount,
+        AnswerCount,
+        UpVotes,
+        DownVotes,
+        RANK() OVER (ORDER BY Reputation DESC) AS Rank
+    FROM 
+        UserStats
+)
+SELECT 
+    tu.DisplayName,
+    tu.Reputation,
+    tu.PostCount,
+    tu.QuestionCount,
+    tu.AnswerCount,
+    tu.UpVotes,
+    tu.DownVotes,
+    (tu.UpVotes - tu.DownVotes) AS NetVotes
+FROM 
+    TopUsers tu
+WHERE 
+    tu.Rank <= 10
+ORDER BY 
+    NetVotes DESC, Reputation DESC;
+
+-- first rows of the output
+displayname|reputation|postcount|questioncount|answercount|upvotes|downvotes|netvotes
+Aaron Bertrand|181258|2361|164|17972|16630|50|16580
+Erwin Brandstetter|180111|2239|177|17078|15683|15|15668
+RolandoMySQLDBA|183985|3314|38|17735|15704|52|15652
+Paul White|88406|1623|551|13099|12695|16|12679
+ypercubeᵀᴹ|98516|1715|89|10051|8992|20|8972
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 6530
+====================================================================================================
+query 6530
+energy 9.762 J ± 0.087
+output 10 rows, 8 columns
+plan: execution 1492 ms, 14 nodes, buffers 48 k, parallel workers 0
+
+-- SQL
+WITH UserStats AS (
+    SELECT 
+        U.Id AS UserId,
+        U.DisplayName,
+        U.Reputation,
+        COUNT(DISTINCT P.Id) AS PostCount,
+        SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+        SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+    FROM 
+        Users U
+    LEFT JOIN 
+        Posts P ON U.Id = P.OwnerUserId
+    LEFT JOIN 
+        Votes V ON P.Id = V.PostId
+    GROUP BY 
+        U.Id, U.DisplayName, U.Reputation
+), 
+TopUsers AS (
+    SELECT 
+        UserId, 
+        DisplayName, 
+        Reputation, 
+        PostCount, 
+        QuestionCount, 
+        AnswerCount, 
+        UpVotes, 
+        DownVotes,
+        ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS Rank
+    FROM 
+        UserStats
+)
+SELECT 
+    T.DisplayName,
+    T.Reputation,
+    T.PostCount,
+    T.QuestionCount,
+    T.AnswerCount,
+    T.UpVotes,
+    T.DownVotes,
+    (T.UpVotes - T.DownVotes) AS NetVotes
+FROM 
+    TopUsers T
+WHERE 
+    T.Rank <= 10
+ORDER BY 
+    NetVotes DESC;
+
+-- first rows of the output
+displayname|reputation|postcount|questioncount|answercount|upvotes|downvotes|netvotes
+Aaron Bertrand|181258|2361|164|17972|16630|50|16580
+Erwin Brandstetter|180111|2239|177|17078|15683|15|15668
+RolandoMySQLDBA|183985|3314|38|17735|15704|52|15652
+Paul White|88406|1623|551|13099|12695|16|12679
+ypercubeᵀᴹ|98516|1715|89|10051|8992|20|8972
+…
+
+====================================================================================================
+PLAN of 9312 (cheapest)
+====================================================================================================
+Sort [Sort Key=((q.upvotes - q.downvotes)) DESC, q.reputation DESC]
+  Subquery Scan
+    WindowAgg [Run Condition=(rank() OVER w1 <= 10); Window=w1 AS (ORDER BY q.reputation ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=q.reputation DESC]
+        Subquery Scan
+          GroupAggregate [Group Key=users.id]
+            Gather Merge
+              Sort [Sort Key=users.id, posts.id]
+                Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+                  Parallel Seq Scan on votes
+                  Parallel Hash
+                    Parallel Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+                      Parallel Seq Scan on posts
+                      Parallel Hash
+                        Parallel Seq Scan on users [Filter=(reputation > 1000)]
+
+====================================================================================================
+PLAN of 6530 (most expensive)
+====================================================================================================
+Sort [Sort Key=((q.upvotes - q.downvotes)) DESC]
+  Subquery Scan
+    WindowAgg [Run Condition=(row_number() OVER w1 <= 10); Window=w1 AS (ORDER BY q.reputation ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=q.reputation DESC]
+        Subquery Scan
+          GroupAggregate [Group Key=users.id]
+            Sort [Sort Key=users.id, posts.id]
+              Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+                Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+                  Seq Scan on votes
+                  Hash
+                    Seq Scan on posts
+                Hash
+                  Seq Scan on users
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 9312
++++ 6530
+@@ -1 +1 @@
+-Sort [Sort Key=((q.upvotes - q.downvotes)) DESC, q.reputation DESC]
++Sort [Sort Key=((q.upvotes - q.downvotes)) DESC]
+@@ -3 +3 @@
+-    WindowAgg [Run Condition=(rank() OVER w1 <= 10); Window=w1 AS (ORDER BY q.reputation ROWS UNBOUNDED PRECEDING)]
++    WindowAgg [Run Condition=(row_number() OVER w1 <= 10); Window=w1 AS (ORDER BY q.reputation ROWS UNBOUNDED PRECEDING)]
+@@ -7,9 +7,8 @@
+-            Gather Merge
+-              Sort [Sort Key=users.id, posts.id]
+-                Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+-                  Parallel Seq Scan on votes
+-                  Parallel Hash
+-                    Parallel Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+-                      Parallel Seq Scan on posts
+-                      Parallel Hash
+-                        Parallel Seq Scan on users [Filter=(reputation > 1000)]
++            Sort [Sort Key=users.id, posts.id]
++              Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
++                Hash Right Join [Hash Cond=(votes.postid = posts.id)]
++                  Seq Scan on votes
++                  Hash
++                    Seq Scan on posts
++                Hash
++                  Seq Scan on users
+

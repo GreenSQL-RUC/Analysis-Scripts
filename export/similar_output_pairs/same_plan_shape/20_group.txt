@@ -1,0 +1,303 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 20 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   5 SQL variants, 5 query files (copies of one SQL text count as one variant)
+energy:  min 1.379 J   median 4.186 J   max 4.343 J   ->  3.15x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   5 distinct plan(s), 1 distinct plan shape(s)
+outputs: 5 distinct result(s) (rows compared, column names ignored)
+members: 7835 9037 6734 29938 6505  (cheapest first)
+
+pair file: 20_pair_7835_vs_6505.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+    7835       1       1.379        1.00    10        9      133           43 34bbe60a
+    9037       1       4.063        2.95    10        8      494           43 0ea68156
+    6734       1       4.186        3.04    10        8      354           43 74286140
+   29938       1       4.286        3.11    10       10      371           43 1067638d
+    6505       1       4.343        3.15    10        8      375           43 10ef445a
+
+====================================================================================================
+1/5  query 7835   energy 1.379 J ± 0.012   output 10 rows, 9 columns   plan: execution 133 ms, 14 nodes, buffers 43 k, parallel workers 2
+====================================================================================================
+WITH UserActivity AS (
+    SELECT 
+        U.Id AS UserId,
+        U.DisplayName,
+        U.Reputation,
+        COUNT(DISTINCT P.Id) AS PostsCount,
+        SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionsCount,
+        SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswersCount,
+        SUM(P.ViewCount) AS TotalViews,
+        SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotesCount,
+        SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotesCount
+    FROM 
+        Users U
+    LEFT JOIN 
+        Posts P ON U.Id = P.OwnerUserId
+    LEFT JOIN 
+        Votes V ON P.Id = V.PostId
+    WHERE 
+        U.CreationDate >= CAST('2024-10-01 12:34:56' AS TIMESTAMP) - INTERVAL '1 year'
+    GROUP BY 
+        U.Id, U.DisplayName, U.Reputation
+),
+TopUsers AS (
+    SELECT 
+        UserId, 
+        DisplayName, 
+        Reputation, 
+        PostsCount, 
+        QuestionsCount, 
+        AnswersCount, 
+        TotalViews, 
+        UpVotesCount, 
+        DownVotesCount,
+        RANK() OVER (ORDER BY Reputation DESC) AS ReputationRank
+    FROM 
+        UserActivity
+)
+SELECT 
+    UserId, 
+    DisplayName, 
+    Reputation, 
+    PostsCount, 
+    QuestionsCount, 
+    AnswersCount, 
+    TotalViews, 
+    UpVotesCount, 
+    DownVotesCount
+FROM 
+    TopUsers
+WHERE 
+    ReputationRank <= 10
+ORDER BY 
+    Reputation DESC;
+
+====================================================================================================
+2/5  query 9037   energy 4.063 J ± 0.036   output 10 rows, 8 columns   plan: execution 494 ms, 14 nodes, buffers 43 k, parallel workers 2
+====================================================================================================
+WITH UserStats AS (
+    SELECT 
+        U.Id AS UserId, 
+        U.DisplayName,
+        U.Reputation,
+        COUNT(DISTINCT P.Id) AS NumberOfPosts,
+        SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(V.BountyAmount) AS TotalBountyEarned,
+        MAX(P.CreationDate) AS LastPostDate
+    FROM 
+        Users U
+    LEFT JOIN 
+        Posts P ON U.Id = P.OwnerUserId
+    LEFT JOIN 
+        Votes V ON P.Id = V.PostId AND V.VoteTypeId IN (8, 9)  
+    WHERE 
+        U.Reputation > 100  
+    GROUP BY 
+        U.Id, U.DisplayName, U.Reputation
+),
+TopUsers AS (
+    SELECT 
+        UserId, 
+        DisplayName, 
+        Reputation, 
+        NumberOfPosts, 
+        AnswerCount, 
+        QuestionCount, 
+        TotalBountyEarned, 
+        LastPostDate,
+        RANK() OVER (ORDER BY Reputation DESC) AS ReputationRank
+    FROM 
+        UserStats
+)
+SELECT 
+    UserId, 
+    DisplayName, 
+    Reputation, 
+    NumberOfPosts, 
+    AnswerCount, 
+    QuestionCount, 
+    TotalBountyEarned, 
+    LastPostDate
+FROM 
+    TopUsers
+WHERE 
+    ReputationRank <= 10  
+ORDER BY 
+    Reputation DESC;
+
+====================================================================================================
+3/5  query 6734   energy 4.186 J ± 0.037   output 10 rows, 8 columns   plan: execution 354 ms, 14 nodes, buffers 43 k, parallel workers 2
+====================================================================================================
+WITH UserStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        u.Reputation,
+        COUNT(DISTINCT p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS Upvotes,
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS Downvotes
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    WHERE 
+        u.Reputation > 1000
+    GROUP BY 
+        u.Id, u.DisplayName, u.Reputation
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        Reputation,
+        PostCount,
+        QuestionCount,
+        AnswerCount,
+        Upvotes,
+        Downvotes,
+        RANK() OVER (ORDER BY Reputation DESC) AS UserRank
+    FROM 
+        UserStats
+)
+SELECT 
+    tu.DisplayName,
+    tu.Reputation,
+    tu.PostCount,
+    tu.QuestionCount,
+    tu.AnswerCount,
+    tu.Upvotes,
+    tu.Downvotes,
+    (tu.Upvotes - tu.Downvotes) AS NetVotes
+FROM 
+    TopUsers tu
+WHERE 
+    tu.UserRank <= 10
+ORDER BY 
+    tu.Reputation DESC;
+
+====================================================================================================
+4/5  query 29938   energy 4.286 J ± 0.038   output 10 rows, 10 columns   plan: execution 371 ms, 14 nodes, buffers 43 k, parallel workers 2
+====================================================================================================
+WITH UserActivity AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        u.Reputation,
+        COUNT(DISTINCT p.Id) AS TotalPosts,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+        SUM(CASE WHEN p.PostTypeId IN (3, 4, 5) THEN 1 ELSE 0 END) AS TotalWikis,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpvotes,
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownvotes
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    WHERE 
+        u.Reputation > 1000
+    GROUP BY 
+        u.Id, u.DisplayName, u.Reputation
+),
+TopUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        Reputation,
+        TotalPosts,
+        TotalQuestions,
+        TotalAnswers,
+        TotalWikis,
+        TotalUpvotes,
+        TotalDownvotes,
+        ROW_NUMBER() OVER (ORDER BY Reputation DESC) AS UserRank
+    FROM 
+        UserActivity
+)
+SELECT 
+    tu.DisplayName,
+    tu.Reputation,
+    tu.TotalPosts,
+    tu.TotalQuestions,
+    tu.TotalAnswers,
+    tu.TotalWikis,
+    tu.TotalUpvotes,
+    tu.TotalDownvotes,
+    CASE 
+        WHEN tu.TotalQuestions > 0 THEN ROUND((CAST(tu.TotalUpvotes AS DECIMAL) / NULLIF(tu.TotalQuestions, 0)) * 100, 2)
+        ELSE 0
+    END AS UpvotePercentage,
+    CASE 
+        WHEN tu.TotalAnswers > 0 THEN ROUND((CAST(tu.TotalDownvotes AS DECIMAL) / NULLIF(tu.TotalAnswers, 0)) * 100, 2)
+        ELSE 0
+    END AS DownvotePercentage
+FROM 
+    TopUsers tu
+WHERE 
+    tu.UserRank <= 10
+ORDER BY 
+    tu.Reputation DESC;
+
+====================================================================================================
+5/5  query 6505   energy 4.343 J ± 0.039   output 10 rows, 8 columns   plan: execution 375 ms, 14 nodes, buffers 43 k, parallel workers 2
+====================================================================================================
+WITH UserStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(DISTINCT p.Id) AS TotalPosts,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+        SUM(CASE WHEN p.PostTypeId = 2 AND p.AcceptedAnswerId IS NOT NULL THEN 1 ELSE 0 END) AS AcceptedAnswers,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,
+        MAX(p.CreationDate) AS LastPostDate
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    WHERE 
+        u.Reputation > 1000
+    GROUP BY 
+        u.Id, u.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        UserId, 
+        DisplayName,
+        TotalPosts,
+        TotalQuestions,
+        TotalAnswers,
+        AcceptedAnswers,
+        TotalUpVotes,
+        TotalDownVotes,
+        LastPostDate,
+        ROW_NUMBER() OVER (ORDER BY TotalUpVotes DESC) AS Rank
+    FROM 
+        UserStats
+)
+SELECT 
+    tu.DisplayName,
+    tu.TotalPosts,
+    tu.TotalQuestions,
+    tu.TotalAnswers,
+    tu.AcceptedAnswers,
+    tu.TotalUpVotes,
+    tu.TotalDownVotes,
+    tu.LastPostDate
+FROM 
+    TopUsers tu
+WHERE 
+    tu.Rank <= 10;
+

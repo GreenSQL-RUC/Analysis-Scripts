@@ -1,0 +1,729 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 11 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   11 SQL variants, 11 query files (copies of one SQL text count as one variant)
+energy:  min 0.461 J   median 2.191 J   max 2.409 J   ->  5.23x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   11 distinct plan(s), 1 distinct plan shape(s)
+outputs: 11 distinct result(s) (rows compared, column names ignored)
+members: 31099 6182 8926 25800 9035 8306 7113 8516 8896 8353 5746  (cheapest first)
+
+pair file: 11_pair_31099_vs_5746.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   31099       1       0.461        1.00     0       12       32           32 fa93b9b0
+    6182       1       2.099        4.55    12        9      298           40 c5917cd9
+    8926       1       2.106        4.57    12        9      289           40 c72c1fd6
+   25800       1       2.148        4.66   100       12      287           53 495c0b96
+    9035       1       2.156        4.68    10        9      284           51 7a4f4dff
+    8306       1       2.191        4.75    10       10      289           51 4b427c54
+    7113       1       2.235        4.85    38        5      293           71 8f16caa4
+    8516       1       2.245        4.87    20        8      292           71 aea53df9
+    8896       1       2.246        4.87  1000        8      305           53 b96d310f
+    8353       1       2.367        5.14    20        9      308           70 5e5ec41d
+    5746       1       2.409        5.23    35       10      324           71 2f63e1f4
+
+====================================================================================================
+1/11  query 31099   energy 0.461 J ± 0.004   output 0 rows, 12 columns   plan: execution 32 ms, 12 nodes, buffers 32 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        P.Id AS PostId,
+        P.Title,
+        P.CreationDate,
+        P.Score,
+        P.ViewCount,
+        P.AnswerCount,
+        P.CommentCount,
+        U.DisplayName AS OwnerDisplayName,
+        RANK() OVER (PARTITION BY P.PostTypeId ORDER BY P.Score DESC, P.CreationDate DESC) AS RankScore
+    FROM 
+        Posts P
+    JOIN 
+        Users U ON P.OwnerUserId = U.Id
+    WHERE 
+        P.CreationDate >= CURRENT_DATE - INTERVAL '30 days'
+),
+TopPosts AS (
+    SELECT 
+        PostId,
+        Title,
+        CreationDate,
+        Score,
+        ViewCount,
+        AnswerCount,
+        CommentCount,
+        OwnerDisplayName
+    FROM 
+        RankedPosts
+    WHERE 
+        RankScore <= 5 
+),
+PostVoteStats AS (
+    SELECT 
+        PostId,
+        COUNT(CASE WHEN V.VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN V.VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes V
+    GROUP BY 
+        PostId
+)
+SELECT 
+    TP.PostId,
+    TP.Title,
+    TP.CreationDate,
+    TP.Score,
+    TP.ViewCount,
+    TP.AnswerCount,
+    TP.CommentCount,
+    TP.OwnerDisplayName,
+    COALESCE(PVS.UpVotes, 0) AS UpVotes,
+    COALESCE(PVS.DownVotes, 0) AS DownVotes,
+    (COALESCE(PVS.UpVotes, 0) - COALESCE(PVS.DownVotes, 0)) AS NetVotes,
+    CASE 
+        WHEN COALESCE(PVS.UpVotes, 0) + COALESCE(PVS.DownVotes, 0) > 0 
+        THEN COALESCE(PVS.UpVotes, 0)::FLOAT / (COALESCE(PVS.UpVotes, 0) + COALESCE(PVS.DownVotes, 0)) * 100 
+        ELSE NULL 
+    END AS VotePercentage
+FROM 
+    TopPosts TP
+LEFT JOIN 
+    PostVoteStats PVS ON TP.PostId = PVS.PostId
+ORDER BY 
+    TP.Score DESC, 
+    TP.CreationDate DESC;
+
+====================================================================================================
+2/11  query 6182   energy 2.099 J ± 0.019   output 12 rows, 9 columns   plan: execution 298 ms, 12 nodes, buffers 40 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        P.Id AS PostId,
+        P.Title,
+        U.DisplayName AS Owner,
+        P.CreationDate,
+        P.Score,
+        P.ViewCount,
+        ROW_NUMBER() OVER (PARTITION BY P.PostTypeId ORDER BY P.Score DESC) AS Rank
+    FROM 
+        Posts P
+    JOIN 
+        Users U ON P.OwnerUserId = U.Id
+    WHERE 
+        P.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '30 days'
+),
+PostVoteCounts AS (
+    SELECT 
+        PostId,
+        COUNT(CASE WHEN V.VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN V.VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes V
+    GROUP BY 
+        PostId
+),
+TopPosts AS (
+    SELECT 
+        RP.PostId,
+        RP.Title,
+        RP.Owner,
+        RP.CreationDate,
+        RP.Score,
+        RP.ViewCount,
+        PVC.UpVotes,
+        PVC.DownVotes
+    FROM 
+        RankedPosts RP
+    LEFT JOIN 
+        PostVoteCounts PVC ON RP.PostId = PVC.PostId
+    WHERE 
+        RP.Rank <= 5
+)
+SELECT 
+    TP.PostId,
+    TP.Title,
+    TP.Owner,
+    TP.CreationDate,
+    TP.Score,
+    TP.ViewCount,
+    COALESCE(TP.UpVotes, 0) AS UpVotes,
+    COALESCE(TP.DownVotes, 0) AS DownVotes,
+    CASE 
+        WHEN TP.Score > 100 THEN 'High scorer'
+        WHEN TP.Score BETWEEN 50 AND 100 THEN 'Moderate scorer'
+        ELSE 'Low scorer'
+    END AS ScoreCategory
+FROM 
+    TopPosts TP
+ORDER BY 
+    TP.Score DESC, 
+    TP.ViewCount DESC;
+
+====================================================================================================
+3/11  query 8926   energy 2.106 J ± 0.019   output 12 rows, 9 columns   plan: execution 289 ms, 12 nodes, buffers 40 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        u.DisplayName AS OwnerDisplayName,
+        p.Score,
+        p.ViewCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate ASC) AS Rank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    WHERE 
+        p.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '30 days'
+),
+TopPosts AS (
+    SELECT 
+        PostId,
+        Title,
+        CreationDate,
+        OwnerDisplayName,
+        Score,
+        ViewCount
+    FROM 
+        RankedPosts
+    WHERE 
+        Rank <= 5
+),
+PostVoteCounts AS (
+    SELECT 
+        PostId,
+        COUNT(CASE WHEN VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes 
+    GROUP BY 
+        PostId
+)
+SELECT 
+    tp.PostId,
+    tp.Title,
+    tp.CreationDate,
+    tp.OwnerDisplayName,
+    tp.Score,
+    tp.ViewCount,
+    pvc.UpVotes,
+    pvc.DownVotes,
+    (tp.Score + COALESCE(pvc.UpVotes, 0) - COALESCE(pvc.DownVotes, 0)) AS NetScore
+FROM 
+    TopPosts tp
+LEFT JOIN 
+    PostVoteCounts pvc ON tp.PostId = pvc.PostId
+ORDER BY 
+    NetScore DESC;
+
+====================================================================================================
+4/11  query 25800   energy 2.148 J ± 0.019   output 100 rows, 12 columns   plan: execution 287 ms, 12 nodes, buffers 53 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        ARRAY_LENGTH(string_to_array(substring(p.Tags, 2, length(p.Tags)-2), '><'), 1) AS TagCount,
+        u.DisplayName AS OwnerDisplayName,
+        u.Reputation AS OwnerReputation,
+        RANK() OVER (ORDER BY p.Score DESC, p.ViewCount DESC) AS RankScore
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    WHERE 
+        p.PostTypeId = 1 
+        AND p.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year' 
+),
+TopRankedPosts AS (
+    SELECT 
+        PostId,
+        Title,
+        CreationDate,
+        Score,
+        ViewCount,
+        TagCount,
+        OwnerDisplayName,
+        OwnerReputation
+    FROM 
+        RankedPosts
+    WHERE 
+        RankScore <= 100 
+),
+PostVoteCount AS (
+    SELECT 
+        PostId, 
+        COUNT(*) FILTER (WHERE VoteTypeId = 2) AS UpVotes, 
+        COUNT(*) FILTER (WHERE VoteTypeId = 3) AS DownVotes 
+    FROM 
+        Votes 
+    GROUP BY 
+        PostId
+),
+PostWithVotes AS (
+    SELECT 
+        trp.*,
+        COALESCE(pvc.UpVotes, 0) AS UpVotes,
+        COALESCE(pvc.DownVotes, 0) AS DownVotes
+    FROM 
+        TopRankedPosts trp
+    LEFT JOIN 
+        PostVoteCount pvc ON trp.PostId = pvc.PostId
+)
+SELECT 
+    pwv.PostId,
+    pwv.Title,
+    pwv.CreationDate,
+    pwv.Score,
+    pwv.ViewCount,
+    pwv.TagCount,
+    pwv.OwnerDisplayName,
+    pwv.OwnerReputation,
+    pwv.UpVotes,
+    pwv.DownVotes,
+    (pwv.UpVotes - pwv.DownVotes) AS NetVotes,
+    (EXTRACT(EPOCH FROM cast('2024-10-01 12:34:56' as timestamp) - pwv.CreationDate) / 3600) AS HoursSinceCreation
+FROM 
+    PostWithVotes pwv
+WHERE 
+    pwv.UpVotes > pwv.DownVotes 
+ORDER BY 
+    NetVotes DESC, pwv.Score DESC;
+
+====================================================================================================
+5/11  query 9035   energy 2.156 J ± 0.019   output 10 rows, 9 columns   plan: execution 284 ms, 12 nodes, buffers 51 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        u.DisplayName AS OwnerDisplayName,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS RankByScore
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    WHERE 
+        p.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year'
+        AND p.Score > 0
+),
+TopPosts AS (
+    SELECT 
+        PostId, 
+        Title, 
+        CreationDate, 
+        Score, 
+        ViewCount, 
+        OwnerDisplayName
+    FROM 
+        RankedPosts
+    WHERE 
+        RankByScore <= 5
+),
+PostVoteCounts AS (
+    SELECT 
+        PostId, 
+        COUNT(*) FILTER (WHERE VoteTypeId = 2) AS UpVotes,
+        COUNT(*) FILTER (WHERE VoteTypeId = 3) AS DownVotes
+    FROM 
+        Votes
+    GROUP BY 
+        PostId
+)
+SELECT 
+    tp.PostId,
+    tp.Title,
+    tp.CreationDate,
+    tp.Score,
+    tp.ViewCount,
+    tp.OwnerDisplayName,
+    COALESCE(pvc.UpVotes, 0) AS UpVotes,
+    COALESCE(pvc.DownVotes, 0) AS DownVotes,
+    (COALESCE(pvc.UpVotes, 0) - COALESCE(pvc.DownVotes, 0)) AS NetVotes
+FROM 
+    TopPosts tp
+LEFT JOIN 
+    PostVoteCounts pvc ON tp.PostId = pvc.PostId
+ORDER BY 
+    tp.Score DESC, tp.CreationDate DESC;
+
+====================================================================================================
+6/11  query 8306   energy 2.191 J ± 0.020   output 10 rows, 10 columns   plan: execution 289 ms, 12 nodes, buffers 51 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        p.AnswerCount,
+        p.CommentCount,
+        u.DisplayName AS OwnerDisplayName,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    WHERE 
+        p.CreationDate >= CAST('2024-10-01 12:34:56' AS TIMESTAMP) - INTERVAL '1 year' 
+        AND p.PostTypeId IN (1, 2) 
+        AND p.Score > 0
+),
+AggregatedVotes AS (
+    SELECT 
+        v.PostId,
+        COUNT(CASE WHEN v.VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN v.VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes v
+    GROUP BY 
+        v.PostId
+)
+SELECT 
+    rp.PostId,
+    rp.Title,
+    rp.CreationDate,
+    rp.Score,
+    rp.ViewCount,
+    rp.AnswerCount,
+    rp.CommentCount,
+    rp.OwnerDisplayName,
+    av.UpVotes,
+    av.DownVotes
+FROM 
+    RankedPosts rp
+LEFT JOIN 
+    AggregatedVotes av ON rp.PostId = av.PostId
+WHERE 
+    rp.Rank <= 5
+ORDER BY 
+    rp.PostId, rp.Rank;
+
+====================================================================================================
+7/11  query 7113   energy 2.235 J ± 0.020   output 38 rows, 5 columns   plan: execution 293 ms, 12 nodes, buffers 71 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        P.Id AS PostId,
+        P.Title,
+        P.PostTypeId,
+        P.Score,
+        P.ViewCount,
+        U.DisplayName AS OwnerDisplayName,
+        U.Reputation AS OwnerReputation,
+        RANK() OVER (PARTITION BY P.PostTypeId ORDER BY P.Score DESC, P.ViewCount DESC) AS PostRank
+    FROM 
+        Posts P
+    JOIN 
+        Users U ON P.OwnerUserId = U.Id
+    WHERE 
+        P.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year'
+),
+TopPosts AS (
+    SELECT 
+        PostId,
+        Title,
+        OwnerDisplayName,
+        OwnerReputation
+    FROM 
+        RankedPosts
+    WHERE 
+        PostRank <= 10
+),
+VotesSummary AS (
+    SELECT 
+        V.PostId,
+        COUNT(CASE WHEN V.VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN V.VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes V
+    GROUP BY 
+        V.PostId
+),
+FinalResults AS (
+    SELECT 
+        TP.Title,
+        TP.OwnerDisplayName,
+        TP.OwnerReputation,
+        COALESCE(VS.UpVotes, 0) AS UpVotes,
+        COALESCE(VS.DownVotes, 0) AS DownVotes
+    FROM 
+        TopPosts TP
+    LEFT JOIN 
+        VotesSummary VS ON TP.PostId = VS.PostId
+)
+SELECT 
+    Title,
+    OwnerDisplayName,
+    OwnerReputation,
+    UpVotes,
+    DownVotes
+FROM 
+    FinalResults
+ORDER BY 
+    UpVotes DESC, DownVotes ASC;
+
+====================================================================================================
+8/11  query 8516   energy 2.245 J ± 0.020   output 20 rows, 8 columns   plan: execution 292 ms, 12 nodes, buffers 71 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        P.Id AS PostId,
+        P.Title,
+        P.ViewCount,
+        P.CreationDate,
+        P.Score,
+        U.DisplayName AS Author,
+        ROW_NUMBER() OVER (PARTITION BY P.PostTypeId ORDER BY P.Score DESC, P.CreationDate DESC) AS Rank
+    FROM 
+        Posts P
+    JOIN 
+        Users U ON P.OwnerUserId = U.Id
+    WHERE 
+        P.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year'
+),
+TopPosts AS (
+    SELECT 
+        RP.PostId,
+        RP.Title,
+        RP.ViewCount,
+        RP.CreationDate,
+        RP.Score,
+        RP.Author
+    FROM 
+        RankedPosts RP
+    WHERE 
+        RP.Rank <= 5
+),
+PostVoteDetails AS (
+    SELECT 
+        V.PostId,
+        COUNT(CASE WHEN V.VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN V.VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes V
+    GROUP BY 
+        V.PostId
+)
+SELECT 
+    TP.PostId,
+    TP.Title,
+    TP.ViewCount,
+    TP.Score,
+    TP.Author,
+    COALESCE(PVD.UpVotes, 0) AS UpVotes,
+    COALESCE(PVD.DownVotes, 0) AS DownVotes,
+    TP.CreationDate
+FROM 
+    TopPosts TP
+LEFT JOIN 
+    PostVoteDetails PVD ON TP.PostId = PVD.PostId
+ORDER BY 
+    TP.ViewCount DESC;
+
+====================================================================================================
+9/11  query 8896   energy 2.246 J ± 0.020   output 1000 rows (capped at 1000 lines), 8 columns   plan: execution 305 ms, 12 nodes, buffers 53 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.ViewCount,
+        p.Score,
+        U.DisplayName AS OwnerDisplayName,
+        RANK() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC) AS ScoreRank
+    FROM 
+        Posts p
+    JOIN 
+        Users U ON p.OwnerUserId = U.Id
+    WHERE 
+        p.PostTypeId = 1 AND 
+        p.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year'
+),
+PostStats AS (
+    SELECT 
+        rp.PostId,
+        rp.Title,
+        rp.ViewCount,
+        rp.Score,
+        rp.OwnerDisplayName,
+        CASE 
+            WHEN rp.ScoreRank = 1 THEN 'Top Post'
+            WHEN rp.ScoreRank <= 5 THEN 'Top 5 Posts'
+            ELSE 'Other Posts'
+        END AS PostCategory
+    FROM 
+        RankedPosts rp
+),
+PostVotes AS (
+    SELECT 
+        v.PostId,
+        COUNT(CASE WHEN v.VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN v.VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes v
+    GROUP BY 
+        v.PostId
+)
+SELECT 
+    ps.PostId,
+    ps.Title,
+    ps.ViewCount,
+    ps.Score,
+    ps.OwnerDisplayName,
+    ps.PostCategory,
+    COALESCE(pv.UpVotes, 0) AS TotalUpVotes,
+    COALESCE(pv.DownVotes, 0) AS TotalDownVotes
+FROM 
+    PostStats ps
+LEFT JOIN 
+    PostVotes pv ON ps.PostId = pv.PostId
+ORDER BY 
+    ps.Score DESC,
+    ps.ViewCount DESC;
+
+====================================================================================================
+10/11  query 8353   energy 2.367 J ± 0.021   output 20 rows, 9 columns   plan: execution 308 ms, 12 nodes, buffers 70 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        u.DisplayName AS OwnerDisplayName,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    WHERE 
+        p.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year' 
+        AND p.PostTypeId IN (1, 2)  
+),
+TopPosts AS (
+    SELECT 
+        PostId,
+        Title,
+        CreationDate,
+        Score,
+        ViewCount,
+        OwnerDisplayName
+    FROM 
+        RankedPosts
+    WHERE 
+        Rank <= 10
+),
+VotesSummary AS (
+    SELECT 
+        v.PostId,
+        COUNT(CASE WHEN v.VoteTypeId = 2 THEN 1 END) AS UpVotesCount,
+        COUNT(CASE WHEN v.VoteTypeId = 3 THEN 1 END) AS DownVotesCount,
+        COUNT(*) AS TotalVotesCount
+    FROM 
+        Votes v
+    GROUP BY 
+        v.PostId
+)
+SELECT 
+    tp.PostId,
+    tp.Title,
+    tp.CreationDate,
+    tp.Score,
+    tp.ViewCount,
+    tp.OwnerDisplayName,
+    vs.UpVotesCount,
+    vs.DownVotesCount,
+    vs.TotalVotesCount
+FROM 
+    TopPosts tp
+LEFT JOIN 
+    VotesSummary vs ON tp.PostId = vs.PostId
+ORDER BY 
+    tp.Score DESC, tp.ViewCount DESC;
+
+====================================================================================================
+11/11  query 5746   energy 2.409 J ± 0.021   output 35 rows, 10 columns   plan: execution 324 ms, 12 nodes, buffers 71 k, parallel workers 4
+====================================================================================================
+WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        u.DisplayName AS Owner,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        p.AnswerCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.ViewCount DESC, p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    WHERE 
+        p.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year'
+),
+TopPosts AS (
+    SELECT 
+        PostId, Title, Owner, CreationDate, Score, ViewCount, AnswerCount
+    FROM 
+        RankedPosts
+    WHERE 
+        Rank <= 10
+),
+VotesSummary AS (
+    SELECT 
+        PostId,
+        COUNT(CASE WHEN VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN VoteTypeId = 3 THEN 1 END) AS DownVotes,
+        COUNT(CASE WHEN VoteTypeId = 8 THEN 1 END) AS BountyStarts
+    FROM 
+        Votes
+    GROUP BY 
+        PostId
+),
+PostDetails AS (
+    SELECT 
+        tp.PostId,
+        tp.Title,
+        tp.Owner,
+        tp.CreationDate,
+        tp.Score,
+        tp.ViewCount,
+        tp.AnswerCount,
+        COALESCE(vs.UpVotes, 0) AS UpVotes,
+        COALESCE(vs.DownVotes, 0) AS DownVotes,
+        COALESCE(vs.BountyStarts, 0) AS BountyStarts
+    FROM 
+        TopPosts tp
+    LEFT JOIN 
+        VotesSummary vs ON tp.PostId = vs.PostId
+)
+SELECT 
+    pd.Title,
+    pd.Owner,
+    pd.CreationDate,
+    pd.Score,
+    pd.ViewCount,
+    pd.AnswerCount,
+    pd.UpVotes,
+    pd.DownVotes,
+    pd.BountyStarts,
+    EXTRACT(EPOCH FROM (cast('2024-10-01 12:34:56' as timestamp) - pd.CreationDate)) AS AgeInSeconds
+FROM 
+    PostDetails pd
+ORDER BY 
+    pd.ViewCount DESC, pd.Score DESC;
+

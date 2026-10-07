@@ -1,0 +1,186 @@
+SQLStorm StackOverflow — same plan shape (operators and tables; conditions may differ)
+rank 1 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   5 SQL variants, 5 query files (copies of one SQL text count as one variant)
+energy:  min 2.580 J   median 28.261 J   max 38.116 J   ->  14.77x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   5 distinct plan(s), 1 distinct plan shape(s)
+outputs: 5 distinct result(s) (rows compared, column names ignored)
+members: 12857 11454 13174 12485 12074  (cheapest first)
+
+pair file: 01_pair_12857_vs_12074.txt
+
+Every variant, cheapest first ('plan' = first 8 characters of its plan key):
+ variant  copies  energy (J)  x cheapest  rows  columns  plan ms  buffers (k)     plan
+   12857       1       2.580        1.00   537       11      235           55 df8de432
+   11454       1      24.401        9.46  1000       13     2208          120 81df7b7c
+   13174       1      28.261       10.95  1000       10     2252          105 8fd50dad
+   12485       1      32.952       12.77  1000       12     3003          129 37959038
+   12074       1      38.116       14.77  1000       10     2948          112 9b0bd6ad
+
+====================================================================================================
+1/5  query 12857   energy 2.580 J ± 0.023   output 537 rows, 11 columns   plan: execution 235 ms, 16 nodes, buffers 55 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.ViewCount,
+    p.Score,
+    p.CreationDate,
+    u.Id AS UserId,
+    u.DisplayName,
+    u.Reputation,
+    COUNT(v.Id) AS VoteCount,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(b.Id) AS BadgeCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Badges b ON u.Id = b.UserId
+WHERE 
+    p.CreationDate >= cast('2024-10-01' as date) - INTERVAL '1 month' 
+GROUP BY 
+    p.Id, u.Id
+ORDER BY 
+    p.CreationDate DESC;
+
+====================================================================================================
+2/5  query 11454   energy 24.401 J ± 0.217   output 1000 rows (capped at 1000 lines), 13 columns   plan: execution 2208 ms, 16 nodes, buffers 120 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate AS PostCreationDate,
+    p.Score AS PostScore,
+    p.ViewCount AS PostViewCount,
+    u.Id AS UserId,
+    u.DisplayName AS UserDisplayName,
+    u.Reputation AS UserReputation,
+    u.CreationDate AS UserCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(DISTINCT v.Id) AS VoteCount,
+    COUNT(DISTINCT b.Id) AS BadgeCount,
+    MAX(b.Date) AS LastBadgeDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Badges b ON u.Id = b.UserId
+WHERE 
+    p.CreationDate >= cast('2024-10-01 12:34:56' as timestamp) - INTERVAL '1 year' 
+GROUP BY 
+    p.Id, u.Id
+ORDER BY 
+    p.CreationDate DESC;
+
+====================================================================================================
+3/5  query 13174   energy 28.261 J ± 0.252   output 1000 rows (capped at 1000 lines), 10 columns   plan: execution 2252 ms, 16 nodes, buffers 105 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount,
+    COUNT(DISTINCT b.Id) AS BadgeCount,
+    p.ViewCount,
+    u.Reputation AS UserReputation
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Badges b ON u.Id = b.UserId
+WHERE 
+    p.CreationDate >= TIMESTAMP '2024-10-01 12:34:56' - INTERVAL '1 year'  
+GROUP BY 
+    p.Id, p.Title, p.CreationDate, p.Score, p.ViewCount, u.Reputation
+ORDER BY 
+    p.Score DESC, p.CreationDate DESC;
+
+====================================================================================================
+4/5  query 12485   energy 32.952 J ± 0.293   output 1000 rows (capped at 1000 lines), 12 columns   plan: execution 3003 ms, 16 nodes, buffers 129 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount,
+    p.CommentCount,
+    CASE
+        WHEN p.PostTypeId = 1 THEN 'Question'
+        WHEN p.PostTypeId = 2 THEN 'Answer'
+        ELSE 'Other'
+    END AS PostType,
+    COUNT(DISTINCT c.Id) AS CommentCount,
+    COUNT(DISTINCT v.Id) AS VoteCount,
+    COUNT(DISTINCT b.Id) AS BadgeCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON c.PostId = p.Id
+LEFT JOIN 
+    Votes v ON v.PostId = p.Id
+LEFT JOIN 
+    Badges b ON b.UserId = u.Id
+WHERE 
+    p.CreationDate >= DATE '2023-01-01' AND p.CreationDate < DATE '2024-01-01'
+GROUP BY 
+    p.Id, p.Title, u.DisplayName, p.CreationDate, p.Score, p.ViewCount, p.AnswerCount, p.CommentCount
+ORDER BY 
+    p.CreationDate DESC;
+
+====================================================================================================
+5/5  query 12074   energy 38.116 J ± 0.339   output 1000 rows (capped at 1000 lines), 10 columns   plan: execution 2948 ms, 16 nodes, buffers 112 k, parallel workers 2
+====================================================================================================
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount,
+    u.DisplayName AS UserDisplayName,
+    u.Reputation AS UserReputation,
+    COUNT(DISTINCT b.Id) AS BadgeCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Badges b ON u.Id = b.UserId
+WHERE 
+    p.CreationDate >= '2024-10-01 12:34:56'::timestamp - INTERVAL '1 year'
+GROUP BY 
+    p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score,
+    u.DisplayName, u.Reputation
+ORDER BY 
+    p.CreationDate DESC;
+

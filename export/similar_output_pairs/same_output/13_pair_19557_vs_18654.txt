@@ -1,0 +1,170 @@
+SQLStorm StackOverflow — same output (same rows: identical, renamed or reordered columns, reordered rows)
+rank 13 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   20 SQL variants, 215 query files (copies of one SQL text count as one variant)
+energy:  min 4.686 J   median 4.725 J   max 12.516 J   ->  2.67x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   5 distinct plan(s), 5 distinct plan shape(s)
+outputs: 3 distinct result(s) (rows compared, column names ignored) over 20 saved outputs
+members: 19557 16036 17819 15020 15336 15261 15668 15034 15590 18682 16332 17188 15057 15196 19043 19111 19783 19011 16241 18654  (cheapest first)
+all 20 statements: 13_group.txt
+
+The two below are the cheapest and the most expensive of the group (4.686 J vs 12.516 J).
+
+====================================================================================================
+CHEAPEST: query 19557
+====================================================================================================
+query 19557
+energy 4.686 J ± 0.042
+output 10 rows, 7 columns
+plan: execution 826 ms, 13 nodes, buffers 55 k, parallel workers 0
+
+-- SQL
+SELECT 
+    Posts.Id AS PostId,
+    Posts.Title,
+    Posts.CreationDate,
+    Users.DisplayName AS OwnerDisplayName,
+    COUNT(Comments.Id) AS CommentCount,
+    SUM(CASE WHEN Votes.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN Votes.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+LEFT JOIN 
+    Votes ON Posts.Id = Votes.PostId
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Posts.Id, Users.DisplayName, Posts.Title, Posts.CreationDate
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;
+
+-- first rows of the output
+postid|title|creationdate|ownerdisplayname|commentcount|upvotes|downvotes
+342707|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|2024-09-30 22:49:25.743|J. Mini|0|0|0
+342706|Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|2024-09-30 22:05:14.587|Lucas David Ferrero
+342704|Varbinary column taking lots of space|2024-09-30 18:22:14.783|PhillysDBA|0|0|1
+342703|Which DSE version is compatible to import Cassandra 4.x SSTables?|2024-09-30 17:53:03.78|Nahush|0|0|0
+342702|Show SQL Execution Plan on Trace Replay|2024-09-30 16:38:40.863|Neil Laslett|0|0|0
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 18654
+====================================================================================================
+query 18654
+energy 12.516 J ± 0.111
+output 10 rows, 7 columns
+plan: execution 827 ms, 17 nodes, buffers 119 k, parallel workers 4
+
+-- SQL
+SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    COALESCE(c.CommentCount, 0) AS TotalComments,
+    COALESCE(v.UpVotes, 0) AS TotalUpVotes,
+    COALESCE(v.DownVotes, 0) AS TotalDownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    (SELECT PostId, COUNT(*) AS CommentCount FROM Comments GROUP BY PostId) c ON p.Id = c.PostId
+LEFT JOIN 
+    (SELECT PostId, SUM(CASE WHEN VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+                   SUM(CASE WHEN VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+     FROM Votes
+     GROUP BY PostId) v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;
+
+-- first rows of the output
+postid|title|creationdate|author|totalcomments|totalupvotes|totaldownvotes
+342707|SSMS's GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|2024-09-30 22:49:25.743|J. Mini|0|0|0
+342706|Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys|2024-09-30 22:05:14.587|Lucas David Ferrero
+342704|Varbinary column taking lots of space|2024-09-30 18:22:14.783|PhillysDBA|0|0|1
+342703|Which DSE version is compatible to import Cassandra 4.x SSTables?|2024-09-30 17:53:03.78|Nahush|0|0|0
+342702|Show SQL Execution Plan on Trace Replay|2024-09-30 16:38:40.863|Neil Laslett|0|0|0
+…
+
+====================================================================================================
+PLAN of 19557 (cheapest)
+====================================================================================================
+Limit
+  Sort [Sort Key=posts.creationdate DESC]
+    HashAggregate [Group Key=posts.id, users.displayname]
+      Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+        Seq Scan on votes
+        Hash
+          Hash Join [Hash Cond=(posts.owneruserid = users.id)]
+            Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+              Seq Scan on comments
+              Hash
+                Seq Scan on posts [Filter=(posttypeid = 1)]
+            Hash
+              Seq Scan on users
+
+====================================================================================================
+PLAN of 18654 (most expensive)
+====================================================================================================
+Limit
+  Nested Loop
+    Gather Merge
+      Sort [Sort Key=posts.creationdate DESC]
+        Hash Left Join [Hash Cond=(posts.id = q.postid)]
+          Hash Left Join [Hash Cond=(posts.id = q.postid)]
+            Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+            Hash
+              Subquery Scan
+                HashAggregate [Group Key=comments.postid]
+                  Seq Scan on comments
+          Hash
+            Subquery Scan
+              HashAggregate [Group Key=votes.postid]
+                Seq Scan on votes
+    Memoize [Cache Key=posts.owneruserid]
+      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+
+====================================================================================================
+PLAN DIFFERENCE
+====================================================================================================
+--- 19557
++++ 18654
+@@ -2,10 +2,6 @@
+-  Sort [Sort Key=posts.creationdate DESC]
+-    HashAggregate [Group Key=posts.id, users.displayname]
+-      Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+-        Seq Scan on votes
+-        Hash
+-          Hash Join [Hash Cond=(posts.owneruserid = users.id)]
+-            Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+-              Seq Scan on comments
+-              Hash
+-                Seq Scan on posts [Filter=(posttypeid = 1)]
++  Nested Loop
++    Gather Merge
++      Sort [Sort Key=posts.creationdate DESC]
++        Hash Left Join [Hash Cond=(posts.id = q.postid)]
++          Hash Left Join [Hash Cond=(posts.id = q.postid)]
++            Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+@@ -13 +9,9 @@
+-              Seq Scan on users
++              Subquery Scan
++                HashAggregate [Group Key=comments.postid]
++                  Seq Scan on comments
++          Hash
++            Subquery Scan
++              HashAggregate [Group Key=votes.postid]
++                Seq Scan on votes
++    Memoize [Cache Key=posts.owneruserid]
++      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+

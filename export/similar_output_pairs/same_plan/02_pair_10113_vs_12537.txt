@@ -1,0 +1,118 @@
+SQLStorm StackOverflow — same plan (operators, tables and conditions)
+rank 2 of 20 by energy gap within the group (most expensive / cheapest)
+
+group:   2 SQL variants, 2 query files (copies of one SQL text count as one variant)
+energy:  min 0.548 J   median 0.782 J   max 1.016 J   ->  1.86x
+         (laptop 2 slope energy per copy; a variant's energy is the median over its copies)
+plans:   1 distinct plan(s), 1 distinct plan shape(s)
+outputs: 2 distinct result(s) (rows compared, column names ignored)
+members: 10113 12537  (cheapest first)
+
+The two below are the cheapest and the most expensive of the group (0.548 J vs 1.016 J).
+
+====================================================================================================
+CHEAPEST: query 10113
+====================================================================================================
+query 10113
+energy 0.548 J ± 0.005
+output 6 rows, 4 columns
+plan: execution 49 ms, 10 nodes, buffers 32 k, parallel workers 4
+
+-- SQL
+WITH PostStats AS (
+    SELECT 
+        p.PostTypeId,
+        COUNT(p.Id) AS TotalPosts,
+        AVG(p.ViewCount) AS AverageViews,
+        AVG(p.Score) AS AverageScore
+    FROM 
+        Posts p
+    GROUP BY 
+        p.PostTypeId
+)
+
+SELECT 
+    pt.Name AS PostType,
+    ps.TotalPosts,
+    ps.AverageViews,
+    ps.AverageScore
+FROM 
+    PostTypes pt
+JOIN 
+    PostStats ps ON pt.Id = ps.PostTypeId
+ORDER BY 
+    ps.TotalPosts DESC;
+
+-- first rows of the output
+posttype|totalposts|averageviews|averagescore
+Answer|140494||3.0050535965948724
+Question|104437|4564.5559619675019390|2.4997941342627613
+TagWikiExcerpt|857||0.00000000000000000000
+TagWiki|857||0.00000000000000000000
+ModeratorNomination|24||0.00000000000000000000
+…
+
+====================================================================================================
+MOST EXPENSIVE: query 12537
+====================================================================================================
+query 12537
+energy 1.016 J ± 0.009
+output 6 rows, 8 columns
+plan: execution 58 ms, 10 nodes, buffers 32 k, parallel workers 4
+
+-- SQL
+WITH PostStats AS (
+    SELECT 
+        p.PostTypeId,
+        COUNT(p.Id) AS TotalPosts,
+        SUM(CASE WHEN p.Score > 0 THEN 1 ELSE 0 END) AS PositiveScorePosts,
+        SUM(CASE WHEN p.Score < 0 THEN 1 ELSE 0 END) AS NegativeScorePosts,
+        SUM(CASE WHEN p.ViewCount IS NOT NULL THEN p.ViewCount ELSE 0 END) AS TotalViews,
+        AVG(COALESCE(p.Score, 0)) AS AvgScore,
+        AVG(COALESCE(p.ViewCount, 0)) AS AvgViewCount,
+        AVG(EXTRACT(EPOCH FROM (COALESCE(p.LastActivityDate, CURRENT_TIMESTAMP) - p.CreationDate))) AS AvgTimeToActivity
+    FROM 
+        Posts p
+    GROUP BY 
+        p.PostTypeId
+)
+
+SELECT 
+    pt.Name AS PostType,
+    ps.TotalPosts,
+    ps.PositiveScorePosts,
+    ps.NegativeScorePosts,
+    ps.TotalViews,
+    ps.AvgScore,
+    ps.AvgViewCount,
+    ps.AvgTimeToActivity
+FROM 
+    PostTypes pt
+JOIN 
+    PostStats ps ON pt.Id = ps.PostTypeId
+ORDER BY 
+    ps.TotalPosts DESC;
+
+-- first rows of the output
+posttype|totalposts|positivescoreposts|negativescoreposts|totalviews|avgscore|avgviewcount|avgtimetoactivity
+Answer|140494|105109|3733|0|3.0050535965948724|0.000000000000000000000000|7059110.416853125400
+Question|104437|67561|4289|476708531|2.4997941342627613|4564.5559619675019390|30895258.450773040206
+TagWikiExcerpt|857|0|0|0|0.00000000000000000000|0.00000000000000000000|18559962.778212368728
+TagWiki|857|0|0|0|0.00000000000000000000|0.00000000000000000000|22827712.133625437573
+ModeratorNomination|24|0|0|0|0.00000000000000000000|0.00000000000000000000|80383.655958333333
+…
+
+====================================================================================================
+PLAN (the same for both; LIMIT values and output expressions are not shown in it)
+====================================================================================================
+Sort [Sort Key=q.totalposts DESC]
+  Hash Join [Hash Cond=(posttypes.id = q.posttypeid)]
+    Seq Scan on posttypes
+    Hash
+      Subquery Scan
+        Finalize GroupAggregate [Group Key=posts.posttypeid]
+          Gather Merge
+            Sort [Sort Key=posts.posttypeid]
+              Partial HashAggregate [Group Key=posts.posttypeid]
+                Parallel Seq Scan on posts
+
