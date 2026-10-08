@@ -1,0 +1,2036 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #5 — 17350 vs 17462</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>12857 vs 12074<span class="x">14.77×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>11119 vs 16363<span class="x">11.09×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14843 vs 11239<span class="x">9.77×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>9855 vs 29614<span class="x">8.97×</span></a><a href="../same_plan_shape/05.html" class="on"><span class="r">#5</span>17350 vs 17462<span class="x">8.66×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>11370 vs 11796<span class="x">7.23×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>9160 vs 26465<span class="x">7.23×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>16304 vs 18193<span class="x">6.73×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>14104 vs 10365<span class="x">6.11×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>31099 vs 5746<span class="x">5.23×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>11375 vs 18573<span class="x">4.92×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>10008 vs 13752<span class="x">3.86×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>12471 vs 10668<span class="x">3.73×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>11976 vs 7246<span class="x">3.72×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>826 vs 4675<span class="x">3.70×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11608 vs 13924<span class="x">3.64×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>10621 vs 11860<span class="x">3.58×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>14332 vs 12039<span class="x">3.39×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>7835 vs 6505<span class="x">3.15×</span></a></aside><main><h1>Same plan shape #5: 17350 vs 17462 — 8.66×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 5 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">107</div></div><div class="card"><div class="k">query files</div><div class="v">450</div></div><div class="card"><div class="k">energy min</div><div class="v">1.307 J</div></div><div class="card"><div class="k">median</div><div class="v">1.420 J</div></div><div class="card"><div class="k">max</div><div class="v">11.327 J</div></div><div class="card"><div class="k">gap</div><div class="v">8.66×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">33</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">47</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 17350</h3><dl class="f"><dt>energy</dt><dd>1.307 J ± 0.012</dd><dt>output</dt><dd>10 rows, 4 columns</dd><dt>plan</dt><dd>109 ms, 12 nodes, 43 k buffers, 3 parallel workers</dd></dl><b>SQL</b><pre>SELECT u.DisplayName, p.Title, p.Score, COUNT(c.Id) AS CommentCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+WHERE p.PostTypeId = 1 
+GROUP BY u.DisplayName, p.Title, p.Score
+ORDER BY p.Score DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">displayname</th><th class="">title</th><th class="">score</th><th class="">commentcount</th></tr></thead><tbody><tr><td class="">Jonas</td><td class="">How do I list all databases and tables using psql?</td><td class="">1572</td><td class="">0</td></tr><tr><td class="">Stephane Rolland</td><td class="">List all columns for a specified table</td><td class="">566</td><td class="">0</td></tr><tr><td class="">markdorison</td><td class="">How do you mysqldump specific table(s)?</td><td class="">546</td><td class="">2</td></tr><tr><td class="">Martin Smith</td><td class="">What&#x27;s the difference between a temp table and table variable in SQL Server?</td><td class="">489</td><td class="">1</td></tr><tr><td class="">Stéphane</td><td class="">How do I list all schemas in PostgreSQL?</td><td class="">442</td><td class="">0</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  GroupAggregate [Group Key=posts.score, users.displayname, posts.title]
+    Incremental Sort [Sort Key=posts.score DESC, users.displayname, posts.title; Presorted Key=posts.score]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.score DESC]
+            Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+              Parallel Seq Scan on comments
+              Parallel Hash
+                Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 17462</h3><dl class="f"><dt>energy</dt><dd>11.327 J ± 0.101</dd><dt>output</dt><dd>10 rows, 6 columns</dd><dt>plan</dt><dd>619 ms, 12 nodes, 286 k buffers, 3 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.Title,
+    p.Body,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.Body, u.DisplayName, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">title</th><th class="">body</th><th class="">ownerdisplayname</th><th class="">creationdate</th><th class="">viewcount</th><th class="">commentcount</th></tr></thead><tbody><tr><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|&lt;p&gt;I have a databas…</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class=""><p>I'll give you some context and then ask my question.
+I'm building a database model for an ecommerce application. This application needs to communicate to …</td><td class="">Lucas David Ferrero</td><td class="">2024-09-30 22:05:14.587</td><td class="">19</td><td class="">0</td></tr><tr><td class="">Varbinary column taking lots of space</td><td class=""><p>I have restored 2 copies of the same database (I used a different backup to restore each database but both backups were taken very close to each other). A…</td><td class="">PhillysDBA</td><td class="">2024-09-30 18:22:14.783</td><td class="">36</td><td class="">0</td></tr><tr><td class="">Which DSE version is compatible to import Cassandra 4.x SSTables?</td><td class=""><p>Is there any DSE 6.x version supporting C* 4.x sstable format (-nb-)? I want to load data from apache C* 4.x using sstableloader into DSE 6.x. What would …</td><td class="">Nahush</td><td class="">2024-09-30 17:53:03.78</td><td class="">29</td><td class="">0</td></tr><tr><td class="">Show SQL Execution Plan on Trace Replay</td><td class=""><p>I'm using Microsoft SQL Server Profiler to capture production trace data for replay on a dev server to test indexing changes.  Capturing the trace is no p…</td><td class="">Neil Laslett</td><td class="">2024-09-30 16:38:40.863</td><td class="">34</td><td class="">0</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  GroupAggregate [Group Key=posts.creationdate, posts.title, posts.body, users.displayname, posts.viewcount]
+    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, posts.body, users.displayname, posts.viewcount; Presorted Key=posts.creationdate, posts.title, posts.body]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.creationdate DESC, posts.title, posts.body]
+            Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+              Parallel Seq Scan on comments
+              Parallel Hash
+                Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 17350
++++ 17462
+@@ -1,7 +1,7 @@
+ Limit
+<span class="d">-  GroupAggregate [Group Key=posts.score, users.displayname, posts.title]</span>
+<span class="d">-    Incremental Sort [Sort Key=posts.score DESC, users.displayname, posts.title; Presorted Key=posts.score]</span>
+<span class="a">+  GroupAggregate [Group Key=posts.creationdate, posts.title, posts.body, users.displayname, posts.viewcount]</span>
+<span class="a">+    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, posts.body, users.displayname, posts.viewcount; Presorted Key=posts.creationdate, posts.title, posts.body]</span>
+       Nested Loop
+         Gather Merge
+<span class="d">-          Sort [Sort Key=posts.score DESC]</span>
+<span class="a">+          Sort [Sort Key=posts.creationdate DESC, posts.title, posts.body]</span>
+             Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]</pre><details><summary>SQL difference</summary><pre>--- 17350
++++ 17462
+@@ -1,8 +1,20 @@
+<span class="d">-SELECT u.DisplayName, p.Title, p.Score, COUNT(c.Id) AS CommentCount</span>
+<span class="d">-FROM Posts p</span>
+<span class="d">-JOIN Users u ON p.OwnerUserId = u.Id</span>
+<span class="d">-LEFT JOIN Comments c ON p.Id = c.PostId</span>
+<span class="d">-WHERE p.PostTypeId = 1 </span>
+<span class="d">-GROUP BY u.DisplayName, p.Title, p.Score</span>
+<span class="d">-ORDER BY p.Score DESC</span>
+<span class="a">+SELECT </span>
+<span class="a">+    p.Title,</span>
+<span class="a">+    p.Body,</span>
+<span class="a">+    u.DisplayName AS OwnerDisplayName,</span>
+<span class="a">+    p.CreationDate,</span>
+<span class="a">+    p.ViewCount,</span>
+<span class="a">+    COUNT(c.Id) AS CommentCount</span>
+<span class="a">+FROM </span>
+<span class="a">+    Posts p</span>
+<span class="a">+JOIN </span>
+<span class="a">+    Users u ON p.OwnerUserId = u.Id</span>
+<span class="a">+LEFT JOIN </span>
+<span class="a">+    Comments c ON p.Id = c.PostId</span>
+<span class="a">+WHERE </span>
+<span class="a">+    p.PostTypeId = 1 </span>
+<span class="a">+GROUP BY </span>
+<span class="a">+    p.Title, p.Body, u.DisplayName, p.CreationDate, p.ViewCount</span>
+<span class="a">+ORDER BY </span>
+<span class="a">+    p.CreationDate DESC</span>
+ LIMIT 10;</pre></details><h2>All 107 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">17350</td><td class="n">1</td><td class="n">1.307</td><td class="n">1.00</td><td class="n">10</td><td class="n">4</td><td class="n">109</td><td class="n">43</td><td class="">2133c587</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, p.Title, p.Score, COUNT(c.Id) AS CommentCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+WHERE p.PostTypeId = 1 
+GROUP BY u.DisplayName, p.Title, p.Score
+ORDER BY p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18510</td><td class="n">1</td><td class="n">1.317</td><td class="n">1.01</td><td class="n">10</td><td class="n">5</td><td class="n">110</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Posts p 
+INNER JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score 
+ORDER BY 
+    p.Score DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15554</td><td class="n">9</td><td class="n">1.328</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">110</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    PostScore DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15332</td><td class="n">6</td><td class="n">1.333</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">112</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15095</td><td class="n">5</td><td class="n">1.334</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">111</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18592</td><td class="n">1</td><td class="n">1.336</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">111</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15431</td><td class="n">1</td><td class="n">1.336</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">116</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName,
+    Posts.Title,
+    Posts.CreationDate,
+    Posts.Score,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+WHERE 
+    Posts.PostTypeId = 1  
+GROUP BY 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score
+ORDER BY 
+    Posts.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16097</td><td class="n">15</td><td class="n">1.338</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">111</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score 
+ORDER BY 
+    p.Score DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16686</td><td class="n">1</td><td class="n">1.340</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">109</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.Score,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.Score, p.CreationDate
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15370</td><td class="n">1</td><td class="n">1.340</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">111</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, 
+       p.Title, 
+       p.CreationDate, 
+       p.Score, 
+       COUNT(c.Id) as CommentCount
+FROM Users u
+JOIN Posts p ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON c.PostId = p.Id
+WHERE p.PostTypeId = 1 
+GROUP BY u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17006</td><td class="n">2</td><td class="n">1.343</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">115</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    PostScore DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15963</td><td class="n">2</td><td class="n">1.349</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">111</td><td class="n">43</td><td class="">d2ea90c1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName,
+    Posts.Title,
+    Posts.CreationDate,
+    Posts.Score,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Comments.PostId = Posts.Id
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Users.DisplayName, Posts.Title, Posts.CreationDate, Posts.Score
+ORDER BY 
+    Posts.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17390</td><td class="n">1</td><td class="n">1.350</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">118</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName,
+    Posts.Title,
+    Posts.CreationDate,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Users
+JOIN 
+    Posts ON Users.Id = Posts.OwnerUserId
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Users.DisplayName, Posts.Title, Posts.CreationDate
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15253</td><td class="n">8</td><td class="n">1.353</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">114</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName AS UserName,
+    P.Title AS PostTitle,
+    P.CreationDate AS PostDate,
+    COUNT(C.Id) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate
+ORDER BY 
+    PostDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18541</td><td class="n">2</td><td class="n">1.353</td><td class="n">1.03</td><td class="n">10</td><td class="n">6</td><td class="n">111</td><td class="n">43</td><td class="">e9117f82</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score, p.ViewCount
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16258</td><td class="n">2</td><td class="n">1.356</td><td class="n">1.04</td><td class="n">10</td><td class="n">4</td><td class="n">117</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName,
+    Posts.Title,
+    Posts.CreationDate,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Users.DisplayName, Posts.Title, Posts.CreationDate
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17528</td><td class="n">1</td><td class="n">1.358</td><td class="n">1.04</td><td class="n">10</td><td class="n">6</td><td class="n">114</td><td class="n">43</td><td class="">e9117f82</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName,
+    P.Title,
+    P.CreationDate,
+    P.ViewCount,
+    P.Score,
+    COUNT(C.Id) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount, P.Score
+ORDER BY 
+    P.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15478</td><td class="n">2</td><td class="n">1.363</td><td class="n">1.04</td><td class="n">10</td><td class="n">4</td><td class="n">117</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15151</td><td class="n">12</td><td class="n">1.363</td><td class="n">1.04</td><td class="n">10</td><td class="n">4</td><td class="n">117</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15443</td><td class="n">1</td><td class="n">1.367</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">117</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score, 
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Users
+JOIN 
+    Posts ON Users.Id = Posts.OwnerUserId
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+WHERE 
+    Posts.PostTypeId = 1  
+GROUP BY 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15304</td><td class="n">8</td><td class="n">1.371</td><td class="n">1.05</td><td class="n">10</td><td class="n">4</td><td class="n">116</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName, 
+    p.Title AS PostTitle, 
+    p.CreationDate AS PostDate, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Users u 
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15457</td><td class="n">13</td><td class="n">1.371</td><td class="n">1.05</td><td class="n">10</td><td class="n">4</td><td class="n">117</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15399</td><td class="n">17</td><td class="n">1.372</td><td class="n">1.05</td><td class="n">10</td><td class="n">4</td><td class="n">117</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName, 
+    p.Title AS PostTitle, 
+    p.CreationDate AS PostDate, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Users u 
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate 
+ORDER BY 
+    PostDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">18441</td><td class="n">1</td><td class="n">1.373</td><td class="n">1.05</td><td class="n">10</td><td class="n">4</td><td class="n">115</td><td class="n">43</td><td class="">89895af8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Comments.PostId = Posts.Id
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Users.DisplayName, Posts.Title, Posts.CreationDate
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17363</td><td class="n">1</td><td class="n">1.379</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">118</td><td class="n">43</td><td class="">6a71c799</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName,
+    Posts.Title,
+    Posts.CreationDate,
+    Posts.ViewCount,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Comments.PostId = Posts.Id
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Users.DisplayName, Posts.Title, Posts.CreationDate, Posts.ViewCount
+ORDER BY 
+    Posts.ViewCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15596</td><td class="n">7</td><td class="n">1.380</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">120</td><td class="n">43</td><td class="">f323115d</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    p.ViewCount, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15182</td><td class="n">2</td><td class="n">1.385</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">117</td><td class="n">43</td><td class="">6a71c799</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount AS PostViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.ViewCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19452</td><td class="n">1</td><td class="n">1.385</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">122</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName AS UserName,
+    Posts.Title AS PostTitle,
+    Posts.CreationDate AS PostDate,
+    Posts.Score AS PostScore,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Users
+JOIN 
+    Posts ON Users.Id = Posts.OwnerUserId
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+WHERE 
+    Posts.PostTypeId = 1  
+GROUP BY 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score
+ORDER BY 
+    PostDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15227</td><td class="n">12</td><td class="n">1.386</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">122</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15772</td><td class="n">2</td><td class="n">1.389</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">121</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18141</td><td class="n">1</td><td class="n">1.389</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">118</td><td class="n">43</td><td class="">48167b14</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    u.Reputation, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Users u 
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, u.Reputation, p.Title, p.CreationDate, p.Score 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">18134</td><td class="n">1</td><td class="n">1.390</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">119</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName, 
+    p.Title AS PostTitle, 
+    p.Score AS PostScore, 
+    p.CreationDate AS PostDate, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.Score, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15037</td><td class="n">4</td><td class="n">1.391</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">118</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score,
+    COUNT(Comments.Id) as CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+WHERE 
+    Posts.PostTypeId = 1  
+GROUP BY 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15877</td><td class="n">1</td><td class="n">1.392</td><td class="n">1.06</td><td class="n">100</td><td class="n">5</td><td class="n">119</td><td class="n">44</td><td class="">f323115d</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName,
+    P.Title,
+    P.CreationDate,
+    P.ViewCount,
+    COUNT(C.Id) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">16759</td><td class="n">1</td><td class="n">1.392</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">119</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.Score,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.Score, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18715</td><td class="n">2</td><td class="n">1.393</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">117</td><td class="n">43</td><td class="">f323115d</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    p.ViewCount AS Views,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18278</td><td class="n">3</td><td class="n">1.394</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">116</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName,
+    Posts.Title,
+    Posts.CreationDate,
+    Posts.Score,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Comments.PostId = Posts.Id
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Users.DisplayName, Posts.Title, Posts.CreationDate, Posts.Score
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18886</td><td class="n">1</td><td class="n">1.396</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">118</td><td class="n">43</td><td class="">6a71c799</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.ViewCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16168</td><td class="n">3</td><td class="n">1.397</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">118</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15001</td><td class="n">28</td><td class="n">1.398</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">120</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16095</td><td class="n">4</td><td class="n">1.399</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">119</td><td class="n">43</td><td class="">048d72bb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18194</td><td class="n">1</td><td class="n">1.401</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">118</td><td class="n">43</td><td class="">6a71c799</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName, 
+    p.Title AS PostTitle, 
+    p.CreationDate AS PostCreationDate, 
+    p.ViewCount AS PostViewCount, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount
+ORDER BY 
+    PostViewCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16847</td><td class="n">2</td><td class="n">1.401</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">119</td><td class="n">43</td><td class="">f323115d</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16112</td><td class="n">1</td><td class="n">1.406</td><td class="n">1.08</td><td class="n">10</td><td class="n">4</td><td class="n">120</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS Owner, 
+    p.CreationDate, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17809</td><td class="n">1</td><td class="n">1.407</td><td class="n">1.08</td><td class="n">100</td><td class="n">4</td><td class="n">119</td><td class="n">44</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.CreationDate, u.DisplayName, COUNT(c.Id) AS CommentCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+WHERE p.PostTypeId = 1 
+GROUP BY p.Title, p.CreationDate, u.DisplayName
+ORDER BY p.CreationDate DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">15529</td><td class="n">1</td><td class="n">1.407</td><td class="n">1.08</td><td class="n">10</td><td class="n">4</td><td class="n">122</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle,
+    u.DisplayName AS Author,
+    p.CreationDate AS PostDate,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16229</td><td class="n">4</td><td class="n">1.408</td><td class="n">1.08</td><td class="n">10</td><td class="n">4</td><td class="n">120</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC 
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">15008</td><td class="n">73</td><td class="n">1.413</td><td class="n">1.08</td><td class="n">10</td><td class="n">4</td><td class="n">118</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16337</td><td class="n">3</td><td class="n">1.415</td><td class="n">1.08</td><td class="n">10</td><td class="n">6</td><td class="n">119</td><td class="n">43</td><td class="">9a7f9e71</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15111</td><td class="n">23</td><td class="n">1.415</td><td class="n">1.08</td><td class="n">10</td><td class="n">4</td><td class="n">120</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.CreationDate, u.DisplayName, COUNT(c.Id) AS CommentCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+WHERE p.PostTypeId = 1 
+GROUP BY p.Title, p.CreationDate, u.DisplayName
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18845</td><td class="n">1</td><td class="n">1.417</td><td class="n">1.08</td><td class="n">10</td><td class="n">4</td><td class="n">119</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments ON p.Id = Comments.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15854</td><td class="n">1</td><td class="n">1.418</td><td class="n">1.08</td><td class="n">10</td><td class="n">4</td><td class="n">121</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Title,
+    Posts.CreationDate,
+    Users.DisplayName AS Author,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Posts.Title, Posts.CreationDate, Users.DisplayName
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">19071</td><td class="n">1</td><td class="n">1.420</td><td class="n">1.09</td><td class="n">10</td><td class="n">4</td><td class="n">117</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerName, 
+    COUNT(CASE WHEN C.Id IS NOT NULL THEN 1 END) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1  
+GROUP BY 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName
+ORDER BY 
+    P.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">15701</td><td class="n">1</td><td class="n">1.420</td><td class="n">1.09</td><td class="n">10</td><td class="n">4</td><td class="n">119</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+INNER JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16632</td><td class="n">2</td><td class="n">1.422</td><td class="n">1.09</td><td class="n">10</td><td class="n">4</td><td class="n">118</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">17377</td><td class="n">2</td><td class="n">1.422</td><td class="n">1.09</td><td class="n">10</td><td class="n">4</td><td class="n">118</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    u.DisplayName AS AuthorName,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17635</td><td class="n">1</td><td class="n">1.422</td><td class="n">1.09</td><td class="n">10</td><td class="n">4</td><td class="n">120</td><td class="n">43</td><td class="">eb43cf75</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS Owner, 
+    COUNT(c.Id) AS CommentCount, 
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15537</td><td class="n">8</td><td class="n">1.423</td><td class="n">1.09</td><td class="n">10</td><td class="n">6</td><td class="n">119</td><td class="n">43</td><td class="">5678c0df</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName,
+    P.Title,
+    P.CreationDate,
+    P.Score,
+    P.ViewCount,
+    COUNT(C.ID) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1  
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.Score, P.ViewCount
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15488</td><td class="n">3</td><td class="n">1.425</td><td class="n">1.09</td><td class="n">10</td><td class="n">6</td><td class="n">120</td><td class="n">43</td><td class="">9a7f9e71</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName,
+    P.Title,
+    P.CreationDate,
+    P.ViewCount,
+    P.Score,
+    COUNT(C.Id) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1  
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount, P.Score
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19445</td><td class="n">1</td><td class="n">1.428</td><td class="n">1.09</td><td class="n">10</td><td class="n">6</td><td class="n">121</td><td class="n">43</td><td class="">9a7f9e71</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15557</td><td class="n">1</td><td class="n">1.429</td><td class="n">1.09</td><td class="n">10</td><td class="n">6</td><td class="n">120</td><td class="n">43</td><td class="">9a7f9e71</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount AS PostViewCount,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15161</td><td class="n">11</td><td class="n">1.432</td><td class="n">1.10</td><td class="n">10</td><td class="n">5</td><td class="n">125</td><td class="n">43</td><td class="">15f8093f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.Score, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    u.DisplayName, 
+    p.CreationDate, 
+    p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16292</td><td class="n">1</td><td class="n">1.436</td><td class="n">1.10</td><td class="n">10</td><td class="n">5</td><td class="n">120</td><td class="n">43</td><td class="">3e0e65a1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount AS PostViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15547</td><td class="n">12</td><td class="n">1.438</td><td class="n">1.10</td><td class="n">10</td><td class="n">5</td><td class="n">120</td><td class="n">43</td><td class="">15f8093f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName, 
+    p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15908</td><td class="n">2</td><td class="n">1.439</td><td class="n">1.10</td><td class="n">10</td><td class="n">5</td><td class="n">121</td><td class="n">43</td><td class="">15f8093f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    p.Score 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.Score 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16037</td><td class="n">2</td><td class="n">1.439</td><td class="n">1.10</td><td class="n">10</td><td class="n">5</td><td class="n">123</td><td class="n">43</td><td class="">15f8093f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.Score, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.Score
+ORDER BY 
+    p.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">19745</td><td class="n">1</td><td class="n">1.444</td><td class="n">1.10</td><td class="n">10</td><td class="n">6</td><td class="n">122</td><td class="n">43</td><td class="">c76a8ca1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title,
+    U.DisplayName AS OwnerName,
+    P.CreationDate,
+    P.Score,
+    P.ViewCount,
+    COUNT(C.Id) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1  
+GROUP BY 
+    P.Title, U.DisplayName, P.CreationDate, P.Score, P.ViewCount
+ORDER BY 
+    P.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">18253</td><td class="n">2</td><td class="n">1.448</td><td class="n">1.11</td><td class="n">10</td><td class="n">5</td><td class="n">120</td><td class="n">43</td><td class="">3e0e65a1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.ViewCount 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">19727</td><td class="n">1</td><td class="n">1.449</td><td class="n">1.11</td><td class="n">10</td><td class="n">6</td><td class="n">123</td><td class="n">43</td><td class="">c76a8ca1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Owner,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON c.PostId = p.Id
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.Score, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18756</td><td class="n">1</td><td class="n">1.449</td><td class="n">1.11</td><td class="n">10</td><td class="n">5</td><td class="n">117</td><td class="n">43</td><td class="">6a71c799</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.ViewCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15079</td><td class="n">7</td><td class="n">1.463</td><td class="n">1.12</td><td class="n">10</td><td class="n">6</td><td class="n">124</td><td class="n">43</td><td class="">24ee5f7b</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerName, 
+    p.CreationDate, 
+    p.ViewCount, 
+    p.Score, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15064</td><td class="n">2</td><td class="n">1.465</td><td class="n">1.12</td><td class="n">10</td><td class="n">6</td><td class="n">123</td><td class="n">43</td><td class="">c76a8ca1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.Score, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15338</td><td class="n">13</td><td class="n">1.471</td><td class="n">1.13</td><td class="n">10</td><td class="n">6</td><td class="n">123</td><td class="n">43</td><td class="">c76a8ca1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.Score, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15819</td><td class="n">1</td><td class="n">1.472</td><td class="n">1.13</td><td class="n">10</td><td class="n">5</td><td class="n">127</td><td class="n">43</td><td class="">82b0111e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    u.DisplayName,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1
+GROUP BY 
+    p.Title, p.CreationDate, p.ViewCount, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18333</td><td class="n">1</td><td class="n">1.473</td><td class="n">1.13</td><td class="n">10</td><td class="n">5</td><td class="n">120</td><td class="n">43</td><td class="">82b0111e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+INNER JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, p.ViewCount, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15031</td><td class="n">19</td><td class="n">1.474</td><td class="n">1.13</td><td class="n">10</td><td class="n">6</td><td class="n">122</td><td class="n">43</td><td class="">c76a8ca1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.Score, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19143</td><td class="n">1</td><td class="n">1.475</td><td class="n">1.13</td><td class="n">10</td><td class="n">6</td><td class="n">128</td><td class="n">43</td><td class="">c76a8ca1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName, 
+    P.Score, 
+    P.ViewCount, 
+    COUNT(C.Id) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1 /* Questions only */
+GROUP BY 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName, 
+    P.Score, 
+    P.ViewCount
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15670</td><td class="n">8</td><td class="n">1.480</td><td class="n">1.13</td><td class="n">10</td><td class="n">5</td><td class="n">125</td><td class="n">43</td><td class="">f59b9415</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17848</td><td class="n">1</td><td class="n">1.482</td><td class="n">1.13</td><td class="n">10</td><td class="n">6</td><td class="n">122</td><td class="n">43</td><td class="">24ee5f7b</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate,
+    u.DisplayName,
+    p.ViewCount,
+    p.Score
+ORDER BY 
+    p.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">17365</td><td class="n">2</td><td class="n">1.482</td><td class="n">1.13</td><td class="n">10</td><td class="n">5</td><td class="n">123</td><td class="n">43</td><td class="">f59b9415</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.Score,
+    u.DisplayName AS Author,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.Score, u.DisplayName, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16978</td><td class="n">4</td><td class="n">1.483</td><td class="n">1.13</td><td class="n">10</td><td class="n">6</td><td class="n">123</td><td class="n">43</td><td class="">24ee5f7b</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15097</td><td class="n">4</td><td class="n">1.485</td><td class="n">1.14</td><td class="n">10</td><td class="n">5</td><td class="n">122</td><td class="n">43</td><td class="">82b0111e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    p.ViewCount, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    p.ViewCount, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19352</td><td class="n">1</td><td class="n">1.592</td><td class="n">1.22</td><td class="n">10</td><td class="n">6</td><td class="n">125</td><td class="n">43</td><td class="">be9174ff</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, p.ViewCount, p.Score, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17316</td><td class="n">1</td><td class="n">1.704</td><td class="n">1.30</td><td class="n">10</td><td class="n">4</td><td class="n">150</td><td class="n">43</td><td class="">bae8ed47</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.ViewCount, u.DisplayName, COUNT(c.Id) AS CommentCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+WHERE p.PostTypeId = 1 
+GROUP BY p.Title, p.ViewCount, u.DisplayName
+ORDER BY p.ViewCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18668</td><td class="n">1</td><td class="n">1.712</td><td class="n">1.31</td><td class="n">10</td><td class="n">4</td><td class="n">154</td><td class="n">43</td><td class="">bae8ed47</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.ViewCount,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.ViewCount, 
+    u.DisplayName
+ORDER BY 
+    p.ViewCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17480</td><td class="n">1</td><td class="n">1.769</td><td class="n">1.35</td><td class="n">10</td><td class="n">5</td><td class="n">157</td><td class="n">43</td><td class="">efd0d3b8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.ViewCount, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.ViewCount, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.ViewCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16479</td><td class="n">1</td><td class="n">1.998</td><td class="n">1.53</td><td class="n">10</td><td class="n">5</td><td class="n">173</td><td class="n">43</td><td class="">b138d092</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.Score DESC, p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19797</td><td class="n">1</td><td class="n">2.028</td><td class="n">1.55</td><td class="n">10</td><td class="n">5</td><td class="n">174</td><td class="n">43</td><td class="">b138d092</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName,
+    P.Title,
+    P.CreationDate,
+    P.Score,
+    COUNT(C.Id) AS CommentCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.Score
+ORDER BY 
+    P.Score DESC, P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16584</td><td class="n">2</td><td class="n">2.038</td><td class="n">1.56</td><td class="n">10</td><td class="n">4</td><td class="n">186</td><td class="n">43</td><td class="">9c78d0c0</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName, 
+    p.Title AS PostTitle, 
+    p.CreationDate AS PostDate, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Users AS u
+JOIN 
+    Posts AS p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments AS c ON p.Id = c.PostId
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16059</td><td class="n">1</td><td class="n">2.065</td><td class="n">1.58</td><td class="n">10</td><td class="n">5</td><td class="n">191</td><td class="n">43</td><td class="">3090282d</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName,
+    Posts.Title,
+    Posts.CreationDate,
+    Posts.ViewCount,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Users
+JOIN 
+    Posts ON Users.Id = Posts.OwnerUserId
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+GROUP BY 
+    Users.DisplayName, Posts.Title, Posts.CreationDate, Posts.ViewCount
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16864</td><td class="n">1</td><td class="n">2.068</td><td class="n">1.58</td><td class="n">10</td><td class="n">5</td><td class="n">176</td><td class="n">43</td><td class="">2a4bf193</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, u.DisplayName, p.CreationDate, p.Score, COUNT(c.Id) AS CommentCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+WHERE p.PostTypeId = 1  
+GROUP BY p.Title, u.DisplayName, p.CreationDate, p.Score
+ORDER BY p.Score DESC, p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16945</td><td class="n">1</td><td class="n">2.083</td><td class="n">1.59</td><td class="n">10</td><td class="n">4</td><td class="n">188</td><td class="n">43</td><td class="">55bc2c25</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Users.DisplayName, 
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+GROUP BY 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Users.DisplayName
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15616</td><td class="n">1</td><td class="n">2.096</td><td class="n">1.60</td><td class="n">10</td><td class="n">4</td><td class="n">190</td><td class="n">43</td><td class="">55bc2c25</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.CreationDate, u.DisplayName, COUNT(c.Id) AS CommentCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+GROUP BY p.Title, p.CreationDate, u.DisplayName
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16585</td><td class="n">1</td><td class="n">2.107</td><td class="n">1.61</td><td class="n">10</td><td class="n">6</td><td class="n">180</td><td class="n">43</td><td class="">8f55cb74</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.ViewCount, p.Score
+ORDER BY 
+    p.Score DESC, p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16842</td><td class="n">3</td><td class="n">2.110</td><td class="n">1.61</td><td class="n">10</td><td class="n">4</td><td class="n">194</td><td class="n">43</td><td class="">55bc2c25</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Owner, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">18118</td><td class="n">2</td><td class="n">2.111</td><td class="n">1.61</td><td class="n">10</td><td class="n">5</td><td class="n">199</td><td class="n">43</td><td class="">6e1b4ad9</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score, 
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Users
+JOIN 
+    Posts ON Users.Id = Posts.OwnerUserId
+LEFT JOIN 
+    Comments ON Posts.Id = Comments.PostId
+GROUP BY 
+    Users.DisplayName, Posts.Title, Posts.CreationDate, Posts.Score
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15577</td><td class="n">3</td><td class="n">3.344</td><td class="n">2.56</td><td class="n">10</td><td class="n">4</td><td class="n">284</td><td class="n">43</td><td class="">673947a6</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.Score, u.DisplayName 
+ORDER BY 
+    p.Score DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16955</td><td class="n">1</td><td class="n">3.370</td><td class="n">2.58</td><td class="n">10</td><td class="n">5</td><td class="n">277</td><td class="n">43</td><td class="">47665a00</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle,
+    u.DisplayName AS Author,
+    p.CreationDate AS PostDate,
+    p.Score AS PostScore,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.Score
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15939</td><td class="n">2</td><td class="n">3.374</td><td class="n">2.58</td><td class="n">10</td><td class="n">5</td><td class="n">280</td><td class="n">43</td><td class="">47665a00</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.Score, u.DisplayName, p.CreationDate
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18304</td><td class="n">3</td><td class="n">3.381</td><td class="n">2.59</td><td class="n">10</td><td class="n">5</td><td class="n">286</td><td class="n">43</td><td class="">47665a00</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS Owner, 
+    p.CreationDate, 
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.Score
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16679</td><td class="n">1</td><td class="n">3.388</td><td class="n">2.59</td><td class="n">10</td><td class="n">5</td><td class="n">299</td><td class="n">43</td><td class="">1108d46f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName, 
+    p.Score
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17752</td><td class="n">1</td><td class="n">3.395</td><td class="n">2.60</td><td class="n">10</td><td class="n">5</td><td class="n">286</td><td class="n">43</td><td class="">47665a00</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Title,
+    Users.DisplayName,
+    Posts.CreationDate,
+    Posts.Score,
+    COUNT(Comments.Id) AS CommentCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+LEFT JOIN 
+    Comments ON Comments.PostId = Posts.Id
+WHERE 
+    Posts.PostTypeId = 1 
+GROUP BY 
+    Posts.Title, Users.DisplayName, Posts.CreationDate, Posts.Score
+ORDER BY 
+    Posts.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16084</td><td class="n">1</td><td class="n">3.403</td><td class="n">2.60</td><td class="n">10</td><td class="n">5</td><td class="n">291</td><td class="n">43</td><td class="">1108d46f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.Score
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15662</td><td class="n">3</td><td class="n">3.419</td><td class="n">2.62</td><td class="n">10</td><td class="n">6</td><td class="n">289</td><td class="n">43</td><td class="">453cb866</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.Score, p.ViewCount
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17397</td><td class="n">1</td><td class="n">3.454</td><td class="n">2.64</td><td class="n">10</td><td class="n">5</td><td class="n">285</td><td class="n">43</td><td class="">1108d46f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName 
+ORDER BY 
+    p.Score DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">17648</td><td class="n">1</td><td class="n">3.472</td><td class="n">2.66</td><td class="n">10</td><td class="n">5</td><td class="n">392</td><td class="n">50</td><td class="">bb11d9e1</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName AS UserDisplayName,
+    Post.Title AS PostTitle,
+    Post.CreationDate AS PostCreationDate,
+    Post.Body AS PostBody,
+    COUNT(C.CommentId) AS CommentCount
+FROM 
+    Posts Post
+JOIN 
+    Users U ON Post.OwnerUserId = U.Id
+LEFT JOIN 
+    (SELECT 
+         Id as CommentId, 
+         PostId 
+     FROM 
+         Comments) C ON Post.Id = C.PostId
+WHERE 
+    Post.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, Post.Title, Post.CreationDate, Post.Body
+ORDER BY 
+    Post.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17462</td><td class="n">1</td><td class="n">11.327</td><td class="n">8.66</td><td class="n">10</td><td class="n">6</td><td class="n">619</td><td class="n">286</td><td class="">31a56b95</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.Body,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.Body, u.DisplayName, p.CreationDate, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr></tbody></table></div></main></div></body></html>

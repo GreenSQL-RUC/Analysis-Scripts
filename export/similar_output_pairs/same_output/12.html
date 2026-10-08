@@ -1,0 +1,489 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same output #12 — 871 vs 9903</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="on">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_output/01.html" class=""><span class="r">#1</span>8669 vs 9931<span class="x">9.48×</span></a><a href="../same_output/02.html" class=""><span class="r">#2</span>12226 vs 14153<span class="x">8.81×</span></a><a href="../same_output/03.html" class=""><span class="r">#3</span>10271 vs 11575<span class="x">6.96×</span></a><a href="../same_output/04.html" class=""><span class="r">#4</span>11137 vs 14426<span class="x">6.28×</span></a><a href="../same_output/05.html" class=""><span class="r">#5</span>5949 vs 32588<span class="x">5.94×</span></a><a href="../same_output/06.html" class=""><span class="r">#6</span>9422 vs 8123<span class="x">4.80×</span></a><a href="../same_output/07.html" class=""><span class="r">#7</span>15743 vs 16677<span class="x">4.48×</span></a><a href="../same_output/08.html" class=""><span class="r">#8</span>15388 vs 15893<span class="x">3.48×</span></a><a href="../same_output/09.html" class=""><span class="r">#9</span>16659 vs 17956<span class="x">3.15×</span></a><a href="../same_output/10.html" class=""><span class="r">#10</span>16513 vs 17599<span class="x">3.05×</span></a><a href="../same_output/11.html" class=""><span class="r">#11</span>10096 vs 13887<span class="x">2.93×</span></a><a href="../same_output/12.html" class="on"><span class="r">#12</span>871 vs 9903<span class="x">2.93×</span></a><a href="../same_output/13.html" class=""><span class="r">#13</span>19557 vs 18654<span class="x">2.67×</span></a><a href="../same_output/14.html" class=""><span class="r">#14</span>18510 vs 17397<span class="x">2.62×</span></a><a href="../same_output/15.html" class=""><span class="r">#15</span>17350 vs 15577<span class="x">2.56×</span></a><a href="../same_output/16.html" class=""><span class="r">#16</span>18541 vs 15662<span class="x">2.53×</span></a><a href="../same_output/17.html" class=""><span class="r">#17</span>18603 vs 19785<span class="x">2.39×</span></a><a href="../same_output/18.html" class=""><span class="r">#18</span>9312 vs 6530<span class="x">2.35×</span></a><a href="../same_output/19.html" class=""><span class="r">#19</span>15403 vs 18524<span class="x">2.32×</span></a><a href="../same_output/20.html" class=""><span class="r">#20</span>19156 vs 16383<span class="x">2.27×</span></a></aside><main><h1>Same output #12: 871 vs 9903 — 2.93×</h1><div class="sub">same output (same rows: identical, renamed or reordered columns, reordered rows); plans may differ. Ranked 12 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">3</div></div><div class="card"><div class="k">query files</div><div class="v">3</div></div><div class="card"><div class="k">energy min</div><div class="v">3.616 J</div></div><div class="card"><div class="k">median</div><div class="v">4.760 J</div></div><div class="card"><div class="k">max</div><div class="v">10.590 J</div></div><div class="card"><div class="k">gap</div><div class="v">2.93×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">3</div></div><div class="card"><div class="k">plan shapes</div><div class="v">3</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 871</h3><dl class="f"><dt>energy</dt><dd>3.616 J ± 0.032</dd><dt>output</dt><dd>10 rows, 10 columns</dd><dt>plan</dt><dd>727 ms, 13 nodes, 41 k buffers, 0 parallel workers</dd></dl><b>SQL</b><pre>WITH UserBadges AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(b.Id) AS BadgeCount,
+        SUM(CASE WHEN b.Class = 1 THEN 1 ELSE 0 END) AS GoldBadges,
+        SUM(CASE WHEN b.Class = 2 THEN 1 ELSE 0 END) AS SilverBadges,
+        SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges
+    FROM Users u
+    LEFT JOIN Badges b ON u.Id = b.UserId
+    GROUP BY u.Id, u.DisplayName
+),
+PostStats AS (
+    SELECT 
+        p.OwnerUserId,
+        COUNT(p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(p.Score) AS TotalScore
+    FROM Posts p
+    GROUP BY p.OwnerUserId
+),
+RankedPosts AS (
+    SELECT
+        ps.OwnerUserId,
+        ps.PostCount,
+        ps.QuestionCount,
+        ps.AnswerCount,
+        ps.TotalScore,
+        ROW_NUMBER() OVER (ORDER BY ps.TotalScore DESC) AS PostRank
+    FROM PostStats ps
+    WHERE ps.PostCount &gt; 0
+)
+SELECT 
+    ub.UserId,
+    ub.DisplayName,
+    COALESCE(rp.PostCount, 0) AS PostCount,
+    COALESCE(rp.QuestionCount, 0) AS QuestionCount,
+    COALESCE(rp.AnswerCount, 0) AS AnswerCount,
+    COALESCE(rp.TotalScore, 0) AS TotalScore,
+    ub.BadgeCount,
+    ub.GoldBadges,
+    ub.SilverBadges,
+    ub.BronzeBadges
+FROM UserBadges ub
+LEFT JOIN RankedPosts rp ON ub.UserId = rp.OwnerUserId
+WHERE ub.BadgeCount &gt; 5
+ORDER BY TotalScore DESC, PostCount DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">userid</th><th class="">displayname</th><th class="">postcount</th><th class="">questioncount</th><th class="">answercount</th><th class="">totalscore</th><th class="">badgecount</th><th class="">goldbadges</th><th class="">silverbadges</th><th class="">bronzebadges</th></tr></thead><tbody><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">2361</td><td class="">6</td><td class="">2346</td><td class="">16580</td><td class="">1048</td><td class="">28</td><td class="">401</td><td class="">619</td></tr><tr><td class="">3684</td><td class="">Erwin Brandstetter</td><td class="">2239</td><td class="">12</td><td class="">2194</td><td class="">15672</td><td class="">1091</td><td class="">28</td><td class="">451</td><td class="">612</td></tr><tr><td class="">877</td><td class="">RolandoMySQLDBA</td><td class="">3314</td><td class="">1</td><td class="">3225</td><td class="">15656</td><td class="">880</td><td class="">33</td><td class="">320</td><td class="">527</td></tr><tr><td class="">1192</td><td class="">Paul White</td><td class="">1623</td><td class="">23</td><td class="">1390</td><td class="">12679</td><td class="">1102</td><td class="">30</td><td class="">417</td><td class="">655</td></tr><tr><td class="">993</td><td class="">ypercubeᵀᴹ</td><td class="">1715</td><td class="">5</td><td class="">1702</td><td class="">8973</td><td class="">533</td><td class="">13</td><td class="">215</td><td class="">305</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(COALESCE(q.totalscore, &#x27;0&#x27;::bigint)) DESC, (COALESCE(q.postcount, &#x27;0&#x27;::bigint)) DESC]
+    Hash Left Join [Hash Cond=(users.id = q.owneruserid)]
+      HashAggregate [Filter=(count(badges.id) &gt; 5); Group Key=users.id]
+        Hash Right Join [Hash Cond=(badges.userid = users.id)]
+          Seq Scan on badges
+          Hash
+            Seq Scan on users
+      Hash
+        Subquery Scan
+          Subquery Scan
+            HashAggregate [Filter=(count(posts.id) &gt; 0); Group Key=posts.owneruserid]
+              Seq Scan on posts</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 9903</h3><dl class="f"><dt>energy</dt><dd>10.590 J ± 0.094</dd><dt>output</dt><dd>10 rows, 10 columns</dd><dt>plan</dt><dd>985 ms, 17 nodes, 114 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>WITH UserBadges AS (
+    SELECT 
+        u.Id AS UserId, 
+        COUNT(b.Id) AS BadgeCount,
+        SUM(CASE WHEN b.Class = 1 THEN 1 ELSE 0 END) AS GoldBadges,
+        SUM(CASE WHEN b.Class = 2 THEN 1 ELSE 0 END) AS SilverBadges,
+        SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges
+    FROM 
+        Users u
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    GROUP BY 
+        u.Id
+), UserPosts AS (
+    SELECT 
+        p.OwnerUserId, 
+        COUNT(p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS Questions,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS Answers,
+        SUM(p.Score) AS TotalScore
+    FROM 
+        Posts p
+    WHERE 
+        p.OwnerUserId IS NOT NULL
+    GROUP BY 
+        p.OwnerUserId
+), UserActivity AS (
+    SELECT 
+        u.Id AS UserId, 
+        u.DisplayName,
+        ub.BadgeCount,
+        ub.GoldBadges,
+        ub.SilverBadges,
+        ub.BronzeBadges,
+        up.PostCount,
+        up.Questions,
+        up.Answers,
+        up.TotalScore
+    FROM 
+        Users u
+    LEFT JOIN 
+        UserBadges ub ON u.Id = ub.UserId
+    LEFT JOIN 
+        UserPosts up ON u.Id = up.OwnerUserId
+)
+SELECT 
+    UserId,
+    DisplayName,
+    COALESCE(BadgeCount, 0) AS BadgeCount,
+    COALESCE(GoldBadges, 0) AS GoldBadges,
+    COALESCE(SilverBadges, 0) AS SilverBadges,
+    COALESCE(BronzeBadges, 0) AS BronzeBadges,
+    COALESCE(PostCount, 0) AS PostCount,
+    COALESCE(Questions, 0) AS Questions,
+    COALESCE(Answers, 0) AS Answers,
+    COALESCE(TotalScore, 0) AS TotalScore
+FROM 
+    UserActivity
+ORDER BY 
+    TotalScore DESC, 
+    BadgeCount DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">userid</th><th class="">displayname</th><th class="">badgecount</th><th class="">goldbadges</th><th class="">silverbadges</th><th class="">bronzebadges</th><th class="">postcount</th><th class="">questions</th><th class="">answers</th><th class="">totalscore</th></tr></thead><tbody><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">1048</td><td class="">28</td><td class="">401</td><td class="">619</td><td class="">2361</td><td class="">6</td><td class="">2346</td><td class="">16580</td></tr><tr><td class="">3684</td><td class="">Erwin Brandstetter</td><td class="">1091</td><td class="">28</td><td class="">451</td><td class="">612</td><td class="">2239</td><td class="">12</td><td class="">2194</td><td class="">15672</td></tr><tr><td class="">877</td><td class="">RolandoMySQLDBA</td><td class="">880</td><td class="">33</td><td class="">320</td><td class="">527</td><td class="">3314</td><td class="">1</td><td class="">3225</td><td class="">15656</td></tr><tr><td class="">1192</td><td class="">Paul White</td><td class="">1102</td><td class="">30</td><td class="">417</td><td class="">655</td><td class="">1623</td><td class="">23</td><td class="">1390</td><td class="">12679</td></tr><tr><td class="">993</td><td class="">ypercubeᵀᴹ</td><td class="">533</td><td class="">13</td><td class="">215</td><td class="">305</td><td class="">1715</td><td class="">5</td><td class="">1702</td><td class="">8973</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Gather Merge
+    Sort [Sort Key=(COALESCE(q.totalscore, &#x27;0&#x27;::bigint)) DESC, (COALESCE(q.badgecount, &#x27;0&#x27;::bigint)) DESC]
+      Hash Left Join [Hash Cond=(users.id = q.owneruserid)]
+        Hash Left Join [Hash Cond=(users.id = q.userid)]
+          Parallel Seq Scan on users
+          Hash
+            Subquery Scan
+              HashAggregate [Group Key=users.id]
+                Hash Right Join [Hash Cond=(badges.userid = users.id)]
+                  Seq Scan on badges
+                  Hash
+                    Index Only Scan on users
+        Hash
+          Subquery Scan
+            HashAggregate [Group Key=posts.owneruserid]
+              Seq Scan on posts [Filter=(owneruserid IS NOT NULL)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 871
++++ 9903
+@@ -1,13 +1,17 @@
+ Limit
+<span class="d">-  Sort [Sort Key=(COALESCE(q.totalscore, &#x27;0&#x27;::bigint)) DESC, (COALESCE(q.postcount, &#x27;0&#x27;::bigint)) DESC]</span>
+<span class="d">-    Hash Left Join [Hash Cond=(users.id = q.owneruserid)]</span>
+<span class="d">-      HashAggregate [Filter=(count(badges.id) &gt; 5); Group Key=users.id]</span>
+<span class="d">-        Hash Right Join [Hash Cond=(badges.userid = users.id)]</span>
+<span class="d">-          Seq Scan on badges</span>
+<span class="a">+  Gather Merge</span>
+<span class="a">+    Sort [Sort Key=(COALESCE(q.totalscore, &#x27;0&#x27;::bigint)) DESC, (COALESCE(q.badgecount, &#x27;0&#x27;::bigint)) DESC]</span>
+<span class="a">+      Hash Left Join [Hash Cond=(users.id = q.owneruserid)]</span>
+<span class="a">+        Hash Left Join [Hash Cond=(users.id = q.userid)]</span>
+<span class="a">+          Parallel Seq Scan on users</span>
+           Hash
+<span class="d">-            Seq Scan on users</span>
+<span class="d">-      Hash</span>
+<span class="d">-        Subquery Scan</span>
+<span class="a">+            Subquery Scan</span>
+<span class="a">+              HashAggregate [Group Key=users.id]</span>
+<span class="a">+                Hash Right Join [Hash Cond=(badges.userid = users.id)]</span>
+<span class="a">+                  Seq Scan on badges</span>
+<span class="a">+                  Hash</span>
+<span class="a">+                    Index Only Scan on users</span>
+<span class="a">+        Hash</span>
+           Subquery Scan
+<span class="d">-            HashAggregate [Filter=(count(posts.id) &gt; 0); Group Key=posts.owneruserid]</span>
+<span class="d">-              Seq Scan on posts</span>
+<span class="a">+            HashAggregate [Group Key=posts.owneruserid]</span>
+<span class="a">+              Seq Scan on posts [Filter=(owneruserid IS NOT NULL)]</span></pre><details><summary>SQL difference</summary><pre>--- 871
++++ 9903
+@@ -2,4 +2,3 @@
+     SELECT 
+<span class="d">-        u.Id AS UserId,</span>
+<span class="d">-        u.DisplayName,</span>
+<span class="a">+        u.Id AS UserId, </span>
+         COUNT(b.Id) AS BadgeCount,
+@@ -8,42 +7,56 @@
+         SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges
+<span class="d">-    FROM Users u</span>
+<span class="d">-    LEFT JOIN Badges b ON u.Id = b.UserId</span>
+<span class="d">-    GROUP BY u.Id, u.DisplayName</span>
+<span class="d">-),</span>
+<span class="d">-PostStats AS (</span>
+<span class="a">+    FROM </span>
+<span class="a">+        Users u</span>
+<span class="a">+    LEFT JOIN </span>
+<span class="a">+        Badges b ON u.Id = b.UserId</span>
+<span class="a">+    GROUP BY </span>
+<span class="a">+        u.Id</span>
+<span class="a">+), UserPosts AS (</span>
+     SELECT 
+<span class="d">-        p.OwnerUserId,</span>
+<span class="a">+        p.OwnerUserId, </span>
+         COUNT(p.Id) AS PostCount,
+<span class="d">-        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,</span>
+<span class="d">-        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,</span>
+<span class="a">+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS Questions,</span>
+<span class="a">+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS Answers,</span>
+         SUM(p.Score) AS TotalScore
+<span class="d">-    FROM Posts p</span>
+<span class="d">-    GROUP BY p.OwnerUserId</span>
+<span class="d">-),</span>
+<span class="d">-RankedPosts AS (</span>
+<span class="d">-    SELECT</span>
+<span class="d">-        ps.OwnerUserId,</span>
+<span class="d">-        ps.PostCount,</span>
+<span class="d">-        ps.QuestionCount,</span>
+<span class="d">-        ps.AnswerCount,</span>
+<span class="d">-        ps.TotalScore,</span>
+<span class="d">-        ROW_NUMBER() OVER (ORDER BY ps.TotalScore DESC) AS PostRank</span>
+<span class="d">-    FROM PostStats ps</span>
+<span class="d">-    WHERE ps.PostCount &gt; 0</span>
+<span class="a">+    FROM </span>
+<span class="a">+        Posts p</span>
+<span class="a">+    WHERE </span>
+<span class="a">+        p.OwnerUserId IS NOT NULL</span>
+<span class="a">+    GROUP BY </span>
+<span class="a">+        p.OwnerUserId</span>
+<span class="a">+), UserActivity AS (</span>
+<span class="a">+    SELECT </span>
+<span class="a">+        u.Id AS UserId, </span>
+<span class="a">+        u.DisplayName,</span>
+<span class="a">+        ub.BadgeCount,</span>
+<span class="a">+        ub.GoldBadges,</span>
+<span class="a">+        ub.SilverBadges,</span>
+<span class="a">+        ub.BronzeBadges,</span>
+<span class="a">+        up.PostCount,</span>
+<span class="a">+        up.Questions,</span>
+<span class="a">+        up.Answers,</span>
+<span class="a">+        up.TotalScore</span>
+<span class="a">+    FROM </span>
+<span class="a">+        Users u</span>
+<span class="a">+    LEFT JOIN </span>
+<span class="a">+        UserBadges ub ON u.Id = ub.UserId</span>
+<span class="a">+    LEFT JOIN </span>
+<span class="a">+        UserPosts up ON u.Id = up.OwnerUserId</span>
+ )
+ SELECT 
+<span class="d">-    ub.UserId,</span>
+<span class="d">-    ub.DisplayName,</span>
+<span class="d">-    COALESCE(rp.PostCount, 0) AS PostCount,</span>
+<span class="d">-    COALESCE(rp.QuestionCount, 0) AS QuestionCount,</span>
+<span class="d">-    COALESCE(rp.AnswerCount, 0) AS AnswerCount,</span>
+<span class="d">-    COALESCE(rp.TotalScore, 0) AS TotalScore,</span>
+<span class="d">-    ub.BadgeCount,</span>
+<span class="d">-    ub.GoldBadges,</span>
+<span class="d">-    ub.SilverBadges,</span>
+<span class="d">-    ub.BronzeBadges</span>
+<span class="d">-FROM UserBadges ub</span>
+<span class="d">-LEFT JOIN RankedPosts rp ON ub.UserId = rp.OwnerUserId</span>
+<span class="d">-WHERE ub.BadgeCount &gt; 5</span>
+<span class="d">-ORDER BY TotalScore DESC, PostCount DESC</span>
+<span class="a">+    UserId,</span>
+<span class="a">+    DisplayName,</span>
+<span class="a">+    COALESCE(BadgeCount, 0) AS BadgeCount,</span>
+<span class="a">+    COALESCE(GoldBadges, 0) AS GoldBadges,</span>
+<span class="a">+    COALESCE(SilverBadges, 0) AS SilverBadges,</span>
+<span class="a">+    COALESCE(BronzeBadges, 0) AS BronzeBadges,</span>
+<span class="a">+    COALESCE(PostCount, 0) AS PostCount,</span>
+<span class="a">+    COALESCE(Questions, 0) AS Questions,</span>
+<span class="a">+    COALESCE(Answers, 0) AS Answers,</span>
+<span class="a">+    COALESCE(TotalScore, 0) AS TotalScore</span>
+<span class="a">+FROM </span>
+<span class="a">+    UserActivity</span>
+<span class="a">+ORDER BY </span>
+<span class="a">+    TotalScore DESC, </span>
+<span class="a">+    BadgeCount DESC</span>
+ LIMIT 10;</pre></details><h2>All 3 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">871</td><td class="n">1</td><td class="n">3.616</td><td class="n">1.00</td><td class="n">10</td><td class="n">10</td><td class="n">727</td><td class="n">41</td><td class="">22e98372</td><td class=""><details><summary>show</summary><pre>WITH UserBadges AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(b.Id) AS BadgeCount,
+        SUM(CASE WHEN b.Class = 1 THEN 1 ELSE 0 END) AS GoldBadges,
+        SUM(CASE WHEN b.Class = 2 THEN 1 ELSE 0 END) AS SilverBadges,
+        SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges
+    FROM Users u
+    LEFT JOIN Badges b ON u.Id = b.UserId
+    GROUP BY u.Id, u.DisplayName
+),
+PostStats AS (
+    SELECT 
+        p.OwnerUserId,
+        COUNT(p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(p.Score) AS TotalScore
+    FROM Posts p
+    GROUP BY p.OwnerUserId
+),
+RankedPosts AS (
+    SELECT
+        ps.OwnerUserId,
+        ps.PostCount,
+        ps.QuestionCount,
+        ps.AnswerCount,
+        ps.TotalScore,
+        ROW_NUMBER() OVER (ORDER BY ps.TotalScore DESC) AS PostRank
+    FROM PostStats ps
+    WHERE ps.PostCount &gt; 0
+)
+SELECT 
+    ub.UserId,
+    ub.DisplayName,
+    COALESCE(rp.PostCount, 0) AS PostCount,
+    COALESCE(rp.QuestionCount, 0) AS QuestionCount,
+    COALESCE(rp.AnswerCount, 0) AS AnswerCount,
+    COALESCE(rp.TotalScore, 0) AS TotalScore,
+    ub.BadgeCount,
+    ub.GoldBadges,
+    ub.SilverBadges,
+    ub.BronzeBadges
+FROM UserBadges ub
+LEFT JOIN RankedPosts rp ON ub.UserId = rp.OwnerUserId
+WHERE ub.BadgeCount &gt; 5
+ORDER BY TotalScore DESC, PostCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">8310</td><td class="n">1</td><td class="n">4.760</td><td class="n">1.32</td><td class="n">10</td><td class="n">10</td><td class="n">973</td><td class="n">47</td><td class="">9fb7799d</td><td class=""><details><summary>show</summary><pre>WITH UserBadgeStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(b.Id) AS BadgeCount,
+        SUM(CASE WHEN b.Class = 1 THEN 1 ELSE 0 END) AS GoldBadgeCount,
+        SUM(CASE WHEN b.Class = 2 THEN 1 ELSE 0 END) AS SilverBadgeCount,
+        SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadgeCount
+    FROM 
+        Users u
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    GROUP BY 
+        u.Id, u.DisplayName
+),
+PostStats AS (
+    SELECT 
+        p.OwnerUserId,
+        COUNT(p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(p.Score) AS TotalScore
+    FROM 
+        Posts p
+    GROUP BY 
+        p.OwnerUserId
+),
+UserPerformance AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COALESCE(ubs.BadgeCount, 0) AS BadgeCount,
+        COALESCE(ubs.GoldBadgeCount, 0) AS GoldBadgeCount,
+        COALESCE(ubs.SilverBadgeCount, 0) AS SilverBadgeCount,
+        COALESCE(ubs.BronzeBadgeCount, 0) AS BronzeBadgeCount,
+        COALESCE(ps.PostCount, 0) AS PostCount,
+        COALESCE(ps.QuestionCount, 0) AS QuestionCount,
+        COALESCE(ps.AnswerCount, 0) AS AnswerCount,
+        COALESCE(ps.TotalScore, 0) AS TotalScore
+    FROM 
+        Users u
+    LEFT JOIN 
+        UserBadgeStats ubs ON u.Id = ubs.UserId
+    LEFT JOIN 
+        PostStats ps ON u.Id = ps.OwnerUserId
+)
+SELECT 
+    UserId,
+    DisplayName,
+    BadgeCount,
+    GoldBadgeCount,
+    SilverBadgeCount,
+    BronzeBadgeCount,
+    PostCount,
+    QuestionCount,
+    AnswerCount,
+    TotalScore
+FROM 
+    UserPerformance
+WHERE 
+    TotalScore &gt; 20 OR BadgeCount &gt;= 5
+ORDER BY 
+    TotalScore DESC, BadgeCount DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">9903</td><td class="n">1</td><td class="n">10.590</td><td class="n">2.93</td><td class="n">10</td><td class="n">10</td><td class="n">985</td><td class="n">114</td><td class="">b496df45</td><td class=""><details><summary>show</summary><pre>WITH UserBadges AS (
+    SELECT 
+        u.Id AS UserId, 
+        COUNT(b.Id) AS BadgeCount,
+        SUM(CASE WHEN b.Class = 1 THEN 1 ELSE 0 END) AS GoldBadges,
+        SUM(CASE WHEN b.Class = 2 THEN 1 ELSE 0 END) AS SilverBadges,
+        SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges
+    FROM 
+        Users u
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    GROUP BY 
+        u.Id
+), UserPosts AS (
+    SELECT 
+        p.OwnerUserId, 
+        COUNT(p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS Questions,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS Answers,
+        SUM(p.Score) AS TotalScore
+    FROM 
+        Posts p
+    WHERE 
+        p.OwnerUserId IS NOT NULL
+    GROUP BY 
+        p.OwnerUserId
+), UserActivity AS (
+    SELECT 
+        u.Id AS UserId, 
+        u.DisplayName,
+        ub.BadgeCount,
+        ub.GoldBadges,
+        ub.SilverBadges,
+        ub.BronzeBadges,
+        up.PostCount,
+        up.Questions,
+        up.Answers,
+        up.TotalScore
+    FROM 
+        Users u
+    LEFT JOIN 
+        UserBadges ub ON u.Id = ub.UserId
+    LEFT JOIN 
+        UserPosts up ON u.Id = up.OwnerUserId
+)
+SELECT 
+    UserId,
+    DisplayName,
+    COALESCE(BadgeCount, 0) AS BadgeCount,
+    COALESCE(GoldBadges, 0) AS GoldBadges,
+    COALESCE(SilverBadges, 0) AS SilverBadges,
+    COALESCE(BronzeBadges, 0) AS BronzeBadges,
+    COALESCE(PostCount, 0) AS PostCount,
+    COALESCE(Questions, 0) AS Questions,
+    COALESCE(Answers, 0) AS Answers,
+    COALESCE(TotalScore, 0) AS TotalScore
+FROM 
+    UserActivity
+ORDER BY 
+    TotalScore DESC, 
+    BadgeCount DESC
+LIMIT 10;</pre></details></td></tr></tbody></table></div></main></div></body></html>

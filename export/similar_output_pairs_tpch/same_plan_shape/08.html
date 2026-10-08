@@ -1,0 +1,249 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #8 — 7408 vs 11887</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>11504 vs 10324<span class="x">84.29×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>28628 vs 29724<span class="x">59.54×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14417 vs 10616<span class="x">56.86×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>25619 vs 25363<span class="x">49.48×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>26744 vs 12506<span class="x">47.33×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>12981 vs 11646<span class="x">45.98×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>26270 vs 25070<span class="x">42.65×</span></a><a href="../same_plan_shape/08.html" class="on"><span class="r">#8</span>7408 vs 11887<span class="x">33.88×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>29222 vs 27828<span class="x">29.28×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>27240 vs 26970<span class="x">26.77×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>29217 vs 27093<span class="x">25.70×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>14211 vs 11418<span class="x">25.30×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>27184 vs 28416<span class="x">25.23×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>10100 vs 11629<span class="x">23.84×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>10359 vs 12442<span class="x">22.92×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>25129 vs 27475<span class="x">22.41×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11755 vs 13924<span class="x">21.81×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>26702 vs 27519<span class="x">21.17×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>15944 vs 11546<span class="x">21.00×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>14391 vs 10243<span class="x">20.45×</span></a></aside><main><h1>Same plan shape #8: 7408 vs 11887 — 33.88×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 8 of 20 by the energy gap within the group (most expensive / cheapest). Energy: SQLStorm single-copy energy (laptop 1) per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">2</div></div><div class="card"><div class="k">query files</div><div class="v">2</div></div><div class="card"><div class="k">energy min</div><div class="v">0.545 J</div></div><div class="card"><div class="k">median</div><div class="v">9.504 J</div></div><div class="card"><div class="k">max</div><div class="v">18.464 J</div></div><div class="card"><div class="k">gap</div><div class="v">33.88×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 7408</h3><dl class="f"><dt>energy</dt><dd>0.545 J ± 0.028</dd><dt>output</dt><dd>0 rows, 4 columns</dd><dt>plan</dt><dd>8 ms, 19 nodes, 0 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    n.n_name AS nation_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue,
+    COUNT(DISTINCT c.c_custkey) AS unique_customers,
+    AVG(o.o_totalprice) AS average_order_value
+FROM 
+    lineitem l
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+JOIN 
+    customer c ON o.o_custkey = c.c_custkey
+JOIN 
+    supplier s ON l.l_suppkey = s.s_suppkey
+JOIN 
+    partsupp ps ON l.l_partkey = ps.ps_partkey AND s.s_suppkey = ps.ps_suppkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+WHERE 
+    l.l_shipdate BETWEEN &#x27;1996-01-01&#x27; AND &#x27;1996-12-31&#x27;
+    AND n.n_name IN (&#x27;Germany&#x27;, &#x27;France&#x27;, &#x27;United Kingdom&#x27;)
+GROUP BY 
+    n.n_name
+ORDER BY 
+    total_revenue DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">nation_name</th><th class="">total_revenue</th><th class="">unique_customers</th><th class="">average_order_value</th></tr></thead><tbody></tbody></table></div><p class="muted">first 0 of 0 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=(sum((lineitem.l_extendedprice * (&#x27;1&#x27;::numeric - lineitem.l_discount)))) DESC]
+  GroupAggregate [Group Key=nation.n_name]
+    Gather Merge
+      Sort [Sort Key=nation.n_name, customer.c_custkey]
+        Nested Loop
+          Nested Loop
+            Nested Loop
+              Nested Loop [Join Filter=(lineitem.l_suppkey = supplier.s_suppkey)]
+                Hash Join [Hash Cond=(partsupp.ps_suppkey = supplier.s_suppkey)]
+                  Parallel Index Only Scan on partsupp
+                  Hash
+                    Hash Join [Hash Cond=(supplier.s_nationkey = nation.n_nationkey)]
+                      Seq Scan on supplier
+                      Hash
+                        Seq Scan on nation [Filter=(n_name = ANY (&#x27;{Germany,France,&quot;United Kingdom&quot;}&#x27;[]))]
+                Index Scan on lineitem [Filter=((l_shipdate &gt;= &#x27;1996-01-01&#x27;) AND (l_shipdate &lt;= &#x27;1996-12-31&#x27;)); Index Cond=((l_partkey = partsupp.ps_partkey) AND (l_suppkey = partsupp.ps_suppkey))]
+              Index Scan on orders [Index Cond=(o_orderkey = lineitem.l_orderkey)]
+            Index Only Scan on customer [Index Cond=(c_custkey = orders.o_custkey)]
+          Index Only Scan on part [Index Cond=(p_partkey = lineitem.l_partkey)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 11887</h3><dl class="f"><dt>energy</dt><dd>18.464 J ± 0.108</dd><dt>output</dt><dd>3 rows, 3 columns</dd><dt>plan</dt><dd>1252 ms, 19 nodes, 4502 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    SUM(l_extendedprice * (1 - l_discount)) AS revenue,
+    n_name,
+    extract(year from o_orderdate) AS year
+FROM 
+    lineitem
+JOIN 
+    orders ON l_orderkey = o_orderkey
+JOIN 
+    customer ON o_custkey = c_custkey
+JOIN 
+    supplier ON l_suppkey = s_suppkey
+JOIN 
+    partsupp ON l_partkey = ps_partkey AND s_suppkey = ps_suppkey
+JOIN 
+    part ON l_partkey = p_partkey
+JOIN 
+    nation ON s_nationkey = n_nationkey
+WHERE 
+    o_orderdate &gt;= DATE &#x27;1995-01-01&#x27; AND 
+    o_orderdate &lt; DATE &#x27;1996-01-01&#x27; AND 
+    n_name IN (&#x27;FRANCE&#x27;, &#x27;GERMANY&#x27;, &#x27;UNITED KINGDOM&#x27;)
+GROUP BY 
+    n_name, year
+ORDER BY 
+    revenue DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">revenue</th><th class="">n_name</th><th class="">year</th></tr></thead><tbody><tr><td class="">1326641354.1751</td><td class="">GERMANY                  </td><td class="">1995</td></tr><tr><td class="">1324130705.2422</td><td class="">FRANCE                   </td><td class="">1995</td></tr><tr><td class="">1300318236.6582</td><td class="">UNITED KINGDOM           </td><td class="">1995</td></tr></tbody></table></div><p class="muted">first 3 of 3 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=(sum((lineitem.l_extendedprice * (&#x27;1&#x27;::numeric - lineitem.l_discount)))) DESC]
+  GroupAggregate [Group Key=nation.n_name, (EXTRACT(year FROM orders.o_orderdate))]
+    Gather Merge
+      Sort [Sort Key=nation.n_name, (EXTRACT(year FROM orders.o_orderdate))]
+        Nested Loop
+          Nested Loop
+            Nested Loop
+              Nested Loop [Join Filter=(lineitem.l_suppkey = supplier.s_suppkey)]
+                Hash Join [Hash Cond=(partsupp.ps_suppkey = supplier.s_suppkey)]
+                  Parallel Index Only Scan on partsupp
+                  Hash
+                    Hash Join [Hash Cond=(supplier.s_nationkey = nation.n_nationkey)]
+                      Seq Scan on supplier
+                      Hash
+                        Seq Scan on nation [Filter=(n_name = ANY (&#x27;{FRANCE,GERMANY,&quot;UNITED KINGDOM&quot;}&#x27;[]))]
+                Index Scan on lineitem [Index Cond=((l_partkey = partsupp.ps_partkey) AND (l_suppkey = partsupp.ps_suppkey))]
+              Index Scan on orders [Filter=((o_orderdate &gt;= &#x27;1995-01-01&#x27;) AND (o_orderdate &lt; &#x27;1996-01-01&#x27;)); Index Cond=(o_orderkey = lineitem.l_orderkey)]
+            Index Only Scan on customer [Index Cond=(c_custkey = orders.o_custkey)]
+          Index Only Scan on part [Index Cond=(p_partkey = lineitem.l_partkey)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 7408
++++ 11887
+@@ -1,5 +1,5 @@
+ Sort [Sort Key=(sum((lineitem.l_extendedprice * (&#x27;1&#x27;::numeric - lineitem.l_discount)))) DESC]
+<span class="d">-  GroupAggregate [Group Key=nation.n_name]</span>
+<span class="a">+  GroupAggregate [Group Key=nation.n_name, (EXTRACT(year FROM orders.o_orderdate))]</span>
+     Gather Merge
+<span class="d">-      Sort [Sort Key=nation.n_name, customer.c_custkey]</span>
+<span class="a">+      Sort [Sort Key=nation.n_name, (EXTRACT(year FROM orders.o_orderdate))]</span>
+         Nested Loop
+@@ -14,5 +14,5 @@
+                       Hash
+<span class="d">-                        Seq Scan on nation [Filter=(n_name = ANY (&#x27;{Germany,France,&quot;United Kingdom&quot;}&#x27;[]))]</span>
+<span class="d">-                Index Scan on lineitem [Filter=((l_shipdate &gt;= &#x27;1996-01-01&#x27;) AND (l_shipdate &lt;= &#x27;1996-12-31&#x27;)); Index Cond=((l_partkey = partsupp.ps_partkey) AND (l_suppkey = partsupp.ps_suppkey))]</span>
+<span class="d">-              Index Scan on orders [Index Cond=(o_orderkey = lineitem.l_orderkey)]</span>
+<span class="a">+                        Seq Scan on nation [Filter=(n_name = ANY (&#x27;{FRANCE,GERMANY,&quot;UNITED KINGDOM&quot;}&#x27;[]))]</span>
+<span class="a">+                Index Scan on lineitem [Index Cond=((l_partkey = partsupp.ps_partkey) AND (l_suppkey = partsupp.ps_suppkey))]</span>
+<span class="a">+              Index Scan on orders [Filter=((o_orderdate &gt;= &#x27;1995-01-01&#x27;) AND (o_orderdate &lt; &#x27;1996-01-01&#x27;)); Index Cond=(o_orderkey = lineitem.l_orderkey)]</span>
+             Index Only Scan on customer [Index Cond=(c_custkey = orders.o_custkey)]</pre><details><summary>SQL difference</summary><pre>--- 7408
++++ 11887
+@@ -1,26 +1,26 @@
+ SELECT 
+<span class="d">-    n.n_name AS nation_name,</span>
+<span class="d">-    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue,</span>
+<span class="d">-    COUNT(DISTINCT c.c_custkey) AS unique_customers,</span>
+<span class="d">-    AVG(o.o_totalprice) AS average_order_value</span>
+<span class="a">+    SUM(l_extendedprice * (1 - l_discount)) AS revenue,</span>
+<span class="a">+    n_name,</span>
+<span class="a">+    extract(year from o_orderdate) AS year</span>
+ FROM 
+<span class="d">-    lineitem l</span>
+<span class="a">+    lineitem</span>
+ JOIN 
+<span class="d">-    orders o ON l.l_orderkey = o.o_orderkey</span>
+<span class="a">+    orders ON l_orderkey = o_orderkey</span>
+ JOIN 
+<span class="d">-    customer c ON o.o_custkey = c.c_custkey</span>
+<span class="a">+    customer ON o_custkey = c_custkey</span>
+ JOIN 
+<span class="d">-    supplier s ON l.l_suppkey = s.s_suppkey</span>
+<span class="a">+    supplier ON l_suppkey = s_suppkey</span>
+ JOIN 
+<span class="d">-    partsupp ps ON l.l_partkey = ps.ps_partkey AND s.s_suppkey = ps.ps_suppkey</span>
+<span class="a">+    partsupp ON l_partkey = ps_partkey AND s_suppkey = ps_suppkey</span>
+ JOIN 
+<span class="d">-    part p ON ps.ps_partkey = p.p_partkey</span>
+<span class="a">+    part ON l_partkey = p_partkey</span>
+ JOIN 
+<span class="d">-    nation n ON s.s_nationkey = n.n_nationkey</span>
+<span class="a">+    nation ON s_nationkey = n_nationkey</span>
+ WHERE 
+<span class="d">-    l.l_shipdate BETWEEN &#x27;1996-01-01&#x27; AND &#x27;1996-12-31&#x27;</span>
+<span class="d">-    AND n.n_name IN (&#x27;Germany&#x27;, &#x27;France&#x27;, &#x27;United Kingdom&#x27;)</span>
+<span class="a">+    o_orderdate &gt;= DATE &#x27;1995-01-01&#x27; AND </span>
+<span class="a">+    o_orderdate &lt; DATE &#x27;1996-01-01&#x27; AND </span>
+<span class="a">+    n_name IN (&#x27;FRANCE&#x27;, &#x27;GERMANY&#x27;, &#x27;UNITED KINGDOM&#x27;)</span>
+ GROUP BY 
+<span class="d">-    n.n_name</span>
+<span class="a">+    n_name, year</span>
+ ORDER BY 
+<span class="d">-    total_revenue DESC;</span>
+<span class="a">+    revenue DESC;</span></pre></details><h2>All 2 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">7408</td><td class="n">1</td><td class="n">0.545</td><td class="n">1.00</td><td class="n">0</td><td class="n">4</td><td class="n">8</td><td class="n">0</td><td class="">a79e2e19</td><td class=""><details><summary>show</summary><pre>SELECT 
+    n.n_name AS nation_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue,
+    COUNT(DISTINCT c.c_custkey) AS unique_customers,
+    AVG(o.o_totalprice) AS average_order_value
+FROM 
+    lineitem l
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+JOIN 
+    customer c ON o.o_custkey = c.c_custkey
+JOIN 
+    supplier s ON l.l_suppkey = s.s_suppkey
+JOIN 
+    partsupp ps ON l.l_partkey = ps.ps_partkey AND s.s_suppkey = ps.ps_suppkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+WHERE 
+    l.l_shipdate BETWEEN &#x27;1996-01-01&#x27; AND &#x27;1996-12-31&#x27;
+    AND n.n_name IN (&#x27;Germany&#x27;, &#x27;France&#x27;, &#x27;United Kingdom&#x27;)
+GROUP BY 
+    n.n_name
+ORDER BY 
+    total_revenue DESC;</pre></details></td></tr><tr><td class="">11887</td><td class="n">1</td><td class="n">18.464</td><td class="n">33.88</td><td class="n">3</td><td class="n">3</td><td class="n">1252</td><td class="n">4502</td><td class="">50648443</td><td class=""><details><summary>show</summary><pre>SELECT 
+    SUM(l_extendedprice * (1 - l_discount)) AS revenue,
+    n_name,
+    extract(year from o_orderdate) AS year
+FROM 
+    lineitem
+JOIN 
+    orders ON l_orderkey = o_orderkey
+JOIN 
+    customer ON o_custkey = c_custkey
+JOIN 
+    supplier ON l_suppkey = s_suppkey
+JOIN 
+    partsupp ON l_partkey = ps_partkey AND s_suppkey = ps_suppkey
+JOIN 
+    part ON l_partkey = p_partkey
+JOIN 
+    nation ON s_nationkey = n_nationkey
+WHERE 
+    o_orderdate &gt;= DATE &#x27;1995-01-01&#x27; AND 
+    o_orderdate &lt; DATE &#x27;1996-01-01&#x27; AND 
+    n_name IN (&#x27;FRANCE&#x27;, &#x27;GERMANY&#x27;, &#x27;UNITED KINGDOM&#x27;)
+GROUP BY 
+    n_name, year
+ORDER BY 
+    revenue DESC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

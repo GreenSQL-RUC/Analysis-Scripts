@@ -1,0 +1,322 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan #14 — 11884 vs 12732</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="on">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan/01.html" class=""><span class="r">#1</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan/02.html" class=""><span class="r">#2</span>10113 vs 12537<span class="x">1.86×</span></a><a href="../same_plan/03.html" class=""><span class="r">#3</span>10117 vs 12196<span class="x">1.79×</span></a><a href="../same_plan/04.html" class=""><span class="r">#4</span>17160 vs 14168<span class="x">1.69×</span></a><a href="../same_plan/05.html" class=""><span class="r">#5</span>14903 vs 11567<span class="x">1.67×</span></a><a href="../same_plan/06.html" class=""><span class="r">#6</span>16034 vs 10371<span class="x">1.65×</span></a><a href="../same_plan/07.html" class=""><span class="r">#7</span>10216 vs 13171<span class="x">1.58×</span></a><a href="../same_plan/08.html" class=""><span class="r">#8</span>17227 vs 19323<span class="x">1.56×</span></a><a href="../same_plan/09.html" class=""><span class="r">#9</span>12817 vs 14981<span class="x">1.51×</span></a><a href="../same_plan/10.html" class=""><span class="r">#10</span>10472 vs 14397<span class="x">1.47×</span></a><a href="../same_plan/11.html" class=""><span class="r">#11</span>5876 vs 11547<span class="x">1.44×</span></a><a href="../same_plan/12.html" class=""><span class="r">#12</span>14314 vs 12550<span class="x">1.44×</span></a><a href="../same_plan/13.html" class=""><span class="r">#13</span>17876 vs 16023<span class="x">1.41×</span></a><a href="../same_plan/14.html" class="on"><span class="r">#14</span>11884 vs 12732<span class="x">1.40×</span></a><a href="../same_plan/15.html" class=""><span class="r">#15</span>19028 vs 13920<span class="x">1.40×</span></a><a href="../same_plan/16.html" class=""><span class="r">#16</span>11911 vs 11266<span class="x">1.38×</span></a><a href="../same_plan/17.html" class=""><span class="r">#17</span>10464 vs 10526<span class="x">1.37×</span></a><a href="../same_plan/18.html" class=""><span class="r">#18</span>10835 vs 11405<span class="x">1.34×</span></a><a href="../same_plan/19.html" class=""><span class="r">#19</span>10571 vs 14829<span class="x">1.31×</span></a><a href="../same_plan/20.html" class=""><span class="r">#20</span>13911 vs 14661<span class="x">1.30×</span></a></aside><main><h1>Same plan #14: 11884 vs 12732 — 1.40×</h1><div class="sub">same plan (operators, tables and conditions); outputs may differ. Ranked 14 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">16</div></div><div class="card"><div class="k">query files</div><div class="v">19</div></div><div class="card"><div class="k">energy min</div><div class="v">2.605 J</div></div><div class="card"><div class="k">median</div><div class="v">3.220 J</div></div><div class="card"><div class="k">max</div><div class="v">3.650 J</div></div><div class="card"><div class="k">gap</div><div class="v">1.40×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">15</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 11884</h3><dl class="f"><dt>energy</dt><dd>2.605 J ± 0.016</dd><dt>copies</dt><dd>11884 14425</dd><dt>output</dt><dd>1000 rows (capped), 4 columns</dd><dt>plan</dt><dd>516 ms, 6 nodes, 37 k buffers, 0 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    U.Reputation,
+    COUNT(P.Id) AS PostCount
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName, U.Reputation
+ORDER BY 
+    PostCount DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">userid</th><th class="">displayname</th><th class="">reputation</th><th class="">postcount</th></tr></thead><tbody><tr><td class="">1876</td><td class="">Rick James</td><td class="">79042</td><td class="">5609</td></tr><tr><td class="">877</td><td class="">RolandoMySQLDBA</td><td class="">183985</td><td class="">3314</td></tr><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">181258</td><td class="">2361</td></tr><tr><td class="">3684</td><td class="">Erwin Brandstetter</td><td class="">180111</td><td class="">2239</td></tr><tr><td class="">176905</td><td class="">Laurenz Albe</td><td class="">55057</td><td class="">2091</td></tr></tbody></table></div><p class="muted">first 5 of 1000 rows (capped at 1000 lines)</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(posts.id)) DESC]
+  HashAggregate [Group Key=users.id]
+    Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+      Seq Scan on posts
+      Hash
+        Seq Scan on users</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 12732</h3><dl class="f"><dt>energy</dt><dd>3.650 J ± 0.032</dd><dt>output</dt><dd>1000 rows (capped), 6 columns</dd><dt>plan</dt><dd>702 ms, 6 nodes, 37 k buffers, 0 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    U.Id AS UserId,
+    U.DisplayName AS UserName,
+    COUNT(P.Id) AS PostCount,
+    SUM(P.ViewCount) AS TotalViews,
+    SUM(P.Score) AS TotalScore,
+    AVG(EXTRACT(EPOCH FROM P.CreationDate)) AS AveragePostCreationDate
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName
+ORDER BY 
+    PostCount DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">userid</th><th class="">username</th><th class="">postcount</th><th class="">totalviews</th><th class="">totalscore</th><th class="">averagepostcreationdate</th></tr></thead><tbody><tr><td class="">1876</td><td class="">Rick James</td><td class="">5609</td><td class="">4842</td><td class="">5625</td><td class="">1540620988.84022624</td></tr><tr><td class="">877</td><td class="">RolandoMySQLDBA</td><td class="">3314</td><td class="">9471</td><td class="">15656</td><td class="">1404034581.85561255</td></tr><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">2361</td><td class="">139576</td><td class="">16580</td><td class="">1429261584.66487166</td></tr><tr><td class="">3684</td><td class="">Erwin Brandstetter</td><td class="">2239</td><td class="">96628</td><td class="">15672</td><td class="">1504596508.35682001</td></tr><tr><td class="">176905</td><td class="">Laurenz Albe</td><td class="">2091</td><td class=""></td><td class="">3849</td><td class="">1629710155.96820038</td></tr></tbody></table></div><p class="muted">first 5 of 1000 rows (capped at 1000 lines)</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(posts.id)) DESC]
+  HashAggregate [Group Key=users.id]
+    Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+      Seq Scan on posts
+      Hash
+        Seq Scan on users</pre></details></div></div><p class="muted">Both run the same plan; the plan text does not show LIMIT values or output expressions, which is where same-plan queries differ.</p><details><summary>SQL difference</summary><pre>--- 11884
++++ 12732
+@@ -2,5 +2,7 @@
+     U.Id AS UserId,
+<span class="d">-    U.DisplayName,</span>
+<span class="d">-    U.Reputation,</span>
+<span class="d">-    COUNT(P.Id) AS PostCount</span>
+<span class="a">+    U.DisplayName AS UserName,</span>
+<span class="a">+    COUNT(P.Id) AS PostCount,</span>
+<span class="a">+    SUM(P.ViewCount) AS TotalViews,</span>
+<span class="a">+    SUM(P.Score) AS TotalScore,</span>
+<span class="a">+    AVG(EXTRACT(EPOCH FROM P.CreationDate)) AS AveragePostCreationDate</span>
+ FROM 
+@@ -10,3 +12,3 @@
+ GROUP BY 
+<span class="d">-    U.Id, U.DisplayName, U.Reputation</span>
+<span class="a">+    U.Id, U.DisplayName</span>
+ ORDER BY </pre></details><h2>All 16 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">11884</td><td class="n">2</td><td class="n">2.605</td><td class="n">1.00</td><td class="n">1000</td><td class="n">4</td><td class="n">516</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    U.Reputation,
+    COUNT(P.Id) AS PostCount
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName, U.Reputation
+ORDER BY 
+    PostCount DESC;</pre></details></td></tr><tr><td class="">10459</td><td class="n">2</td><td class="n">2.923</td><td class="n">1.12</td><td class="n">1000</td><td class="n">4</td><td class="n">576</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">13110</td><td class="n">1</td><td class="n">3.017</td><td class="n">1.16</td><td class="n">1000</td><td class="n">5</td><td class="n">617</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS TotalPosts,
+    COALESCE(AVG(p.Score), 0) AS AverageScore,
+    MAX(p.CreationDate) AS MostRecentPostDate
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">12891</td><td class="n">1</td><td class="n">3.032</td><td class="n">1.16</td><td class="n">1000</td><td class="n">5</td><td class="n">594</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    COUNT(P.Id) AS TotalPosts,
+    AVG(P.Score) AS AverageScore,
+    MAX(P.CreationDate) AS MostRecentPostDate
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">12266</td><td class="n">1</td><td class="n">3.086</td><td class="n">1.18</td><td class="n">1000</td><td class="n">4</td><td class="n">602</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    COUNT(p.Id) AS PostCount,
+    COALESCE(AVG(p.Score), 0) AS AverageScore,
+    u.Reputation AS UserReputation
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName, u.Reputation
+ORDER BY 
+    PostCount DESC;</pre></details></td></tr><tr><td class="">13761</td><td class="n">1</td><td class="n">3.176</td><td class="n">1.22</td><td class="n">1000</td><td class="n">5</td><td class="n">643</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    COUNT(P.Id) AS TotalPosts,
+    AVG(P.ViewCount) AS AverageViewCount,
+    AVG(P.Score) AS AverageScore
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">14166</td><td class="n">1</td><td class="n">3.190</td><td class="n">1.22</td><td class="n">1000</td><td class="n">5</td><td class="n">617</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(COALESCE(p.Score, 0)) AS AverageScore,
+    SUM(COALESCE(p.ViewCount, 0)) AS TotalViews
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">13322</td><td class="n">1</td><td class="n">3.218</td><td class="n">1.24</td><td class="n">1000</td><td class="n">5</td><td class="n">650</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS TotalPosts,
+    COALESCE(AVG(p.Score), 0) AS AverageScore,
+    COALESCE(AVG(p.ViewCount), 0) AS AverageViewCount
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">11529</td><td class="n">2</td><td class="n">3.222</td><td class="n">1.24</td><td class="n">1000</td><td class="n">5</td><td class="n">619</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName
+ORDER BY 
+    PostCount DESC;</pre></details></td></tr><tr><td class="">14545</td><td class="n">1</td><td class="n">3.307</td><td class="n">1.27</td><td class="n">1000</td><td class="n">7</td><td class="n">632</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS TotalPosts,
+    SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+    SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+    AVG(p.Score) AS AveragePostScore,
+    u.Reputation
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName, u.Reputation
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">12050</td><td class="n">1</td><td class="n">3.407</td><td class="n">1.31</td><td class="n">1000</td><td class="n">7</td><td class="n">687</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AvgPostScore,
+    AVG(p.ViewCount) AS AvgViewCount,
+    u.Reputation,
+    u.CreationDate
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName, u.Reputation, u.CreationDate
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">12247</td><td class="n">1</td><td class="n">3.428</td><td class="n">1.32</td><td class="n">1000</td><td class="n">8</td><td class="n">647</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.Id AS UserId,
+    U.DisplayName,
+    COUNT(P.Id) AS TotalPosts,
+    SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+    SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+    SUM(CASE WHEN P.Score &gt; 0 THEN 1 ELSE 0 END) AS PositivePosts,
+    SUM(P.ViewCount) AS TotalViews,
+    AVG(P.Score) AS AverageScore
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">10306</td><td class="n">1</td><td class="n">3.479</td><td class="n">1.34</td><td class="n">1000</td><td class="n">8</td><td class="n">659</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+    SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+    SUM(CASE WHEN p.PostTypeId = 10 THEN 1 ELSE 0 END) AS ClosedPostCount,
+    SUM(CASE WHEN p.PostTypeId = 12 THEN 1 ELSE 0 END) AS DeletedPostCount
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName
+ORDER BY 
+    PostCount DESC;</pre></details></td></tr><tr><td class="">14012</td><td class="n">1</td><td class="n">3.557</td><td class="n">1.37</td><td class="n">1000</td><td class="n">6</td><td class="n">655</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    COUNT(p.Id) AS TotalPosts,
+    SUM(p.Score) AS TotalScore,
+    AVG(u.Reputation) AS AverageReputation,
+    MAX(p.LastActivityDate) AS MostRecentActivity
+FROM 
+    Users u
+LEFT JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+GROUP BY 
+    u.Id, u.DisplayName
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">17442</td><td class="n">1</td><td class="n">3.579</td><td class="n">1.37</td><td class="n">1000</td><td class="n">5</td><td class="n">673</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName,
+    COUNT(P.Id) AS TotalPosts,
+    SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+    SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+    AVG(U.Reputation) AS AverageReputation
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.DisplayName, U.Id
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">12732</td><td class="n">1</td><td class="n">3.650</td><td class="n">1.40</td><td class="n">1000</td><td class="n">6</td><td class="n">702</td><td class="n">37</td><td class="">d5a8eede</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.Id AS UserId,
+    U.DisplayName AS UserName,
+    COUNT(P.Id) AS PostCount,
+    SUM(P.ViewCount) AS TotalViews,
+    SUM(P.Score) AS TotalScore,
+    AVG(EXTRACT(EPOCH FROM P.CreationDate)) AS AveragePostCreationDate
+FROM 
+    Users U
+LEFT JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+GROUP BY 
+    U.Id, U.DisplayName
+ORDER BY 
+    PostCount DESC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

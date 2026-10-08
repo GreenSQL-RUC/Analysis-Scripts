@@ -1,0 +1,506 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #16 — 826 vs 4675</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>12857 vs 12074<span class="x">14.77×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>11119 vs 16363<span class="x">11.09×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14843 vs 11239<span class="x">9.77×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>9855 vs 29614<span class="x">8.97×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>17350 vs 17462<span class="x">8.66×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>11370 vs 11796<span class="x">7.23×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>9160 vs 26465<span class="x">7.23×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>16304 vs 18193<span class="x">6.73×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>14104 vs 10365<span class="x">6.11×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>31099 vs 5746<span class="x">5.23×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>11375 vs 18573<span class="x">4.92×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>10008 vs 13752<span class="x">3.86×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>12471 vs 10668<span class="x">3.73×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>11976 vs 7246<span class="x">3.72×</span></a><a href="../same_plan_shape/16.html" class="on"><span class="r">#16</span>826 vs 4675<span class="x">3.70×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11608 vs 13924<span class="x">3.64×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>10621 vs 11860<span class="x">3.58×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>14332 vs 12039<span class="x">3.39×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>7835 vs 6505<span class="x">3.15×</span></a></aside><main><h1>Same plan shape #16: 826 vs 4675 — 3.70×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 16 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">2</div></div><div class="card"><div class="k">query files</div><div class="v">2</div></div><div class="card"><div class="k">energy min</div><div class="v">0.969 J</div></div><div class="card"><div class="k">median</div><div class="v">2.278 J</div></div><div class="card"><div class="k">max</div><div class="v">3.587 J</div></div><div class="card"><div class="k">gap</div><div class="v">3.70×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 826</h3><dl class="f"><dt>energy</dt><dd>0.969 J ± 0.009</dd><dt>output</dt><dd>0 rows, 10 columns</dd><dt>plan</dt><dd>97 ms, 19 nodes, 32 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>WITH RankedPosts AS (
+    SELECT 
+        P.Id AS PostId,
+        P.Title,
+        P.CreationDate,
+        P.Score,
+        P.ViewCount,
+        U.DisplayName AS OwnerDisplayName,
+        RANK() OVER (PARTITION BY P.PostTypeId ORDER BY P.Score DESC) AS PostRank
+    FROM 
+        Posts P
+    JOIN 
+        Users U ON P.OwnerUserId = U.Id
+    WHERE 
+        P.CreationDate &gt;= CURRENT_DATE - INTERVAL &#x27;1 year&#x27;
+),
+RecentVotes AS (
+    SELECT 
+        V.PostId,
+        COUNT(V.Id) AS VoteCount,
+        SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+        SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+    FROM 
+        Votes V
+    WHERE 
+        V.CreationDate &gt;= CURRENT_DATE - INTERVAL &#x27;6 months&#x27;
+    GROUP BY 
+        V.PostId
+),
+PostHistoryCounts AS (
+    SELECT 
+        PH.PostId,
+        COUNT(PH.Id) AS EditCount
+    FROM 
+        PostHistory PH
+    WHERE 
+        PH.PostHistoryTypeId IN (4, 5, 6) 
+    GROUP BY 
+        PH.PostId
+),
+FinalResults AS (
+    SELECT 
+        RP.PostId,
+        RP.Title,
+        RP.CreationDate,
+        RP.Score,
+        RP.ViewCount,
+        RP.OwnerDisplayName,
+        COALESCE(RV.VoteCount, 0) AS TotalVotes,
+        COALESCE(RV.UpVotes, 0) AS UpVotes,
+        COALESCE(RV.DownVotes, 0) AS DownVotes,
+        COALESCE(PHC.EditCount, 0) AS EditCount,
+        RP.PostRank
+    FROM 
+        RankedPosts RP
+    LEFT JOIN 
+        RecentVotes RV ON RP.PostId = RV.PostId
+    LEFT JOIN 
+        PostHistoryCounts PHC ON RP.PostId = PHC.PostId
+)
+SELECT 
+    PostId,
+    Title,
+    CreationDate,
+    Score,
+    ViewCount,
+    OwnerDisplayName,
+    TotalVotes,
+    UpVotes,
+    DownVotes,
+    EditCount
+FROM 
+    FinalResults
+WHERE 
+    PostRank &lt;= 5
+ORDER BY 
+    Score DESC, ViewCount DESC
+LIMIT 10 OFFSET 0;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">title</th><th class="">creationdate</th><th class="">score</th><th class="">viewcount</th><th class="">ownerdisplayname</th><th class="">totalvotes</th><th class="">upvotes</th><th class="">downvotes</th><th class="">editcount</th></tr></thead><tbody></tbody></table></div><p class="muted">first 0 of 0 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=q.score DESC, q.viewcount DESC]
+    Hash Right Join [Hash Cond=(posthistory.postid = q.postid)]
+      HashAggregate [Group Key=posthistory.postid]
+        Seq Scan on posthistory [Filter=(posthistorytypeid = ANY (&#x27;{4,5,6}&#x27;::integer[]))]
+      Hash
+        Merge Left Join [Merge Cond=(q.postid = votes.postid)]
+          Sort [Sort Key=q.postid]
+            Subquery Scan
+              WindowAgg [Run Condition=(rank() OVER w1 &lt;= 5); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score ROWS UNBOUNDED PRECEDING)]
+                Gather Merge
+                  Sort [Sort Key=posts.posttypeid, posts.score DESC]
+                    Nested Loop
+                      Parallel Seq Scan on posts [Filter=(creationdate &gt;= (CURRENT_DATE - &#x27;1 year&#x27;))]
+                      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+          GroupAggregate [Group Key=votes.postid]
+            Gather Merge
+              Sort [Sort Key=votes.postid]
+                Parallel Seq Scan on votes [Filter=(creationdate &gt;= (CURRENT_DATE - &#x27;6 mons&#x27;))]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 4675</h3><dl class="f"><dt>energy</dt><dd>3.587 J ± 0.032</dd><dt>output</dt><dd>50 rows, 9 columns</dd><dt>plan</dt><dd>540 ms, 19 nodes, 117 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.ViewCount,
+        p.AnswerCount,
+        p.CreationDate,
+        u.DisplayName AS OwnerDisplayName,
+        RANK() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC) AS UserRank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id 
+    WHERE 
+        p.PostTypeId = 1 AND 
+        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 year&#x27;
+), RecentVotes AS (
+    SELECT 
+        v.PostId,
+        COUNT(CASE WHEN v.VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN v.VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes v
+    WHERE 
+        v.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27;
+    GROUP BY 
+        v.PostId
+), PostHistories AS (
+    SELECT 
+        ph.PostId,
+        COUNT(*) AS EditCount,
+        MAX(ph.CreationDate) AS LastEditDate
+    FROM 
+        PostHistory ph
+    GROUP BY 
+        ph.PostId
+)
+SELECT 
+    rp.PostId,
+    rp.Title,
+    rp.ViewCount,
+    COALESCE(rv.UpVotes, 0) AS UpVotes,
+    COALESCE(rv.DownVotes, 0) AS DownVotes,
+    rp.CreationDate,
+    rp.OwnerDisplayName,
+    php.EditCount,
+    php.LastEditDate
+FROM 
+    RankedPosts rp
+LEFT JOIN 
+    RecentVotes rv ON rp.PostId = rv.PostId
+LEFT JOIN 
+    PostHistories php ON rp.PostId = php.PostId
+WHERE 
+    rp.UserRank = 1
+ORDER BY 
+    rp.ViewCount DESC, 
+    rp.CreationDate DESC
+LIMIT 50;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">title</th><th class="">viewcount</th><th class="">upvotes</th><th class="">downvotes</th><th class="">creationdate</th><th class="">ownerdisplayname</th><th class="">editcount</th><th class="">lasteditdate</th></tr></thead><tbody><tr><td class="">333948</td><td class="">Not equal to operator is not returning NULL values in SQL Server</td><td class="">5842</td><td class="">0</td><td class="">0</td><td class="">2023-12-11 16:37:19.683</td><td class="">lifeisajourney</td><td class="">5</td><td class="">2023-12-12 00:40:48.23</td></tr><tr><td class="">339076</td><td class="">Why is COALESCE not a function?</td><td class="">5541</td><td class="">0</td><td class="">0</td><td class="">2024-04-28 12:12:57.393</td><td class="">J. Mini</td><td class="">5</td><td class="">2024-04-28 20:17:06.413</td></tr><tr><td class="">334386</td><td class="">Is &quot;+&quot; slower than &quot;CONCAT&quot; for large strings?</td><td class="">4920</td><td class="">0</td><td class="">0</td><td class="">2023-12-28 10:12:28.89</td><td class="">gotqn</td><td class="">7</td><td class="">2023-12-29 12:15:52.073</td></tr><tr><td class="">335765</td><td class="">Restoring a SQL DB that had TDE turned on, cannot find certificate</td><td class="">4431</td><td class="">0</td><td class="">0</td><td class="">2024-02-12 22:16:42.833</td><td class="">Maury Markowitz</td><td class="">5</td><td class="">2024-02-15 11:51:42.147</td></tr><tr><td class="">340569</td><td class="">&quot;Long asynchronous API Call&quot; After Sql Server Update</td><td class="">4135</td><td class="">0</td><td class="">0</td><td class="">2024-06-28 01:23:58.473</td><td class="">Jeff Bauersfeld</td><td class="">3</td><td class="">2024-06-28 01:23:58.473</td></tr></tbody></table></div><p class="muted">first 5 of 50 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=q.viewcount DESC, q.creationdate DESC]
+    Hash Right Join [Hash Cond=(posthistory.postid = q.postid)]
+      HashAggregate [Group Key=posthistory.postid]
+        Seq Scan on posthistory
+      Hash
+        Merge Left Join [Merge Cond=(q.postid = votes.postid)]
+          Sort [Sort Key=q.postid]
+            Subquery Scan [Filter=(q.userrank = 1)]
+              WindowAgg [Run Condition=(rank() OVER w1 &lt;= 1); Window=w1 AS (PARTITION BY posts.owneruserid ORDER BY posts.score ROWS UNBOUNDED PRECEDING)]
+                Gather Merge
+                  Sort [Sort Key=posts.owneruserid, posts.score DESC]
+                    Nested Loop
+                      Parallel Seq Scan on posts [Filter=((creationdate &gt;= &#x27;2023-10-01 12:34:56&#x27;) AND (posttypeid = 1))]
+                      Index Scan on users [Index Cond=(id = posts.owneruserid)]
+          GroupAggregate [Group Key=votes.postid]
+            Gather Merge
+              Sort [Sort Key=votes.postid]
+                Parallel Seq Scan on votes [Filter=(creationdate &gt;= &#x27;2024-09-01 12:34:56&#x27;)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 826
++++ 4675
+@@ -1,6 +1,6 @@
+ Limit
+<span class="d">-  Sort [Sort Key=q.score DESC, q.viewcount DESC]</span>
+<span class="a">+  Sort [Sort Key=q.viewcount DESC, q.creationdate DESC]</span>
+     Hash Right Join [Hash Cond=(posthistory.postid = q.postid)]
+       HashAggregate [Group Key=posthistory.postid]
+<span class="d">-        Seq Scan on posthistory [Filter=(posthistorytypeid = ANY (&#x27;{4,5,6}&#x27;::integer[]))]</span>
+<span class="a">+        Seq Scan on posthistory</span>
+       Hash
+@@ -8,8 +8,8 @@
+           Sort [Sort Key=q.postid]
+<span class="d">-            Subquery Scan</span>
+<span class="d">-              WindowAgg [Run Condition=(rank() OVER w1 &lt;= 5); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score ROWS UNBOUNDED PRECEDING)]</span>
+<span class="a">+            Subquery Scan [Filter=(q.userrank = 1)]</span>
+<span class="a">+              WindowAgg [Run Condition=(rank() OVER w1 &lt;= 1); Window=w1 AS (PARTITION BY posts.owneruserid ORDER BY posts.score ROWS UNBOUNDED PRECEDING)]</span>
+                 Gather Merge
+<span class="d">-                  Sort [Sort Key=posts.posttypeid, posts.score DESC]</span>
+<span class="a">+                  Sort [Sort Key=posts.owneruserid, posts.score DESC]</span>
+                     Nested Loop
+<span class="d">-                      Parallel Seq Scan on posts [Filter=(creationdate &gt;= (CURRENT_DATE - &#x27;1 year&#x27;))]</span>
+<span class="a">+                      Parallel Seq Scan on posts [Filter=((creationdate &gt;= &#x27;2023-10-01 12:34:56&#x27;) AND (posttypeid = 1))]</span>
+                       Index Scan on users [Index Cond=(id = posts.owneruserid)]
+@@ -18,2 +18,2 @@
+               Sort [Sort Key=votes.postid]
+<span class="d">-                Parallel Seq Scan on votes [Filter=(creationdate &gt;= (CURRENT_DATE - &#x27;6 mons&#x27;))]</span>
+<span class="a">+                Parallel Seq Scan on votes [Filter=(creationdate &gt;= &#x27;2024-09-01 12:34:56&#x27;)]</span></pre><details><summary>SQL difference</summary><pre>--- 826
++++ 4675
+@@ -2,77 +2,58 @@
+     SELECT 
+<span class="d">-        P.Id AS PostId,</span>
+<span class="d">-        P.Title,</span>
+<span class="d">-        P.CreationDate,</span>
+<span class="d">-        P.Score,</span>
+<span class="d">-        P.ViewCount,</span>
+<span class="d">-        U.DisplayName AS OwnerDisplayName,</span>
+<span class="d">-        RANK() OVER (PARTITION BY P.PostTypeId ORDER BY P.Score DESC) AS PostRank</span>
+<span class="a">+        p.Id AS PostId,</span>
+<span class="a">+        p.Title,</span>
+<span class="a">+        p.ViewCount,</span>
+<span class="a">+        p.AnswerCount,</span>
+<span class="a">+        p.CreationDate,</span>
+<span class="a">+        u.DisplayName AS OwnerDisplayName,</span>
+<span class="a">+        RANK() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC) AS UserRank</span>
+     FROM 
+<span class="d">-        Posts P</span>
+<span class="a">+        Posts p</span>
+     JOIN 
+<span class="d">-        Users U ON P.OwnerUserId = U.Id</span>
+<span class="a">+        Users u ON p.OwnerUserId = u.Id </span>
+     WHERE 
+<span class="d">-        P.CreationDate &gt;= CURRENT_DATE - INTERVAL &#x27;1 year&#x27;</span>
+<span class="d">-),</span>
+<span class="d">-RecentVotes AS (</span>
+<span class="a">+        p.PostTypeId = 1 AND </span>
+<span class="a">+        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 year&#x27;</span>
+<span class="a">+), RecentVotes AS (</span>
+     SELECT 
+<span class="d">-        V.PostId,</span>
+<span class="d">-        COUNT(V.Id) AS VoteCount,</span>
+<span class="d">-        SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,</span>
+<span class="d">-        SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes</span>
+<span class="a">+        v.PostId,</span>
+<span class="a">+        COUNT(CASE WHEN v.VoteTypeId = 2 THEN 1 END) AS UpVotes,</span>
+<span class="a">+        COUNT(CASE WHEN v.VoteTypeId = 3 THEN 1 END) AS DownVotes</span>
+     FROM 
+<span class="d">-        Votes V</span>
+<span class="a">+        Votes v</span>
+     WHERE 
+<span class="d">-        V.CreationDate &gt;= CURRENT_DATE - INTERVAL &#x27;6 months&#x27;</span>
+<span class="a">+        v.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27;</span>
+     GROUP BY 
+<span class="d">-        V.PostId</span>
+<span class="d">-),</span>
+<span class="d">-PostHistoryCounts AS (</span>
+<span class="a">+        v.PostId</span>
+<span class="a">+), PostHistories AS (</span>
+     SELECT 
+<span class="d">-        PH.PostId,</span>
+<span class="d">-        COUNT(PH.Id) AS EditCount</span>
+<span class="a">+        ph.PostId,</span>
+<span class="a">+        COUNT(*) AS EditCount,</span>
+<span class="a">+        MAX(ph.CreationDate) AS LastEditDate</span>
+     FROM 
+<span class="d">-        PostHistory PH</span>
+<span class="d">-    WHERE </span>
+<span class="d">-        PH.PostHistoryTypeId IN (4, 5, 6) </span>
+<span class="a">+        PostHistory ph</span>
+     GROUP BY 
+<span class="d">-        PH.PostId</span>
+<span class="d">-),</span>
+<span class="d">-FinalResults AS (</span>
+<span class="d">-    SELECT </span>
+<span class="d">-        RP.PostId,</span>
+<span class="d">-        RP.Title,</span>
+<span class="d">-        RP.CreationDate,</span>
+<span class="d">-        RP.Score,</span>
+<span class="d">-        RP.ViewCount,</span>
+<span class="d">-        RP.OwnerDisplayName,</span>
+<span class="d">-        COALESCE(RV.VoteCount, 0) AS TotalVotes,</span>
+<span class="d">-        COALESCE(RV.UpVotes, 0) AS UpVotes,</span>
+<span class="d">-        COALESCE(RV.DownVotes, 0) AS DownVotes,</span>
+<span class="d">-        COALESCE(PHC.EditCount, 0) AS EditCount,</span>
+<span class="d">-        RP.PostRank</span>
+<span class="d">-    FROM </span>
+<span class="d">-        RankedPosts RP</span>
+<span class="d">-    LEFT JOIN </span>
+<span class="d">-        RecentVotes RV ON RP.PostId = RV.PostId</span>
+<span class="d">-    LEFT JOIN </span>
+<span class="d">-        PostHistoryCounts PHC ON RP.PostId = PHC.PostId</span>
+<span class="a">+        ph.PostId</span>
+ )
+ SELECT 
+<span class="d">-    PostId,</span>
+<span class="d">-    Title,</span>
+<span class="d">-    CreationDate,</span>
+<span class="d">-    Score,</span>
+<span class="d">-    ViewCount,</span>
+<span class="d">-    OwnerDisplayName,</span>
+<span class="d">-    TotalVotes,</span>
+<span class="d">-    UpVotes,</span>
+<span class="d">-    DownVotes,</span>
+<span class="d">-    EditCount</span>
+<span class="a">+    rp.PostId,</span>
+<span class="a">+    rp.Title,</span>
+<span class="a">+    rp.ViewCount,</span>
+<span class="a">+    COALESCE(rv.UpVotes, 0) AS UpVotes,</span>
+<span class="a">+    COALESCE(rv.DownVotes, 0) AS DownVotes,</span>
+<span class="a">+    rp.CreationDate,</span>
+<span class="a">+    rp.OwnerDisplayName,</span>
+<span class="a">+    php.EditCount,</span>
+<span class="a">+    php.LastEditDate</span>
+ FROM 
+<span class="d">-    FinalResults</span>
+<span class="a">+    RankedPosts rp</span>
+<span class="a">+LEFT JOIN </span>
+<span class="a">+    RecentVotes rv ON rp.PostId = rv.PostId</span>
+<span class="a">+LEFT JOIN </span>
+<span class="a">+    PostHistories php ON rp.PostId = php.PostId</span>
+ WHERE 
+<span class="d">-    PostRank &lt;= 5</span>
+<span class="a">+    rp.UserRank = 1</span>
+ ORDER BY 
+<span class="d">-    Score DESC, ViewCount DESC</span>
+<span class="d">-LIMIT 10 OFFSET 0;</span>
+<span class="a">+    rp.ViewCount DESC, </span>
+<span class="a">+    rp.CreationDate DESC</span>
+<span class="a">+LIMIT 50;</span></pre></details><h2>All 2 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">826</td><td class="n">1</td><td class="n">0.969</td><td class="n">1.00</td><td class="n">0</td><td class="n">10</td><td class="n">97</td><td class="n">32</td><td class="">1ff7cc70</td><td class=""><details><summary>show</summary><pre>WITH RankedPosts AS (
+    SELECT 
+        P.Id AS PostId,
+        P.Title,
+        P.CreationDate,
+        P.Score,
+        P.ViewCount,
+        U.DisplayName AS OwnerDisplayName,
+        RANK() OVER (PARTITION BY P.PostTypeId ORDER BY P.Score DESC) AS PostRank
+    FROM 
+        Posts P
+    JOIN 
+        Users U ON P.OwnerUserId = U.Id
+    WHERE 
+        P.CreationDate &gt;= CURRENT_DATE - INTERVAL &#x27;1 year&#x27;
+),
+RecentVotes AS (
+    SELECT 
+        V.PostId,
+        COUNT(V.Id) AS VoteCount,
+        SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+        SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+    FROM 
+        Votes V
+    WHERE 
+        V.CreationDate &gt;= CURRENT_DATE - INTERVAL &#x27;6 months&#x27;
+    GROUP BY 
+        V.PostId
+),
+PostHistoryCounts AS (
+    SELECT 
+        PH.PostId,
+        COUNT(PH.Id) AS EditCount
+    FROM 
+        PostHistory PH
+    WHERE 
+        PH.PostHistoryTypeId IN (4, 5, 6) 
+    GROUP BY 
+        PH.PostId
+),
+FinalResults AS (
+    SELECT 
+        RP.PostId,
+        RP.Title,
+        RP.CreationDate,
+        RP.Score,
+        RP.ViewCount,
+        RP.OwnerDisplayName,
+        COALESCE(RV.VoteCount, 0) AS TotalVotes,
+        COALESCE(RV.UpVotes, 0) AS UpVotes,
+        COALESCE(RV.DownVotes, 0) AS DownVotes,
+        COALESCE(PHC.EditCount, 0) AS EditCount,
+        RP.PostRank
+    FROM 
+        RankedPosts RP
+    LEFT JOIN 
+        RecentVotes RV ON RP.PostId = RV.PostId
+    LEFT JOIN 
+        PostHistoryCounts PHC ON RP.PostId = PHC.PostId
+)
+SELECT 
+    PostId,
+    Title,
+    CreationDate,
+    Score,
+    ViewCount,
+    OwnerDisplayName,
+    TotalVotes,
+    UpVotes,
+    DownVotes,
+    EditCount
+FROM 
+    FinalResults
+WHERE 
+    PostRank &lt;= 5
+ORDER BY 
+    Score DESC, ViewCount DESC
+LIMIT 10 OFFSET 0;</pre></details></td></tr><tr><td class="">4675</td><td class="n">1</td><td class="n">3.587</td><td class="n">3.70</td><td class="n">50</td><td class="n">9</td><td class="n">540</td><td class="n">117</td><td class="">8a36e8da</td><td class=""><details><summary>show</summary><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.ViewCount,
+        p.AnswerCount,
+        p.CreationDate,
+        u.DisplayName AS OwnerDisplayName,
+        RANK() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC) AS UserRank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id 
+    WHERE 
+        p.PostTypeId = 1 AND 
+        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 year&#x27;
+), RecentVotes AS (
+    SELECT 
+        v.PostId,
+        COUNT(CASE WHEN v.VoteTypeId = 2 THEN 1 END) AS UpVotes,
+        COUNT(CASE WHEN v.VoteTypeId = 3 THEN 1 END) AS DownVotes
+    FROM 
+        Votes v
+    WHERE 
+        v.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27;
+    GROUP BY 
+        v.PostId
+), PostHistories AS (
+    SELECT 
+        ph.PostId,
+        COUNT(*) AS EditCount,
+        MAX(ph.CreationDate) AS LastEditDate
+    FROM 
+        PostHistory ph
+    GROUP BY 
+        ph.PostId
+)
+SELECT 
+    rp.PostId,
+    rp.Title,
+    rp.ViewCount,
+    COALESCE(rv.UpVotes, 0) AS UpVotes,
+    COALESCE(rv.DownVotes, 0) AS DownVotes,
+    rp.CreationDate,
+    rp.OwnerDisplayName,
+    php.EditCount,
+    php.LastEditDate
+FROM 
+    RankedPosts rp
+LEFT JOIN 
+    RecentVotes rv ON rp.PostId = rv.PostId
+LEFT JOIN 
+    PostHistories php ON rp.PostId = php.PostId
+WHERE 
+    rp.UserRank = 1
+ORDER BY 
+    rp.ViewCount DESC, 
+    rp.CreationDate DESC
+LIMIT 50;</pre></details></td></tr></tbody></table></div></main></div></body></html>

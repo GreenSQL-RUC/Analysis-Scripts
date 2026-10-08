@@ -1,0 +1,551 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #7 — 26270 vs 25070</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>11504 vs 10324<span class="x">84.29×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>28628 vs 29724<span class="x">59.54×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14417 vs 10616<span class="x">56.86×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>25619 vs 25363<span class="x">49.48×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>26744 vs 12506<span class="x">47.33×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>12981 vs 11646<span class="x">45.98×</span></a><a href="../same_plan_shape/07.html" class="on"><span class="r">#7</span>26270 vs 25070<span class="x">42.65×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>7408 vs 11887<span class="x">33.88×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>29222 vs 27828<span class="x">29.28×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>27240 vs 26970<span class="x">26.77×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>29217 vs 27093<span class="x">25.70×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>14211 vs 11418<span class="x">25.30×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>27184 vs 28416<span class="x">25.23×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>10100 vs 11629<span class="x">23.84×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>10359 vs 12442<span class="x">22.92×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>25129 vs 27475<span class="x">22.41×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11755 vs 13924<span class="x">21.81×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>26702 vs 27519<span class="x">21.17×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>15944 vs 11546<span class="x">21.00×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>14391 vs 10243<span class="x">20.45×</span></a></aside><main><h1>Same plan shape #7: 26270 vs 25070 — 42.65×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 7 of 20 by the energy gap within the group (most expensive / cheapest). Energy: SQLStorm single-copy energy (laptop 1) per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">12</div></div><div class="card"><div class="k">query files</div><div class="v">12</div></div><div class="card"><div class="k">energy min</div><div class="v">0.596 J</div></div><div class="card"><div class="k">median</div><div class="v">0.611 J</div></div><div class="card"><div class="k">max</div><div class="v">25.410 J</div></div><div class="card"><div class="k">gap</div><div class="v">42.65×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">12</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 26270</h3><dl class="f"><dt>energy</dt><dd>0.596 J ± 0.028</dd><dt>output</dt><dd>0 rows, 9 columns</dd><dt>plan</dt><dd>19 ms, 19 nodes, 4 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.p_name,
+    s.s_name,
+    n.n_name,
+    r.r_name,
+    CONCAT(&#x27;Supplier: &#x27;, s.s_name, &#x27;, Part: &#x27;, p.p_name, &#x27;, Nation: &#x27;, n.n_name, &#x27;, Region: &#x27;, r.r_name) AS full_description,
+    STRING_AGG(DISTINCT p.p_comment, &#x27;; &#x27;) AS aggregated_comments,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_price_per_item
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_type LIKE &#x27;%metal%&#x27; 
+    AND o.o_orderdate BETWEEN &#x27;1996-01-01&#x27; AND &#x27;1996-12-31&#x27;
+GROUP BY 
+    p.p_name, s.s_name, n.n_name, r.r_name
+ORDER BY 
+    total_orders DESC, avg_price_per_item DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">p_name</th><th class="">s_name</th><th class="">n_name</th><th class="">r_name</th><th class="">full_description</th><th class="">aggregated_comments</th><th class="">total_orders</th><th class="">total_quantity</th><th class="">avg_price_per_item</th></tr></thead><tbody></tbody></table></div><p class="muted">first 0 of 0 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(DISTINCT orders.o_orderkey)) DESC, (avg(lineitem.l_extendedprice)) DESC]
+  GroupAggregate [Group Key=part.p_name, supplier.s_name, nation.n_name, region.r_name]
+    Gather Merge
+      Sort [Sort Key=part.p_name, supplier.s_name, nation.n_name, region.r_name, part.p_comment]
+        Nested Loop
+          Nested Loop [Join Filter=(part.p_partkey = lineitem.l_partkey)]
+            Hash Join [Hash Cond=(supplier.s_nationkey = nation.n_nationkey)]
+              Nested Loop
+                Nested Loop
+                  Parallel Seq Scan on part [Filter=((p_type)::text ~~ &#x27;%metal%&#x27;)]
+                  Index Only Scan on partsupp [Index Cond=(ps_partkey = part.p_partkey)]
+                Index Scan on supplier [Index Cond=(s_suppkey = partsupp.ps_suppkey)]
+              Hash
+                Hash Join [Hash Cond=(nation.n_regionkey = region.r_regionkey)]
+                  Seq Scan on nation
+                  Hash
+                    Seq Scan on region
+            Index Scan on lineitem [Index Cond=(l_partkey = partsupp.ps_partkey)]
+          Index Scan on orders [Filter=((o_orderdate &gt;= &#x27;1996-01-01&#x27;) AND (o_orderdate &lt;= &#x27;1996-12-31&#x27;)); Index Cond=(o_orderkey = lineitem.l_orderkey)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 25070</h3><dl class="f"><dt>energy</dt><dd>25.410 J ± 0.146</dd><dt>output</dt><dd>1000 rows (capped), 6 columns</dd><dt>plan</dt><dd>1811 ms, 19 nodes, 6746 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.p_name AS part_name,
+    COUNT(DISTINCT l.l_orderkey) AS order_count,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_price,
+    SUBSTRING(p.p_comment, 1, 15) AS short_comment,
+    r.r_name AS region_name
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    UPPER(p.p_name) LIKE &#x27;%METAL%&#x27;
+    AND o.o_orderdate BETWEEN &#x27;1997-01-01&#x27; AND &#x27;1997-12-31&#x27;
+GROUP BY 
+    p.p_name, r.r_name, p.p_comment
+HAVING 
+    SUM(l.l_quantity) &gt; 100
+ORDER BY 
+    total_quantity DESC, part_name ASC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">part_name</th><th class="">order_count</th><th class="">total_quantity</th><th class="">avg_price</th><th class="">short_comment</th><th class="">region_name</th></tr></thead><tbody><tr><td class="">metallic rose ghost midnight blanched</td><td class="">11</td><td class="">1376.00</td><td class="">60792.618181818182</td><td class="">along the blith</td><td class="">AMERICA                  </td></tr><tr><td class="">burnished khaki moccasin metallic misty</td><td class="">10</td><td class="">1168.00</td><td class="">47352.764000000000</td><td class=""> across the fin</td><td class="">AFRICA                   </td></tr><tr><td class="">blush metallic grey khaki light</td><td class="">8</td><td class="">1088.00</td><td class="">35091.400000000000</td><td class="">ut the </td><td class="">MIDDLE EAST              </td></tr><tr><td class="">lime coral seashell metallic brown</td><td class="">12</td><td class="">1005.00</td><td class="">51024.408333333333</td><td class="">usual packages</td><td class="">EUROPE                   </td></tr><tr><td class="">lace violet metallic yellow indian</td><td class="">8</td><td class="">1004.00</td><td class="">53925.153750000000</td><td class="">ithely final b</td><td class="">MIDDLE EAST              </td></tr></tbody></table></div><p class="muted">first 5 of 1000 rows (capped at 1000 lines)</p><details><summary>Plan</summary><pre>Sort [Sort Key=(sum(lineitem.l_quantity)) DESC, part.p_name]
+  GroupAggregate [Filter=(sum(lineitem.l_quantity) &gt; &#x27;100&#x27;::numeric); Group Key=part.p_name, region.r_name, part.p_comment]
+    Gather Merge
+      Sort [Sort Key=part.p_name, region.r_name, part.p_comment, lineitem.l_orderkey]
+        Nested Loop
+          Nested Loop [Join Filter=(part.p_partkey = lineitem.l_partkey)]
+            Hash Join [Hash Cond=(supplier.s_nationkey = nation.n_nationkey)]
+              Nested Loop
+                Nested Loop
+                  Parallel Seq Scan on part [Filter=(upper((p_name)::text) ~~ &#x27;%METAL%&#x27;)]
+                  Index Only Scan on partsupp [Index Cond=(ps_partkey = part.p_partkey)]
+                Index Scan on supplier [Index Cond=(s_suppkey = partsupp.ps_suppkey)]
+              Hash
+                Hash Join [Hash Cond=(nation.n_regionkey = region.r_regionkey)]
+                  Seq Scan on nation
+                  Hash
+                    Seq Scan on region
+            Index Scan on lineitem [Index Cond=(l_partkey = partsupp.ps_partkey)]
+          Index Scan on orders [Filter=((o_orderdate &gt;= &#x27;1997-01-01&#x27;) AND (o_orderdate &lt;= &#x27;1997-12-31&#x27;)); Index Cond=(o_orderkey = lineitem.l_orderkey)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 26270
++++ 25070
+@@ -1,5 +1,5 @@
+<span class="d">-Sort [Sort Key=(count(DISTINCT orders.o_orderkey)) DESC, (avg(lineitem.l_extendedprice)) DESC]</span>
+<span class="d">-  GroupAggregate [Group Key=part.p_name, supplier.s_name, nation.n_name, region.r_name]</span>
+<span class="a">+Sort [Sort Key=(sum(lineitem.l_quantity)) DESC, part.p_name]</span>
+<span class="a">+  GroupAggregate [Filter=(sum(lineitem.l_quantity) &gt; &#x27;100&#x27;::numeric); Group Key=part.p_name, region.r_name, part.p_comment]</span>
+     Gather Merge
+<span class="d">-      Sort [Sort Key=part.p_name, supplier.s_name, nation.n_name, region.r_name, part.p_comment]</span>
+<span class="a">+      Sort [Sort Key=part.p_name, region.r_name, part.p_comment, lineitem.l_orderkey]</span>
+         Nested Loop
+@@ -9,3 +9,3 @@
+                 Nested Loop
+<span class="d">-                  Parallel Seq Scan on part [Filter=((p_type)::text ~~ &#x27;%metal%&#x27;)]</span>
+<span class="a">+                  Parallel Seq Scan on part [Filter=(upper((p_name)::text) ~~ &#x27;%METAL%&#x27;)]</span>
+                   Index Only Scan on partsupp [Index Cond=(ps_partkey = part.p_partkey)]
+@@ -18,2 +18,2 @@
+             Index Scan on lineitem [Index Cond=(l_partkey = partsupp.ps_partkey)]
+<span class="d">-          Index Scan on orders [Filter=((o_orderdate &gt;= &#x27;1996-01-01&#x27;) AND (o_orderdate &lt;= &#x27;1996-12-31&#x27;)); Index Cond=(o_orderkey = lineitem.l_orderkey)]</span>
+<span class="a">+          Index Scan on orders [Filter=((o_orderdate &gt;= &#x27;1997-01-01&#x27;) AND (o_orderdate &lt;= &#x27;1997-12-31&#x27;)); Index Cond=(o_orderkey = lineitem.l_orderkey)]</span></pre><details><summary>SQL difference</summary><pre>--- 26270
++++ 25070
+@@ -1,11 +1,8 @@
+ SELECT 
+<span class="d">-    p.p_name,</span>
+<span class="d">-    s.s_name,</span>
+<span class="d">-    n.n_name,</span>
+<span class="d">-    r.r_name,</span>
+<span class="d">-    CONCAT(&#x27;Supplier: &#x27;, s.s_name, &#x27;, Part: &#x27;, p.p_name, &#x27;, Nation: &#x27;, n.n_name, &#x27;, Region: &#x27;, r.r_name) AS full_description,</span>
+<span class="d">-    STRING_AGG(DISTINCT p.p_comment, &#x27;; &#x27;) AS aggregated_comments,</span>
+<span class="d">-    COUNT(DISTINCT o.o_orderkey) AS total_orders,</span>
+<span class="a">+    p.p_name AS part_name,</span>
+<span class="a">+    COUNT(DISTINCT l.l_orderkey) AS order_count,</span>
+     SUM(l.l_quantity) AS total_quantity,
+<span class="d">-    AVG(l.l_extendedprice) AS avg_price_per_item</span>
+<span class="a">+    AVG(l.l_extendedprice) AS avg_price,</span>
+<span class="a">+    SUBSTRING(p.p_comment, 1, 15) AS short_comment,</span>
+<span class="a">+    r.r_name AS region_name</span>
+ FROM 
+@@ -25,7 +22,9 @@
+ WHERE 
+<span class="d">-    p.p_type LIKE &#x27;%metal%&#x27; </span>
+<span class="d">-    AND o.o_orderdate BETWEEN &#x27;1996-01-01&#x27; AND &#x27;1996-12-31&#x27;</span>
+<span class="a">+    UPPER(p.p_name) LIKE &#x27;%METAL%&#x27;</span>
+<span class="a">+    AND o.o_orderdate BETWEEN &#x27;1997-01-01&#x27; AND &#x27;1997-12-31&#x27;</span>
+ GROUP BY 
+<span class="d">-    p.p_name, s.s_name, n.n_name, r.r_name</span>
+<span class="a">+    p.p_name, r.r_name, p.p_comment</span>
+<span class="a">+HAVING </span>
+<span class="a">+    SUM(l.l_quantity) &gt; 100</span>
+ ORDER BY 
+<span class="d">-    total_orders DESC, avg_price_per_item DESC;</span>
+<span class="a">+    total_quantity DESC, part_name ASC;</span></pre></details><h2>All 12 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">26270</td><td class="n">1</td><td class="n">0.596</td><td class="n">1.00</td><td class="n">0</td><td class="n">9</td><td class="n">19</td><td class="n">4</td><td class="">6b73f5c0</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    s.s_name,
+    n.n_name,
+    r.r_name,
+    CONCAT(&#x27;Supplier: &#x27;, s.s_name, &#x27;, Part: &#x27;, p.p_name, &#x27;, Nation: &#x27;, n.n_name, &#x27;, Region: &#x27;, r.r_name) AS full_description,
+    STRING_AGG(DISTINCT p.p_comment, &#x27;; &#x27;) AS aggregated_comments,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_price_per_item
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_type LIKE &#x27;%metal%&#x27; 
+    AND o.o_orderdate BETWEEN &#x27;1996-01-01&#x27; AND &#x27;1996-12-31&#x27;
+GROUP BY 
+    p.p_name, s.s_name, n.n_name, r.r_name
+ORDER BY 
+    total_orders DESC, avg_price_per_item DESC;</pre></details></td></tr><tr><td class="">26199</td><td class="n">1</td><td class="n">0.597</td><td class="n">1.00</td><td class="n">0</td><td class="n">6</td><td class="n">19</td><td class="n">4</td><td class="">76cbd71e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name AS part_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    STRING_AGG(CONCAT(s.s_name, &#x27; (&#x27;, s.s_phone, &#x27;)&#x27;), &#x27;; &#x27;) AS supplier_details,
+    r.r_name AS region_name
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    o.o_orderdate BETWEEN &#x27;1997-01-01&#x27; AND &#x27;1997-12-31&#x27;
+    AND p.p_name LIKE &#x27;%widget%&#x27;
+GROUP BY 
+    p.p_name, r.r_name
+HAVING 
+    SUM(l.l_quantity) &gt; 100
+ORDER BY 
+    total_revenue DESC;</pre></details></td></tr><tr><td class="">27895</td><td class="n">1</td><td class="n">0.602</td><td class="n">1.01</td><td class="n">0</td><td class="n">6</td><td class="n">19</td><td class="n">4</td><td class="">de3a32af</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    CONCAT(s.s_name, &#x27; from &#x27;, n.n_name, &#x27; in &#x27;, r.r_name) AS supplier_location,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice * (1 - l.l_discount)) AS avg_price_after_discount,
+    CASE 
+        WHEN AVG(l.l_extendedprice * (1 - l.l_discount)) &gt; 100 THEN &#x27;High Value&#x27;
+        WHEN AVG(l.l_extendedprice * (1 - l.l_discount)) BETWEEN 50 AND 100 THEN &#x27;Medium Value&#x27;
+        ELSE &#x27;Low Value&#x27;
+    END AS price_category
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_name LIKE &#x27;%widget%&#x27; AND 
+    o.o_orderdate BETWEEN &#x27;1997-01-01&#x27; AND &#x27;1997-12-31&#x27;
+GROUP BY 
+    p.p_name, s.s_name, n.n_name, r.r_name
+ORDER BY 
+    total_orders DESC, avg_price_after_discount DESC;</pre></details></td></tr><tr><td class="">28884</td><td class="n">1</td><td class="n">0.603</td><td class="n">1.01</td><td class="n">0</td><td class="n">5</td><td class="n">18</td><td class="n">4</td><td class="">727e5359</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    AVG(s.s_acctbal) AS average_supplier_balance,
+    CONCAT(r.r_name, &#x27; - &#x27;, n.n_name) AS region_nation_info
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    p.p_comment LIKE &#x27;%fragile%&#x27;
+    AND o.o_orderdate BETWEEN &#x27;1997-01-01&#x27; AND &#x27;1997-12-31&#x27;
+GROUP BY 
+    p.p_name, r.r_name, n.n_name
+HAVING 
+    SUM(l.l_quantity) &gt; 1000
+ORDER BY 
+    total_orders DESC, average_supplier_balance ASC;</pre></details></td></tr><tr><td class="">27681</td><td class="n">1</td><td class="n">0.608</td><td class="n">1.02</td><td class="n">0</td><td class="n">7</td><td class="n">18</td><td class="n">4</td><td class="">71c1b587</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    s.s_name,
+    CONCAT(s.s_address, &#x27;, &#x27;, n.n_name, &#x27;, &#x27;, r.r_name) AS supplier_address,
+    p.p_retailprice,
+    COUNT(DISTINCT o.o_orderkey) AS order_count,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice * (1 - l.l_discount)) AS avg_sales
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_name LIKE &#x27;%widget%&#x27;
+    AND o.o_orderdate BETWEEN DATE &#x27;1997-01-01&#x27; AND DATE &#x27;1997-12-31&#x27;
+    AND s.s_acctbal &gt; 1000
+GROUP BY 
+    p.p_name, s.s_name, s.s_address, n.n_name, r.r_name, p.p_retailprice
+ORDER BY 
+    order_count DESC, total_quantity DESC;</pre></details></td></tr><tr><td class="">29360</td><td class="n">1</td><td class="n">0.609</td><td class="n">1.02</td><td class="n">0</td><td class="n">5</td><td class="n">18</td><td class="n">4</td><td class="">531ab40c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    COUNT(DISTINCT ps.ps_suppkey) AS supplier_count,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue,
+    SUBSTRING(p.p_comment, 1, 20) AS short_comment,
+    r.r_name AS region_name
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_size &gt; 10 
+    AND SUBSTR(p.p_name, 1, 3) = &#x27;AA%&#x27;
+    AND o.o_orderdate &gt;= &#x27;1997-01-01&#x27; 
+GROUP BY 
+    p.p_name, r.r_name, p.p_comment
+HAVING 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) &gt; 10000.00
+ORDER BY 
+    total_revenue DESC, supplier_count ASC;</pre></details></td></tr><tr><td class="">29642</td><td class="n">1</td><td class="n">0.612</td><td class="n">1.03</td><td class="n">0</td><td class="n">8</td><td class="n">20</td><td class="n">4</td><td class="">fba08ce0</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    s.s_name,
+    n.n_name,
+    r.r_name,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    SUM(l.l_extendedprice) AS total_revenue,
+    AVG(s.s_acctbal) AS avg_supplier_balance,
+    STRING_AGG(DISTINCT o.o_orderpriority, &#x27;, &#x27;) AS order_priorities
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_name LIKE &#x27;%widget%&#x27; 
+    AND o.o_orderstatus = &#x27;O&#x27;
+    AND l.l_shipdate &gt;= &#x27;1997-01-01&#x27;
+GROUP BY 
+    p.p_name, s.s_name, n.n_name, r.r_name
+HAVING 
+    SUM(l.l_extendedprice) &gt; 10000
+ORDER BY 
+    total_revenue DESC, total_orders DESC;</pre></details></td></tr><tr><td class="">29747</td><td class="n">1</td><td class="n">0.613</td><td class="n">1.03</td><td class="n">0</td><td class="n">7</td><td class="n">19</td><td class="n">4</td><td class="">5afa9430</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    CONCAT(&#x27;Supplier: &#x27;, s.s_name, &#x27;, Region: &#x27;, r.r_name) AS supplier_region_info,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    SUM(l.l_quantity) AS total_quantity_sold,
+    AVG(l.l_extendedprice) AS avg_price,
+    SUM(CASE WHEN l.l_returnflag = &#x27;R&#x27; THEN l.l_quantity ELSE 0 END) AS total_returned
+FROM
+    part p
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE
+    p.p_name LIKE &#x27;%widget%&#x27;
+    AND o.o_orderdate BETWEEN &#x27;1997-01-01&#x27; AND &#x27;1997-12-31&#x27;
+GROUP BY
+    p.p_partkey, p.p_name, s.s_name, r.r_name
+ORDER BY
+    total_orders DESC, total_quantity_sold DESC;</pre></details></td></tr><tr><td class="">25841</td><td class="n">1</td><td class="n">0.643</td><td class="n">1.08</td><td class="n">0</td><td class="n">6</td><td class="n">22</td><td class="n">4</td><td class="">8909cda6</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    COUNT(DISTINCT ps.ps_suppkey) AS supplier_count,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_extended_price,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue,
+    CONCAT(r.r_name, &#x27;: &#x27;, n.n_name) AS region_nation
+FROM 
+    part AS p
+JOIN 
+    partsupp AS ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier AS s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation AS n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region AS r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem AS l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders AS o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_name LIKE &#x27;%rubber%&#x27;
+    AND o.o_orderdate &gt;= &#x27;1995-01-01&#x27;
+    AND o.o_orderdate &lt; &#x27;1996-01-01&#x27;
+GROUP BY 
+    p.p_name, r.r_name, n.n_name
+HAVING 
+    SUM(l.l_quantity) &gt; 100
+ORDER BY 
+    total_revenue DESC;</pre></details></td></tr><tr><td class="">25993</td><td class="n">1</td><td class="n">0.651</td><td class="n">1.09</td><td class="n">0</td><td class="n">6</td><td class="n">18</td><td class="n">4</td><td class="">ed97a84c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    SUBSTRING(p.p_name, 1, 20) AS short_part_name,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    AVG(l.l_extendedprice) AS avg_extended_price,
+    SUM(CASE WHEN l.l_discount &gt; 0.1 THEN l.l_discount * l.l_extendedprice ELSE 0 END) AS total_discounted_revenue,
+    r.r_name AS region_name,
+    n.n_name AS nation_name
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_comment LIKE &#x27;%fragile%&#x27;
+    AND o.o_orderdate BETWEEN &#x27;1997-01-01&#x27; AND &#x27;1997-12-31&#x27;
+GROUP BY 
+    short_part_name, r.r_name, n.n_name
+HAVING 
+    COUNT(DISTINCT o.o_orderkey) &gt; 5
+ORDER BY 
+    avg_extended_price DESC, total_orders DESC;</pre></details></td></tr><tr><td class="">29419</td><td class="n">1</td><td class="n">0.958</td><td class="n">1.61</td><td class="n">0</td><td class="n">6</td><td class="n">19</td><td class="n">4</td><td class="">f05a361b</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    COUNT(DISTINCT ps.ps_suppkey) AS supplier_count,
+    SUM(CASE WHEN o.o_orderstatus = &#x27;F&#x27; THEN l.l_quantity ELSE 0 END) AS total_filled_quantity,
+    AVG(l.l_extendedprice) AS avg_extended_price,
+    CONCAT(LEFT(p.p_comment, 20), &#x27;...&#x27;) AS short_comment,
+    r.r_name AS region_name
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    p.p_name LIKE &#x27;%widget%&#x27; 
+    AND o.o_orderdate &gt;= DATE &#x27;1995-01-01&#x27;
+GROUP BY 
+    p.p_name, r.r_name, p.p_comment
+HAVING 
+    COUNT(DISTINCT s.s_suppkey) &gt; 5 
+ORDER BY 
+    total_filled_quantity DESC, avg_extended_price ASC;</pre></details></td></tr><tr><td class="">25070</td><td class="n">1</td><td class="n">25.410</td><td class="n">42.65</td><td class="n">1000</td><td class="n">6</td><td class="n">1811</td><td class="n">6746</td><td class="">1763bd24</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name AS part_name,
+    COUNT(DISTINCT l.l_orderkey) AS order_count,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_price,
+    SUBSTRING(p.p_comment, 1, 15) AS short_comment,
+    r.r_name AS region_name
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    UPPER(p.p_name) LIKE &#x27;%METAL%&#x27;
+    AND o.o_orderdate BETWEEN &#x27;1997-01-01&#x27; AND &#x27;1997-12-31&#x27;
+GROUP BY 
+    p.p_name, r.r_name, p.p_comment
+HAVING 
+    SUM(l.l_quantity) &gt; 100
+ORDER BY 
+    total_quantity DESC, part_name ASC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

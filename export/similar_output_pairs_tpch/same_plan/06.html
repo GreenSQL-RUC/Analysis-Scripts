@@ -1,0 +1,157 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan #6 — 19155 vs 10228</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="on">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan/01.html" class=""><span class="r">#1</span>16132 vs 29082<span class="x">3.38×</span></a><a href="../same_plan/02.html" class=""><span class="r">#2</span>17461 vs 17863<span class="x">2.72×</span></a><a href="../same_plan/03.html" class=""><span class="r">#3</span>18987 vs 28977<span class="x">1.84×</span></a><a href="../same_plan/04.html" class=""><span class="r">#4</span>18877 vs 13642<span class="x">1.65×</span></a><a href="../same_plan/05.html" class=""><span class="r">#5</span>16696 vs 11049<span class="x">1.62×</span></a><a href="../same_plan/06.html" class="on"><span class="r">#6</span>19155 vs 10228<span class="x">1.60×</span></a><a href="../same_plan/07.html" class=""><span class="r">#7</span>17158 vs 10090<span class="x">1.51×</span></a><a href="../same_plan/08.html" class=""><span class="r">#8</span>18592 vs 16367<span class="x">1.51×</span></a><a href="../same_plan/09.html" class=""><span class="r">#9</span>17862 vs 14477<span class="x">1.49×</span></a><a href="../same_plan/10.html" class=""><span class="r">#10</span>15003 vs 16046<span class="x">1.49×</span></a><a href="../same_plan/11.html" class=""><span class="r">#11</span>11321 vs 13903<span class="x">1.46×</span></a><a href="../same_plan/12.html" class=""><span class="r">#12</span>18827 vs 16240<span class="x">1.45×</span></a><a href="../same_plan/13.html" class=""><span class="r">#13</span>11863 vs 14184<span class="x">1.45×</span></a><a href="../same_plan/14.html" class=""><span class="r">#14</span>14342 vs 13377<span class="x">1.44×</span></a><a href="../same_plan/15.html" class=""><span class="r">#15</span>12784 vs 13071<span class="x">1.43×</span></a><a href="../same_plan/16.html" class=""><span class="r">#16</span>18695 vs 17877<span class="x">1.42×</span></a><a href="../same_plan/17.html" class=""><span class="r">#17</span>16850 vs 11845<span class="x">1.40×</span></a><a href="../same_plan/18.html" class=""><span class="r">#18</span>15305 vs 13444<span class="x">1.38×</span></a><a href="../same_plan/19.html" class=""><span class="r">#19</span>19661 vs 18275<span class="x">1.35×</span></a><a href="../same_plan/20.html" class=""><span class="r">#20</span>17756 vs 15954<span class="x">1.33×</span></a></aside><main><h1>Same plan #6: 19155 vs 10228 — 1.60×</h1><div class="sub">same plan (operators, tables and conditions); outputs may differ. Ranked 6 of 20 by the energy gap within the group (most expensive / cheapest). Energy: SQLStorm single-copy energy (laptop 1) per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">5</div></div><div class="card"><div class="k">query files</div><div class="v">7</div></div><div class="card"><div class="k">energy min</div><div class="v">5.656 J</div></div><div class="card"><div class="k">median</div><div class="v">7.863 J</div></div><div class="card"><div class="k">max</div><div class="v">9.027 J</div></div><div class="card"><div class="k">gap</div><div class="v">1.60×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">5</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 19155</h3><dl class="f"><dt>energy</dt><dd>5.656 J ± 0.042</dd><dt>output</dt><dd>10 rows, 3 columns</dd><dt>plan</dt><dd>834 ms, 5 nodes, 106 k buffers, 0 parallel workers</dd></dl><b>SQL</b><pre>SELECT l_orderkey, COUNT(*) AS line_count, SUM(l_extendedprice) AS total_price
+FROM lineitem
+WHERE l_shipdate &gt;= &#x27;1997-01-01&#x27; AND l_shipdate &lt; &#x27;1998-01-01&#x27;
+GROUP BY l_orderkey
+ORDER BY total_price DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">l_orderkey</th><th class="">line_count</th><th class="">total_price</th></tr></thead><tbody><tr><td class="">3043270</td><td class="">7</td><td class="">540867.78</td></tr><tr><td class="">2232932</td><td class="">7</td><td class="">533706.71</td></tr><tr><td class="">4745607</td><td class="">7</td><td class="">519639.89</td></tr><tr><td class="">5489475</td><td class="">7</td><td class="">498847.25</td></tr><tr><td class="">4676257</td><td class="">7</td><td class="">498046.57</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum(l_extendedprice)) DESC]
+    HashAggregate [Group Key=l_orderkey]
+      Bitmap Heap Scan on lineitem [Recheck Cond=((l_shipdate &gt;= &#x27;1997-01-01&#x27;) AND (l_shipdate &lt; &#x27;1998-01-01&#x27;))]
+        Bitmap Index Scan on ixtest_lineitem_shipdate [Index Cond=((l_shipdate &gt;= &#x27;1997-01-01&#x27;) AND (l_shipdate &lt; &#x27;1998-01-01&#x27;))]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 10228</h3><dl class="f"><dt>energy</dt><dd>9.027 J ± 0.058</dd><dt>output</dt><dd>100 rows, 6 columns</dd><dt>plan</dt><dd>1210 ms, 5 nodes, 108 k buffers, 0 parallel workers</dd></dl><b>SQL</b><pre>SELECT
+    l_orderkey,
+    COUNT(*) AS line_item_count,
+    SUM(l_extendedprice) AS total_extended_price,
+    AVG(l_discount) AS average_discount,
+    MAX(l_tax) AS max_tax,
+    MIN(l_quantity) AS min_quantity
+FROM
+    lineitem
+WHERE
+    l_shipdate &gt;= &#x27;1997-01-01&#x27; AND l_shipdate &lt; &#x27;1998-01-01&#x27;
+GROUP BY
+    l_orderkey
+ORDER BY
+    total_extended_price DESC
+LIMIT 100;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">l_orderkey</th><th class="">line_item_count</th><th class="">total_extended_price</th><th class="">average_discount</th><th class="">max_tax</th><th class="">min_quantity</th></tr></thead><tbody><tr><td class="">3043270</td><td class="">7</td><td class="">540867.78</td><td class="">0.05000000000000000000</td><td class="">0.06</td><td class="">40.00</td></tr><tr><td class="">2232932</td><td class="">7</td><td class="">533706.71</td><td class="">0.04428571428571428571</td><td class="">0.05</td><td class="">37.00</td></tr><tr><td class="">4745607</td><td class="">7</td><td class="">519639.89</td><td class="">0.05714285714285714286</td><td class="">0.08</td><td class="">33.00</td></tr><tr><td class="">5489475</td><td class="">7</td><td class="">498847.25</td><td class="">0.06571428571428571429</td><td class="">0.07</td><td class="">30.00</td></tr><tr><td class="">4676257</td><td class="">7</td><td class="">498046.57</td><td class="">0.04285714285714285714</td><td class="">0.07</td><td class="">30.00</td></tr></tbody></table></div><p class="muted">first 5 of 100 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum(l_extendedprice)) DESC]
+    HashAggregate [Group Key=l_orderkey]
+      Bitmap Heap Scan on lineitem [Recheck Cond=((l_shipdate &gt;= &#x27;1997-01-01&#x27;) AND (l_shipdate &lt; &#x27;1998-01-01&#x27;))]
+        Bitmap Index Scan on ixtest_lineitem_shipdate [Index Cond=((l_shipdate &gt;= &#x27;1997-01-01&#x27;) AND (l_shipdate &lt; &#x27;1998-01-01&#x27;))]</pre></details></div></div><p class="muted">Both run the same plan; the plan text does not show LIMIT values or output expressions, which is where same-plan queries differ.</p><details><summary>SQL difference</summary><pre>--- 19155
++++ 10228
+@@ -1,6 +1,16 @@
+<span class="d">-SELECT l_orderkey, COUNT(*) AS line_count, SUM(l_extendedprice) AS total_price</span>
+<span class="d">-FROM lineitem</span>
+<span class="d">-WHERE l_shipdate &gt;= &#x27;1997-01-01&#x27; AND l_shipdate &lt; &#x27;1998-01-01&#x27;</span>
+<span class="d">-GROUP BY l_orderkey</span>
+<span class="d">-ORDER BY total_price DESC</span>
+<span class="d">-LIMIT 10;</span>
+<span class="a">+SELECT</span>
+<span class="a">+    l_orderkey,</span>
+<span class="a">+    COUNT(*) AS line_item_count,</span>
+<span class="a">+    SUM(l_extendedprice) AS total_extended_price,</span>
+<span class="a">+    AVG(l_discount) AS average_discount,</span>
+<span class="a">+    MAX(l_tax) AS max_tax,</span>
+<span class="a">+    MIN(l_quantity) AS min_quantity</span>
+<span class="a">+FROM</span>
+<span class="a">+    lineitem</span>
+<span class="a">+WHERE</span>
+<span class="a">+    l_shipdate &gt;= &#x27;1997-01-01&#x27; AND l_shipdate &lt; &#x27;1998-01-01&#x27;</span>
+<span class="a">+GROUP BY</span>
+<span class="a">+    l_orderkey</span>
+<span class="a">+ORDER BY</span>
+<span class="a">+    total_extended_price DESC</span>
+<span class="a">+LIMIT 100;</span></pre></details><h2>All 5 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">19155</td><td class="n">1</td><td class="n">5.656</td><td class="n">1.00</td><td class="n">10</td><td class="n">3</td><td class="n">834</td><td class="n">106</td><td class="">785b820f</td><td class=""><details><summary>show</summary><pre>SELECT l_orderkey, COUNT(*) AS line_count, SUM(l_extendedprice) AS total_price
+FROM lineitem
+WHERE l_shipdate &gt;= &#x27;1997-01-01&#x27; AND l_shipdate &lt; &#x27;1998-01-01&#x27;
+GROUP BY l_orderkey
+ORDER BY total_price DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15508</td><td class="n">3</td><td class="n">5.778</td><td class="n">1.02</td><td class="n">10</td><td class="n">2</td><td class="n">843</td><td class="n">106</td><td class="">785b820f</td><td class=""><details><summary>show</summary><pre>SELECT l_orderkey, SUM(l_extendedprice) AS total_revenue
+FROM lineitem
+WHERE l_shipdate &gt;= &#x27;1997-01-01&#x27; AND l_shipdate &lt; &#x27;1998-01-01&#x27;
+GROUP BY l_orderkey
+ORDER BY total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14438</td><td class="n">1</td><td class="n">7.863</td><td class="n">1.39</td><td class="n">100</td><td class="n">4</td><td class="n">1092</td><td class="n">108</td><td class="">785b820f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    l_orderkey,
+    COUNT(*) AS line_count,
+    SUM(l_extendedprice) AS total_extended_price,
+    AVG(l_discount) AS average_discount
+FROM 
+    lineitem
+WHERE 
+    l_shipdate &gt;= DATE &#x27;1997-01-01&#x27; AND 
+    l_shipdate &lt; DATE &#x27;1998-01-01&#x27;
+GROUP BY 
+    l_orderkey
+ORDER BY 
+    total_extended_price DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">13214</td><td class="n">1</td><td class="n">8.296</td><td class="n">1.47</td><td class="n">10</td><td class="n">4</td><td class="n">1092</td><td class="n">108</td><td class="">785b820f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    l_orderkey, 
+    COUNT(*) AS line_count, 
+    SUM(l_extendedprice) AS total_extended_price, 
+    AVG(l_discount) AS avg_discount 
+FROM 
+    lineitem 
+WHERE 
+    l_shipdate &gt;= &#x27;1997-01-01&#x27; AND 
+    l_shipdate &lt; &#x27;1998-01-01&#x27; 
+GROUP BY 
+    l_orderkey 
+ORDER BY 
+    total_extended_price DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">10228</td><td class="n">1</td><td class="n">9.027</td><td class="n">1.60</td><td class="n">100</td><td class="n">6</td><td class="n">1210</td><td class="n">108</td><td class="">785b820f</td><td class=""><details><summary>show</summary><pre>SELECT
+    l_orderkey,
+    COUNT(*) AS line_item_count,
+    SUM(l_extendedprice) AS total_extended_price,
+    AVG(l_discount) AS average_discount,
+    MAX(l_tax) AS max_tax,
+    MIN(l_quantity) AS min_quantity
+FROM
+    lineitem
+WHERE
+    l_shipdate &gt;= &#x27;1997-01-01&#x27; AND l_shipdate &lt; &#x27;1998-01-01&#x27;
+GROUP BY
+    l_orderkey
+ORDER BY
+    total_extended_price DESC
+LIMIT 100;</pre></details></td></tr></tbody></table></div></main></div></body></html>

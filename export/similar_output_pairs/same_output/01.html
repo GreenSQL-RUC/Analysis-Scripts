@@ -1,0 +1,322 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same output #1 — 8669 vs 9931</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="on">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_output/01.html" class="on"><span class="r">#1</span>8669 vs 9931<span class="x">9.48×</span></a><a href="../same_output/02.html" class=""><span class="r">#2</span>12226 vs 14153<span class="x">8.81×</span></a><a href="../same_output/03.html" class=""><span class="r">#3</span>10271 vs 11575<span class="x">6.96×</span></a><a href="../same_output/04.html" class=""><span class="r">#4</span>11137 vs 14426<span class="x">6.28×</span></a><a href="../same_output/05.html" class=""><span class="r">#5</span>5949 vs 32588<span class="x">5.94×</span></a><a href="../same_output/06.html" class=""><span class="r">#6</span>9422 vs 8123<span class="x">4.80×</span></a><a href="../same_output/07.html" class=""><span class="r">#7</span>15743 vs 16677<span class="x">4.48×</span></a><a href="../same_output/08.html" class=""><span class="r">#8</span>15388 vs 15893<span class="x">3.48×</span></a><a href="../same_output/09.html" class=""><span class="r">#9</span>16659 vs 17956<span class="x">3.15×</span></a><a href="../same_output/10.html" class=""><span class="r">#10</span>16513 vs 17599<span class="x">3.05×</span></a><a href="../same_output/11.html" class=""><span class="r">#11</span>10096 vs 13887<span class="x">2.93×</span></a><a href="../same_output/12.html" class=""><span class="r">#12</span>871 vs 9903<span class="x">2.93×</span></a><a href="../same_output/13.html" class=""><span class="r">#13</span>19557 vs 18654<span class="x">2.67×</span></a><a href="../same_output/14.html" class=""><span class="r">#14</span>18510 vs 17397<span class="x">2.62×</span></a><a href="../same_output/15.html" class=""><span class="r">#15</span>17350 vs 15577<span class="x">2.56×</span></a><a href="../same_output/16.html" class=""><span class="r">#16</span>18541 vs 15662<span class="x">2.53×</span></a><a href="../same_output/17.html" class=""><span class="r">#17</span>18603 vs 19785<span class="x">2.39×</span></a><a href="../same_output/18.html" class=""><span class="r">#18</span>9312 vs 6530<span class="x">2.35×</span></a><a href="../same_output/19.html" class=""><span class="r">#19</span>15403 vs 18524<span class="x">2.32×</span></a><a href="../same_output/20.html" class=""><span class="r">#20</span>19156 vs 16383<span class="x">2.27×</span></a></aside><main><h1>Same output #1: 8669 vs 9931 — 9.48×</h1><div class="sub">same output (same rows: identical, renamed or reordered columns, reordered rows); plans may differ. Ranked 1 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">2</div></div><div class="card"><div class="k">query files</div><div class="v">2</div></div><div class="card"><div class="k">energy min</div><div class="v">1.090 J</div></div><div class="card"><div class="k">median</div><div class="v">5.711 J</div></div><div class="card"><div class="k">max</div><div class="v">10.332 J</div></div><div class="card"><div class="k">gap</div><div class="v">9.48×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">2</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 8669</h3><dl class="f"><dt>energy</dt><dd>1.090 J ± 0.010</dd><dt>output</dt><dd>12 rows, 9 columns</dd><dt>plan</dt><dd>96 ms, 16 nodes, 51 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.ViewCount,
+        p.Score,
+        u.DisplayName AS OwnerName,
+        COUNT(c.Id) AS CommentCount,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.CreationDate DESC) AS PostRank
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    WHERE 
+        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27;
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score, u.DisplayName, p.PostTypeId
+)
+SELECT 
+    rp.PostId,
+    rp.Title,
+    rp.CreationDate,
+    rp.ViewCount,
+    rp.Score,
+    rp.OwnerName,
+    rp.CommentCount,
+    rp.UpVoteCount,
+    rp.DownVoteCount
+FROM 
+    RankedPosts rp
+WHERE 
+    rp.PostRank &lt;= 5
+ORDER BY 
+    rp.PostRank, rp.Score DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">title</th><th class="">creationdate</th><th class="">viewcount</th><th class="">score</th><th class="">ownername</th><th class="">commentcount</th><th class="">upvotecount</th><th class="">downvotecount</th></tr></thead><tbody><tr><td class="">342708</td><td class=""></td><td class="">2024-09-30 22:49:43.85</td><td class=""></td><td class="">1</td><td class="">Bill Karwin</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">342707</td><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?</td><td class="">2024-09-30 22:49:25.743</td><td class="">50</td><td class="">0</td><td class="">J. Mini</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">342445</td><td class=""></td><td class="">2024-09-18 13:12:14.573</td><td class=""></td><td class="">0</td><td class="">Aaron Bertrand</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">342444</td><td class=""></td><td class="">2024-09-18 13:12:14.573</td><td class=""></td><td class="">0</td><td class="">Aaron Bertrand</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">342706</td><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class="">2024-09-30 22:05:14.587</td><td class="">19</td><td class="">2</td><td class="">Lucas David Ferrero</td><td class="">0</td><td class="">0</td><td class="">0</td></tr></tbody></table></div><p class="muted">first 5 of 12 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=q.postrank, q.score DESC]
+  Subquery Scan
+    WindowAgg [Run Condition=(row_number() OVER w1 &lt;= 5); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.creationdate ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=posts.posttypeid, posts.creationdate DESC]
+        GroupAggregate [Group Key=posts.id, users.displayname]
+          Gather Merge
+            Sort [Sort Key=posts.id, users.displayname]
+              Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+                Parallel Seq Scan on votes
+                Parallel Hash
+                  Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                    Parallel Seq Scan on comments
+                    Parallel Hash
+                      Nested Loop Left Join
+                        Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2024-09-01 12:34:56&#x27;)]
+                        Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 9931</h3><dl class="f"><dt>energy</dt><dd>10.332 J ± 0.092</dd><dt>output</dt><dd>12 rows, 9 columns</dd><dt>plan</dt><dd>1057 ms, 17 nodes, 188 k buffers, 3 parallel workers, per-row subquery</dd></dl><b>SQL</b><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId, 
+        p.Title, 
+        p.CreationDate, 
+        p.Score, 
+        p.ViewCount, 
+        u.DisplayName AS Author, 
+        COUNT(c.Id) AS CommentCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    WHERE 
+        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27; 
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.Score, p.ViewCount, u.DisplayName
+)
+SELECT 
+    rp.PostId, 
+    rp.Title, 
+    rp.CreationDate, 
+    rp.Score, 
+    rp.ViewCount, 
+    rp.Author, 
+    rp.CommentCount,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = rp.PostId AND v.VoteTypeId = 2) AS UpVotes,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = rp.PostId AND v.VoteTypeId = 3) AS DownVotes
+FROM 
+    RankedPosts rp
+WHERE 
+    rp.Rank &lt;= 5
+ORDER BY 
+    rp.CreationDate DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">title</th><th class="">creationdate</th><th class="">score</th><th class="">viewcount</th><th class="">author</th><th class="">commentcount</th><th class="">upvotes</th><th class="">downvotes</th></tr></thead><tbody><tr><td class="">342708</td><td class=""></td><td class="">2024-09-30 22:49:43.85</td><td class="">1</td><td class=""></td><td class="">Bill Karwin</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">342707</td><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?</td><td class="">2024-09-30 22:49:25.743</td><td class="">0</td><td class="">50</td><td class="">J. Mini</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">342706</td><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class="">2024-09-30 22:05:14.587</td><td class="">2</td><td class="">19</td><td class="">Lucas David Ferrero</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">342705</td><td class=""></td><td class="">2024-09-30 20:17:43.423</td><td class="">0</td><td class=""></td><td class="">PhillysDBA</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">342704</td><td class="">Varbinary column taking lots of space</td><td class="">2024-09-30 18:22:14.783</td><td class="">-1</td><td class="">36</td><td class="">PhillysDBA</td><td class="">0</td><td class="">0</td><td class="">1</td></tr></tbody></table></div><p class="muted">first 5 of 12 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=q.creationdate DESC]
+  Subquery Scan
+    WindowAgg [Run Condition=(row_number() OVER w1 &lt;= 5); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.creationdate ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=posts.posttypeid, posts.creationdate DESC]
+        GroupAggregate [Group Key=posts.id, users.displayname]
+          Gather Merge
+            Sort [Sort Key=posts.id, users.displayname]
+              Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                Parallel Seq Scan on comments
+                Parallel Hash
+                  Nested Loop
+                    Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2024-09-01 12:34:56&#x27;)]
+                    Index Scan on users [Index Cond=(id = posts.owneruserid)]
+      Aggregate
+        Seq Scan on votes [Filter=((postid = q.postid) AND (votetypeid = 2))]
+      Aggregate
+        Seq Scan on votes [Filter=((postid = q.postid) AND (votetypeid = 3))]</pre></details></div></div><h2>Plan difference</h2><pre>--- 8669
++++ 9931
+@@ -1,2 +1,2 @@
+<span class="d">-Sort [Sort Key=q.postrank, q.score DESC]</span>
+<span class="a">+Sort [Sort Key=q.creationdate DESC]</span>
+   Subquery Scan
+@@ -7,10 +7,11 @@
+             Sort [Sort Key=posts.id, users.displayname]
+<span class="d">-              Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]</span>
+<span class="d">-                Parallel Seq Scan on votes</span>
+<span class="a">+              Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]</span>
+<span class="a">+                Parallel Seq Scan on comments</span>
+                 Parallel Hash
+<span class="d">-                  Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]</span>
+<span class="d">-                    Parallel Seq Scan on comments</span>
+<span class="d">-                    Parallel Hash</span>
+<span class="d">-                      Nested Loop Left Join</span>
+<span class="d">-                        Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2024-09-01 12:34:56&#x27;)]</span>
+<span class="d">-                        Index Scan on users [Index Cond=(id = posts.owneruserid)]</span>
+<span class="a">+                  Nested Loop</span>
+<span class="a">+                    Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2024-09-01 12:34:56&#x27;)]</span>
+<span class="a">+                    Index Scan on users [Index Cond=(id = posts.owneruserid)]</span>
+<span class="a">+      Aggregate</span>
+<span class="a">+        Seq Scan on votes [Filter=((postid = q.postid) AND (votetypeid = 2))]</span>
+<span class="a">+      Aggregate</span>
+<span class="a">+        Seq Scan on votes [Filter=((postid = q.postid) AND (votetypeid = 3))]</span></pre><details><summary>SQL difference</summary><pre>--- 8669
++++ 9931
+@@ -2,15 +2,13 @@
+     SELECT 
+<span class="d">-        p.Id AS PostId,</span>
+<span class="d">-        p.Title,</span>
+<span class="d">-        p.CreationDate,</span>
+<span class="d">-        p.ViewCount,</span>
+<span class="d">-        p.Score,</span>
+<span class="d">-        u.DisplayName AS OwnerName,</span>
+<span class="a">+        p.Id AS PostId, </span>
+<span class="a">+        p.Title, </span>
+<span class="a">+        p.CreationDate, </span>
+<span class="a">+        p.Score, </span>
+<span class="a">+        p.ViewCount, </span>
+<span class="a">+        u.DisplayName AS Author, </span>
+         COUNT(c.Id) AS CommentCount,
+<span class="d">-        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,</span>
+<span class="d">-        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount,</span>
+<span class="d">-        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.CreationDate DESC) AS PostRank</span>
+<span class="a">+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.CreationDate DESC) AS Rank</span>
+     FROM 
+         Posts p
+<span class="d">-    LEFT JOIN </span>
+<span class="a">+    JOIN </span>
+         Users u ON p.OwnerUserId = u.Id
+@@ -18,19 +16,17 @@
+         Comments c ON p.Id = c.PostId
+<span class="d">-    LEFT JOIN </span>
+<span class="d">-        Votes v ON p.Id = v.PostId</span>
+     WHERE 
+<span class="d">-        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27;</span>
+<span class="a">+        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27; </span>
+     GROUP BY 
+<span class="d">-        p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score, u.DisplayName, p.PostTypeId</span>
+<span class="a">+        p.Id, p.Title, p.CreationDate, p.Score, p.ViewCount, u.DisplayName</span>
+ )
+ SELECT 
+<span class="d">-    rp.PostId,</span>
+<span class="d">-    rp.Title,</span>
+<span class="d">-    rp.CreationDate,</span>
+<span class="d">-    rp.ViewCount,</span>
+<span class="d">-    rp.Score,</span>
+<span class="d">-    rp.OwnerName,</span>
+<span class="a">+    rp.PostId, </span>
+<span class="a">+    rp.Title, </span>
+<span class="a">+    rp.CreationDate, </span>
+<span class="a">+    rp.Score, </span>
+<span class="a">+    rp.ViewCount, </span>
+<span class="a">+    rp.Author, </span>
+     rp.CommentCount,
+<span class="d">-    rp.UpVoteCount,</span>
+<span class="d">-    rp.DownVoteCount</span>
+<span class="a">+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = rp.PostId AND v.VoteTypeId = 2) AS UpVotes,</span>
+<span class="a">+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = rp.PostId AND v.VoteTypeId = 3) AS DownVotes</span>
+ FROM 
+@@ -38,4 +34,4 @@
+ WHERE 
+<span class="d">-    rp.PostRank &lt;= 5</span>
+<span class="a">+    rp.Rank &lt;= 5</span>
+ ORDER BY 
+<span class="d">-    rp.PostRank, rp.Score DESC;</span>
+<span class="a">+    rp.CreationDate DESC;</span></pre></details><h2>All 2 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">8669</td><td class="n">1</td><td class="n">1.090</td><td class="n">1.00</td><td class="n">12</td><td class="n">9</td><td class="n">96</td><td class="n">51</td><td class="">6ba05b38</td><td class=""><details><summary>show</summary><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.ViewCount,
+        p.Score,
+        u.DisplayName AS OwnerName,
+        COUNT(c.Id) AS CommentCount,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.CreationDate DESC) AS PostRank
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    WHERE 
+        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27;
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score, u.DisplayName, p.PostTypeId
+)
+SELECT 
+    rp.PostId,
+    rp.Title,
+    rp.CreationDate,
+    rp.ViewCount,
+    rp.Score,
+    rp.OwnerName,
+    rp.CommentCount,
+    rp.UpVoteCount,
+    rp.DownVoteCount
+FROM 
+    RankedPosts rp
+WHERE 
+    rp.PostRank &lt;= 5
+ORDER BY 
+    rp.PostRank, rp.Score DESC;</pre></details></td></tr><tr><td class="">9931</td><td class="n">1</td><td class="n">10.332</td><td class="n">9.48</td><td class="n">12</td><td class="n">9</td><td class="n">1057</td><td class="n">188</td><td class="">8b4148d6</td><td class=""><details><summary>show</summary><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId, 
+        p.Title, 
+        p.CreationDate, 
+        p.Score, 
+        p.ViewCount, 
+        u.DisplayName AS Author, 
+        COUNT(c.Id) AS CommentCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    WHERE 
+        p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 month&#x27; 
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.Score, p.ViewCount, u.DisplayName
+)
+SELECT 
+    rp.PostId, 
+    rp.Title, 
+    rp.CreationDate, 
+    rp.Score, 
+    rp.ViewCount, 
+    rp.Author, 
+    rp.CommentCount,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = rp.PostId AND v.VoteTypeId = 2) AS UpVotes,
+    (SELECT COUNT(*) FROM Votes v WHERE v.PostId = rp.PostId AND v.VoteTypeId = 3) AS DownVotes
+FROM 
+    RankedPosts rp
+WHERE 
+    rp.Rank &lt;= 5
+ORDER BY 
+    rp.CreationDate DESC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

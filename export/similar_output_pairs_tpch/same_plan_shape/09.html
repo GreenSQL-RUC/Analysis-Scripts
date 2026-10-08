@@ -1,0 +1,236 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #9 — 29222 vs 27828</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>11504 vs 10324<span class="x">84.29×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>28628 vs 29724<span class="x">59.54×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14417 vs 10616<span class="x">56.86×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>25619 vs 25363<span class="x">49.48×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>26744 vs 12506<span class="x">47.33×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>12981 vs 11646<span class="x">45.98×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>26270 vs 25070<span class="x">42.65×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>7408 vs 11887<span class="x">33.88×</span></a><a href="../same_plan_shape/09.html" class="on"><span class="r">#9</span>29222 vs 27828<span class="x">29.28×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>27240 vs 26970<span class="x">26.77×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>29217 vs 27093<span class="x">25.70×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>14211 vs 11418<span class="x">25.30×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>27184 vs 28416<span class="x">25.23×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>10100 vs 11629<span class="x">23.84×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>10359 vs 12442<span class="x">22.92×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>25129 vs 27475<span class="x">22.41×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11755 vs 13924<span class="x">21.81×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>26702 vs 27519<span class="x">21.17×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>15944 vs 11546<span class="x">21.00×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>14391 vs 10243<span class="x">20.45×</span></a></aside><main><h1>Same plan shape #9: 29222 vs 27828 — 29.28×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 9 of 20 by the energy gap within the group (most expensive / cheapest). Energy: SQLStorm single-copy energy (laptop 1) per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">2</div></div><div class="card"><div class="k">query files</div><div class="v">2</div></div><div class="card"><div class="k">energy min</div><div class="v">3.110 J</div></div><div class="card"><div class="k">median</div><div class="v">47.091 J</div></div><div class="card"><div class="k">max</div><div class="v">91.072 J</div></div><div class="card"><div class="k">gap</div><div class="v">29.28×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 29222</h3><dl class="f"><dt>energy</dt><dd>3.110 J ± 0.033</dd><dt>output</dt><dd>0 rows, 5 columns</dd><dt>plan</dt><dd>67 ms, 18 nodes, 0 k buffers, 3 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    LOWER(CONCAT(&#x27;Supplier &#x27;, s.s_name, &#x27; from &#x27;, n.n_name)) AS supplier_info,
+    UPPER(SUBSTRING(p.p_name, 1, 10)) AS short_part_name,
+    REPLACE(p.p_comment, &#x27;obsolete&#x27;, &#x27;updated&#x27;) AS updated_comment,
+    ROUND(AVG(ps.ps_supplycost), 2) AS average_supply_cost,
+    COUNT(DISTINCT o.o_orderkey) AS order_count
+FROM 
+    supplier s
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    partsupp ps ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+LEFT JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+LEFT JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    n.n_name LIKE &#x27;%land%&#x27;
+GROUP BY 
+    s.s_name, n.n_name, p.p_name, p.p_comment
+HAVING 
+    AVG(ps.ps_supplycost) &gt; 100.00
+ORDER BY 
+    order_count DESC, supplier_info;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">supplier_info</th><th class="">short_part_name</th><th class="">updated_comment</th><th class="">average_supply_cost</th><th class="">order_count</th></tr></thead><tbody></tbody></table></div><p class="muted">first 0 of 0 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(DISTINCT orders.o_orderkey)) DESC, (lower(concat(&#x27;Supplier &#x27;, supplier.s_name, &#x27; from &#x27;, nation.n_name)))]
+  GroupAggregate [Filter=(avg(partsupp.ps_supplycost) &gt; 100.00); Group Key=supplier.s_name, nation.n_name, part.p_name, part.p_comment]
+    Gather Merge
+      Sort [Sort Key=supplier.s_name, nation.n_name, part.p_name, part.p_comment, orders.o_orderkey]
+        Parallel Hash Right Join [Hash Cond=(orders.o_orderkey = lineitem.l_orderkey)]
+          Parallel Seq Scan on orders
+          Parallel Hash
+            Nested Loop Left Join
+              Hash Join [Hash Cond=(part.p_partkey = partsupp.ps_partkey)]
+                Parallel Seq Scan on part
+                Hash
+                  Nested Loop
+                    Nested Loop
+                      Seq Scan on nation [Filter=(n_name ~~ &#x27;%land%&#x27;)]
+                      Bitmap Heap Scan on supplier [Recheck Cond=(s_nationkey = nation.n_nationkey)]
+                        Bitmap Index Scan on ixtest_supplier_nationkey [Index Cond=(s_nationkey = nation.n_nationkey)]
+                    Index Scan on partsupp [Index Cond=(ps_suppkey = supplier.s_suppkey)]
+              Index Scan on lineitem [Index Cond=(l_partkey = part.p_partkey)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 27828</h3><dl class="f"><dt>energy</dt><dd>91.072 J ± 0.513</dd><dt>output</dt><dd>1000 rows (capped), 5 columns</dd><dt>plan</dt><dd>6263 ms, 18 nodes, 2553 k buffers, 3 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    CONCAT(s.s_name, &#x27; from &#x27;, n.n_name) AS supplier_info,
+    STRING_AGG(CONCAT(p.p_name, &#x27; (&#x27;, ps.ps_availqty, &#x27; available)&#x27;), &#x27;, &#x27; ORDER BY p.p_name) AS available_parts,
+    SUM(ps.ps_supplycost) AS total_supply_cost,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    MAX(o.o_orderdate) AS last_order_date
+FROM 
+    supplier s
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    partsupp ps ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+LEFT JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+LEFT JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    n.n_name LIKE &#x27;A%&#x27; 
+    AND p.p_retailprice &gt; 50.00
+GROUP BY 
+    s.s_name, n.n_name, ps.ps_availqty, p.p_name
+HAVING 
+    SUM(ps.ps_availqty) &gt; 100
+ORDER BY 
+    total_supply_cost DESC, last_order_date DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">supplier_info</th><th class="">available_parts</th><th class="">total_supply_cost</th><th class="">total_orders</th><th class="">last_order_date</th></tr></thead><tbody><tr><td class="">Supplier#000006779        from ALGERIA                  </td><td class="">«md5:c15c90bb0f940474831aa53ecf8dae36:2494»</td><td class="">47182.08</td><td class="">48</td><td class="">1998-07-03</td></tr><tr><td class="">Supplier#000001186        from ARGENTINA                </td><td class="">«md5:b24747cd142510e2bc13efd676565c6c:2598»</td><td class="">46982.00</td><td class="">52</td><td class="">1998-06-11</td></tr><tr><td class="">Supplier#000004773        from ARGENTINA                </td><td class="">«md5:a43bde56023ac2aa50a6010906265b1e:2442»</td><td class="">45756.85</td><td class="">47</td><td class="">1998-06-25</td></tr><tr><td class="">Supplier#000004248        from ARGENTINA                </td><td class="">«md5:84f7b49d75724595e413c38791d2ae71:2301»</td><td class="">45158.54</td><td class="">47</td><td class="">1998-04-16</td></tr><tr><td class="">Supplier#000009755        from ALGERIA                  </td><td class="">«md5:49bfa3ba896ae3ab63d5bd03473c25be:2598»</td><td class="">45104.00</td><td class="">50</td><td class="">1998-07-10</td></tr></tbody></table></div><p class="muted">first 5 of 1000 rows (capped at 1000 lines)</p><details><summary>Plan</summary><pre>Sort [Sort Key=(sum(partsupp.ps_supplycost)) DESC, (max(orders.o_orderdate)) DESC]
+  GroupAggregate [Filter=(sum(partsupp.ps_availqty) &gt; 100); Group Key=supplier.s_name, nation.n_name, partsupp.ps_availqty, part.p_name]
+    Gather Merge
+      Sort [Sort Key=supplier.s_name, nation.n_name, partsupp.ps_availqty, part.p_name, orders.o_orderkey]
+        Parallel Hash Right Join [Hash Cond=(orders.o_orderkey = lineitem.l_orderkey)]
+          Parallel Seq Scan on orders
+          Parallel Hash
+            Nested Loop Left Join
+              Hash Join [Hash Cond=(part.p_partkey = partsupp.ps_partkey)]
+                Parallel Seq Scan on part [Filter=(p_retailprice &gt; 50.00)]
+                Hash
+                  Nested Loop
+                    Nested Loop
+                      Seq Scan on nation [Filter=(n_name ~~ &#x27;A%&#x27;)]
+                      Bitmap Heap Scan on supplier [Recheck Cond=(s_nationkey = nation.n_nationkey)]
+                        Bitmap Index Scan on ixtest_supplier_nationkey [Index Cond=(s_nationkey = nation.n_nationkey)]
+                    Index Scan on partsupp [Index Cond=(ps_suppkey = supplier.s_suppkey)]
+              Index Scan on lineitem [Index Cond=(l_partkey = part.p_partkey)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 29222
++++ 27828
+@@ -1,5 +1,5 @@
+<span class="d">-Sort [Sort Key=(count(DISTINCT orders.o_orderkey)) DESC, (lower(concat(&#x27;Supplier &#x27;, supplier.s_name, &#x27; from &#x27;, nation.n_name)))]</span>
+<span class="d">-  GroupAggregate [Filter=(avg(partsupp.ps_supplycost) &gt; 100.00); Group Key=supplier.s_name, nation.n_name, part.p_name, part.p_comment]</span>
+<span class="a">+Sort [Sort Key=(sum(partsupp.ps_supplycost)) DESC, (max(orders.o_orderdate)) DESC]</span>
+<span class="a">+  GroupAggregate [Filter=(sum(partsupp.ps_availqty) &gt; 100); Group Key=supplier.s_name, nation.n_name, partsupp.ps_availqty, part.p_name]</span>
+     Gather Merge
+<span class="d">-      Sort [Sort Key=supplier.s_name, nation.n_name, part.p_name, part.p_comment, orders.o_orderkey]</span>
+<span class="a">+      Sort [Sort Key=supplier.s_name, nation.n_name, partsupp.ps_availqty, part.p_name, orders.o_orderkey]</span>
+         Parallel Hash Right Join [Hash Cond=(orders.o_orderkey = lineitem.l_orderkey)]
+@@ -9,3 +9,3 @@
+               Hash Join [Hash Cond=(part.p_partkey = partsupp.ps_partkey)]
+<span class="d">-                Parallel Seq Scan on part</span>
+<span class="a">+                Parallel Seq Scan on part [Filter=(p_retailprice &gt; 50.00)]</span>
+                 Hash
+@@ -13,3 +13,3 @@
+                     Nested Loop
+<span class="d">-                      Seq Scan on nation [Filter=(n_name ~~ &#x27;%land%&#x27;)]</span>
+<span class="a">+                      Seq Scan on nation [Filter=(n_name ~~ &#x27;A%&#x27;)]</span>
+                       Bitmap Heap Scan on supplier [Recheck Cond=(s_nationkey = nation.n_nationkey)]</pre><details><summary>SQL difference</summary><pre>--- 29222
++++ 27828
+@@ -1,7 +1,7 @@
+ SELECT 
+<span class="d">-    LOWER(CONCAT(&#x27;Supplier &#x27;, s.s_name, &#x27; from &#x27;, n.n_name)) AS supplier_info,</span>
+<span class="d">-    UPPER(SUBSTRING(p.p_name, 1, 10)) AS short_part_name,</span>
+<span class="d">-    REPLACE(p.p_comment, &#x27;obsolete&#x27;, &#x27;updated&#x27;) AS updated_comment,</span>
+<span class="d">-    ROUND(AVG(ps.ps_supplycost), 2) AS average_supply_cost,</span>
+<span class="d">-    COUNT(DISTINCT o.o_orderkey) AS order_count</span>
+<span class="a">+    CONCAT(s.s_name, &#x27; from &#x27;, n.n_name) AS supplier_info,</span>
+<span class="a">+    STRING_AGG(CONCAT(p.p_name, &#x27; (&#x27;, ps.ps_availqty, &#x27; available)&#x27;), &#x27;, &#x27; ORDER BY p.p_name) AS available_parts,</span>
+<span class="a">+    SUM(ps.ps_supplycost) AS total_supply_cost,</span>
+<span class="a">+    COUNT(DISTINCT o.o_orderkey) AS total_orders,</span>
+<span class="a">+    MAX(o.o_orderdate) AS last_order_date</span>
+ FROM 
+@@ -19,8 +19,9 @@
+ WHERE 
+<span class="d">-    n.n_name LIKE &#x27;%land%&#x27;</span>
+<span class="a">+    n.n_name LIKE &#x27;A%&#x27; </span>
+<span class="a">+    AND p.p_retailprice &gt; 50.00</span>
+ GROUP BY 
+<span class="d">-    s.s_name, n.n_name, p.p_name, p.p_comment</span>
+<span class="a">+    s.s_name, n.n_name, ps.ps_availqty, p.p_name</span>
+ HAVING 
+<span class="d">-    AVG(ps.ps_supplycost) &gt; 100.00</span>
+<span class="a">+    SUM(ps.ps_availqty) &gt; 100</span>
+ ORDER BY 
+<span class="d">-    order_count DESC, supplier_info;</span>
+<span class="a">+    total_supply_cost DESC, last_order_date DESC;</span></pre></details><h2>All 2 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">29222</td><td class="n">1</td><td class="n">3.110</td><td class="n">1.00</td><td class="n">0</td><td class="n">5</td><td class="n">67</td><td class="n">0</td><td class="">71536517</td><td class=""><details><summary>show</summary><pre>SELECT 
+    LOWER(CONCAT(&#x27;Supplier &#x27;, s.s_name, &#x27; from &#x27;, n.n_name)) AS supplier_info,
+    UPPER(SUBSTRING(p.p_name, 1, 10)) AS short_part_name,
+    REPLACE(p.p_comment, &#x27;obsolete&#x27;, &#x27;updated&#x27;) AS updated_comment,
+    ROUND(AVG(ps.ps_supplycost), 2) AS average_supply_cost,
+    COUNT(DISTINCT o.o_orderkey) AS order_count
+FROM 
+    supplier s
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    partsupp ps ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+LEFT JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+LEFT JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    n.n_name LIKE &#x27;%land%&#x27;
+GROUP BY 
+    s.s_name, n.n_name, p.p_name, p.p_comment
+HAVING 
+    AVG(ps.ps_supplycost) &gt; 100.00
+ORDER BY 
+    order_count DESC, supplier_info;</pre></details></td></tr><tr><td class="">27828</td><td class="n">1</td><td class="n">91.072</td><td class="n">29.28</td><td class="n">1000</td><td class="n">5</td><td class="n">6263</td><td class="n">2553</td><td class="">731961e6</td><td class=""><details><summary>show</summary><pre>SELECT 
+    CONCAT(s.s_name, &#x27; from &#x27;, n.n_name) AS supplier_info,
+    STRING_AGG(CONCAT(p.p_name, &#x27; (&#x27;, ps.ps_availqty, &#x27; available)&#x27;), &#x27;, &#x27; ORDER BY p.p_name) AS available_parts,
+    SUM(ps.ps_supplycost) AS total_supply_cost,
+    COUNT(DISTINCT o.o_orderkey) AS total_orders,
+    MAX(o.o_orderdate) AS last_order_date
+FROM 
+    supplier s
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    partsupp ps ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+LEFT JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+LEFT JOIN 
+    orders o ON l.l_orderkey = o.o_orderkey
+WHERE 
+    n.n_name LIKE &#x27;A%&#x27; 
+    AND p.p_retailprice &gt; 50.00
+GROUP BY 
+    s.s_name, n.n_name, ps.ps_availqty, p.p_name
+HAVING 
+    SUM(ps.ps_availqty) &gt; 100
+ORDER BY 
+    total_supply_cost DESC, last_order_date DESC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

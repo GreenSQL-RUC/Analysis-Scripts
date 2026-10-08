@@ -1,0 +1,416 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #7 — 9160 vs 26465</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>12857 vs 12074<span class="x">14.77×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>11119 vs 16363<span class="x">11.09×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14843 vs 11239<span class="x">9.77×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>9855 vs 29614<span class="x">8.97×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>17350 vs 17462<span class="x">8.66×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>11370 vs 11796<span class="x">7.23×</span></a><a href="../same_plan_shape/07.html" class="on"><span class="r">#7</span>9160 vs 26465<span class="x">7.23×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>16304 vs 18193<span class="x">6.73×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>14104 vs 10365<span class="x">6.11×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>31099 vs 5746<span class="x">5.23×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>11375 vs 18573<span class="x">4.92×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>10008 vs 13752<span class="x">3.86×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>12471 vs 10668<span class="x">3.73×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>11976 vs 7246<span class="x">3.72×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>826 vs 4675<span class="x">3.70×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11608 vs 13924<span class="x">3.64×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>10621 vs 11860<span class="x">3.58×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>14332 vs 12039<span class="x">3.39×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>7835 vs 6505<span class="x">3.15×</span></a></aside><main><h1>Same plan shape #7: 9160 vs 26465 — 7.23×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 7 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">2</div></div><div class="card"><div class="k">query files</div><div class="v">2</div></div><div class="card"><div class="k">energy min</div><div class="v">1.323 J</div></div><div class="card"><div class="k">median</div><div class="v">5.442 J</div></div><div class="card"><div class="k">max</div><div class="v">9.560 J</div></div><div class="card"><div class="k">gap</div><div class="v">7.23×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 9160</h3><dl class="f"><dt>energy</dt><dd>1.323 J ± 0.012</dd><dt>output</dt><dd>22 rows, 9 columns</dd><dt>plan</dt><dd>119 ms, 16 nodes, 49 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostID,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        u.DisplayName AS OwnerDisplayName,
+        COUNT(DISTINCT c.Id) AS CommentCount,
+        COUNT(DISTINCT b.Id) AS BadgeCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    WHERE 
+        p.CreationDate &gt;= cast(&#x27;2024-10-01&#x27; as date) - INTERVAL &#x27;30 days&#x27;
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.Score, p.ViewCount, u.DisplayName
+), FilteredPosts AS (
+    SELECT 
+        rp.PostID,
+        rp.Title,
+        rp.CreationDate,
+        rp.Score,
+        rp.ViewCount,
+        rp.OwnerDisplayName,
+        rp.CommentCount,
+        rp.BadgeCount
+    FROM 
+        RankedPosts rp
+    WHERE 
+        rp.Rank &lt;= 10
+)
+
+SELECT 
+    fp.PostID,
+    fp.Title,
+    fp.CreationDate,
+    fp.Score,
+    fp.ViewCount,
+    fp.OwnerDisplayName,
+    fp.CommentCount,
+    fp.BadgeCount,
+    CASE 
+        WHEN fp.BadgeCount &gt; 0 THEN &#x27;Has Badges&#x27;
+        ELSE &#x27;No Badges&#x27;
+    END AS BadgeStatus
+FROM 
+    FilteredPosts fp
+ORDER BY 
+    fp.Score DESC, 
+    fp.CommentCount DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">title</th><th class="">creationdate</th><th class="">score</th><th class="">viewcount</th><th class="">ownerdisplayname</th><th class="">commentcount</th><th class="">badgecount</th><th class="">badgestatus</th></tr></thead><tbody><tr><td class="">342596</td><td class=""></td><td class="">2024-09-25 12:48:56.743</td><td class="">12</td><td class=""></td><td class="">Sean Gallardy</td><td class="">9</td><td class="">133</td><td class="">Has Badges</td></tr><tr><td class="">342326</td><td class=""></td><td class="">2024-09-12 13:01:07.607</td><td class="">12</td><td class=""></td><td class="">Erik Reasonable Rates Darling</td><td class="">2</td><td class="">660</td><td class="">Has Badges</td></tr><tr><td class="">342268</td><td class=""></td><td class="">2024-09-10 11:04:04.26</td><td class="">10</td><td class=""></td><td class="">Josh Darnell</td><td class="">1</td><td class="">194</td><td class="">Has Badges</td></tr><tr><td class="">342275</td><td class=""></td><td class="">2024-09-10 14:38:04.16</td><td class="">10</td><td class=""></td><td class="">Sean Gallardy</td><td class="">1</td><td class="">133</td><td class="">Has Badges</td></tr><tr><td class="">342140</td><td class=""></td><td class="">2024-09-04 17:06:59.373</td><td class="">10</td><td class=""></td><td class="">Sean Gallardy</td><td class="">0</td><td class="">133</td><td class="">Has Badges</td></tr></tbody></table></div><p class="muted">first 5 of 22 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=q.score DESC, q.commentcount DESC]
+  Subquery Scan
+    WindowAgg [Run Condition=(row_number() OVER w1 &lt;= 10); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=posts.posttypeid, posts.score DESC, posts.creationdate DESC]
+        GroupAggregate [Group Key=posts.id, users.displayname]
+          Gather Merge
+            Sort [Sort Key=posts.id, users.displayname, comments.id]
+              Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]
+                Parallel Seq Scan on badges
+                Parallel Hash
+                  Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                    Parallel Seq Scan on comments
+                    Parallel Hash
+                      Nested Loop Left Join
+                        Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2024-09-01 00:00:00&#x27;)]
+                        Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 26465</h3><dl class="f"><dt>energy</dt><dd>9.560 J ± 0.085</dd><dt>output</dt><dd>36 rows, 8 columns</dd><dt>plan</dt><dd>789 ms, 16 nodes, 80 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.ViewCount,
+        p.Score,
+        p.PostTypeId,
+        COALESCE(u.DisplayName, &#x27;Community User&#x27;) AS OwnerDisplayName,
+        COUNT(c.Id) AS CommentCount,
+        COUNT(DISTINCT b.Id) AS BadgeCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS PostRank
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    WHERE 
+        p.CreationDate &gt;= TIMESTAMP &#x27;2024-10-01 12:34:56&#x27; - INTERVAL &#x27;1 year&#x27;
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score, p.PostTypeId, u.DisplayName
+),
+StringProcess AS (
+    SELECT 
+        rp.PostId,
+        rp.Title,
+        rp.OwnerDisplayName,
+        rp.CommentCount,
+        rp.BadgeCount,
+        rp.ViewCount,
+        rp.Score,
+        CASE 
+            WHEN rp.PostTypeId = 1 THEN &#x27;Question&#x27;
+            WHEN rp.PostTypeId = 2 THEN &#x27;Answer&#x27;
+            ELSE &#x27;Other&#x27;
+        END AS PostType,
+        REPLACE(REPLACE(rp.Title, &#x27;Stack Overflow&#x27;, &#x27;SO&#x27;), &#x27;Help&#x27;, &#x27;Assistance&#x27;) AS ProcessedTitle
+    FROM 
+        RankedPosts rp
+    WHERE 
+        rp.PostRank &lt;= 10
+)
+
+SELECT 
+    sp.PostId,
+    sp.ProcessedTitle,
+    sp.OwnerDisplayName,
+    sp.CommentCount,
+    sp.BadgeCount,
+    sp.ViewCount,
+    sp.Score,
+    CASE 
+        WHEN LENGTH(sp.ProcessedTitle) &gt; 50 THEN &#x27;Long Title&#x27;
+        ELSE &#x27;Short Title&#x27;
+    END AS TitleLengthCategory
+FROM 
+    StringProcess sp
+ORDER BY 
+    sp.Score DESC, sp.ViewCount DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">processedtitle</th><th class="">ownerdisplayname</th><th class="">commentcount</th><th class="">badgecount</th><th class="">viewcount</th><th class="">score</th><th class="">titlelengthcategory</th></tr></thead><tbody><tr><td class="">339077</td><td class=""></td><td class="">Paul White</td><td class="">0</td><td class="">1102</td><td class=""></td><td class="">51</td><td class="">Short Title</td></tr><tr><td class="">341210</td><td class=""></td><td class="">Paul White</td><td class="">0</td><td class="">1102</td><td class=""></td><td class="">34</td><td class="">Short Title</td></tr><tr><td class="">334394</td><td class=""></td><td class="">Martin Smith</td><td class="">1214</td><td class="">607</td><td class=""></td><td class="">29</td><td class="">Short Title</td></tr><tr><td class="">334386</td><td class="">Is &quot;+&quot; slower than &quot;CONCAT&quot; for large strings?</td><td class="">gotqn</td><td class="">148</td><td class="">148</td><td class="">4920</td><td class="">23</td><td class="">Short Title</td></tr><tr><td class="">339076</td><td class="">Why is COALESCE not a function?</td><td class="">J. Mini</td><td class="">0</td><td class="">26</td><td class="">5541</td><td class="">22</td><td class="">Short Title</td></tr></tbody></table></div><p class="muted">first 5 of 36 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=q.score DESC, q.viewcount DESC]
+  Subquery Scan
+    WindowAgg [Run Condition=(row_number() OVER w1 &lt;= 10); Window=w1 AS (PARTITION BY posts.posttypeid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=posts.posttypeid, posts.score DESC, posts.creationdate DESC]
+        GroupAggregate [Group Key=posts.id, users.displayname]
+          Gather Merge
+            Sort [Sort Key=posts.id, users.displayname, badges.id]
+              Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]
+                Parallel Seq Scan on badges
+                Parallel Hash
+                  Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                    Parallel Seq Scan on comments
+                    Parallel Hash
+                      Nested Loop Left Join
+                        Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-10-01 12:34:56&#x27;)]
+                        Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 9160
++++ 26465
+@@ -1,2 +1,2 @@
+<span class="d">-Sort [Sort Key=q.score DESC, q.commentcount DESC]</span>
+<span class="a">+Sort [Sort Key=q.score DESC, q.viewcount DESC]</span>
+   Subquery Scan
+@@ -6,3 +6,3 @@
+           Gather Merge
+<span class="d">-            Sort [Sort Key=posts.id, users.displayname, comments.id]</span>
+<span class="a">+            Sort [Sort Key=posts.id, users.displayname, badges.id]</span>
+               Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]
+@@ -14,3 +14,3 @@
+                       Nested Loop Left Join
+<span class="d">-                        Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2024-09-01 00:00:00&#x27;)]</span>
+<span class="a">+                        Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-10-01 12:34:56&#x27;)]</span>
+                         Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre><details><summary>SQL difference</summary><pre>--- 9160
++++ 26465
+@@ -2,11 +2,12 @@
+     SELECT 
+<span class="d">-        p.Id AS PostID,</span>
+<span class="a">+        p.Id AS PostId,</span>
+         p.Title,
+         p.CreationDate,
+<span class="a">+        p.ViewCount,</span>
+         p.Score,
+<span class="d">-        p.ViewCount,</span>
+<span class="d">-        u.DisplayName AS OwnerDisplayName,</span>
+<span class="d">-        COUNT(DISTINCT c.Id) AS CommentCount,</span>
+<span class="a">+        p.PostTypeId,</span>
+<span class="a">+        COALESCE(u.DisplayName, &#x27;Community User&#x27;) AS OwnerDisplayName,</span>
+<span class="a">+        COUNT(c.Id) AS CommentCount,</span>
+         COUNT(DISTINCT b.Id) AS BadgeCount,
+<span class="d">-        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank</span>
+<span class="a">+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS PostRank</span>
+     FROM 
+@@ -20,15 +21,21 @@
+     WHERE 
+<span class="d">-        p.CreationDate &gt;= cast(&#x27;2024-10-01&#x27; as date) - INTERVAL &#x27;30 days&#x27;</span>
+<span class="a">+        p.CreationDate &gt;= TIMESTAMP &#x27;2024-10-01 12:34:56&#x27; - INTERVAL &#x27;1 year&#x27;</span>
+     GROUP BY 
+<span class="d">-        p.Id, p.Title, p.CreationDate, p.Score, p.ViewCount, u.DisplayName</span>
+<span class="d">-), FilteredPosts AS (</span>
+<span class="a">+        p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score, p.PostTypeId, u.DisplayName</span>
+<span class="a">+),</span>
+<span class="a">+StringProcess AS (</span>
+     SELECT 
+<span class="d">-        rp.PostID,</span>
+<span class="a">+        rp.PostId,</span>
+         rp.Title,
+<span class="d">-        rp.CreationDate,</span>
+<span class="d">-        rp.Score,</span>
+<span class="d">-        rp.ViewCount,</span>
+         rp.OwnerDisplayName,
+         rp.CommentCount,
+<span class="d">-        rp.BadgeCount</span>
+<span class="a">+        rp.BadgeCount,</span>
+<span class="a">+        rp.ViewCount,</span>
+<span class="a">+        rp.Score,</span>
+<span class="a">+        CASE </span>
+<span class="a">+            WHEN rp.PostTypeId = 1 THEN &#x27;Question&#x27;</span>
+<span class="a">+            WHEN rp.PostTypeId = 2 THEN &#x27;Answer&#x27;</span>
+<span class="a">+            ELSE &#x27;Other&#x27;</span>
+<span class="a">+        END AS PostType,</span>
+<span class="a">+        REPLACE(REPLACE(rp.Title, &#x27;Stack Overflow&#x27;, &#x27;SO&#x27;), &#x27;Help&#x27;, &#x27;Assistance&#x27;) AS ProcessedTitle</span>
+     FROM 
+@@ -36,3 +43,3 @@
+     WHERE 
+<span class="d">-        rp.Rank &lt;= 10</span>
+<span class="a">+        rp.PostRank &lt;= 10</span>
+ )
+@@ -40,18 +47,16 @@
+ SELECT 
+<span class="d">-    fp.PostID,</span>
+<span class="d">-    fp.Title,</span>
+<span class="d">-    fp.CreationDate,</span>
+<span class="d">-    fp.Score,</span>
+<span class="d">-    fp.ViewCount,</span>
+<span class="d">-    fp.OwnerDisplayName,</span>
+<span class="d">-    fp.CommentCount,</span>
+<span class="d">-    fp.BadgeCount,</span>
+<span class="a">+    sp.PostId,</span>
+<span class="a">+    sp.ProcessedTitle,</span>
+<span class="a">+    sp.OwnerDisplayName,</span>
+<span class="a">+    sp.CommentCount,</span>
+<span class="a">+    sp.BadgeCount,</span>
+<span class="a">+    sp.ViewCount,</span>
+<span class="a">+    sp.Score,</span>
+     CASE 
+<span class="d">-        WHEN fp.BadgeCount &gt; 0 THEN &#x27;Has Badges&#x27;</span>
+<span class="d">-        ELSE &#x27;No Badges&#x27;</span>
+<span class="d">-    END AS BadgeStatus</span>
+<span class="a">+        WHEN LENGTH(sp.ProcessedTitle) &gt; 50 THEN &#x27;Long Title&#x27;</span>
+<span class="a">+        ELSE &#x27;Short Title&#x27;</span>
+<span class="a">+    END AS TitleLengthCategory</span>
+ FROM 
+<span class="d">-    FilteredPosts fp</span>
+<span class="a">+    StringProcess sp</span>
+ ORDER BY 
+<span class="d">-    fp.Score DESC, </span>
+<span class="d">-    fp.CommentCount DESC;</span>
+<span class="a">+    sp.Score DESC, sp.ViewCount DESC;</span></pre></details><h2>All 2 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">9160</td><td class="n">1</td><td class="n">1.323</td><td class="n">1.00</td><td class="n">22</td><td class="n">9</td><td class="n">119</td><td class="n">49</td><td class="">5c8acf8b</td><td class=""><details><summary>show</summary><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostID,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        u.DisplayName AS OwnerDisplayName,
+        COUNT(DISTINCT c.Id) AS CommentCount,
+        COUNT(DISTINCT b.Id) AS BadgeCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    WHERE 
+        p.CreationDate &gt;= cast(&#x27;2024-10-01&#x27; as date) - INTERVAL &#x27;30 days&#x27;
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.Score, p.ViewCount, u.DisplayName
+), FilteredPosts AS (
+    SELECT 
+        rp.PostID,
+        rp.Title,
+        rp.CreationDate,
+        rp.Score,
+        rp.ViewCount,
+        rp.OwnerDisplayName,
+        rp.CommentCount,
+        rp.BadgeCount
+    FROM 
+        RankedPosts rp
+    WHERE 
+        rp.Rank &lt;= 10
+)
+
+SELECT 
+    fp.PostID,
+    fp.Title,
+    fp.CreationDate,
+    fp.Score,
+    fp.ViewCount,
+    fp.OwnerDisplayName,
+    fp.CommentCount,
+    fp.BadgeCount,
+    CASE 
+        WHEN fp.BadgeCount &gt; 0 THEN &#x27;Has Badges&#x27;
+        ELSE &#x27;No Badges&#x27;
+    END AS BadgeStatus
+FROM 
+    FilteredPosts fp
+ORDER BY 
+    fp.Score DESC, 
+    fp.CommentCount DESC;</pre></details></td></tr><tr><td class="">26465</td><td class="n">1</td><td class="n">9.560</td><td class="n">7.23</td><td class="n">36</td><td class="n">8</td><td class="n">789</td><td class="n">80</td><td class="">04322246</td><td class=""><details><summary>show</summary><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.ViewCount,
+        p.Score,
+        p.PostTypeId,
+        COALESCE(u.DisplayName, &#x27;Community User&#x27;) AS OwnerDisplayName,
+        COUNT(c.Id) AS CommentCount,
+        COUNT(DISTINCT b.Id) AS BadgeCount,
+        ROW_NUMBER() OVER (PARTITION BY p.PostTypeId ORDER BY p.Score DESC, p.CreationDate DESC) AS PostRank
+    FROM 
+        Posts p
+    LEFT JOIN 
+        Users u ON p.OwnerUserId = u.Id
+    LEFT JOIN 
+        Comments c ON p.Id = c.PostId
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    WHERE 
+        p.CreationDate &gt;= TIMESTAMP &#x27;2024-10-01 12:34:56&#x27; - INTERVAL &#x27;1 year&#x27;
+    GROUP BY 
+        p.Id, p.Title, p.CreationDate, p.ViewCount, p.Score, p.PostTypeId, u.DisplayName
+),
+StringProcess AS (
+    SELECT 
+        rp.PostId,
+        rp.Title,
+        rp.OwnerDisplayName,
+        rp.CommentCount,
+        rp.BadgeCount,
+        rp.ViewCount,
+        rp.Score,
+        CASE 
+            WHEN rp.PostTypeId = 1 THEN &#x27;Question&#x27;
+            WHEN rp.PostTypeId = 2 THEN &#x27;Answer&#x27;
+            ELSE &#x27;Other&#x27;
+        END AS PostType,
+        REPLACE(REPLACE(rp.Title, &#x27;Stack Overflow&#x27;, &#x27;SO&#x27;), &#x27;Help&#x27;, &#x27;Assistance&#x27;) AS ProcessedTitle
+    FROM 
+        RankedPosts rp
+    WHERE 
+        rp.PostRank &lt;= 10
+)
+
+SELECT 
+    sp.PostId,
+    sp.ProcessedTitle,
+    sp.OwnerDisplayName,
+    sp.CommentCount,
+    sp.BadgeCount,
+    sp.ViewCount,
+    sp.Score,
+    CASE 
+        WHEN LENGTH(sp.ProcessedTitle) &gt; 50 THEN &#x27;Long Title&#x27;
+        ELSE &#x27;Short Title&#x27;
+    END AS TitleLengthCategory
+FROM 
+    StringProcess sp
+ORDER BY 
+    sp.Score DESC, sp.ViewCount DESC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

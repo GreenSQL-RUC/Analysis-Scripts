@@ -1,0 +1,83 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan #2 — 17461 vs 17863</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="on">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan/01.html" class=""><span class="r">#1</span>16132 vs 29082<span class="x">3.38×</span></a><a href="../same_plan/02.html" class="on"><span class="r">#2</span>17461 vs 17863<span class="x">2.72×</span></a><a href="../same_plan/03.html" class=""><span class="r">#3</span>18987 vs 28977<span class="x">1.84×</span></a><a href="../same_plan/04.html" class=""><span class="r">#4</span>18877 vs 13642<span class="x">1.65×</span></a><a href="../same_plan/05.html" class=""><span class="r">#5</span>16696 vs 11049<span class="x">1.62×</span></a><a href="../same_plan/06.html" class=""><span class="r">#6</span>19155 vs 10228<span class="x">1.60×</span></a><a href="../same_plan/07.html" class=""><span class="r">#7</span>17158 vs 10090<span class="x">1.51×</span></a><a href="../same_plan/08.html" class=""><span class="r">#8</span>18592 vs 16367<span class="x">1.51×</span></a><a href="../same_plan/09.html" class=""><span class="r">#9</span>17862 vs 14477<span class="x">1.49×</span></a><a href="../same_plan/10.html" class=""><span class="r">#10</span>15003 vs 16046<span class="x">1.49×</span></a><a href="../same_plan/11.html" class=""><span class="r">#11</span>11321 vs 13903<span class="x">1.46×</span></a><a href="../same_plan/12.html" class=""><span class="r">#12</span>18827 vs 16240<span class="x">1.45×</span></a><a href="../same_plan/13.html" class=""><span class="r">#13</span>11863 vs 14184<span class="x">1.45×</span></a><a href="../same_plan/14.html" class=""><span class="r">#14</span>14342 vs 13377<span class="x">1.44×</span></a><a href="../same_plan/15.html" class=""><span class="r">#15</span>12784 vs 13071<span class="x">1.43×</span></a><a href="../same_plan/16.html" class=""><span class="r">#16</span>18695 vs 17877<span class="x">1.42×</span></a><a href="../same_plan/17.html" class=""><span class="r">#17</span>16850 vs 11845<span class="x">1.40×</span></a><a href="../same_plan/18.html" class=""><span class="r">#18</span>15305 vs 13444<span class="x">1.38×</span></a><a href="../same_plan/19.html" class=""><span class="r">#19</span>19661 vs 18275<span class="x">1.35×</span></a><a href="../same_plan/20.html" class=""><span class="r">#20</span>17756 vs 15954<span class="x">1.33×</span></a></aside><main><h1>Same plan #2: 17461 vs 17863 — 2.72×</h1><div class="sub">same plan (operators, tables and conditions); outputs may differ. Ranked 2 of 20 by the energy gap within the group (most expensive / cheapest). Energy: SQLStorm single-copy energy (laptop 1) per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">4</div></div><div class="card"><div class="k">query files</div><div class="v">6</div></div><div class="card"><div class="k">energy min</div><div class="v">10.828 J</div></div><div class="card"><div class="k">median</div><div class="v">20.951 J</div></div><div class="card"><div class="k">max</div><div class="v">29.474 J</div></div><div class="card"><div class="k">gap</div><div class="v">2.72×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">4</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 17461</h3><dl class="f"><dt>energy</dt><dd>10.828 J ± 0.067</dd><dt>output</dt><dd>4 rows, 3 columns</dd><dt>plan</dt><dd>500 ms, 5 nodes, 113 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT l_returnflag, l_linestatus, SUM(l_quantity) AS sum_quantity
+FROM lineitem
+GROUP BY l_returnflag, l_linestatus
+ORDER BY l_returnflag, l_linestatus;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">l_returnflag</th><th class="">l_linestatus</th><th class="">sum_quantity</th></tr></thead><tbody><tr><td class="">A</td><td class="">F</td><td class="">37734107.00</td></tr><tr><td class="">N</td><td class="">F</td><td class="">991417.00</td></tr><tr><td class="">N</td><td class="">O</td><td class="">76633518.00</td></tr><tr><td class="">R</td><td class="">F</td><td class="">37719753.00</td></tr></tbody></table></div><p class="muted">first 4 of 4 rows</p><details><summary>Plan</summary><pre>Finalize GroupAggregate [Group Key=l_returnflag, l_linestatus]
+  Gather Merge
+    Sort [Sort Key=l_returnflag, l_linestatus]
+      Partial HashAggregate [Group Key=l_returnflag, l_linestatus]
+        Parallel Seq Scan on lineitem</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 17863</h3><dl class="f"><dt>energy</dt><dd>29.474 J ± 0.168</dd><dt>output</dt><dd>4 rows, 7 columns</dd><dt>plan</dt><dd>1325 ms, 5 nodes, 113 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT l_returnflag, l_linestatus, SUM(l_quantity) AS sum_qty, SUM(l_extendedprice) AS sum_base_price, SUM(l_extendedprice * (1 - l_discount)) AS sum_disc_price, SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax)) AS sum_charge, COUNT(l_orderkey) AS count_order
+FROM lineitem
+GROUP BY l_returnflag, l_linestatus
+ORDER BY l_returnflag, l_linestatus;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">l_returnflag</th><th class="">l_linestatus</th><th class="">sum_qty</th><th class="">sum_base_price</th><th class="">sum_disc_price</th><th class="">sum_charge</th><th class="">count_order</th></tr></thead><tbody><tr><td class="">A</td><td class="">F</td><td class="">37734107.00</td><td class="">56586554400.73</td><td class="">53758257134.8700</td><td class="">55909065222.827692</td><td class="">1478493</td></tr><tr><td class="">N</td><td class="">F</td><td class="">991417.00</td><td class="">1487504710.38</td><td class="">1413082168.0541</td><td class="">1469649223.194375</td><td class="">38854</td></tr><tr><td class="">N</td><td class="">O</td><td class="">76633518.00</td><td class="">114935210409.19</td><td class="">109189591897.4720</td><td class="">113561024263.013782</td><td class="">3004998</td></tr><tr><td class="">R</td><td class="">F</td><td class="">37719753.00</td><td class="">56568041380.90</td><td class="">53741292684.6040</td><td class="">55889619119.831932</td><td class="">1478870</td></tr></tbody></table></div><p class="muted">first 4 of 4 rows</p><details><summary>Plan</summary><pre>Finalize GroupAggregate [Group Key=l_returnflag, l_linestatus]
+  Gather Merge
+    Sort [Sort Key=l_returnflag, l_linestatus]
+      Partial HashAggregate [Group Key=l_returnflag, l_linestatus]
+        Parallel Seq Scan on lineitem</pre></details></div></div><p class="muted">Both run the same plan; the plan text does not show LIMIT values or output expressions, which is where same-plan queries differ.</p><details><summary>SQL difference</summary><pre>--- 17461
++++ 17863
+@@ -1,2 +1,2 @@
+<span class="d">-SELECT l_returnflag, l_linestatus, SUM(l_quantity) AS sum_quantity</span>
+<span class="a">+SELECT l_returnflag, l_linestatus, SUM(l_quantity) AS sum_qty, SUM(l_extendedprice) AS sum_base_price, SUM(l_extendedprice * (1 - l_discount)) AS sum_disc_price, SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax)) AS sum_charge, COUNT(l_orderkey) AS count_order</span>
+ FROM lineitem</pre></details><h2>All 4 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">17461</td><td class="n">1</td><td class="n">10.828</td><td class="n">1.00</td><td class="n">4</td><td class="n">3</td><td class="n">500</td><td class="n">113</td><td class="">f04a2c2c</td><td class=""><details><summary>show</summary><pre>SELECT l_returnflag, l_linestatus, SUM(l_quantity) AS sum_quantity
+FROM lineitem
+GROUP BY l_returnflag, l_linestatus
+ORDER BY l_returnflag, l_linestatus;</pre></details></td></tr><tr><td class="">15242</td><td class="n">3</td><td class="n">12.494</td><td class="n">1.15</td><td class="n">4</td><td class="n">4</td><td class="n">579</td><td class="n">113</td><td class="">f04a2c2c</td><td class=""><details><summary>show</summary><pre>SELECT l_returnflag, l_linestatus, SUM(l_quantity) AS sum_quantity, SUM(l_extendedprice) AS sum_extendedprice
+FROM lineitem
+GROUP BY l_returnflag, l_linestatus
+ORDER BY l_returnflag, l_linestatus;</pre></details></td></tr><tr><td class="">16330</td><td class="n">1</td><td class="n">29.407</td><td class="n">2.72</td><td class="n">4</td><td class="n">6</td><td class="n">1321</td><td class="n">113</td><td class="">f04a2c2c</td><td class=""><details><summary>show</summary><pre>SELECT l_returnflag, l_linestatus, SUM(l_quantity) AS sum_qty, SUM(l_extendedprice) AS sum_base_price, SUM(l_extendedprice * (1 - l_discount)) AS sum_disc_price, SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax)) AS sum_charge
+FROM lineitem
+GROUP BY l_returnflag, l_linestatus
+ORDER BY l_returnflag, l_linestatus;</pre></details></td></tr><tr><td class="">17863</td><td class="n">1</td><td class="n">29.474</td><td class="n">2.72</td><td class="n">4</td><td class="n">7</td><td class="n">1325</td><td class="n">113</td><td class="">f04a2c2c</td><td class=""><details><summary>show</summary><pre>SELECT l_returnflag, l_linestatus, SUM(l_quantity) AS sum_qty, SUM(l_extendedprice) AS sum_base_price, SUM(l_extendedprice * (1 - l_discount)) AS sum_disc_price, SUM(l_extendedprice * (1 - l_discount) * (1 + l_tax)) AS sum_charge, COUNT(l_orderkey) AS count_order
+FROM lineitem
+GROUP BY l_returnflag, l_linestatus
+ORDER BY l_returnflag, l_linestatus;</pre></details></td></tr></tbody></table></div></main></div></body></html>

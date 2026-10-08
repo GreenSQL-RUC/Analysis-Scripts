@@ -1,0 +1,174 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same output #17 — 18603 vs 19785</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="on">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_output/01.html" class=""><span class="r">#1</span>8669 vs 9931<span class="x">9.48×</span></a><a href="../same_output/02.html" class=""><span class="r">#2</span>12226 vs 14153<span class="x">8.81×</span></a><a href="../same_output/03.html" class=""><span class="r">#3</span>10271 vs 11575<span class="x">6.96×</span></a><a href="../same_output/04.html" class=""><span class="r">#4</span>11137 vs 14426<span class="x">6.28×</span></a><a href="../same_output/05.html" class=""><span class="r">#5</span>5949 vs 32588<span class="x">5.94×</span></a><a href="../same_output/06.html" class=""><span class="r">#6</span>9422 vs 8123<span class="x">4.80×</span></a><a href="../same_output/07.html" class=""><span class="r">#7</span>15743 vs 16677<span class="x">4.48×</span></a><a href="../same_output/08.html" class=""><span class="r">#8</span>15388 vs 15893<span class="x">3.48×</span></a><a href="../same_output/09.html" class=""><span class="r">#9</span>16659 vs 17956<span class="x">3.15×</span></a><a href="../same_output/10.html" class=""><span class="r">#10</span>16513 vs 17599<span class="x">3.05×</span></a><a href="../same_output/11.html" class=""><span class="r">#11</span>10096 vs 13887<span class="x">2.93×</span></a><a href="../same_output/12.html" class=""><span class="r">#12</span>871 vs 9903<span class="x">2.93×</span></a><a href="../same_output/13.html" class=""><span class="r">#13</span>19557 vs 18654<span class="x">2.67×</span></a><a href="../same_output/14.html" class=""><span class="r">#14</span>18510 vs 17397<span class="x">2.62×</span></a><a href="../same_output/15.html" class=""><span class="r">#15</span>17350 vs 15577<span class="x">2.56×</span></a><a href="../same_output/16.html" class=""><span class="r">#16</span>18541 vs 15662<span class="x">2.53×</span></a><a href="../same_output/17.html" class="on"><span class="r">#17</span>18603 vs 19785<span class="x">2.39×</span></a><a href="../same_output/18.html" class=""><span class="r">#18</span>9312 vs 6530<span class="x">2.35×</span></a><a href="../same_output/19.html" class=""><span class="r">#19</span>15403 vs 18524<span class="x">2.32×</span></a><a href="../same_output/20.html" class=""><span class="r">#20</span>19156 vs 16383<span class="x">2.27×</span></a></aside><main><h1>Same output #17: 18603 vs 19785 — 2.39×</h1><div class="sub">same output (same rows: identical, renamed or reordered columns, reordered rows); plans may differ. Ranked 17 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">4</div></div><div class="card"><div class="k">query files</div><div class="v">8</div></div><div class="card"><div class="k">energy min</div><div class="v">0.391 J</div></div><div class="card"><div class="k">median</div><div class="v">0.395 J</div></div><div class="card"><div class="k">max</div><div class="v">0.935 J</div></div><div class="card"><div class="k">gap</div><div class="v">2.39×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">2</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 18603</h3><dl class="f"><dt>energy</dt><dd>0.391 J ± 0.004</dd><dt>output</dt><dd>10 rows, 5 columns</dd><dt>plan</dt><dd>28 ms, 10 nodes, 32 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT p.Id, p.Title, p.CreationDate, u.DisplayName, pt.Name AS PostType
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+JOIN PostTypes pt ON p.PostTypeId = pt.Id
+WHERE p.CreationDate &gt;= &#x27;2023-01-01&#x27;
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">id</th><th class="">title</th><th class="">creationdate</th><th class="">displayname</th><th class="">posttype</th></tr></thead><tbody><tr><td class="">342708</td><td class=""></td><td class="">2024-09-30 22:49:43.85</td><td class="">Bill Karwin</td><td class="">Answer</td></tr><tr><td class="">342707</td><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?</td><td class="">2024-09-30 22:49:25.743</td><td class="">J. Mini</td><td class="">Question</td></tr><tr><td class="">342706</td><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class="">2024-09-30 22:05:14.587</td><td class="">Lucas David Ferrero</td><td class="">Question</td></tr><tr><td class="">342705</td><td class=""></td><td class="">2024-09-30 20:17:43.423</td><td class="">PhillysDBA</td><td class="">Answer</td></tr><tr><td class="">342704</td><td class="">Varbinary column taking lots of space</td><td class="">2024-09-30 18:22:14.783</td><td class="">PhillysDBA</td><td class="">Question</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Nested Loop
+    Nested Loop
+      Gather Merge
+        Sort [Sort Key=posts.creationdate DESC]
+          Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-01-01 00:00:00&#x27;)]
+      Memoize [Cache Key=posts.owneruserid]
+        Index Scan on users [Index Cond=(id = posts.owneruserid)]
+    Memoize [Cache Key=posts.posttypeid]
+      Index Scan on posttypes [Index Cond=(id = posts.posttypeid)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 19785</h3><dl class="f"><dt>energy</dt><dd>0.935 J ± 0.008</dd><dt>output</dt><dd>10 rows, 5 columns</dd><dt>plan</dt><dd>58 ms, 10 nodes, 32 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    P.Id AS PostId,
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS OwnerDisplayName,
+    PT.Name AS PostType
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+JOIN 
+    PostTypes PT ON P.PostTypeId = PT.Id
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">title</th><th class="">creationdate</th><th class="">ownerdisplayname</th><th class="">posttype</th></tr></thead><tbody><tr><td class="">342708</td><td class=""></td><td class="">2024-09-30 22:49:43.85</td><td class="">Bill Karwin</td><td class="">Answer</td></tr><tr><td class="">342707</td><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?</td><td class="">2024-09-30 22:49:25.743</td><td class="">J. Mini</td><td class="">Question</td></tr><tr><td class="">342706</td><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class="">2024-09-30 22:05:14.587</td><td class="">Lucas David Ferrero</td><td class="">Question</td></tr><tr><td class="">342705</td><td class=""></td><td class="">2024-09-30 20:17:43.423</td><td class="">PhillysDBA</td><td class="">Answer</td></tr><tr><td class="">342704</td><td class="">Varbinary column taking lots of space</td><td class="">2024-09-30 18:22:14.783</td><td class="">PhillysDBA</td><td class="">Question</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Nested Loop
+    Gather Merge
+      Sort [Sort Key=posts.creationdate DESC]
+        Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+          Parallel Seq Scan on posts
+          Hash
+            Seq Scan on posttypes
+    Memoize [Cache Key=posts.owneruserid]
+      Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 18603
++++ 19785
+@@ -2,9 +2,9 @@
+   Nested Loop
+<span class="d">-    Nested Loop</span>
+<span class="d">-      Gather Merge</span>
+<span class="d">-        Sort [Sort Key=posts.creationdate DESC]</span>
+<span class="d">-          Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-01-01 00:00:00&#x27;)]</span>
+<span class="d">-      Memoize [Cache Key=posts.owneruserid]</span>
+<span class="d">-        Index Scan on users [Index Cond=(id = posts.owneruserid)]</span>
+<span class="d">-    Memoize [Cache Key=posts.posttypeid]</span>
+<span class="d">-      Index Scan on posttypes [Index Cond=(id = posts.posttypeid)]</span>
+<span class="a">+    Gather Merge</span>
+<span class="a">+      Sort [Sort Key=posts.creationdate DESC]</span>
+<span class="a">+        Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]</span>
+<span class="a">+          Parallel Seq Scan on posts</span>
+<span class="a">+          Hash</span>
+<span class="a">+            Seq Scan on posttypes</span>
+<span class="a">+    Memoize [Cache Key=posts.owneruserid]</span>
+<span class="a">+      Index Scan on users [Index Cond=(id = posts.owneruserid)]</span></pre><details><summary>SQL difference</summary><pre>--- 18603
++++ 19785
+@@ -1,7 +1,15 @@
+<span class="d">-SELECT p.Id, p.Title, p.CreationDate, u.DisplayName, pt.Name AS PostType</span>
+<span class="d">-FROM Posts p</span>
+<span class="d">-JOIN Users u ON p.OwnerUserId = u.Id</span>
+<span class="d">-JOIN PostTypes pt ON p.PostTypeId = pt.Id</span>
+<span class="d">-WHERE p.CreationDate &gt;= &#x27;2023-01-01&#x27;</span>
+<span class="d">-ORDER BY p.CreationDate DESC</span>
+<span class="a">+SELECT </span>
+<span class="a">+    P.Id AS PostId,</span>
+<span class="a">+    P.Title,</span>
+<span class="a">+    P.CreationDate,</span>
+<span class="a">+    U.DisplayName AS OwnerDisplayName,</span>
+<span class="a">+    PT.Name AS PostType</span>
+<span class="a">+FROM </span>
+<span class="a">+    Posts P</span>
+<span class="a">+JOIN </span>
+<span class="a">+    Users U ON P.OwnerUserId = U.Id</span>
+<span class="a">+JOIN </span>
+<span class="a">+    PostTypes PT ON P.PostTypeId = PT.Id</span>
+<span class="a">+ORDER BY </span>
+<span class="a">+    P.CreationDate DESC</span>
+ LIMIT 10;</pre></details><h2>All 4 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">18603</td><td class="n">1</td><td class="n">0.391</td><td class="n">1.00</td><td class="n">10</td><td class="n">5</td><td class="n">28</td><td class="n">32</td><td class="">10b218f2</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, u.DisplayName, pt.Name AS PostType
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+JOIN PostTypes pt ON p.PostTypeId = pt.Id
+WHERE p.CreationDate &gt;= &#x27;2023-01-01&#x27;
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16649</td><td class="n">5</td><td class="n">0.395</td><td class="n">1.01</td><td class="n">10</td><td class="n">5</td><td class="n">29</td><td class="n">32</td><td class="">10b218f2</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    pt.Name AS PostType
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+WHERE 
+    p.CreationDate &gt;= &#x27;2023-01-01&#x27;
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19772</td><td class="n">1</td><td class="n">0.396</td><td class="n">1.01</td><td class="n">10</td><td class="n">5</td><td class="n">28</td><td class="n">32</td><td class="">10b218f2</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, u.DisplayName, p.CreationDate, pt.Name AS PostType 
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+JOIN PostTypes pt ON p.PostTypeId = pt.Id
+WHERE p.CreationDate &gt;= &#x27;2023-01-01&#x27;
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19785</td><td class="n">1</td><td class="n">0.935</td><td class="n">2.39</td><td class="n">10</td><td class="n">5</td><td class="n">58</td><td class="n">32</td><td class="">30379348</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Id AS PostId,
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS OwnerDisplayName,
+    PT.Name AS PostType
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+JOIN 
+    PostTypes PT ON P.PostTypeId = PT.Id
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr></tbody></table></div></main></div></body></html>

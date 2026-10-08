@@ -1,0 +1,269 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same query #8 — query 13395</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="on">Same query</a></nav></header><div class="wrap"><aside><a href="../same_query/01.html" class=""><span class="r">#1</span>query 10473<span class="x">48×</span></a><a href="../same_query/02.html" class=""><span class="r">#2</span>query 10133<span class="x">26×</span></a><a href="../same_query/03.html" class=""><span class="r">#3</span>query 10153<span class="x">22×</span></a><a href="../same_query/04.html" class=""><span class="r">#4</span>query 13596<span class="x">22×</span></a><a href="../same_query/05.html" class=""><span class="r">#5</span>query 10370<span class="x">20×</span></a><a href="../same_query/06.html" class=""><span class="r">#6</span>query 10567<span class="x">20×</span></a><a href="../same_query/07.html" class=""><span class="r">#7</span>query 15074<span class="x">19×</span></a><a href="../same_query/08.html" class="on"><span class="r">#8</span>query 13395<span class="x">18×</span></a><a href="../same_query/09.html" class=""><span class="r">#9</span>query 15012<span class="x">18×</span></a><a href="../same_query/10.html" class=""><span class="r">#10</span>query 10062<span class="x">17×</span></a><a href="../same_query/11.html" class=""><span class="r">#11</span>query 15005<span class="x">17×</span></a><a href="../same_query/12.html" class=""><span class="r">#12</span>query 10004<span class="x">16×</span></a><a href="../same_query/13.html" class=""><span class="r">#13</span>query 10220<span class="x">16×</span></a><a href="../same_query/14.html" class=""><span class="r">#14</span>query 10301<span class="x">16×</span></a><a href="../same_query/15.html" class=""><span class="r">#15</span>query 15010<span class="x">16×</span></a><a href="../same_query/16.html" class=""><span class="r">#16</span>query 10025<span class="x">15×</span></a><a href="../same_query/17.html" class=""><span class="r">#17</span>query 10111<span class="x">15×</span></a><a href="../same_query/18.html" class=""><span class="r">#18</span>query 10137<span class="x">15×</span></a><a href="../same_query/19.html" class=""><span class="r">#19</span>query 15089<span class="x">15×</span></a><a href="../same_query/20.html" class=""><span class="r">#20</span>query 10021<span class="x">14×</span></a></aside><main><h1>Same query #8: query 13395 — 18 copies</h1><div class="sub">copies of one SQL text (same sqlglot canonical form): the largest copy sets. Copies are the same work measured several times, so their energy spread is the measurement noise (model σ at the median: 0.256 J, SQLStorm single-copy energy (laptop 1)).</div><div class="cards"><div class="card"><div class="k">copies</div><div class="v">18</div></div><div class="card"><div class="k">with energy</div><div class="v">18</div></div><div class="card"><div class="k">energy min</div><div class="v">44.743 J</div></div><div class="card"><div class="k">median</div><div class="v">45.189 J</div></div><div class="card"><div class="k">max</div><div class="v">45.790 J</div></div><div class="card"><div class="k">spread</div><div class="v">1.023×</div></div><div class="card"><div class="k">furthest copy</div><div class="v">2.4 σ</div></div><div class="card"><div class="k">distinct SQL texts</div><div class="v">18</div></div><div class="card"><div class="k">distinct outputs</div><div class="v">1</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div></div><p>Copies: 13395 15123 15153 15284 15315 15351 15484 15873 16162 16327 16350 16777 17631 17660 18069 18432 19118 19671</p><p>Compared with T1 (the text most copies use), the other texts differ in:</p><ul><li>10 texts: names (table aliases, output column names or CTE names), besides any whitespace, comment or case changes</li><li>7 texts: only whitespace / line breaks</li></ul><h2>Every copy</h2><div class="scroll"><table class=""><thead><tr><th class="">query</th><th class="">SQL text</th><th class="n">energy (J)</th><th class="n">σ from median</th><th class="n">rows</th><th class="">same output</th><th class="">same plan</th><th class="n">plan ms</th></tr></thead><tbody><tr><td class="">13395</td><td class="">T1</td><td class="n">45.009</td><td class="n">-0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4207</td></tr><tr><td class="">15123</td><td class="">T2</td><td class="n">45.474</td><td class="n">+1.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4122</td></tr><tr><td class="">15153</td><td class="">T3</td><td class="n">44.928</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4139</td></tr><tr><td class="">15284</td><td class="">T4</td><td class="n">45.790</td><td class="n">+2.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4200</td></tr><tr><td class="">15315</td><td class="">T5</td><td class="n">45.490</td><td class="n">+1.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4168</td></tr><tr><td class="">15351</td><td class="">T6</td><td class="n">45.305</td><td class="n">+0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4153</td></tr><tr><td class="">15484</td><td class="">T7</td><td class="n">44.890</td><td class="n">-1.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4135</td></tr><tr><td class="">15873</td><td class="">T8</td><td class="n">45.152</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4180</td></tr><tr><td class="">16162</td><td class="">T9</td><td class="n">45.226</td><td class="n">+0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4225</td></tr><tr><td class="">16327</td><td class="">T10</td><td class="n">45.063</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4179</td></tr><tr><td class="">16350</td><td class="">T11</td><td class="n">45.276</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4125</td></tr><tr><td class="">16777</td><td class="">T12</td><td class="n">44.743</td><td class="n">-1.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4143</td></tr><tr><td class="">17631</td><td class="">T13</td><td class="n">45.476</td><td class="n">+1.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4121</td></tr><tr><td class="">17660</td><td class="">T14</td><td class="n">45.339</td><td class="n">+0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4135</td></tr><tr><td class="">18069</td><td class="">T15</td><td class="n">44.914</td><td class="n">-1.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4161</td></tr><tr><td class="">18432</td><td class="">T16</td><td class="n">45.373</td><td class="n">+0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4102</td></tr><tr><td class="">19118</td><td class="">T17</td><td class="n">45.125</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4169</td></tr><tr><td class="">19671</td><td class="">T18</td><td class="n">45.047</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4160</td></tr></tbody></table></div><h2>The 18 distinct SQL texts</h2><div class="texts"><div class="q"><h3>T1 <span class="muted">— 1 copy: 13395</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T2 <span class="muted">— 1 copy: 15123</span></h3><pre>SELECT 
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T3 <span class="muted">— 1 copy: 15153</span></h3><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_name
+ORDER BY
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T4 <span class="muted">— 1 copy: 15284</span></h3><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_extended_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_name
+ORDER BY
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T5 <span class="muted">— 1 copy: 15315</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T6 <span class="muted">— 1 copy: 15351</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T7 <span class="muted">— 1 copy: 15484</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS average_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T8 <span class="muted">— 1 copy: 15873</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS average_price
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T9 <span class="muted">— 1 copy: 16162</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS average_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T10 <span class="muted">— 1 copy: 16327</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_extended_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T11 <span class="muted">— 1 copy: 16350</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_price
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T12 <span class="muted">— 1 copy: 16777</span></h3><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS average_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_name
+ORDER BY
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T13 <span class="muted">— 1 copy: 17631</span></h3><pre>SELECT 
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS avg_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T14 <span class="muted">— 1 copy: 17660</span></h3><pre>SELECT 
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS average_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T15 <span class="muted">— 1 copy: 18069</span></h3><pre>SELECT p.p_name, SUM(l.l_quantity) AS total_quantity, AVG(l.l_extendedprice) AS avg_price
+FROM part p
+JOIN lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY p.p_name
+ORDER BY total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T16 <span class="muted">— 1 copy: 18432</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_price
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T17 <span class="muted">— 1 copy: 19118</span></h3><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></div><div class="q"><h3>T18 <span class="muted">— 1 copy: 19671</span></h3><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice) AS average_extended_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_name
+ORDER BY
+    total_quantity DESC
+LIMIT 10;</pre></div></div><h2>Output (query 13395)</h2><div class="scroll"><table class="out"><thead><tr><th class="">p_name</th><th class="">total_quantity</th><th class="">avg_price</th></tr></thead><tbody><tr><td class="">blush burlywood red blanched olive</td><td class="">1720.00</td><td class="">42417.582711864407</td></tr><tr><td class="">azure lime rosy peru powder</td><td class="">1677.00</td><td class="">37447.666388888889</td></tr><tr><td class="">dodger sienna orange khaki lace</td><td class="">1642.00</td><td class="">34649.551020408163</td></tr><tr><td class="">yellow snow bisque dodger drab</td><td class="">1562.00</td><td class="">51259.020784313725</td></tr><tr><td class="">rose red purple salmon sandy</td><td class="">1553.00</td><td class="">52610.735789473684</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum(lineitem.l_quantity)) DESC]
+    Finalize HashAggregate [Group Key=part.p_name]
+      Gather
+        Partial HashAggregate [Group Key=part.p_name]
+          Parallel Hash Join [Hash Cond=(lineitem.l_partkey = part.p_partkey)]
+            Parallel Seq Scan on lineitem
+            Parallel Hash
+              Parallel Seq Scan on part</pre></details></main></div></body></html>

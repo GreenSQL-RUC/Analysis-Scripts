@@ -1,0 +1,180 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same query #14 — query 10085</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="on">Same query</a></nav></header><div class="wrap"><aside><a href="../same_query/01.html" class=""><span class="r">#1</span>query 15027<span class="x">156×</span></a><a href="../same_query/02.html" class=""><span class="r">#2</span>query 15034<span class="x">146×</span></a><a href="../same_query/03.html" class=""><span class="r">#3</span>query 15005<span class="x">88×</span></a><a href="../same_query/04.html" class=""><span class="r">#4</span>query 15054<span class="x">83×</span></a><a href="../same_query/05.html" class=""><span class="r">#5</span>query 15008<span class="x">73×</span></a><a href="../same_query/06.html" class=""><span class="r">#6</span>query 15010<span class="x">72×</span></a><a href="../same_query/07.html" class=""><span class="r">#7</span>query 15033<span class="x">69×</span></a><a href="../same_query/08.html" class=""><span class="r">#8</span>query 15015<span class="x">64×</span></a><a href="../same_query/09.html" class=""><span class="r">#9</span>query 15049<span class="x">50×</span></a><a href="../same_query/10.html" class=""><span class="r">#10</span>query 15157<span class="x">50×</span></a><a href="../same_query/11.html" class=""><span class="r">#11</span>query 15011<span class="x">49×</span></a><a href="../same_query/12.html" class=""><span class="r">#12</span>query 15059<span class="x">47×</span></a><a href="../same_query/13.html" class=""><span class="r">#13</span>query 10018<span class="x">37×</span></a><a href="../same_query/14.html" class="on"><span class="r">#14</span>query 10085<span class="x">37×</span></a><a href="../same_query/15.html" class=""><span class="r">#15</span>query 15013<span class="x">34×</span></a><a href="../same_query/16.html" class=""><span class="r">#16</span>query 15078<span class="x">34×</span></a><a href="../same_query/17.html" class=""><span class="r">#17</span>query 15265<span class="x">33×</span></a><a href="../same_query/18.html" class=""><span class="r">#18</span>query 15305<span class="x">33×</span></a><a href="../same_query/19.html" class=""><span class="r">#19</span>query 15075<span class="x">30×</span></a><a href="../same_query/20.html" class=""><span class="r">#20</span>query 15012<span class="x">29×</span></a></aside><main><h1>Same query #14: query 10085 — 37 copies</h1><div class="sub">copies of one SQL text (same sqlglot canonical form): the largest copy sets. Copies are the same work measured several times, so their energy spread is the measurement noise (model σ at the median: 0.007 J, laptop 2 slope energy).</div><div class="cards"><div class="card"><div class="k">copies</div><div class="v">37</div></div><div class="card"><div class="k">with energy</div><div class="v">37</div></div><div class="card"><div class="k">energy min</div><div class="v">0.729 J</div></div><div class="card"><div class="k">median</div><div class="v">0.739 J</div></div><div class="card"><div class="k">max</div><div class="v">0.751 J</div></div><div class="card"><div class="k">spread</div><div class="v">1.031×</div></div><div class="card"><div class="k">furthest copy</div><div class="v">1.9 σ</div></div><div class="card"><div class="k">distinct SQL texts</div><div class="v">10</div></div><div class="card"><div class="k">distinct outputs</div><div class="v">1</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div></div><p>Copies: 10085 10176 10477 10749 10755 10817 10820 11387 11470 11537 11757 12040 12212 12327 12367 12424 12914 13065 13103 13288 13294 13422 13455 13525 13616 13950 13963 13969 14114 14237 14350 14351 14441 14627 14641 14743 14826</p><p>Compared with T1 (the text most copies use), the other texts differ in:</p><ul><li>8 texts: names (table aliases, output column names or CTE names), besides any whitespace, comment or case changes</li><li>1 text: only whitespace / line breaks</li></ul><h2>Every copy</h2><div class="scroll"><table class=""><thead><tr><th class="">query</th><th class="">SQL text</th><th class="n">energy (J)</th><th class="n">σ from median</th><th class="n">rows</th><th class="">same output</th><th class="">same plan</th><th class="n">plan ms</th></tr></thead><tbody><tr><td class="">10085</td><td class="">T1</td><td class="n">0.744</td><td class="n">+0.7</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">10176</td><td class="">T5</td><td class="n">0.741</td><td class="n">+0.3</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">45</td></tr><tr><td class="">10477</td><td class="">T2</td><td class="n">0.751</td><td class="n">+1.9</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">10749</td><td class="">T1</td><td class="n">0.735</td><td class="n">-0.6</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">45</td></tr><tr><td class="">10755</td><td class="">T6</td><td class="n">0.734</td><td class="n">-0.8</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">10817</td><td class="">T2</td><td class="n">0.734</td><td class="n">-0.7</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">10820</td><td class="">T7</td><td class="n">0.742</td><td class="n">+0.4</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">11387</td><td class="">T8</td><td class="n">0.747</td><td class="n">+1.2</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">11470</td><td class="">T2</td><td class="n">0.743</td><td class="n">+0.6</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">42</td></tr><tr><td class="">11537</td><td class="">T1</td><td class="n">0.736</td><td class="n">-0.5</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">11757</td><td class="">T1</td><td class="n">0.738</td><td class="n">-0.1</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">12040</td><td class="">T1</td><td class="n">0.741</td><td class="n">+0.3</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">12212</td><td class="">T3</td><td class="n">0.734</td><td class="n">-0.7</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">12327</td><td class="">T2</td><td class="n">0.740</td><td class="n">+0.1</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">12367</td><td class="">T1</td><td class="n">0.739</td><td class="n">-0.0</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">12424</td><td class="">T1</td><td class="n">0.743</td><td class="n">+0.7</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">12914</td><td class="">T4</td><td class="n">0.730</td><td class="n">-1.3</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">49</td></tr><tr><td class="">13065</td><td class="">T1</td><td class="n">0.743</td><td class="n">+0.6</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">13103</td><td class="">T9</td><td class="n">0.743</td><td class="n">+0.6</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">13288</td><td class="">T2</td><td class="n">0.739</td><td class="n">+0.1</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">46</td></tr><tr><td class="">13294</td><td class="">T2</td><td class="n">0.734</td><td class="n">-0.7</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">13422</td><td class="">T10</td><td class="n">0.732</td><td class="n">-1.0</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">13455</td><td class="">T1</td><td class="n">0.737</td><td class="n">-0.2</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">13525</td><td class="">T1</td><td class="n">0.737</td><td class="n">-0.3</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">13616</td><td class="">T4</td><td class="n">0.739</td><td class="n">-0.0</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">45</td></tr><tr><td class="">13950</td><td class="">T1</td><td class="n">0.738</td><td class="n">-0.2</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">42</td></tr><tr><td class="">13963</td><td class="">T1</td><td class="n">0.746</td><td class="n">+1.1</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">13969</td><td class="">T1</td><td class="n">0.742</td><td class="n">+0.5</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">14114</td><td class="">T3</td><td class="n">0.729</td><td class="n">-1.6</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">45</td></tr><tr><td class="">14237</td><td class="">T1</td><td class="n">0.739</td><td class="n">+0.0</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">14350</td><td class="">T1</td><td class="n">0.750</td><td class="n">+1.7</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">14351</td><td class="">T1</td><td class="n">0.740</td><td class="n">+0.1</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">14441</td><td class="">T1</td><td class="n">0.735</td><td class="n">-0.7</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">45</td></tr><tr><td class="">14627</td><td class="">T2</td><td class="n">0.749</td><td class="n">+1.5</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">14641</td><td class="">T1</td><td class="n">0.733</td><td class="n">-0.8</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr><tr><td class="">14743</td><td class="">T3</td><td class="n">0.735</td><td class="n">-0.5</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">43</td></tr><tr><td class="">14826</td><td class="">T2</td><td class="n">0.739</td><td class="n">+0.0</td><td class="n">6</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">44</td></tr></tbody></table></div><h2>The 10 distinct SQL texts</h2><div class="texts"><div class="q"><h3>T1 <span class="muted">— 18 copies: 10085 10749 11537 11757 12040 12367 12424 13065 13455 13525 13950 13963 13969 14237 14350 14351 14441 14641</span></h3><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></div><div class="q"><h3>T2 <span class="muted">— 8 copies: 10477 10817 11470 12327 13288 13294 14627 14826</span></h3><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;</pre></div><div class="q"><h3>T3 <span class="muted">— 3 copies: 12212 14114 14743</span></h3><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AvgScore,
+    AVG(p.ViewCount) AS AvgViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></div><div class="q"><h3>T4 <span class="muted">— 2 copies: 12914 13616</span></h3><pre>SELECT 
+    pt.Name AS PostTypeName,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></div><div class="q"><h3>T5 <span class="muted">— 1 copy: 10176</span></h3><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViews
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;</pre></div><div class="q"><h3>T6 <span class="muted">— 1 copy: 10755</span></h3><pre>SELECT
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM
+    Posts p
+JOIN
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY
+    pt.Name
+ORDER BY
+    PostCount DESC;</pre></div><div class="q"><h3>T7 <span class="muted">— 1 copy: 10820</span></h3><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS NumberOfPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    NumberOfPosts DESC;</pre></div><div class="q"><h3>T8 <span class="muted">— 1 copy: 11387</span></h3><pre>SELECT 
+    pt.Name AS PostTypeName,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;</pre></div><div class="q"><h3>T9 <span class="muted">— 1 copy: 13103</span></h3><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AvgScore,
+    AVG(p.ViewCount) AS AvgViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;</pre></div><div class="q"><h3>T10 <span class="muted">— 1 copy: 13422</span></h3><pre>SELECT
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount
+FROM
+    Posts p
+JOIN
+    PostTypes pt ON p.PostTypeId = pt.Id
+GROUP BY
+    pt.Name
+ORDER BY
+    TotalPosts DESC;</pre></div></div><h2>Output (query 10085)</h2><div class="scroll"><table class="out"><thead><tr><th class="">posttype</th><th class="">totalposts</th><th class="">averagescore</th><th class="">averageviewcount</th></tr></thead><tbody><tr><td class="">Answer</td><td class="">140494</td><td class="">3.0050535965948724</td><td class=""></td></tr><tr><td class="">Question</td><td class="">104437</td><td class="">2.4997941342627613</td><td class="">4564.5559619675019390</td></tr><tr><td class="">TagWiki</td><td class="">857</td><td class="">0.00000000000000000000</td><td class=""></td></tr><tr><td class="">TagWikiExcerpt</td><td class="">857</td><td class="">0.00000000000000000000</td><td class=""></td></tr><tr><td class="">ModeratorNomination</td><td class="">24</td><td class="">0.00000000000000000000</td><td class=""></td></tr></tbody></table></div><p class="muted">first 5 of 6 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(posts.id)) DESC]
+  Finalize GroupAggregate [Group Key=posttypes.name]
+    Gather Merge
+      Sort [Sort Key=posttypes.name]
+        Partial HashAggregate [Group Key=posttypes.name]
+          Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+            Parallel Seq Scan on posts
+            Hash
+              Seq Scan on posttypes</pre></details></main></div></body></html>

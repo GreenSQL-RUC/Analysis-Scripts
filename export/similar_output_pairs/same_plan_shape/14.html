@@ -1,0 +1,387 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #14 — 12471 vs 10668</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>12857 vs 12074<span class="x">14.77×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>11119 vs 16363<span class="x">11.09×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14843 vs 11239<span class="x">9.77×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>9855 vs 29614<span class="x">8.97×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>17350 vs 17462<span class="x">8.66×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>11370 vs 11796<span class="x">7.23×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>9160 vs 26465<span class="x">7.23×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>16304 vs 18193<span class="x">6.73×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>14104 vs 10365<span class="x">6.11×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>31099 vs 5746<span class="x">5.23×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>11375 vs 18573<span class="x">4.92×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>10008 vs 13752<span class="x">3.86×</span></a><a href="../same_plan_shape/14.html" class="on"><span class="r">#14</span>12471 vs 10668<span class="x">3.73×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>11976 vs 7246<span class="x">3.72×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>826 vs 4675<span class="x">3.70×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11608 vs 13924<span class="x">3.64×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>10621 vs 11860<span class="x">3.58×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>14332 vs 12039<span class="x">3.39×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>7835 vs 6505<span class="x">3.15×</span></a></aside><main><h1>Same plan shape #14: 12471 vs 10668 — 3.73×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 14 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">14</div></div><div class="card"><div class="k">query files</div><div class="v">17</div></div><div class="card"><div class="k">energy min</div><div class="v">0.857 J</div></div><div class="card"><div class="k">median</div><div class="v">3.105 J</div></div><div class="card"><div class="k">max</div><div class="v">3.197 J</div></div><div class="card"><div class="k">gap</div><div class="v">3.73×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">9</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 12471</h3><dl class="f"><dt>energy</dt><dd>0.857 J ± 0.008</dd><dt>output</dt><dd>4 rows, 7 columns</dd><dt>plan</dt><dd>70 ms, 12 nodes, 37 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AvgScore,
+    SUM(CASE WHEN vt.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,
+    SUM(CASE WHEN vt.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,
+    SUM(CASE WHEN vt.VoteTypeId = 10 THEN 1 ELSE 0 END) AS TotalCloseVotes,
+    SUM(CASE WHEN vt.VoteTypeId = 11 THEN 1 ELSE 0 END) AS TotalReopenVotes
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes vt ON p.Id = vt.PostId
+WHERE 
+    p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 year&#x27;  
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">posttype</th><th class="">postcount</th><th class="">avgscore</th><th class="">totalupvotes</th><th class="">totaldownvotes</th><th class="">totalclosevotes</th><th class="">totalreopenvotes</th></tr></thead><tbody><tr><td class="">Answer</td><td class="">8598</td><td class="">3.4797627355198883</td><td class="">5265</td><td class="">354</td><td class="">31</td><td class="">24</td></tr><tr><td class="">Question</td><td class="">5665</td><td class="">1.1968225948808473</td><td class="">2327</td><td class="">634</td><td class="">0</td><td class="">7</td></tr><tr><td class="">TagWiki</td><td class="">8</td><td class="">0.00000000000000000000</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">TagWikiExcerpt</td><td class="">8</td><td class="">0.00000000000000000000</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0</td></tr></tbody></table></div><p class="muted">first 4 of 4 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(posts.id)) DESC]
+  Finalize GroupAggregate [Group Key=posttypes.name]
+    Gather Merge
+      Sort [Sort Key=posttypes.name]
+        Partial HashAggregate [Group Key=posttypes.name]
+          Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+            Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+              Parallel Seq Scan on votes
+              Parallel Hash
+                Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-10-01 12:34:56&#x27;)]
+            Hash
+              Seq Scan on posttypes</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 10668</h3><dl class="f"><dt>energy</dt><dd>3.197 J ± 0.028</dd><dt>output</dt><dd>6 rows, 4 columns</dd><dt>plan</dt><dd>231 ms, 12 nodes, 37 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(CASE WHEN p.PostTypeId = 1 THEN COALESCE(p.AnswerCount, 0) ELSE NULL END) AS AvgAnswersPerQuestion,
+    SUM(CASE WHEN v.VoteTypeId = 2 OR v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalVotes  
+FROM
+    Posts p
+JOIN
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN
+    Votes v ON p.Id = v.PostId
+GROUP BY
+    pt.Name
+ORDER BY
+    TotalPosts DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">posttype</th><th class="">totalposts</th><th class="">avganswersperquestion</th><th class="">totalvotes</th></tr></thead><tbody><tr><td class="">Answer</td><td class="">527330</td><td class=""></td><td class="">445303</td></tr><tr><td class="">Question</td><td class="">334530</td><td class="">2.2531252802439243</td><td class="">291688</td></tr><tr><td class="">TagWiki</td><td class="">1039</td><td class=""></td><td class="">0</td></tr><tr><td class="">TagWikiExcerpt</td><td class="">976</td><td class=""></td><td class="">0</td></tr><tr><td class="">ModeratorNomination</td><td class="">24</td><td class=""></td><td class="">0</td></tr></tbody></table></div><p class="muted">first 5 of 6 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(posts.id)) DESC]
+  Finalize GroupAggregate [Group Key=posttypes.name]
+    Gather Merge
+      Sort [Sort Key=posttypes.name]
+        Partial HashAggregate [Group Key=posttypes.name]
+          Hash Join [Hash Cond=(posts.posttypeid = posttypes.id)]
+            Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+              Parallel Seq Scan on votes
+              Parallel Hash
+                Parallel Seq Scan on posts
+            Hash
+              Seq Scan on posttypes</pre></details></div></div><h2>Plan difference</h2><pre>--- 12471
++++ 10668
+@@ -9,3 +9,3 @@
+               Parallel Hash
+<span class="d">-                Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-10-01 12:34:56&#x27;)]</span>
+<span class="a">+                Parallel Seq Scan on posts</span>
+             Hash</pre><details><summary>SQL difference</summary><pre>--- 12471
++++ 10668
+@@ -1,20 +1,15 @@
+<span class="d">-SELECT </span>
+<span class="a">+SELECT</span>
+     pt.Name AS PostType,
+<span class="d">-    COUNT(p.Id) AS PostCount,</span>
+<span class="d">-    AVG(p.Score) AS AvgScore,</span>
+<span class="d">-    SUM(CASE WHEN vt.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,</span>
+<span class="d">-    SUM(CASE WHEN vt.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,</span>
+<span class="d">-    SUM(CASE WHEN vt.VoteTypeId = 10 THEN 1 ELSE 0 END) AS TotalCloseVotes,</span>
+<span class="d">-    SUM(CASE WHEN vt.VoteTypeId = 11 THEN 1 ELSE 0 END) AS TotalReopenVotes</span>
+<span class="d">-FROM </span>
+<span class="a">+    COUNT(p.Id) AS TotalPosts,</span>
+<span class="a">+    AVG(CASE WHEN p.PostTypeId = 1 THEN COALESCE(p.AnswerCount, 0) ELSE NULL END) AS AvgAnswersPerQuestion,</span>
+<span class="a">+    SUM(CASE WHEN v.VoteTypeId = 2 OR v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalVotes  </span>
+<span class="a">+FROM</span>
+     Posts p
+<span class="d">-JOIN </span>
+<span class="a">+JOIN</span>
+     PostTypes pt ON p.PostTypeId = pt.Id
+<span class="d">-LEFT JOIN </span>
+<span class="d">-    Votes vt ON p.Id = vt.PostId</span>
+<span class="d">-WHERE </span>
+<span class="d">-    p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 year&#x27;  </span>
+<span class="d">-GROUP BY </span>
+<span class="a">+LEFT JOIN</span>
+<span class="a">+    Votes v ON p.Id = v.PostId</span>
+<span class="a">+GROUP BY</span>
+     pt.Name
+<span class="d">-ORDER BY </span>
+<span class="d">-    PostCount DESC;</span>
+<span class="a">+ORDER BY</span>
+<span class="a">+    TotalPosts DESC;</span></pre></details><h2>All 14 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">12471</td><td class="n">1</td><td class="n">0.857</td><td class="n">1.00</td><td class="n">4</td><td class="n">7</td><td class="n">70</td><td class="n">37</td><td class="">4c5d74be</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS PostCount,
+    AVG(p.Score) AS AvgScore,
+    SUM(CASE WHEN vt.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,
+    SUM(CASE WHEN vt.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,
+    SUM(CASE WHEN vt.VoteTypeId = 10 THEN 1 ELSE 0 END) AS TotalCloseVotes,
+    SUM(CASE WHEN vt.VoteTypeId = 11 THEN 1 ELSE 0 END) AS TotalReopenVotes
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes vt ON p.Id = vt.PostId
+WHERE 
+    p.CreationDate &gt;= cast(&#x27;2024-10-01 12:34:56&#x27; as timestamp) - INTERVAL &#x27;1 year&#x27;  
+GROUP BY 
+    pt.Name
+ORDER BY 
+    PostCount DESC;</pre></details></td></tr><tr><td class="">13091</td><td class="n">1</td><td class="n">2.901</td><td class="n">3.38</td><td class="n">6</td><td class="n">4</td><td class="n">224</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.ViewCount) AS AvgViewCount,
+    SUM(v.Id) AS TotalVotes
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">11406</td><td class="n">1</td><td class="n">2.972</td><td class="n">3.47</td><td class="n">6</td><td class="n">4</td><td class="n">225</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>WITH PostPerformance AS (
+    SELECT 
+        pt.Name AS PostTypeName,
+        COUNT(p.Id) AS PostCount,
+        AVG(p.Score) AS AverageScore,
+        SUM(CASE WHEN v.Id IS NOT NULL THEN 1 ELSE 0 END) AS TotalVotes
+    FROM 
+        Posts p
+    JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    GROUP BY 
+        pt.Name
+)
+
+SELECT 
+    PostTypeName,
+    PostCount,
+    AverageScore,
+    TotalVotes
+FROM 
+    PostPerformance
+ORDER BY 
+    PostCount DESC;</pre></details></td></tr><tr><td class="">12303</td><td class="n">1</td><td class="n">2.976</td><td class="n">3.47</td><td class="n">6</td><td class="n">4</td><td class="n">227</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS NumberOfPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(CASE WHEN v.Id IS NOT NULL THEN 1 ELSE 0 END) AS TotalVotes
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    NumberOfPosts DESC;</pre></details></td></tr><tr><td class="">12067</td><td class="n">1</td><td class="n">3.062</td><td class="n">3.57</td><td class="n">6</td><td class="n">4</td><td class="n">228</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType, 
+    COUNT(p.Id) AS TotalPosts, 
+    AVG(p.Score) AS AverageScore, 
+    SUM(p.ViewCount) AS TotalViews
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">12428</td><td class="n">1</td><td class="n">3.079</td><td class="n">3.59</td><td class="n">6</td><td class="n">4</td><td class="n">234</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    SUM(p.ViewCount) AS TotalViewCount
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">10253</td><td class="n">3</td><td class="n">3.098</td><td class="n">3.61</td><td class="n">6</td><td class="n">5</td><td class="n">239</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    COUNT(v.Id) AS TotalVotes
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">14455</td><td class="n">1</td><td class="n">3.111</td><td class="n">3.63</td><td class="n">6</td><td class="n">5</td><td class="n">237</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AvgScore,
+    AVG(p.ViewCount) AS AvgViewCount,
+    COALESCE(SUM(CASE WHEN v.PostId IS NOT NULL THEN 1 ELSE 0 END), 0) AS TotalVotes
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">10937</td><td class="n">1</td><td class="n">3.138</td><td class="n">3.66</td><td class="n">6</td><td class="n">5</td><td class="n">235</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.Score) AS AverageScore,
+    AVG(p.ViewCount) AS AverageViewCount,
+    SUM(CASE WHEN v.Id IS NOT NULL THEN 1 ELSE 0 END) AS TotalVotes
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">11929</td><td class="n">1</td><td class="n">3.147</td><td class="n">3.67</td><td class="n">6</td><td class="n">5</td><td class="n">224</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType, 
+    COUNT(p.Id) AS TotalPosts, 
+    COALESCE(AVG(p.ViewCount), 0) AS AvgViewCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes 
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">11210</td><td class="n">2</td><td class="n">3.161</td><td class="n">3.69</td><td class="n">6</td><td class="n">5</td><td class="n">237</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>WITH PostStats AS (
+    SELECT 
+        pt.Name AS PostType,
+        COUNT(p.Id) AS TotalPosts,
+        AVG(p.Score) AS AverageScore,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpvotes,
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownvotes
+    FROM 
+        Posts p
+    JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    GROUP BY 
+        pt.Name
+)
+
+SELECT 
+    PostType,
+    TotalPosts,
+    AverageScore,
+    TotalUpvotes,
+    TotalDownvotes
+FROM 
+    PostStats
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">10657</td><td class="n">1</td><td class="n">3.163</td><td class="n">3.69</td><td class="n">6</td><td class="n">5</td><td class="n">235</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>WITH PostMetrics AS (
+    SELECT 
+        pt.Name AS PostTypeName,
+        COUNT(p.Id) AS PostCount,
+        AVG(p.Score) AS AverageScore,
+        SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,  
+        SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes  
+    FROM 
+        Posts p
+    JOIN 
+        PostTypes pt ON p.PostTypeId = pt.Id
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    GROUP BY 
+        pt.Name
+)
+
+SELECT 
+    PostTypeName,
+    PostCount,
+    AverageScore,
+    UpVotes,
+    DownVotes
+FROM 
+    PostMetrics
+ORDER BY 
+    PostCount DESC;</pre></details></td></tr><tr><td class="">13101</td><td class="n">1</td><td class="n">3.176</td><td class="n">3.70</td><td class="n">6</td><td class="n">4</td><td class="n">232</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT 
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(p.ViewCount) AS AverageViewCount,
+    SUM(CASE WHEN v.VoteTypeId IN (2, 3) THEN 1 ELSE 0 END) AS TotalVotes
+FROM 
+    Posts p
+JOIN 
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    pt.Name
+ORDER BY 
+    TotalPosts DESC;</pre></details></td></tr><tr><td class="">10668</td><td class="n">1</td><td class="n">3.197</td><td class="n">3.73</td><td class="n">6</td><td class="n">4</td><td class="n">231</td><td class="n">37</td><td class="">35034938</td><td class=""><details><summary>show</summary><pre>SELECT
+    pt.Name AS PostType,
+    COUNT(p.Id) AS TotalPosts,
+    AVG(CASE WHEN p.PostTypeId = 1 THEN COALESCE(p.AnswerCount, 0) ELSE NULL END) AS AvgAnswersPerQuestion,
+    SUM(CASE WHEN v.VoteTypeId = 2 OR v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalVotes  
+FROM
+    Posts p
+JOIN
+    PostTypes pt ON p.PostTypeId = pt.Id
+LEFT JOIN
+    Votes v ON p.Id = v.PostId
+GROUP BY
+    pt.Name
+ORDER BY
+    TotalPosts DESC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

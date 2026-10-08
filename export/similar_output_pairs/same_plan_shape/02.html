@@ -1,0 +1,238 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #2 — 11119 vs 16363</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>12857 vs 12074<span class="x">14.77×</span></a><a href="../same_plan_shape/02.html" class="on"><span class="r">#2</span>11119 vs 16363<span class="x">11.09×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14843 vs 11239<span class="x">9.77×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>9855 vs 29614<span class="x">8.97×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>17350 vs 17462<span class="x">8.66×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>11370 vs 11796<span class="x">7.23×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>9160 vs 26465<span class="x">7.23×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>16304 vs 18193<span class="x">6.73×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>14104 vs 10365<span class="x">6.11×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>31099 vs 5746<span class="x">5.23×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>11375 vs 18573<span class="x">4.92×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>10008 vs 13752<span class="x">3.86×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>12471 vs 10668<span class="x">3.73×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>11976 vs 7246<span class="x">3.72×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>826 vs 4675<span class="x">3.70×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11608 vs 13924<span class="x">3.64×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>10621 vs 11860<span class="x">3.58×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>14332 vs 12039<span class="x">3.39×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>7835 vs 6505<span class="x">3.15×</span></a></aside><main><h1>Same plan shape #2: 11119 vs 16363 — 11.09×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 2 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">4</div></div><div class="card"><div class="k">query files</div><div class="v">4</div></div><div class="card"><div class="k">energy min</div><div class="v">2.061 J</div></div><div class="card"><div class="k">median</div><div class="v">13.707 J</div></div><div class="card"><div class="k">max</div><div class="v">22.864 J</div></div><div class="card"><div class="k">gap</div><div class="v">11.09×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">4</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">4</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 11119</h3><dl class="f"><dt>energy</dt><dd>2.061 J ± 0.018</dd><dt>output</dt><dd>1000 rows (capped), 8 columns</dd><dt>plan</dt><dd>188 ms, 14 nodes, 55 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT
+    U.Id AS UserId,
+    U.DisplayName,
+    COUNT(DISTINCT P.Id) AS PostCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,
+    COUNT(DISTINCT C.Id) AS TotalComments,
+    AVG(P.Score) AS AveragePostScore,
+    SUM(P.ViewCount) AS TotalViews
+FROM
+    Users U
+JOIN
+    Posts P ON U.Id = P.OwnerUserId
+LEFT JOIN
+    Votes V ON P.Id = V.PostId
+LEFT JOIN
+    Comments C ON P.Id = C.PostId
+WHERE
+    P.CreationDate &gt;= &#x27;2023-01-01&#x27; 
+GROUP BY
+    U.Id, U.DisplayName
+ORDER BY
+    PostCount DESC, TotalUpVotes DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">userid</th><th class="">displayname</th><th class="">postcount</th><th class="">totalupvotes</th><th class="">totaldownvotes</th><th class="">totalcomments</th><th class="">averagepostscore</th><th class="">totalviews</th></tr></thead><tbody><tr><td class="">176905</td><td class="">Laurenz Albe</td><td class="">545</td><td class="">1332</td><td class="">19</td><td class="">825</td><td class="">2.8405931417979611</td><td class=""></td></tr><tr><td class="">1876</td><td class="">Rick James</td><td class="">430</td><td class="">629</td><td class="">12</td><td class="">809</td><td class="">0.97340425531914893617</td><td class=""></td></tr><tr><td class="">150011</td><td class="">J.D.</td><td class="">375</td><td class="">1296</td><td class="">35</td><td class="">715</td><td class="">2.8169312169312169</td><td class="">17334</td></tr><tr><td class="">41723</td><td class="">Sean Gallardy</td><td class="">241</td><td class="">1345</td><td class="">4</td><td class="">383</td><td class="">4.4490543014032947</td><td class=""></td></tr><tr><td class="">255786</td><td class="">Erick Ramirez</td><td class="">241</td><td class="">249</td><td class="">3</td><td class="">193</td><td class="">1.3686440677966102</td><td class="">3540</td></tr></tbody></table></div><p class="muted">first 5 of 1000 rows (capped at 1000 lines)</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(DISTINCT posts.id)) DESC, (sum(CASE WHEN (votes.votetypeid = 2) THEN 1 ELSE 0 END)) DESC]
+  GroupAggregate [Group Key=users.id]
+    Gather Merge
+      Sort [Sort Key=users.id, posts.id]
+        Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+          Parallel Seq Scan on votes
+          Parallel Hash
+            Parallel Hash Join [Hash Cond=(posts.owneruserid = users.id)]
+              Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                Parallel Seq Scan on comments
+                Parallel Hash
+                  Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-01-01 00:00:00&#x27;)]
+              Parallel Hash
+                Parallel Seq Scan on users</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 16363</h3><dl class="f"><dt>energy</dt><dd>22.864 J ± 0.203</dd><dt>output</dt><dd>1000 rows (capped), 5 columns</dd><dt>plan</dt><dd>2052 ms, 14 nodes, 55 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT u.DisplayName, 
+       p.Title, 
+       COUNT(c.Id) AS CommentCount, 
+       SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+       SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+LEFT JOIN Votes v ON p.Id = v.PostId
+GROUP BY u.DisplayName, p.Title
+ORDER BY CommentCount DESC, UpVotes DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">displayname</th><th class="">title</th><th class="">commentcount</th><th class="">upvotes</th><th class="">downvotes</th></tr></thead><tbody><tr><td class="">RolandoMySQLDBA</td><td class=""></td><td class="">55553</td><td class="">55194</td><td class="">139</td></tr><tr><td class="">Erwin Brandstetter</td><td class=""></td><td class="">39864</td><td class="">41797</td><td class="">34</td></tr><tr><td class="">Aaron Bertrand</td><td class=""></td><td class="">32507</td><td class="">36869</td><td class="">115</td></tr><tr><td class="">ypercubeᵀᴹ</td><td class=""></td><td class="">18118</td><td class="">20049</td><td class="">48</td></tr><tr><td class="">Rick James</td><td class=""></td><td class="">17507</td><td class="">14098</td><td class="">291</td></tr></tbody></table></div><p class="muted">first 5 of 1000 rows (capped at 1000 lines)</p><details><summary>Plan</summary><pre>Sort [Sort Key=(count(comments.id)) DESC, (sum(CASE WHEN (votes.votetypeid = 2) THEN 1 ELSE 0 END)) DESC]
+  GroupAggregate [Group Key=users.displayname, posts.title]
+    Gather Merge
+      Sort [Sort Key=users.displayname, posts.title]
+        Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+          Parallel Seq Scan on votes
+          Parallel Hash
+            Parallel Hash Join [Hash Cond=(posts.owneruserid = users.id)]
+              Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                Parallel Seq Scan on comments
+                Parallel Hash
+                  Parallel Seq Scan on posts
+              Parallel Hash
+                Parallel Seq Scan on users</pre></details></div></div><h2>Plan difference</h2><pre>--- 11119
++++ 16363
+@@ -1,5 +1,5 @@
+<span class="d">-Sort [Sort Key=(count(DISTINCT posts.id)) DESC, (sum(CASE WHEN (votes.votetypeid = 2) THEN 1 ELSE 0 END)) DESC]</span>
+<span class="d">-  GroupAggregate [Group Key=users.id]</span>
+<span class="a">+Sort [Sort Key=(count(comments.id)) DESC, (sum(CASE WHEN (votes.votetypeid = 2) THEN 1 ELSE 0 END)) DESC]</span>
+<span class="a">+  GroupAggregate [Group Key=users.displayname, posts.title]</span>
+     Gather Merge
+<span class="d">-      Sort [Sort Key=users.id, posts.id]</span>
+<span class="a">+      Sort [Sort Key=users.displayname, posts.title]</span>
+         Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+@@ -11,3 +11,3 @@
+                 Parallel Hash
+<span class="d">-                  Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-01-01 00:00:00&#x27;)]</span>
+<span class="a">+                  Parallel Seq Scan on posts</span>
+               Parallel Hash</pre><details><summary>SQL difference</summary><pre>--- 11119
++++ 16363
+@@ -1,23 +1,11 @@
+<span class="d">-SELECT</span>
+<span class="d">-    U.Id AS UserId,</span>
+<span class="d">-    U.DisplayName,</span>
+<span class="d">-    COUNT(DISTINCT P.Id) AS PostCount,</span>
+<span class="d">-    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,</span>
+<span class="d">-    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,</span>
+<span class="d">-    COUNT(DISTINCT C.Id) AS TotalComments,</span>
+<span class="d">-    AVG(P.Score) AS AveragePostScore,</span>
+<span class="d">-    SUM(P.ViewCount) AS TotalViews</span>
+<span class="d">-FROM</span>
+<span class="d">-    Users U</span>
+<span class="d">-JOIN</span>
+<span class="d">-    Posts P ON U.Id = P.OwnerUserId</span>
+<span class="d">-LEFT JOIN</span>
+<span class="d">-    Votes V ON P.Id = V.PostId</span>
+<span class="d">-LEFT JOIN</span>
+<span class="d">-    Comments C ON P.Id = C.PostId</span>
+<span class="d">-WHERE</span>
+<span class="d">-    P.CreationDate &gt;= &#x27;2023-01-01&#x27; </span>
+<span class="d">-GROUP BY</span>
+<span class="d">-    U.Id, U.DisplayName</span>
+<span class="d">-ORDER BY</span>
+<span class="d">-    PostCount DESC, TotalUpVotes DESC;</span>
+<span class="a">+SELECT u.DisplayName, </span>
+<span class="a">+       p.Title, </span>
+<span class="a">+       COUNT(c.Id) AS CommentCount, </span>
+<span class="a">+       SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,</span>
+<span class="a">+       SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes</span>
+<span class="a">+FROM Posts p</span>
+<span class="a">+JOIN Users u ON p.OwnerUserId = u.Id</span>
+<span class="a">+LEFT JOIN Comments c ON p.Id = c.PostId</span>
+<span class="a">+LEFT JOIN Votes v ON p.Id = v.PostId</span>
+<span class="a">+GROUP BY u.DisplayName, p.Title</span>
+<span class="a">+ORDER BY CommentCount DESC, UpVotes DESC;</span></pre></details><h2>All 4 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">11119</td><td class="n">1</td><td class="n">2.061</td><td class="n">1.00</td><td class="n">1000</td><td class="n">8</td><td class="n">188</td><td class="n">55</td><td class="">9c76fe59</td><td class=""><details><summary>show</summary><pre>SELECT
+    U.Id AS UserId,
+    U.DisplayName,
+    COUNT(DISTINCT P.Id) AS PostCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,
+    COUNT(DISTINCT C.Id) AS TotalComments,
+    AVG(P.Score) AS AveragePostScore,
+    SUM(P.ViewCount) AS TotalViews
+FROM
+    Users U
+JOIN
+    Posts P ON U.Id = P.OwnerUserId
+LEFT JOIN
+    Votes V ON P.Id = V.PostId
+LEFT JOIN
+    Comments C ON P.Id = C.PostId
+WHERE
+    P.CreationDate &gt;= &#x27;2023-01-01&#x27; 
+GROUP BY
+    U.Id, U.DisplayName
+ORDER BY
+    PostCount DESC, TotalUpVotes DESC;</pre></details></td></tr><tr><td class="">10764</td><td class="n">1</td><td class="n">4.579</td><td class="n">2.22</td><td class="n">1000</td><td class="n">13</td><td class="n">467</td><td class="n">55</td><td class="">b9545eeb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.ViewCount,
+    p.Score,
+    p.AnswerCount,
+    p.CommentCount,
+    p.FavoriteCount,
+    p.CreationDate,
+    u.Id AS UserId,
+    u.DisplayName AS Author,
+    u.Reputation,
+    COUNT(DISTINCT v.Id) AS VoteCount,
+    COUNT(DISTINCT c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.CreationDate &gt;= &#x27;2020-01-01&#x27; 
+GROUP BY 
+    p.Id, p.Title, p.ViewCount, p.Score, p.AnswerCount, p.CommentCount, 
+    p.FavoriteCount, p.CreationDate, u.Id, u.DisplayName, u.Reputation
+ORDER BY 
+    p.CreationDate DESC;</pre></details></td></tr><tr><td class="">19542</td><td class="n">1</td><td class="n">22.835</td><td class="n">11.08</td><td class="n">1000</td><td class="n">5</td><td class="n">2024</td><td class="n">55</td><td class="">5ae3b315</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+GROUP BY 
+    u.DisplayName, p.Title
+ORDER BY 
+    CommentCount DESC;</pre></details></td></tr><tr><td class="">16363</td><td class="n">1</td><td class="n">22.864</td><td class="n">11.09</td><td class="n">1000</td><td class="n">5</td><td class="n">2052</td><td class="n">55</td><td class="">3f488cf7</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, 
+       p.Title, 
+       COUNT(c.Id) AS CommentCount, 
+       SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+       SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+LEFT JOIN Comments c ON p.Id = c.PostId
+LEFT JOIN Votes v ON p.Id = v.PostId
+GROUP BY u.DisplayName, p.Title
+ORDER BY CommentCount DESC, UpVotes DESC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

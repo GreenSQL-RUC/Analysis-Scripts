@@ -1,0 +1,384 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same query #6 — query 10567</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="on">Same query</a></nav></header><div class="wrap"><aside><a href="../same_query/01.html" class=""><span class="r">#1</span>query 10473<span class="x">48×</span></a><a href="../same_query/02.html" class=""><span class="r">#2</span>query 10133<span class="x">26×</span></a><a href="../same_query/03.html" class=""><span class="r">#3</span>query 10153<span class="x">22×</span></a><a href="../same_query/04.html" class=""><span class="r">#4</span>query 13596<span class="x">22×</span></a><a href="../same_query/05.html" class=""><span class="r">#5</span>query 10370<span class="x">20×</span></a><a href="../same_query/06.html" class="on"><span class="r">#6</span>query 10567<span class="x">20×</span></a><a href="../same_query/07.html" class=""><span class="r">#7</span>query 15074<span class="x">19×</span></a><a href="../same_query/08.html" class=""><span class="r">#8</span>query 13395<span class="x">18×</span></a><a href="../same_query/09.html" class=""><span class="r">#9</span>query 15012<span class="x">18×</span></a><a href="../same_query/10.html" class=""><span class="r">#10</span>query 10062<span class="x">17×</span></a><a href="../same_query/11.html" class=""><span class="r">#11</span>query 15005<span class="x">17×</span></a><a href="../same_query/12.html" class=""><span class="r">#12</span>query 10004<span class="x">16×</span></a><a href="../same_query/13.html" class=""><span class="r">#13</span>query 10220<span class="x">16×</span></a><a href="../same_query/14.html" class=""><span class="r">#14</span>query 10301<span class="x">16×</span></a><a href="../same_query/15.html" class=""><span class="r">#15</span>query 15010<span class="x">16×</span></a><a href="../same_query/16.html" class=""><span class="r">#16</span>query 10025<span class="x">15×</span></a><a href="../same_query/17.html" class=""><span class="r">#17</span>query 10111<span class="x">15×</span></a><a href="../same_query/18.html" class=""><span class="r">#18</span>query 10137<span class="x">15×</span></a><a href="../same_query/19.html" class=""><span class="r">#19</span>query 15089<span class="x">15×</span></a><a href="../same_query/20.html" class=""><span class="r">#20</span>query 10021<span class="x">14×</span></a></aside><main><h1>Same query #6: query 10567 — 20 copies</h1><div class="sub">copies of one SQL text (same sqlglot canonical form): the largest copy sets. Copies are the same work measured several times, so their energy spread is the measurement noise (model σ at the median: 0.053 J, SQLStorm single-copy energy (laptop 1)).</div><div class="cards"><div class="card"><div class="k">copies</div><div class="v">20</div></div><div class="card"><div class="k">with energy</div><div class="v">20</div></div><div class="card"><div class="k">energy min</div><div class="v">7.814 J</div></div><div class="card"><div class="k">median</div><div class="v">7.993 J</div></div><div class="card"><div class="k">max</div><div class="v">8.208 J</div></div><div class="card"><div class="k">spread</div><div class="v">1.050×</div></div><div class="card"><div class="k">furthest copy</div><div class="v">4.0 σ</div></div><div class="card"><div class="k">distinct SQL texts</div><div class="v">20</div></div><div class="card"><div class="k">distinct outputs</div><div class="v">1</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div></div><p>Copies: 10567 10650 10779 10876 11166 11361 12044 12405 12516 12579 12616 13069 13341 13677 13703 13943 14084 14334 14448 14578</p><p>Compared with T1 (the text most copies use), the other texts differ in:</p><ul><li>19 texts: names (table aliases, output column names or CTE names), besides any whitespace, comment or case changes</li></ul><h2>Every copy</h2><div class="scroll"><table class=""><thead><tr><th class="">query</th><th class="">SQL text</th><th class="n">energy (J)</th><th class="n">σ from median</th><th class="n">rows</th><th class="">same output</th><th class="">same plan</th><th class="n">plan ms</th></tr></thead><tbody><tr><td class="">10567</td><td class="">T1</td><td class="n">8.040</td><td class="n">+0.9</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">962</td></tr><tr><td class="">10650</td><td class="">T2</td><td class="n">7.990</td><td class="n">-0.1</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">922</td></tr><tr><td class="">10779</td><td class="">T3</td><td class="n">8.112</td><td class="n">+2.2</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">943</td></tr><tr><td class="">10876</td><td class="">T4</td><td class="n">8.169</td><td class="n">+3.3</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">923</td></tr><tr><td class="">11166</td><td class="">T5</td><td class="n">7.981</td><td class="n">-0.2</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">969</td></tr><tr><td class="">11361</td><td class="">T6</td><td class="n">8.208</td><td class="n">+4.0</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">938</td></tr><tr><td class="">12044</td><td class="">T7</td><td class="n">7.997</td><td class="n">+0.1</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">959</td></tr><tr><td class="">12405</td><td class="">T8</td><td class="n">8.118</td><td class="n">+2.3</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">937</td></tr><tr><td class="">12516</td><td class="">T9</td><td class="n">7.814</td><td class="n">-3.4</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">927</td></tr><tr><td class="">12579</td><td class="">T10</td><td class="n">7.960</td><td class="n">-0.6</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">935</td></tr><tr><td class="">12616</td><td class="">T11</td><td class="n">7.872</td><td class="n">-2.3</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">945</td></tr><tr><td class="">13069</td><td class="">T12</td><td class="n">7.951</td><td class="n">-0.8</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">946</td></tr><tr><td class="">13341</td><td class="">T13</td><td class="n">7.919</td><td class="n">-1.4</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">925</td></tr><tr><td class="">13677</td><td class="">T14</td><td class="n">7.875</td><td class="n">-2.2</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">971</td></tr><tr><td class="">13703</td><td class="">T15</td><td class="n">8.090</td><td class="n">+1.8</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">929</td></tr><tr><td class="">13943</td><td class="">T16</td><td class="n">8.189</td><td class="n">+3.7</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">935</td></tr><tr><td class="">14084</td><td class="">T17</td><td class="n">8.187</td><td class="n">+3.6</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">943</td></tr><tr><td class="">14334</td><td class="">T18</td><td class="n">7.854</td><td class="n">-2.6</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">932</td></tr><tr><td class="">14448</td><td class="">T19</td><td class="n">7.911</td><td class="n">-1.6</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">931</td></tr><tr><td class="">14578</td><td class="">T20</td><td class="n">8.025</td><td class="n">+0.6</td><td class="n">100</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">931</td></tr></tbody></table></div><h2>The 20 distinct SQL texts</h2><div class="texts"><div class="q"><h3>T1 <span class="muted">— 1 copy: 10567</span></h3><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(ps.ps_availqty) AS total_avail_qty,
+    AVG(ps.ps_supplycost) AS avg_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS distinct_suppliers
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_avail_qty DESC
+LIMIT 100;</pre></div><div class="q"><h3>T2 <span class="muted">— 1 copy: 10650</span></h3><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(ps.ps_availqty) AS total_avail_qty,
+    AVG(ps.ps_supplycost) AS avg_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS unique_suppliers
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_avail_qty DESC
+LIMIT 100;</pre></div><div class="q"><h3>T3 <span class="muted">— 1 copy: 10779</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity, 
+    AVG(ps.ps_supplycost) AS average_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T4 <span class="muted">— 1 copy: 10876</span></h3><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(ps.ps_availqty) AS total_avail_qty,
+    AVG(ps.ps_supplycost) AS avg_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS suppliers_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_avail_qty DESC
+LIMIT 100;</pre></div><div class="q"><h3>T5 <span class="muted">— 1 copy: 11166</span></h3><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(ps.ps_availqty) AS total_available_quantity,
+    AVG(ps.ps_supplycost) AS average_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS number_of_suppliers
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T6 <span class="muted">— 1 copy: 11361</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_availqty, 
+    AVG(ps.ps_supplycost) AS avg_supplycost, 
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_availqty DESC
+LIMIT 100;</pre></div><div class="q"><h3>T7 <span class="muted">— 1 copy: 12044</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_availability, 
+    AVG(ps.ps_supplycost) AS average_supply_cost, 
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    total_availability DESC
+LIMIT 100;</pre></div><div class="q"><h3>T8 <span class="muted">— 1 copy: 12405</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity, 
+    AVG(ps.ps_supplycost) AS avg_supply_cost, 
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_available_quantity DESC 
+LIMIT 100;</pre></div><div class="q"><h3>T9 <span class="muted">— 1 copy: 12516</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity, 
+    AVG(ps.ps_supplycost) AS average_supply_cost, 
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T10 <span class="muted">— 1 copy: 12579</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_avail_qty, 
+    AVG(ps.ps_supplycost) AS avg_supply_cost, 
+    COUNT(DISTINCT s.s_suppkey) AS total_suppliers 
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, 
+    p.p_name 
+ORDER BY 
+    total_avail_qty DESC 
+LIMIT 100;</pre></div><div class="q"><h3>T11 <span class="muted">— 1 copy: 12616</span></h3><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(ps.ps_availqty) AS total_availqty,
+    AVG(ps.ps_supplycost) AS avg_supplycost,
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_availqty DESC
+LIMIT 100;</pre></div><div class="q"><h3>T12 <span class="muted">— 1 copy: 13069</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity, 
+    AVG(ps.ps_supplycost) AS average_supply_cost, 
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T13 <span class="muted">— 1 copy: 13341</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity,
+    AVG(ps.ps_supplycost) AS average_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS number_of_suppliers
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T14 <span class="muted">— 1 copy: 13677</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity, 
+    AVG(ps.ps_supplycost) AS average_supply_cost, 
+    COUNT(DISTINCT s.s_suppkey) AS number_of_suppliers
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T15 <span class="muted">— 1 copy: 13703</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity, 
+    AVG(ps.ps_supplycost) AS average_supply_cost, 
+    COUNT(DISTINCT s.s_suppkey) AS unique_suppliers 
+FROM 
+    part p 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_available_quantity DESC 
+LIMIT 100;</pre></div><div class="q"><h3>T16 <span class="muted">— 1 copy: 13943</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity, 
+    AVG(ps.ps_supplycost) AS average_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS unique_suppliers_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T17 <span class="muted">— 1 copy: 14084</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity,
+    AVG(ps.ps_supplycost) AS avg_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T18 <span class="muted">— 1 copy: 14334</span></h3><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(ps.ps_availqty) AS total_available_quantity,
+    AVG(ps.ps_supplycost) AS average_supply_cost,
+    COUNT(DISTINCT s.s_suppkey) AS unique_suppliers
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_available_quantity DESC
+LIMIT 100;</pre></div><div class="q"><h3>T19 <span class="muted">— 1 copy: 14448</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_available_quantity, 
+    AVG(ps.ps_supplycost) AS average_supply_cost, 
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count 
+FROM 
+    part p 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_available_quantity DESC 
+LIMIT 100;</pre></div><div class="q"><h3>T20 <span class="muted">— 1 copy: 14578</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(ps.ps_availqty) AS total_availqty, 
+    AVG(ps.ps_supplycost) AS avg_supplycost,
+    COUNT(DISTINCT s.s_suppkey) AS supplier_count
+FROM 
+    part p
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_availqty DESC
+LIMIT 100;</pre></div></div><h2>Output (query 10567)</h2><div class="scroll"><table class="out"><thead><tr><th class="">p_partkey</th><th class="">p_name</th><th class="">total_avail_qty</th><th class="">avg_supply_cost</th><th class="">distinct_suppliers</th></tr></thead><tbody><tr><td class="">28318</td><td class="">coral puff blush navajo lavender</td><td class="">39165</td><td class="">586.0750000000000000</td><td class="">4</td></tr><tr><td class="">128112</td><td class="">sandy grey magenta olive burlywood</td><td class="">38598</td><td class="">375.6925000000000000</td><td class="">4</td></tr><tr><td class="">102949</td><td class="">grey slate khaki sky yellow</td><td class="">38405</td><td class="">724.7500000000000000</td><td class="">4</td></tr><tr><td class="">59962</td><td class="">seashell grey drab cyan chiffon</td><td class="">38351</td><td class="">435.9900000000000000</td><td class="">4</td></tr><tr><td class="">91631</td><td class="">yellow indian lime bisque burnished</td><td class="">38338</td><td class="">546.2775000000000000</td><td class="">4</td></tr></tbody></table></div><p class="muted">first 5 of 100 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum(partsupp.ps_availqty)) DESC]
+    GroupAggregate [Group Key=part.p_partkey, part.p_name]
+      Incremental Sort [Sort Key=part.p_partkey, part.p_name, supplier.s_suppkey; Presorted Key=part.p_partkey]
+        Nested Loop
+          Merge Join [Merge Cond=(part.p_partkey = partsupp.ps_partkey)]
+            Index Scan on part
+            Index Scan on partsupp
+          Memoize [Cache Key=partsupp.ps_suppkey]
+            Index Only Scan on supplier [Index Cond=(s_suppkey = partsupp.ps_suppkey)]</pre></details></main></div></body></html>

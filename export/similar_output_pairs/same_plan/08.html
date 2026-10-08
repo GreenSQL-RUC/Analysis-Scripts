@@ -1,0 +1,2463 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan #8 — 17227 vs 19323</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="on">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan/01.html" class=""><span class="r">#1</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan/02.html" class=""><span class="r">#2</span>10113 vs 12537<span class="x">1.86×</span></a><a href="../same_plan/03.html" class=""><span class="r">#3</span>10117 vs 12196<span class="x">1.79×</span></a><a href="../same_plan/04.html" class=""><span class="r">#4</span>17160 vs 14168<span class="x">1.69×</span></a><a href="../same_plan/05.html" class=""><span class="r">#5</span>14903 vs 11567<span class="x">1.67×</span></a><a href="../same_plan/06.html" class=""><span class="r">#6</span>16034 vs 10371<span class="x">1.65×</span></a><a href="../same_plan/07.html" class=""><span class="r">#7</span>10216 vs 13171<span class="x">1.58×</span></a><a href="../same_plan/08.html" class="on"><span class="r">#8</span>17227 vs 19323<span class="x">1.56×</span></a><a href="../same_plan/09.html" class=""><span class="r">#9</span>12817 vs 14981<span class="x">1.51×</span></a><a href="../same_plan/10.html" class=""><span class="r">#10</span>10472 vs 14397<span class="x">1.47×</span></a><a href="../same_plan/11.html" class=""><span class="r">#11</span>5876 vs 11547<span class="x">1.44×</span></a><a href="../same_plan/12.html" class=""><span class="r">#12</span>14314 vs 12550<span class="x">1.44×</span></a><a href="../same_plan/13.html" class=""><span class="r">#13</span>17876 vs 16023<span class="x">1.41×</span></a><a href="../same_plan/14.html" class=""><span class="r">#14</span>11884 vs 12732<span class="x">1.40×</span></a><a href="../same_plan/15.html" class=""><span class="r">#15</span>19028 vs 13920<span class="x">1.40×</span></a><a href="../same_plan/16.html" class=""><span class="r">#16</span>11911 vs 11266<span class="x">1.38×</span></a><a href="../same_plan/17.html" class=""><span class="r">#17</span>10464 vs 10526<span class="x">1.37×</span></a><a href="../same_plan/18.html" class=""><span class="r">#18</span>10835 vs 11405<span class="x">1.34×</span></a><a href="../same_plan/19.html" class=""><span class="r">#19</span>10571 vs 14829<span class="x">1.31×</span></a><a href="../same_plan/20.html" class=""><span class="r">#20</span>13911 vs 14661<span class="x">1.30×</span></a></aside><main><h1>Same plan #8: 17227 vs 19323 — 1.56×</h1><div class="sub">same plan (operators, tables and conditions); outputs may differ. Ranked 8 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">191</div></div><div class="card"><div class="k">query files</div><div class="v">1090</div></div><div class="card"><div class="k">energy min</div><div class="v">0.552 J</div></div><div class="card"><div class="k">median</div><div class="v">0.575 J</div></div><div class="card"><div class="k">max</div><div class="v">0.863 J</div></div><div class="card"><div class="k">gap</div><div class="v">1.56×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">108</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 17227</h3><dl class="f"><dt>energy</dt><dd>0.552 J ± 0.005</dd><dt>output</dt><dd>10 rows, 4 columns</dd><dt>plan</dt><dd>38 ms, 7 nodes, 32 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    u.DisplayName AS UserDisplayName,
+    u.Reputation AS UserReputation
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">posttitle</th><th class="">postdate</th><th class="">userdisplayname</th><th class="">userreputation</th></tr></thead><tbody><tr><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?</td><td class="">2024-09-30 22:49:25.743</td><td class="">J. Mini</td><td class="">649</td></tr><tr><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class="">2024-09-30 22:05:14.587</td><td class="">Lucas David Ferrero</td><td class="">123</td></tr><tr><td class="">Varbinary column taking lots of space</td><td class="">2024-09-30 18:22:14.783</td><td class="">PhillysDBA</td><td class="">9</td></tr><tr><td class="">Which DSE version is compatible to import Cassandra 4.x SSTables?</td><td class="">2024-09-30 17:53:03.78</td><td class="">Nahush</td><td class="">101</td></tr><tr><td class="">Show SQL Execution Plan on Trace Replay</td><td class="">2024-09-30 16:38:40.863</td><td class="">Neil Laslett</td><td class="">175</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Nested Loop
+    Gather Merge
+      Sort [Sort Key=posts.creationdate DESC]
+        Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+    Memoize [Cache Key=posts.owneruserid]
+      Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 19323</h3><dl class="f"><dt>energy</dt><dd>0.863 J ± 0.008</dd><dt>output</dt><dd>10 rows, 8 columns</dd><dt>plan</dt><dd>59 ms, 7 nodes, 32 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Body,
+    u.DisplayName AS Author,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">title</th><th class="">body</th><th class="">author</th><th class="">creationdate</th><th class="">score</th><th class="">viewcount</th><th class="">answercount</th></tr></thead><tbody><tr><td class="">342707|SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?|&lt;p&gt;I have a …</td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td><td class=""></td></tr><tr><td class="">342706</td><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class=""><p>I'll give you some context and then ask my question.
+I'm building a database model for an ecommerce application. This application needs to communicate to …</td><td class="">Lucas David Ferrero</td><td class="">2024-09-30 22:05:14.587</td><td class="">2</td><td class="">19</td><td class="">1</td></tr><tr><td class="">342704</td><td class="">Varbinary column taking lots of space</td><td class=""><p>I have restored 2 copies of the same database (I used a different backup to restore each database but both backups were taken very close to each other). A…</td><td class="">PhillysDBA</td><td class="">2024-09-30 18:22:14.783</td><td class="">-1</td><td class="">36</td><td class="">1</td></tr><tr><td class="">342703</td><td class="">Which DSE version is compatible to import Cassandra 4.x SSTables?</td><td class=""><p>Is there any DSE 6.x version supporting C* 4.x sstable format (-nb-)? I want to load data from apache C* 4.x using sstableloader into DSE 6.x. What would …</td><td class="">Nahush</td><td class="">2024-09-30 17:53:03.78</td><td class="">0</td><td class="">29</td><td class="">1</td></tr><tr><td class="">342702</td><td class="">Show SQL Execution Plan on Trace Replay</td><td class=""><p>I'm using Microsoft SQL Server Profiler to capture production trace data for replay on a dev server to test indexing changes.  Capturing the trace is no p…</td><td class="">Neil Laslett</td><td class="">2024-09-30 16:38:40.863</td><td class="">0</td><td class="">34</td><td class="">1</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Nested Loop
+    Gather Merge
+      Sort [Sort Key=posts.creationdate DESC]
+        Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+    Memoize [Cache Key=posts.owneruserid]
+      Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div></div><p class="muted">Both run the same plan; the plan text does not show LIMIT values or output expressions, which is where same-plan queries differ.</p><details><summary>SQL difference</summary><pre>--- 17227
++++ 19323
+@@ -1,6 +1,10 @@
+ SELECT 
+<span class="d">-    p.Title AS PostTitle,</span>
+<span class="d">-    p.CreationDate AS PostDate,</span>
+<span class="d">-    u.DisplayName AS UserDisplayName,</span>
+<span class="d">-    u.Reputation AS UserReputation</span>
+<span class="a">+    p.Id AS PostId,</span>
+<span class="a">+    p.Title,</span>
+<span class="a">+    p.Body,</span>
+<span class="a">+    u.DisplayName AS Author,</span>
+<span class="a">+    p.CreationDate,</span>
+<span class="a">+    p.Score,</span>
+<span class="a">+    p.ViewCount,</span>
+<span class="a">+    p.AnswerCount</span>
+ FROM </pre></details><h2>All 191 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">17227</td><td class="n">1</td><td class="n">0.552</td><td class="n">1.00</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    u.DisplayName AS UserDisplayName,
+    u.Reputation AS UserReputation
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15022</td><td class="n">1</td><td class="n">0.553</td><td class="n">1.00</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Users.Reputation, 
+    Posts.Title, 
+    Posts.CreationDate 
+FROM 
+    Posts 
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15632</td><td class="n">1</td><td class="n">0.554</td><td class="n">1.00</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName,
+    u.Reputation
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17352</td><td class="n">2</td><td class="n">0.556</td><td class="n">1.01</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    u.Reputation,
+    p.Title,
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19346</td><td class="n">1</td><td class="n">0.556</td><td class="n">1.01</td><td class="n">10</td><td class="n">3</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, u.DisplayName, p.CreationDate
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15065</td><td class="n">17</td><td class="n">0.556</td><td class="n">1.01</td><td class="n">10</td><td class="n">3</td><td class="n">37</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, p.Title, p.CreationDate
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17367</td><td class="n">2</td><td class="n">0.556</td><td class="n">1.01</td><td class="n">10</td><td class="n">3</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.CreationDate, u.DisplayName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15724</td><td class="n">1</td><td class="n">0.557</td><td class="n">1.01</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, p.Title, p.CreationDate, p.Score
+FROM Posts p
+INNER JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16999</td><td class="n">1</td><td class="n">0.558</td><td class="n">1.01</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, 
+       u.Reputation, 
+       p.Title, 
+       p.CreationDate 
+FROM Users u
+JOIN Posts p ON u.Id = p.OwnerUserId
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19615</td><td class="n">1</td><td class="n">0.558</td><td class="n">1.01</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.ViewCount, 
+    u.DisplayName AS OwnerName, 
+    p.CreationDate 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15231</td><td class="n">4</td><td class="n">0.560</td><td class="n">1.01</td><td class="n">10</td><td class="n">3</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT Users.DisplayName, Posts.Title, Posts.CreationDate
+FROM Posts
+JOIN Users ON Posts.OwnerUserId = Users.Id
+WHERE Posts.PostTypeId = 1
+ORDER BY Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16434</td><td class="n">2</td><td class="n">0.560</td><td class="n">1.01</td><td class="n">10</td><td class="n">3</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT Users.DisplayName, Posts.Title, Posts.CreationDate
+FROM Users
+JOIN Posts ON Users.Id = Posts.OwnerUserId
+WHERE Posts.PostTypeId = 1
+ORDER BY Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17472</td><td class="n">4</td><td class="n">0.560</td><td class="n">1.01</td><td class="n">10</td><td class="n">3</td><td class="n">37</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Owner 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16416</td><td class="n">1</td><td class="n">0.560</td><td class="n">1.01</td><td class="n">10</td><td class="n">3</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT Posts.Title, Users.DisplayName, Posts.CreationDate
+FROM Posts
+JOIN Users ON Posts.OwnerUserId = Users.Id
+WHERE Posts.PostTypeId = 1
+ORDER BY Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15101</td><td class="n">1</td><td class="n">0.560</td><td class="n">1.01</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Id AS PostId,
+    Posts.Title,
+    Posts.CreationDate,
+    Users.DisplayName AS OwnerDisplayName,
+    Users.Reputation
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15504</td><td class="n">2</td><td class="n">0.561</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.Score,
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15193</td><td class="n">3</td><td class="n">0.561</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    u.Reputation AS OwnerReputation 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">19836</td><td class="n">1</td><td class="n">0.561</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName AS UserName, p.Title AS PostTitle, p.CreationDate, p.Score
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16712</td><td class="n">1</td><td class="n">0.561</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.Id AS UserId, u.DisplayName, p.Title, p.CreationDate, p.Score
+FROM Users u
+JOIN Posts p ON u.Id = p.OwnerUserId
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16090</td><td class="n">7</td><td class="n">0.562</td><td class="n">1.02</td><td class="n">10</td><td class="n">3</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, p.Title, p.CreationDate
+FROM Users u
+JOIN Posts p ON u.Id = p.OwnerUserId
+WHERE p.PostTypeId = 1  
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19371</td><td class="n">1</td><td class="n">0.562</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score 
+FROM 
+    Posts 
+INNER JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15074</td><td class="n">9</td><td class="n">0.562</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, p.Title, p.CreationDate, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1  
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18536</td><td class="n">2</td><td class="n">0.562</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName, 
+    U.Reputation, 
+    P.Title, 
+    P.CreationDate, 
+    P.Score 
+FROM 
+    Users U 
+JOIN 
+    Posts P ON U.Id = P.OwnerUserId 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16214</td><td class="n">7</td><td class="n">0.563</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName, 
+    p.Title AS PostTitle, 
+    p.CreationDate AS PostCreationDate, 
+    p.Score AS PostScore 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">18531</td><td class="n">1</td><td class="n">0.563</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.ViewCount 
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17174</td><td class="n">1</td><td class="n">0.563</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, u.DisplayName AS OwnerDisplayName, p.CreationDate
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15102</td><td class="n">2</td><td class="n">0.564</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.CreationDate, u.DisplayName, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19942</td><td class="n">1</td><td class="n">0.564</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.ViewCount 
+FROM 
+    Posts 
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15937</td><td class="n">1</td><td class="n">0.564</td><td class="n">1.02</td><td class="n">10</td><td class="n">3</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName, 
+    p.Title AS PostTitle, 
+    p.CreationDate AS PostDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15050</td><td class="n">2</td><td class="n">0.564</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.ViewCount, 
+    P.CreationDate 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">18737</td><td class="n">2</td><td class="n">0.565</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.Score, u.DisplayName, p.CreationDate
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15007</td><td class="n">9</td><td class="n">0.565</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, u.DisplayName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15704</td><td class="n">3</td><td class="n">0.565</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">18145</td><td class="n">1</td><td class="n">0.565</td><td class="n">1.02</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName AS UserName,
+    P.Title AS PostTitle,
+    P.CreationDate,
+    P.Score,
+    P.ViewCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1  
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15069</td><td class="n">5</td><td class="n">0.565</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15003</td><td class="n">12</td><td class="n">0.566</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, u.DisplayName, p.CreationDate, p.Score
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15347</td><td class="n">5</td><td class="n">0.566</td><td class="n">1.02</td><td class="n">10</td><td class="n">4</td><td class="n">44</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, u.DisplayName AS OwnerDisplayName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16839</td><td class="n">1</td><td class="n">0.566</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Users u 
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15696</td><td class="n">2</td><td class="n">0.566</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score 
+FROM 
+    Posts 
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16131</td><td class="n">3</td><td class="n">0.567</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">17203</td><td class="n">3</td><td class="n">0.567</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS Owner, 
+    p.CreationDate, 
+    p.Score 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15928</td><td class="n">1</td><td class="n">0.567</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.ViewCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15096</td><td class="n">25</td><td class="n">0.567</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, u.DisplayName, p.CreationDate
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18110</td><td class="n">1</td><td class="n">0.567</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName,
+    p.ViewCount,
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15184</td><td class="n">15</td><td class="n">0.567</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS Owner, 
+    p.CreationDate, 
+    p.ViewCount, 
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16070</td><td class="n">2</td><td class="n">0.568</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.CreationDate 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 
+    10;</pre></details></td></tr><tr><td class="">15627</td><td class="n">3</td><td class="n">0.568</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id AS PostId, p.Title, p.CreationDate, u.DisplayName AS Author, u.Reputation
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15024</td><td class="n">11</td><td class="n">0.568</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.DisplayName, p.Title, p.CreationDate, p.Score
+FROM Users AS u
+JOIN Posts AS p ON u.Id = p.OwnerUserId
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18628</td><td class="n">1</td><td class="n">0.568</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.Id AS UserId,
+    Users.DisplayName,
+    Posts.Title,
+    Posts.CreationDate,
+    Posts.Score
+FROM 
+    Users
+JOIN 
+    Posts ON Users.Id = Posts.OwnerUserId
+WHERE 
+    Posts.PostTypeId = 1  
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15535</td><td class="n">11</td><td class="n">0.568</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.CreationDate, u.DisplayName, p.Score
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1  
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18376</td><td class="n">1</td><td class="n">0.568</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT u.Id AS UserId, u.DisplayName, p.Id AS PostId, p.Title, p.CreationDate
+FROM Users u
+JOIN Posts p ON u.Id = p.OwnerUserId
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15011</td><td class="n">49</td><td class="n">0.568</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15175</td><td class="n">3</td><td class="n">0.568</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id AS PostId, p.Title, p.CreationDate, u.DisplayName AS OwnerDisplayName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1  
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17815</td><td class="n">2</td><td class="n">0.569</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16316</td><td class="n">2</td><td class="n">0.569</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, u.DisplayName, u.Reputation
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17328</td><td class="n">1</td><td class="n">0.569</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">19591</td><td class="n">1</td><td class="n">0.570</td><td class="n">1.03</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    p.ViewCount, 
+    u.DisplayName AS OwnerDisplayName
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15223</td><td class="n">1</td><td class="n">0.570</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName AS UserName,
+    Posts.Title AS PostTitle,
+    Posts.CreationDate AS PostDate,
+    Posts.ViewCount AS Views,
+    Posts.Score AS Score
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15389</td><td class="n">1</td><td class="n">0.570</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS UserName,
+    p.Score,
+    p.CreationDate
+FROM 
+    Posts p
+INNER JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15959</td><td class="n">11</td><td class="n">0.571</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15049</td><td class="n">50</td><td class="n">0.571</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15015</td><td class="n">64</td><td class="n">0.571</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">17682</td><td class="n">2</td><td class="n">0.571</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Users.DisplayName AS Owner, 
+    Posts.Score, 
+    Posts.ViewCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+WHERE 
+    Posts.PostTypeId = 1
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15699</td><td class="n">1</td><td class="n">0.571</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.ViewCount, 
+    p.AnswerCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">18363</td><td class="n">1</td><td class="n">0.571</td><td class="n">1.03</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.ViewCount, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15841</td><td class="n">6</td><td class="n">0.572</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName, 
+    p.Title AS PostTitle, 
+    p.CreationDate AS PostDate, 
+    p.ViewCount, 
+    p.Score 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15978</td><td class="n">3</td><td class="n">0.572</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Title, 
+    Users.DisplayName AS Author, 
+    Posts.CreationDate, 
+    Posts.Score, 
+    Posts.ViewCount 
+FROM 
+    Posts 
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15075</td><td class="n">30</td><td class="n">0.572</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.ViewCount, 
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 
+    10;</pre></details></td></tr><tr><td class="">17320</td><td class="n">1</td><td class="n">0.572</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title AS PostTitle, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.CreationDate, 
+    P.Score, 
+    P.ViewCount 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15157</td><td class="n">50</td><td class="n">0.572</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    u.DisplayName AS Author,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15190</td><td class="n">25</td><td class="n">0.572</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18001</td><td class="n">3</td><td class="n">0.572</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.ViewCount, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16547</td><td class="n">3</td><td class="n">0.572</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount AS NumberOfViews,
+    p.Score AS PostScore
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15106</td><td class="n">2</td><td class="n">0.573</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, u.DisplayName, p.CreationDate, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1  
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15215</td><td class="n">3</td><td class="n">0.573</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, p.Score, u.DisplayName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15762</td><td class="n">3</td><td class="n">0.573</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, u.DisplayName, p.CreationDate, p.Score, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15055</td><td class="n">4</td><td class="n">0.573</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName AS UserName,
+    P.Title AS PostTitle,
+    P.CreationDate AS PostDate,
+    P.Score AS PostScore,
+    P.ViewCount AS PostViews
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15035</td><td class="n">21</td><td class="n">0.573</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, u.DisplayName, p.Score
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16251</td><td class="n">1</td><td class="n">0.573</td><td class="n">1.04</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName, 
+    u.Reputation
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15021</td><td class="n">1</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Id,
+    Posts.Title,
+    Users.DisplayName AS OwnerDisplayName,
+    Posts.CreationDate,
+    Posts.Score,
+    Posts.ViewCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+WHERE 
+    Posts.PostTypeId = 1
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15586</td><td class="n">1</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">7</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    u.Reputation AS OwnerReputation, 
+    p.CreationDate, 
+    p.Score, 
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16351</td><td class="n">1</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.Score, 
+    Posts.ViewCount 
+FROM 
+    Posts 
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15490</td><td class="n">1</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16749</td><td class="n">4</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.DisplayName, 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Posts.ViewCount, 
+    Posts.Score 
+FROM 
+    Posts 
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15617</td><td class="n">2</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT P.Id, P.Title, P.CreationDate, U.DisplayName AS OwnerDisplayName, P.Score
+FROM Posts P
+JOIN Users U ON P.OwnerUserId = U.Id
+WHERE P.PostTypeId = 1 
+ORDER BY P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19037</td><td class="n">1</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle, 
+    u.DisplayName AS Author, 
+    p.CreationDate, 
+    p.ViewCount, 
+    p.Score 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15378</td><td class="n">1</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15418</td><td class="n">3</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id, 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.Score 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16488</td><td class="n">1</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">4</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT U.DisplayName, P.Title, P.CreationDate, P.ViewCount
+FROM Posts P
+INNER JOIN Users U ON P.OwnerUserId = U.Id
+WHERE P.PostTypeId = 1
+ORDER BY P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15141</td><td class="n">6</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.Score, u.DisplayName, p.CreationDate
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15763</td><td class="n">3</td><td class="n">0.574</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15046</td><td class="n">11</td><td class="n">0.575</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, u.DisplayName, p.CreationDate, p.Score
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15356</td><td class="n">1</td><td class="n">0.575</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COALESCE(p.ViewCount, 0) AS ViewCount,
+    COALESCE(p.AnswerCount, 0) AS AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15311</td><td class="n">18</td><td class="n">0.575</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id AS PostId, 
+       p.Title, 
+       u.DisplayName AS OwnerDisplayName, 
+       p.CreationDate, 
+       p.Score 
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19642</td><td class="n">1</td><td class="n">0.575</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.Score, 
+    p.ViewCount, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15675</td><td class="n">4</td><td class="n">0.575</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15088</td><td class="n">1</td><td class="n">0.575</td><td class="n">1.04</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, 
+       p.Title, 
+       p.Score, 
+       p.ViewCount, 
+       u.DisplayName AS OwnerDisplayName, 
+       p.CreationDate 
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15359</td><td class="n">1</td><td class="n">0.575</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName,
+    P.Title,
+    P.ViewCount,
+    P.CreationDate,
+    P.Score
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15711</td><td class="n">10</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16121</td><td class="n">1</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.AnswerCount, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16213</td><td class="n">2</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    u.DisplayName AS OwnerDisplayName
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16509</td><td class="n">1</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.Id AS UserId,
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 
+    10;</pre></details></td></tr><tr><td class="">16648</td><td class="n">2</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id AS PostId, p.Title, u.DisplayName AS Author, p.CreationDate, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17553</td><td class="n">1</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Score,
+    u.DisplayName AS Author,
+    p.CreationDate,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16461</td><td class="n">6</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostID, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15238</td><td class="n">8</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15288</td><td class="n">2</td><td class="n">0.576</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title AS PostTitle, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate AS PostCreationDate,
+    p.Score AS PostScore
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15965</td><td class="n">1</td><td class="n">0.577</td><td class="n">1.04</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Score,
+    p.CreationDate,
+    u.DisplayName AS Author
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19228</td><td class="n">1</td><td class="n">0.577</td><td class="n">1.04</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS Author, 
+    p.CreationDate, 
+    p.ViewCount, 
+    p.Score, 
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16232</td><td class="n">1</td><td class="n">0.577</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.Score, p.CreationDate, u.DisplayName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19866</td><td class="n">1</td><td class="n">0.577</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName, 
+    p.Title AS PostTitle, 
+    p.CreationDate AS PostCreationDate, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15197</td><td class="n">26</td><td class="n">0.577</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16347</td><td class="n">2</td><td class="n">0.577</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    p.ViewCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17677</td><td class="n">1</td><td class="n">0.577</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id, 
+    p.Title, 
+    p.CreationDate, 
+    p.Score, 
+    u.DisplayName AS OwnerDisplayName 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15340</td><td class="n">12</td><td class="n">0.577</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, u.DisplayName, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17451</td><td class="n">1</td><td class="n">0.577</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.Score, 
+    p.AnswerCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16030</td><td class="n">2</td><td class="n">0.578</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    p.ViewCount, 
+    u.DisplayName AS OwnerName, 
+    u.Reputation 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">19084</td><td class="n">1</td><td class="n">0.578</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName,
+    P.Title,
+    P.CreationDate,
+    P.Score,
+    P.ViewCount
+FROM 
+    Posts P
+INNER JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15026</td><td class="n">1</td><td class="n">0.578</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.Score, u.DisplayName AS OwnerName, p.CreationDate
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1  
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16713</td><td class="n">2</td><td class="n">0.578</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.Score, 
+    p.ViewCount, 
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15033</td><td class="n">69</td><td class="n">0.578</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.Score, 
+    P.ViewCount 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16487</td><td class="n">1</td><td class="n">0.579</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COALESCE(p.AnswerCount, 0) AS AnswerCount, 
+    COALESCE(p.ViewCount, 0) AS ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17796</td><td class="n">1</td><td class="n">0.579</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, p.ViewCount, u.DisplayName AS Owner
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16702</td><td class="n">1</td><td class="n">0.579</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title AS PostTitle, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.CreationDate AS PostCreationDate, 
+    P.ViewCount, 
+    P.Score
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15263</td><td class="n">1</td><td class="n">0.579</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18770</td><td class="n">1</td><td class="n">0.579</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title AS PostTitle,
+    U.DisplayName AS OwnerName,
+    P.CreationDate,
+    P.ViewCount,
+    P.AnswerCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1  
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15828</td><td class="n">1</td><td class="n">0.579</td><td class="n">1.05</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Title, 
+    Posts.CreationDate, 
+    Users.DisplayName, 
+    Posts.Score, 
+    Posts.ViewCount 
+FROM 
+    Posts 
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">17351</td><td class="n">1</td><td class="n">0.579</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Score,
+    u.DisplayName AS Owner,
+    p.CreationDate,
+    p.LastActivityDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15329</td><td class="n">1</td><td class="n">0.579</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, u.DisplayName, p.CreationDate, p.Score, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15839</td><td class="n">5</td><td class="n">0.580</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS Author,
+    p.Score,
+    p.ViewCount,
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 
+    10;</pre></details></td></tr><tr><td class="">15054</td><td class="n">83</td><td class="n">0.580</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">19503</td><td class="n">1</td><td class="n">0.580</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.ViewCount,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16170</td><td class="n">4</td><td class="n">0.580</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15265</td><td class="n">33</td><td class="n">0.581</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.ViewCount, 
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18933</td><td class="n">1</td><td class="n">0.581</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Score,
+    p.ViewCount,
+    u.DisplayName AS OwnerDisplayName,
+    u.Reputation AS OwnerReputation
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15124</td><td class="n">2</td><td class="n">0.581</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title AS PostTitle, 
+    u.DisplayName AS AuthorName, 
+    p.CreationDate AS PostDate, 
+    p.ViewCount AS NumberOfViews, 
+    p.Score AS PostScore
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15383</td><td class="n">4</td><td class="n">0.581</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Id AS PostId,
+    Posts.Title,
+    Posts.CreationDate,
+    Users.DisplayName AS OwnerDisplayName,
+    Posts.Score,
+    Posts.ViewCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+WHERE 
+    Posts.PostTypeId = 1
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17481</td><td class="n">1</td><td class="n">0.581</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.ViewCount, 
+    p.AnswerCount, 
+    p.Score 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">19226</td><td class="n">1</td><td class="n">0.581</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Id AS PostId,
+    Posts.Title,
+    Users.DisplayName AS Owner,
+    Posts.CreationDate,
+    Posts.ViewCount,
+    Posts.Score
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18507</td><td class="n">1</td><td class="n">0.582</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Id AS PostId,
+    Posts.Title,
+    Users.DisplayName AS OwnerDisplayName,
+    Posts.CreationDate,
+    Posts.Score,
+    Posts.ViewCount
+FROM 
+    Posts
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15636</td><td class="n">9</td><td class="n">0.582</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, u.DisplayName, p.Score, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1  
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18227</td><td class="n">1</td><td class="n">0.582</td><td class="n">1.05</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title AS PostTitle, 
+    u.DisplayName AS OwnerName, 
+    p.CreationDate AS PostCreationDate, 
+    p.Score AS PostScore, 
+    p.ViewCount AS PostViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">16254</td><td class="n">1</td><td class="n">0.583</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.ViewCount,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15358</td><td class="n">5</td><td class="n">0.583</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, u.DisplayName AS OwnerDisplayName, p.CreationDate, p.Score, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17073</td><td class="n">4</td><td class="n">0.583</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Score,
+    p.ViewCount,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15585</td><td class="n">1</td><td class="n">0.584</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName, 
+    p.ViewCount, 
+    p.AnswerCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">17818</td><td class="n">1</td><td class="n">0.585</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15279</td><td class="n">1</td><td class="n">0.585</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.ViewCount,
+    p.Score,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15747</td><td class="n">17</td><td class="n">0.585</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS Owner,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15060</td><td class="n">9</td><td class="n">0.585</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16421</td><td class="n">1</td><td class="n">0.585</td><td class="n">1.06</td><td class="n">10</td><td class="n">8</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Users.Id AS UserId,
+    Users.DisplayName,
+    Users.Reputation,
+    Posts.Title,
+    Posts.CreationDate,
+    Posts.ViewCount,
+    Posts.AnswerCount,
+    Posts.Score
+FROM 
+    Users
+JOIN 
+    Posts ON Users.Id = Posts.OwnerUserId
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18494</td><td class="n">1</td><td class="n">0.586</td><td class="n">1.06</td><td class="n">10</td><td class="n">5</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.CreationDate, p.ViewCount, u.DisplayName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19128</td><td class="n">1</td><td class="n">0.587</td><td class="n">1.06</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16102</td><td class="n">1</td><td class="n">0.588</td><td class="n">1.07</td><td class="n">10</td><td class="n">8</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.OwnerUserId,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18279</td><td class="n">1</td><td class="n">0.589</td><td class="n">1.07</td><td class="n">10</td><td class="n">6</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19756</td><td class="n">1</td><td class="n">0.590</td><td class="n">1.07</td><td class="n">10</td><td class="n">6</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title,
+    U.DisplayName AS OwnerDisplayName,
+    P.CreationDate,
+    P.Score,
+    P.ViewCount,
+    P.Tags
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17730</td><td class="n">2</td><td class="n">0.590</td><td class="n">1.07</td><td class="n">10</td><td class="n">5</td><td class="n">38</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    Posts.Title, 
+    Users.DisplayName, 
+    Posts.CreationDate, 
+    Posts.Score, 
+    Posts.ViewCount 
+FROM 
+    Posts 
+JOIN 
+    Users ON Posts.OwnerUserId = Users.Id 
+WHERE 
+    Posts.PostTypeId = 1 
+ORDER BY 
+    Posts.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15262</td><td class="n">13</td><td class="n">0.591</td><td class="n">1.07</td><td class="n">10</td><td class="n">7</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount, 
+    p.AnswerCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16767</td><td class="n">2</td><td class="n">0.592</td><td class="n">1.07</td><td class="n">10</td><td class="n">7</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title, 
+    U.DisplayName AS Author, 
+    P.CreationDate, 
+    P.Score, 
+    P.ViewCount, 
+    P.AnswerCount, 
+    P.CommentCount 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">18213</td><td class="n">2</td><td class="n">0.593</td><td class="n">1.07</td><td class="n">10</td><td class="n">7</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Owner, 
+    p.Score, 
+    p.AnswerCount, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15139</td><td class="n">26</td><td class="n">0.593</td><td class="n">1.07</td><td class="n">10</td><td class="n">7</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Id AS PostId,
+    P.Title,
+    U.DisplayName AS OwnerDisplayName,
+    P.CreationDate,
+    P.Score,
+    P.ViewCount,
+    P.AnswerCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19470</td><td class="n">1</td><td class="n">0.594</td><td class="n">1.08</td><td class="n">10</td><td class="n">5</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.Score, p.ViewCount, u.DisplayName AS OwnerDisplayName
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15875</td><td class="n">2</td><td class="n">0.595</td><td class="n">1.08</td><td class="n">10</td><td class="n">7</td><td class="n">39</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15745</td><td class="n">17</td><td class="n">0.597</td><td class="n">1.08</td><td class="n">10</td><td class="n">8</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount,
+    p.CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15013</td><td class="n">34</td><td class="n">0.598</td><td class="n">1.08</td><td class="n">10</td><td class="n">8</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount,
+    p.CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16780</td><td class="n">1</td><td class="n">0.598</td><td class="n">1.08</td><td class="n">10</td><td class="n">8</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    u.DisplayName AS UserName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount,
+    p.CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19965</td><td class="n">1</td><td class="n">0.599</td><td class="n">1.08</td><td class="n">10</td><td class="n">8</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    p.AnswerCount,
+    p.CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16716</td><td class="n">1</td><td class="n">0.599</td><td class="n">1.08</td><td class="n">10</td><td class="n">7</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount,
+    p.Tags
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18983</td><td class="n">1</td><td class="n">0.599</td><td class="n">1.08</td><td class="n">10</td><td class="n">7</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount,
+    p.CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16690</td><td class="n">1</td><td class="n">0.599</td><td class="n">1.08</td><td class="n">10</td><td class="n">7</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.ViewCount,
+    p.Score,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18586</td><td class="n">1</td><td class="n">0.599</td><td class="n">1.09</td><td class="n">10</td><td class="n">8</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.ViewCount,
+    p.Score,
+    p.AnswerCount,
+    p.CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16299</td><td class="n">2</td><td class="n">0.600</td><td class="n">1.09</td><td class="n">10</td><td class="n">8</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    u.DisplayName AS Author,
+    p.ViewCount,
+    p.AnswerCount,
+    p.CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15620</td><td class="n">2</td><td class="n">0.600</td><td class="n">1.09</td><td class="n">10</td><td class="n">7</td><td class="n">42</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.Tags
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18330</td><td class="n">1</td><td class="n">0.602</td><td class="n">1.09</td><td class="n">10</td><td class="n">7</td><td class="n">40</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.ViewCount, 
+    p.AnswerCount, 
+    p.CommentCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15541</td><td class="n">1</td><td class="n">0.603</td><td class="n">1.09</td><td class="n">10</td><td class="n">8</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS Owner,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COALESCE(p.AnswerCount, 0) AS AnswerCount,
+    COALESCE(p.CommentCount, 0) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17640</td><td class="n">1</td><td class="n">0.613</td><td class="n">1.11</td><td class="n">10</td><td class="n">8</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount,
+    p.Tags
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16985</td><td class="n">2</td><td class="n">0.614</td><td class="n">1.11</td><td class="n">10</td><td class="n">9</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Id AS PostId,
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS OwnerDisplayName,
+    P.Score,
+    P.ViewCount,
+    P.AnswerCount,
+    P.CommentCount,
+    P.FavoriteCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1  
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16596</td><td class="n">1</td><td class="n">0.615</td><td class="n">1.11</td><td class="n">10</td><td class="n">9</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.ViewCount,
+    p.Score,
+    p.AnswerCount,
+    p.CommentCount,
+    p.FavoriteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15108</td><td class="n">1</td><td class="n">0.615</td><td class="n">1.11</td><td class="n">10</td><td class="n">9</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount,
+    p.CommentCount,
+    p.Tags
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15089</td><td class="n">5</td><td class="n">0.615</td><td class="n">1.11</td><td class="n">10</td><td class="n">9</td><td class="n">41</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    u.DisplayName AS Owner,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount,
+    p.CommentCount,
+    p.FavoriteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15242</td><td class="n">1</td><td class="n">0.831</td><td class="n">1.50</td><td class="n">10</td><td class="n">5</td><td class="n">58</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.Body, 
+    u.DisplayName AS Author, 
+    p.CreationDate, 
+    p.Score 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16395</td><td class="n">1</td><td class="n">0.833</td><td class="n">1.51</td><td class="n">10</td><td class="n">4</td><td class="n">58</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName, 
+    P.Title, 
+    P.CreationDate, 
+    P.Body 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15042</td><td class="n">1</td><td class="n">0.833</td><td class="n">1.51</td><td class="n">10</td><td class="n">4</td><td class="n">58</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.Body, u.DisplayName, p.CreationDate
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16745</td><td class="n">1</td><td class="n">0.834</td><td class="n">1.51</td><td class="n">10</td><td class="n">5</td><td class="n">58</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT p.Id, p.Title, p.Body, u.DisplayName, p.CreationDate 
+FROM Posts p 
+JOIN Users u ON p.OwnerUserId = u.Id 
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15406</td><td class="n">1</td><td class="n">0.838</td><td class="n">1.52</td><td class="n">10</td><td class="n">5</td><td class="n">58</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.Body, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">17002</td><td class="n">1</td><td class="n">0.845</td><td class="n">1.53</td><td class="n">10</td><td class="n">6</td><td class="n">58</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Body,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17354</td><td class="n">1</td><td class="n">0.848</td><td class="n">1.54</td><td class="n">10</td><td class="n">6</td><td class="n">59</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.Body, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    p.ViewCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">19091</td><td class="n">1</td><td class="n">0.852</td><td class="n">1.54</td><td class="n">10</td><td class="n">7</td><td class="n">60</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id,
+    p.Title,
+    p.Body,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18026</td><td class="n">2</td><td class="n">0.860</td><td class="n">1.56</td><td class="n">10</td><td class="n">7</td><td class="n">59</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Body,
+    u.DisplayName AS OwnerDisplayName,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15651</td><td class="n">1</td><td class="n">0.863</td><td class="n">1.56</td><td class="n">10</td><td class="n">7</td><td class="n">59</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    p.Body, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19323</td><td class="n">1</td><td class="n">0.863</td><td class="n">1.56</td><td class="n">10</td><td class="n">8</td><td class="n">59</td><td class="n">32</td><td class="">5cf753cb</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.Body,
+    u.DisplayName AS Author,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    p.AnswerCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr></tbody></table></div></main></div></body></html>

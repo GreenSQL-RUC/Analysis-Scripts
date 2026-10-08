@@ -1,0 +1,638 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #20 — 14391 vs 10243</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>11504 vs 10324<span class="x">84.29×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>28628 vs 29724<span class="x">59.54×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14417 vs 10616<span class="x">56.86×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>25619 vs 25363<span class="x">49.48×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>26744 vs 12506<span class="x">47.33×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>12981 vs 11646<span class="x">45.98×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>26270 vs 25070<span class="x">42.65×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>7408 vs 11887<span class="x">33.88×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>29222 vs 27828<span class="x">29.28×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>27240 vs 26970<span class="x">26.77×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>29217 vs 27093<span class="x">25.70×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>14211 vs 11418<span class="x">25.30×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>27184 vs 28416<span class="x">25.23×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>10100 vs 11629<span class="x">23.84×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>10359 vs 12442<span class="x">22.92×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>25129 vs 27475<span class="x">22.41×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11755 vs 13924<span class="x">21.81×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>26702 vs 27519<span class="x">21.17×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>15944 vs 11546<span class="x">21.00×</span></a><a href="../same_plan_shape/20.html" class="on"><span class="r">#20</span>14391 vs 10243<span class="x">20.45×</span></a></aside><main><h1>Same plan shape #20: 14391 vs 10243 — 20.45×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 20 of 20 by the energy gap within the group (most expensive / cheapest). Energy: SQLStorm single-copy energy (laptop 1) per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">20</div></div><div class="card"><div class="k">query files</div><div class="v">34</div></div><div class="card"><div class="k">energy min</div><div class="v">0.914 J</div></div><div class="card"><div class="k">median</div><div class="v">18.348 J</div></div><div class="card"><div class="k">max</div><div class="v">18.688 J</div></div><div class="card"><div class="k">gap</div><div class="v">20.45×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">18</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">16</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 14391</h3><dl class="f"><dt>energy</dt><dd>0.914 J ± 0.029</dd><dt>output</dt><dd>0 rows, 2 columns</dd><dt>plan</dt><dd>64 ms, 18 nodes, 0 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Asia&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1996-02-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">p_name</th><th class="">revenue</th></tr></thead><tbody></tbody></table></div><p class="muted">first 0 of 0 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum((lineitem.l_extendedprice * (&#x27;1&#x27;::numeric - lineitem.l_discount)))) DESC]
+    HashAggregate [Group Key=part.p_name]
+      Gather
+        Parallel Hash Join [Hash Cond=(part.p_partkey = lineitem.l_partkey)]
+          Parallel Seq Scan on part
+          Parallel Hash
+            Nested Loop
+              Hash Join [Hash Cond=(partsupp.ps_suppkey = supplier.s_suppkey)]
+                Parallel Index Only Scan on partsupp
+                Hash
+                  Nested Loop
+                    Nested Loop [Join Filter=(nation.n_regionkey = region.r_regionkey)]
+                      Seq Scan on region [Filter=(r_name = &#x27;Asia&#x27;)]
+                      Seq Scan on nation
+                    Bitmap Heap Scan on supplier [Recheck Cond=(s_nationkey = nation.n_nationkey)]
+                      Bitmap Index Scan on ixtest_supplier_nationkey [Index Cond=(s_nationkey = nation.n_nationkey)]
+              Index Scan on lineitem [Filter=((l_shipdate &gt;= &#x27;1996-01-01&#x27;) AND (l_shipdate &lt; &#x27;1996-02-01&#x27;)); Index Cond=(l_partkey = partsupp.ps_partkey)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 10243</h3><dl class="f"><dt>energy</dt><dd>18.688 J ± 0.109</dd><dt>output</dt><dd>10 rows, 3 columns</dd><dt>plan</dt><dd>1664 ms, 18 nodes, 5388 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1997-01-31&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">p_partkey</th><th class="">p_name</th><th class="">revenue</th></tr></thead><tbody><tr><td class="">119942</td><td class="">goldenrod olive medium rosy blue</td><td class="">763508.5704</td></tr><tr><td class="">6872</td><td class="">hot almond azure lace forest</td><td class="">552125.6706</td></tr><tr><td class="">113558</td><td class="">metallic orchid pink purple wheat</td><td class="">531293.9085</td></tr><tr><td class="">102976</td><td class="">pink burlywood red spring medium</td><td class="">529691.1102</td></tr><tr><td class="">188865</td><td class="">salmon metallic tomato linen rose</td><td class="">494541.5046</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum((lineitem.l_extendedprice * (&#x27;1&#x27;::numeric - lineitem.l_discount)))) DESC]
+    HashAggregate [Group Key=part.p_partkey, part.p_name]
+      Gather
+        Parallel Hash Join [Hash Cond=(part.p_partkey = lineitem.l_partkey)]
+          Parallel Seq Scan on part
+          Parallel Hash
+            Nested Loop
+              Hash Join [Hash Cond=(partsupp.ps_suppkey = supplier.s_suppkey)]
+                Parallel Index Only Scan on partsupp
+                Hash
+                  Nested Loop
+                    Nested Loop [Join Filter=(nation.n_regionkey = region.r_regionkey)]
+                      Seq Scan on region [Filter=(r_name = &#x27;AMERICA&#x27;)]
+                      Seq Scan on nation
+                    Bitmap Heap Scan on supplier [Recheck Cond=(s_nationkey = nation.n_nationkey)]
+                      Bitmap Index Scan on ixtest_supplier_nationkey [Index Cond=(s_nationkey = nation.n_nationkey)]
+              Index Scan on lineitem [Filter=((l_shipdate &gt;= &#x27;1997-01-01&#x27;) AND (l_shipdate &lt; &#x27;1997-01-31&#x27;)); Index Cond=(l_partkey = partsupp.ps_partkey)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 14391
++++ 10243
+@@ -2,3 +2,3 @@
+   Sort [Sort Key=(sum((lineitem.l_extendedprice * (&#x27;1&#x27;::numeric - lineitem.l_discount)))) DESC]
+<span class="d">-    HashAggregate [Group Key=part.p_name]</span>
+<span class="a">+    HashAggregate [Group Key=part.p_partkey, part.p_name]</span>
+       Gather
+@@ -13,3 +13,3 @@
+                     Nested Loop [Join Filter=(nation.n_regionkey = region.r_regionkey)]
+<span class="d">-                      Seq Scan on region [Filter=(r_name = &#x27;Asia&#x27;)]</span>
+<span class="a">+                      Seq Scan on region [Filter=(r_name = &#x27;AMERICA&#x27;)]</span>
+                       Seq Scan on nation
+@@ -17,2 +17,2 @@
+                       Bitmap Index Scan on ixtest_supplier_nationkey [Index Cond=(s_nationkey = nation.n_nationkey)]
+<span class="d">-              Index Scan on lineitem [Filter=((l_shipdate &gt;= &#x27;1996-01-01&#x27;) AND (l_shipdate &lt; &#x27;1996-02-01&#x27;)); Index Cond=(l_partkey = partsupp.ps_partkey)]</span>
+<span class="a">+              Index Scan on lineitem [Filter=((l_shipdate &gt;= &#x27;1997-01-01&#x27;) AND (l_shipdate &lt; &#x27;1997-01-31&#x27;)); Index Cond=(l_partkey = partsupp.ps_partkey)]</span></pre><details><summary>SQL difference</summary><pre>--- 14391
++++ 10243
+@@ -1,2 +1,3 @@
+ SELECT 
+<span class="a">+    p.p_partkey, </span>
+     p.p_name, 
+@@ -16,7 +17,7 @@
+ WHERE 
+<span class="d">-    r.r_name = &#x27;Asia&#x27; </span>
+<span class="d">-    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; </span>
+<span class="d">-    AND l.l_shipdate &lt; DATE &#x27;1996-02-01&#x27;</span>
+<span class="a">+    r.r_name = &#x27;AMERICA&#x27; </span>
+<span class="a">+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27; </span>
+<span class="a">+    AND l.l_shipdate &lt; DATE &#x27;1997-01-31&#x27;</span>
+ GROUP BY 
+<span class="d">-    p.p_name</span>
+<span class="a">+    p.p_partkey, p.p_name</span>
+ ORDER BY </pre></details><h2>All 20 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">14391</td><td class="n">1</td><td class="n">0.914</td><td class="n">1.00</td><td class="n">0</td><td class="n">2</td><td class="n">64</td><td class="n">0</td><td class="">e72972b2</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Asia&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1996-02-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14876</td><td class="n">1</td><td class="n">0.947</td><td class="n">1.04</td><td class="n">0</td><td class="n">4</td><td class="n">64</td><td class="n">0</td><td class="">f178ce24</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_brand, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Europe&#x27;
+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27;
+    AND l.l_shipdate &lt; DATE &#x27;1997-01-31&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12581</td><td class="n">1</td><td class="n">18.125</td><td class="n">19.84</td><td class="n">10</td><td class="n">2</td><td class="n">1634</td><td class="n">5257</td><td class="">950c58f6</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1996-02-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11056</td><td class="n">3</td><td class="n">18.140</td><td class="n">19.85</td><td class="n">10</td><td class="n">3</td><td class="n">1637</td><td class="n">5294</td><td class="">0e2f5e0c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1997-01-31&#x27; 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">12130</td><td class="n">4</td><td class="n">18.194</td><td class="n">19.91</td><td class="n">10</td><td class="n">2</td><td class="n">1638</td><td class="n">5294</td><td class="">7987ec32</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27;
+    AND l.l_shipdate &lt; DATE &#x27;1997-02-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14346</td><td class="n">1</td><td class="n">18.196</td><td class="n">19.92</td><td class="n">10</td><td class="n">2</td><td class="n">1654</td><td class="n">5294</td><td class="">8e195037</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;ASIA&#x27;
+    AND l.l_shipdate &gt;= DATE &#x27;1995-01-01&#x27;
+    AND l.l_shipdate &lt; DATE &#x27;1995-02-01&#x27;
+GROUP BY
+    p.p_name
+ORDER BY
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10159</td><td class="n">6</td><td class="n">18.242</td><td class="n">19.97</td><td class="n">10</td><td class="n">3</td><td class="n">1649</td><td class="n">5294</td><td class="">69a2e5d6</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1997-02-01&#x27;
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10902</td><td class="n">1</td><td class="n">18.320</td><td class="n">20.05</td><td class="n">10</td><td class="n">2</td><td class="n">1629</td><td class="n">5257</td><td class="">678b9303</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    sum(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27;
+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27;
+    AND l.l_shipdate &lt; DATE &#x27;1997-01-31&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12779</td><td class="n">2</td><td class="n">18.332</td><td class="n">20.06</td><td class="n">10</td><td class="n">3</td><td class="n">1642</td><td class="n">5257</td><td class="">b7d84522</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;EUROPE&#x27;
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27;
+    AND l.l_shipdate &lt; DATE &#x27;1996-02-01&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12343</td><td class="n">1</td><td class="n">18.342</td><td class="n">20.07</td><td class="n">10</td><td class="n">2</td><td class="n">1646</td><td class="n">5294</td><td class="">83716a59</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1996-02-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12084</td><td class="n">2</td><td class="n">18.354</td><td class="n">20.09</td><td class="n">10</td><td class="n">2</td><td class="n">1656</td><td class="n">5294</td><td class="">8e195037</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+    AND l.l_shipdate &gt;= &#x27;1995-01-01&#x27;
+    AND l.l_shipdate &lt; &#x27;1995-02-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">13829</td><td class="n">2</td><td class="n">18.384</td><td class="n">20.12</td><td class="n">10</td><td class="n">3</td><td class="n">1652</td><td class="n">5294</td><td class="">de8f7f87</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1996-02-01&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11487</td><td class="n">1</td><td class="n">18.390</td><td class="n">20.13</td><td class="n">10</td><td class="n">3</td><td class="n">1653</td><td class="n">5294</td><td class="">9cc6ca4f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; AND 
+    l.l_shipdate &gt;= DATE &#x27;1995-01-01&#x27; AND 
+    l.l_shipdate &lt; DATE &#x27;1995-02-01&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">13636</td><td class="n">1</td><td class="n">18.392</td><td class="n">20.13</td><td class="n">10</td><td class="n">2</td><td class="n">1630</td><td class="n">5294</td><td class="">baee9b06</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27;
+    AND l.l_shipdate &lt; DATE &#x27;1997-01-31&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10766</td><td class="n">1</td><td class="n">18.399</td><td class="n">20.14</td><td class="n">10</td><td class="n">2</td><td class="n">1636</td><td class="n">5257</td><td class="">efe10158</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part AS p
+JOIN 
+    lineitem AS l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp AS ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier AS s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation AS n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region AS r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1995-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1995-02-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">13639</td><td class="n">1</td><td class="n">18.429</td><td class="n">20.17</td><td class="n">10</td><td class="n">2</td><td class="n">1642</td><td class="n">5257</td><td class="">efe10158</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27; 
+    AND l.l_shipdate &gt;= &#x27;1995-01-01&#x27;
+    AND l.l_shipdate &lt; &#x27;1995-02-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12972</td><td class="n">2</td><td class="n">18.476</td><td class="n">20.22</td><td class="n">10</td><td class="n">3</td><td class="n">1647</td><td class="n">5294</td><td class="">35de6a1e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1996-01-31&#x27; 
+GROUP BY 
+    p.p_partkey, 
+    p.p_name 
+ORDER BY 
+    revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">12082</td><td class="n">1</td><td class="n">18.490</td><td class="n">20.24</td><td class="n">10</td><td class="n">3</td><td class="n">1676</td><td class="n">5388</td><td class="">ea185990</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1996-02-01&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">13260</td><td class="n">1</td><td class="n">18.585</td><td class="n">20.34</td><td class="n">10</td><td class="n">3</td><td class="n">1675</td><td class="n">5294</td><td class="">d444c11b</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1996-01-31&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10243</td><td class="n">1</td><td class="n">18.688</td><td class="n">20.45</td><td class="n">10</td><td class="n">3</td><td class="n">1664</td><td class="n">5388</td><td class="">dd44117e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1997-01-01&#x27; 
+    AND l.l_shipdate &lt; DATE &#x27;1997-01-31&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr></tbody></table></div></main></div></body></html>

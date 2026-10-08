@@ -1,0 +1,989 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #13 — 10008 vs 13752</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>12857 vs 12074<span class="x">14.77×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>11119 vs 16363<span class="x">11.09×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14843 vs 11239<span class="x">9.77×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>9855 vs 29614<span class="x">8.97×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>17350 vs 17462<span class="x">8.66×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>11370 vs 11796<span class="x">7.23×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>9160 vs 26465<span class="x">7.23×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>16304 vs 18193<span class="x">6.73×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>14104 vs 10365<span class="x">6.11×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>31099 vs 5746<span class="x">5.23×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>11375 vs 18573<span class="x">4.92×</span></a><a href="../same_plan_shape/13.html" class="on"><span class="r">#13</span>10008 vs 13752<span class="x">3.86×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>12471 vs 10668<span class="x">3.73×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>11976 vs 7246<span class="x">3.72×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>826 vs 4675<span class="x">3.70×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11608 vs 13924<span class="x">3.64×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>10621 vs 11860<span class="x">3.58×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>14332 vs 12039<span class="x">3.39×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>7835 vs 6505<span class="x">3.15×</span></a></aside><main><h1>Same plan shape #13: 10008 vs 13752 — 3.86×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 13 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">38</div></div><div class="card"><div class="k">query files</div><div class="v">211</div></div><div class="card"><div class="k">energy min</div><div class="v">1.373 J</div></div><div class="card"><div class="k">median</div><div class="v">3.611 J</div></div><div class="card"><div class="k">max</div><div class="v">5.303 J</div></div><div class="card"><div class="k">gap</div><div class="v">3.86×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">12</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">20</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 10008</h3><dl class="f"><dt>energy</dt><dd>1.373 J ± 0.012</dd><dt>output</dt><dd>100 rows, 9 columns</dd><dt>plan</dt><dd>121 ms, 15 nodes, 49 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.Title AS PostTitle,
+    u.DisplayName AS AuthorName,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount,
+    AVG(CASE WHEN v.VoteTypeId = 2 THEN 1.0 ELSE 0 END) AS AverageUpVotes,
+    AVG(CASE WHEN v.VoteTypeId = 3 THEN 1.0 ELSE 0 END) AS AverageDownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.CreationDate &gt;= &#x27;2023-01-01&#x27; 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">posttitle</th><th class="">authorname</th><th class="">postcreationdate</th><th class="">viewcount</th><th class="">score</th><th class="">commentcount</th><th class="">votecount</th><th class="">averageupvotes</th><th class="">averagedownvotes</th></tr></thead><tbody><tr><td class=""></td><td class="">Bill Karwin</td><td class="">2024-09-30 22:49:43.85</td><td class=""></td><td class="">1</td><td class="">0</td><td class="">0</td><td class="">0.00000000000000000000</td><td class="">0.00000000000000000000</td></tr><tr><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?</td><td class="">J. Mini</td><td class="">2024-09-30 22:49:25.743</td><td class="">50</td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0.00000000000000000000</td><td class="">0.00000000000000000000</td></tr><tr><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class="">Lucas David Ferrero</td><td class="">2024-09-30 22:05:14.587</td><td class="">19</td><td class="">2</td><td class="">0</td><td class="">0</td><td class="">0.00000000000000000000</td><td class="">0.00000000000000000000</td></tr><tr><td class=""></td><td class="">PhillysDBA</td><td class="">2024-09-30 20:17:43.423</td><td class=""></td><td class="">0</td><td class="">0</td><td class="">0</td><td class="">0.00000000000000000000</td><td class="">0.00000000000000000000</td></tr><tr><td class="">Varbinary column taking lots of space</td><td class="">PhillysDBA</td><td class="">2024-09-30 18:22:14.783</td><td class="">36</td><td class="">-1</td><td class="">0</td><td class="">1</td><td class="">0.00000000000000000000</td><td class="">1.00000000000000000000</td></tr></tbody></table></div><p class="muted">first 5 of 100 rows</p><details><summary>Plan</summary><pre>Limit
+  GroupAggregate [Group Key=posts.creationdate, posts.title, users.displayname, posts.viewcount, posts.score]
+    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, users.displayname, posts.viewcount, posts.score; Presorted Key=posts.creationdate, posts.title]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.creationdate DESC, posts.title]
+            Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+              Parallel Seq Scan on votes
+              Parallel Hash
+                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                  Parallel Seq Scan on comments
+                  Parallel Hash
+                    Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-01-01 00:00:00&#x27;)]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 13752</h3><dl class="f"><dt>energy</dt><dd>5.303 J ± 0.047</dd><dt>output</dt><dd>100 rows, 8 columns</dd><dt>plan</dt><dd>472 ms, 15 nodes, 49 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    U.DisplayName AS UserName, 
+    P.Title AS PostTitle, 
+    P.CreationDate AS PostCreationDate, 
+    P.ViewCount, 
+    P.Score, 
+    COUNT(C.ID) AS CommentCount, 
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Users U
+JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount, P.Score
+ORDER BY 
+    P.Score DESC, P.ViewCount DESC
+LIMIT 100;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">username</th><th class="">posttitle</th><th class="">postcreationdate</th><th class="">viewcount</th><th class="">score</th><th class="">commentcount</th><th class="">upvotes</th><th class="">downvotes</th></tr></thead><tbody><tr><td class="">Jonas</td><td class="">How do I list all databases and tables using psql?</td><td class="">2011-02-17 08:45:49.61</td><td class="">3260864</td><td class="">1572</td><td class="">0</td><td class="">1572</td><td class="">0</td></tr><tr><td class="">Stephane Rolland</td><td class="">List all columns for a specified table</td><td class="">2012-08-13 12:44:44.887</td><td class="">1211394</td><td class="">566</td><td class="">0</td><td class="">566</td><td class="">0</td></tr><tr><td class="">markdorison</td><td class="">How do you mysqldump specific table(s)?</td><td class="">2011-12-16 20:39:37.727</td><td class="">1042515</td><td class="">546</td><td class="">1110</td><td class="">1100</td><td class="">8</td></tr><tr><td class="">Martin Smith</td><td class="">What&#x27;s the difference between a temp table and table variable in SQL Server?</td><td class="">2012-04-11 22:22:32.08</td><td class="">259405</td><td class="">489</td><td class="">498</td><td class="">488</td><td class="">0</td></tr><tr><td class="">Stéphane</td><td class="">How do I list all schemas in PostgreSQL?</td><td class="">2013-04-15 19:19:16.907</td><td class="">844415</td><td class="">442</td><td class="">0</td><td class="">442</td><td class="">0</td></tr></tbody></table></div><p class="muted">first 5 of 100 rows</p><details><summary>Plan</summary><pre>Limit
+  GroupAggregate [Group Key=posts.score, posts.viewcount, users.displayname, posts.title, posts.creationdate]
+    Incremental Sort [Sort Key=posts.score DESC, posts.viewcount DESC, users.displayname, posts.title, posts.creationdate; Presorted Key=posts.score, posts.viewcount]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.score DESC, posts.viewcount DESC]
+            Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+              Parallel Seq Scan on votes
+              Parallel Hash
+                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                  Parallel Seq Scan on comments
+                  Parallel Hash
+                    Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 10008
++++ 13752
+@@ -1,7 +1,7 @@
+ Limit
+<span class="d">-  GroupAggregate [Group Key=posts.creationdate, posts.title, users.displayname, posts.viewcount, posts.score]</span>
+<span class="d">-    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, users.displayname, posts.viewcount, posts.score; Presorted Key=posts.creationdate, posts.title]</span>
+<span class="a">+  GroupAggregate [Group Key=posts.score, posts.viewcount, users.displayname, posts.title, posts.creationdate]</span>
+<span class="a">+    Incremental Sort [Sort Key=posts.score DESC, posts.viewcount DESC, users.displayname, posts.title, posts.creationdate; Presorted Key=posts.score, posts.viewcount]</span>
+       Nested Loop
+         Gather Merge
+<span class="d">-          Sort [Sort Key=posts.creationdate DESC, posts.title]</span>
+<span class="a">+          Sort [Sort Key=posts.score DESC, posts.viewcount DESC]</span>
+             Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+@@ -12,3 +12,3 @@
+                   Parallel Hash
+<span class="d">-                    Parallel Seq Scan on posts [Filter=(creationdate &gt;= &#x27;2023-01-01 00:00:00&#x27;)]</span>
+<span class="a">+                    Parallel Seq Scan on posts [Filter=(posttypeid = 1)]</span>
+         Memoize [Cache Key=posts.owneruserid]</pre><details><summary>SQL difference</summary><pre>--- 10008
++++ 13752
+@@ -1,25 +1,24 @@
+ SELECT 
+<span class="d">-    p.Title AS PostTitle,</span>
+<span class="d">-    u.DisplayName AS AuthorName,</span>
+<span class="d">-    p.CreationDate AS PostCreationDate,</span>
+<span class="d">-    p.ViewCount,</span>
+<span class="d">-    p.Score,</span>
+<span class="d">-    COUNT(c.Id) AS CommentCount,</span>
+<span class="d">-    COUNT(v.Id) AS VoteCount,</span>
+<span class="d">-    AVG(CASE WHEN v.VoteTypeId = 2 THEN 1.0 ELSE 0 END) AS AverageUpVotes,</span>
+<span class="d">-    AVG(CASE WHEN v.VoteTypeId = 3 THEN 1.0 ELSE 0 END) AS AverageDownVotes</span>
+<span class="a">+    U.DisplayName AS UserName, </span>
+<span class="a">+    P.Title AS PostTitle, </span>
+<span class="a">+    P.CreationDate AS PostCreationDate, </span>
+<span class="a">+    P.ViewCount, </span>
+<span class="a">+    P.Score, </span>
+<span class="a">+    COUNT(C.ID) AS CommentCount, </span>
+<span class="a">+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, </span>
+<span class="a">+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes</span>
+ FROM 
+<span class="d">-    Posts p</span>
+<span class="a">+    Users U</span>
+ JOIN 
+<span class="d">-    Users u ON p.OwnerUserId = u.Id</span>
+<span class="a">+    Posts P ON U.Id = P.OwnerUserId</span>
+ LEFT JOIN 
+<span class="d">-    Comments c ON p.Id = c.PostId</span>
+<span class="a">+    Comments C ON P.Id = C.PostId</span>
+ LEFT JOIN 
+<span class="d">-    Votes v ON p.Id = v.PostId</span>
+<span class="a">+    Votes V ON P.Id = V.PostId</span>
+ WHERE 
+<span class="d">-    p.CreationDate &gt;= &#x27;2023-01-01&#x27; </span>
+<span class="a">+    P.PostTypeId = 1 </span>
+ GROUP BY 
+<span class="d">-    p.Title, u.DisplayName, p.CreationDate, p.ViewCount, p.Score</span>
+<span class="a">+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount, P.Score</span>
+ ORDER BY 
+<span class="d">-    p.CreationDate DESC</span>
+<span class="a">+    P.Score DESC, P.ViewCount DESC</span>
+ LIMIT 100;</pre></details><h2>All 38 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">10008</td><td class="n">1</td><td class="n">1.373</td><td class="n">1.00</td><td class="n">100</td><td class="n">9</td><td class="n">121</td><td class="n">49</td><td class="">3194080e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle,
+    u.DisplayName AS AuthorName,
+    p.CreationDate AS PostCreationDate,
+    p.ViewCount,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount,
+    AVG(CASE WHEN v.VoteTypeId = 2 THEN 1.0 ELSE 0 END) AS AverageUpVotes,
+    AVG(CASE WHEN v.VoteTypeId = 3 THEN 1.0 ELSE 0 END) AS AverageDownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.CreationDate &gt;= &#x27;2023-01-01&#x27; 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate, p.ViewCount, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">13408</td><td class="n">1</td><td class="n">1.531</td><td class="n">1.12</td><td class="n">100</td><td class="n">11</td><td class="n">139</td><td class="n">49</td><td class="">c40b9988</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount,
+    p.Score AS PostScore,
+    p.ViewCount AS PostViewCount,
+    p.AnswerCount AS TotalAnswers,
+    p.FavoriteCount AS TotalFavorites,
+    p.LastActivityDate AS LastActivityDate
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.CreationDate &gt;= &#x27;2023-01-01&#x27; 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score, p.ViewCount, p.AnswerCount, p.FavoriteCount, p.LastActivityDate
+ORDER BY 
+    PostScore DESC, PostCreationDate DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">18640</td><td class="n">1</td><td class="n">3.433</td><td class="n">2.50</td><td class="n">10</td><td class="n">5</td><td class="n">318</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostCreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17560</td><td class="n">1</td><td class="n">3.446</td><td class="n">2.51</td><td class="n">10</td><td class="n">6</td><td class="n">319</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17524</td><td class="n">1</td><td class="n">3.451</td><td class="n">2.51</td><td class="n">100</td><td class="n">6</td><td class="n">322</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostDate DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">18171</td><td class="n">1</td><td class="n">3.459</td><td class="n">2.52</td><td class="n">10</td><td class="n">6</td><td class="n">320</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15812</td><td class="n">8</td><td class="n">3.461</td><td class="n">2.52</td><td class="n">10</td><td class="n">6</td><td class="n">322</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15252</td><td class="n">10</td><td class="n">3.466</td><td class="n">2.52</td><td class="n">10</td><td class="n">6</td><td class="n">321</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserDisplayName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostCreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19899</td><td class="n">1</td><td class="n">3.472</td><td class="n">2.53</td><td class="n">10</td><td class="n">6</td><td class="n">318</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16604</td><td class="n">2</td><td class="n">3.473</td><td class="n">2.53</td><td class="n">10</td><td class="n">5</td><td class="n">320</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, 
+    p.Title, 
+    p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18990</td><td class="n">1</td><td class="n">3.478</td><td class="n">2.53</td><td class="n">10</td><td class="n">5</td><td class="n">319</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15236</td><td class="n">6</td><td class="n">3.480</td><td class="n">2.53</td><td class="n">10</td><td class="n">6</td><td class="n">317</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS Author,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17398</td><td class="n">2</td><td class="n">3.488</td><td class="n">2.54</td><td class="n">10</td><td class="n">5</td><td class="n">322</td><td class="n">49</td><td class="">93e13c5a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName AS UserName,
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount
+FROM 
+    Users u
+JOIN 
+    Posts p ON u.Id = p.OwnerUserId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate
+ORDER BY 
+    PostDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16108</td><td class="n">1</td><td class="n">3.526</td><td class="n">2.57</td><td class="n">10</td><td class="n">6</td><td class="n">332</td><td class="n">49</td><td class="">fbb3c9cc</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19755</td><td class="n">1</td><td class="n">3.552</td><td class="n">2.59</td><td class="n">10</td><td class="n">5</td><td class="n">334</td><td class="n">49</td><td class="">e67fba63</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    COUNT(v.Id) AS UpVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId AND v.VoteTypeId = 2  
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18780</td><td class="n">3</td><td class="n">3.578</td><td class="n">2.61</td><td class="n">10</td><td class="n">7</td><td class="n">326</td><td class="n">49</td><td class="">fbb3c9cc</td><td class=""><details><summary>show</summary><pre>SELECT
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM
+    Posts p
+JOIN
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN
+    Comments c ON p.Id = c.PostId
+LEFT JOIN
+    Votes v ON p.Id = v.PostId
+WHERE
+    p.PostTypeId = 1 
+GROUP BY
+    u.DisplayName, p.Title, p.CreationDate, p.Score
+ORDER BY
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15294</td><td class="n">1</td><td class="n">3.593</td><td class="n">2.62</td><td class="n">10</td><td class="n">8</td><td class="n">325</td><td class="n">49</td><td class="">c2ba41f9</td><td class=""><details><summary>show</summary><pre>SELECT 
+    u.DisplayName,
+    p.Title,
+    p.CreationDate,
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    u.DisplayName, p.Title, p.CreationDate, p.Score, p.ViewCount
+ORDER BY 
+    p.Score DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15185</td><td class="n">2</td><td class="n">3.595</td><td class="n">2.62</td><td class="n">10</td><td class="n">5</td><td class="n">334</td><td class="n">49</td><td class="">366b2149</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    COUNT(DISTINCT v.Id) AS VoteCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15434</td><td class="n">4</td><td class="n">3.606</td><td class="n">2.63</td><td class="n">10</td><td class="n">5</td><td class="n">335</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">15012</td><td class="n">29</td><td class="n">3.617</td><td class="n">2.63</td><td class="n">10</td><td class="n">5</td><td class="n">338</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16329</td><td class="n">3</td><td class="n">3.618</td><td class="n">2.63</td><td class="n">10</td><td class="n">5</td><td class="n">333</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName,
+    COUNT(c.Id) AS CommentCount,
+    COUNT(v.Id) AS VoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14503</td><td class="n">1</td><td class="n">3.622</td><td class="n">2.64</td><td class="n">100</td><td class="n">6</td><td class="n">333</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">15123</td><td class="n">5</td><td class="n">3.626</td><td class="n">2.64</td><td class="n">10</td><td class="n">6</td><td class="n">334</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Owner,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">19483</td><td class="n">1</td><td class="n">3.629</td><td class="n">2.64</td><td class="n">10</td><td class="n">5</td><td class="n">336</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.CreationDate, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, u.DisplayName, p.CreationDate
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18146</td><td class="n">1</td><td class="n">3.631</td><td class="n">2.64</td><td class="n">10</td><td class="n">6</td><td class="n">335</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS PostTitle,
+    p.CreationDate AS PostDate,
+    u.DisplayName AS OwnerName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16644</td><td class="n">1</td><td class="n">3.638</td><td class="n">2.65</td><td class="n">10</td><td class="n">6</td><td class="n">339</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Owner,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpvoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownvoteCount
+FROM 
+    Posts p
+INNER JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15005</td><td class="n">88</td><td class="n">3.638</td><td class="n">2.65</td><td class="n">10</td><td class="n">6</td><td class="n">339</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15224</td><td class="n">10</td><td class="n">3.638</td><td class="n">2.65</td><td class="n">10</td><td class="n">5</td><td class="n">334</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16138</td><td class="n">1</td><td class="n">3.638</td><td class="n">2.65</td><td class="n">10</td><td class="n">5</td><td class="n">334</td><td class="n">49</td><td class="">418f38a3</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    v.VoteTypeId, 
+    COUNT(c.Id) AS CommentCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, v.VoteTypeId
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18351</td><td class="n">2</td><td class="n">3.646</td><td class="n">2.66</td><td class="n">10</td><td class="n">6</td><td class="n">340</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT p.Title, p.CreationDate, u.DisplayName, 
+       COUNT(c.Id) AS CommentCount, 
+       SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+       SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN Comments c ON p.Id = c.PostId 
+LEFT JOIN Votes v ON p.Id = v.PostId 
+WHERE p.PostTypeId = 1 
+GROUP BY p.Title, p.CreationDate, u.DisplayName 
+ORDER BY p.CreationDate DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">17310</td><td class="n">4</td><td class="n">3.647</td><td class="n">2.66</td><td class="n">10</td><td class="n">6</td><td class="n">333</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    P.Title,
+    U.DisplayName AS Author,
+    P.CreationDate,
+    COUNT(C.Id) AS CommentCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    P.Title, U.DisplayName, P.CreationDate
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15080</td><td class="n">10</td><td class="n">3.651</td><td class="n">2.66</td><td class="n">10</td><td class="n">6</td><td class="n">328</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    COALESCE(SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END), 0) AS UpVotes,  
+    COALESCE(SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END), 0) AS DownVotes  
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16039</td><td class="n">2</td><td class="n">3.663</td><td class="n">2.67</td><td class="n">10</td><td class="n">5</td><td class="n">333</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19984</td><td class="n">1</td><td class="n">3.687</td><td class="n">2.68</td><td class="n">10</td><td class="n">6</td><td class="n">333</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON c.PostId = p.Id
+LEFT JOIN 
+    Votes v ON v.PostId = p.Id
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18638</td><td class="n">1</td><td class="n">3.815</td><td class="n">2.78</td><td class="n">10</td><td class="n">5</td><td class="n">347</td><td class="n">49</td><td class="">af22707c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(v.vote_value) AS TotalVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    (SELECT 
+        PostId, 
+        CASE 
+            WHEN VoteTypeId = 2 THEN 1 
+            WHEN VoteTypeId = 3 THEN -1 
+            ELSE 0 
+        END AS vote_value
+     FROM 
+        Votes) v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16675</td><td class="n">1</td><td class="n">3.849</td><td class="n">2.80</td><td class="n">10</td><td class="n">8</td><td class="n">353</td><td class="n">49</td><td class="">b03c80a5</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score,
+    p.ViewCount,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName, p.Score, p.ViewCount
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10855</td><td class="n">1</td><td class="n">4.143</td><td class="n">3.02</td><td class="n">100</td><td class="n">8</td><td class="n">365</td><td class="n">49</td><td class="">9dd1e75a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.Title AS Post_Title,
+    p.CreationDate AS Post_Creation_Date,
+    p.ViewCount AS Post_View_Count,
+    p.Score AS Post_Score,
+    u.DisplayName AS Owner_Display_Name,
+    COUNT(c.Id) AS Comment_Count,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS Upvote_Count,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS Downvote_Count
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, p.ViewCount, p.Score, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">13752</td><td class="n">1</td><td class="n">5.303</td><td class="n">3.86</td><td class="n">100</td><td class="n">8</td><td class="n">472</td><td class="n">49</td><td class="">baded529</td><td class=""><details><summary>show</summary><pre>SELECT 
+    U.DisplayName AS UserName, 
+    P.Title AS PostTitle, 
+    P.CreationDate AS PostCreationDate, 
+    P.ViewCount, 
+    P.Score, 
+    COUNT(C.ID) AS CommentCount, 
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Users U
+JOIN 
+    Posts P ON U.Id = P.OwnerUserId
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    U.DisplayName, P.Title, P.CreationDate, P.ViewCount, P.Score
+ORDER BY 
+    P.Score DESC, P.ViewCount DESC
+LIMIT 100;</pre></details></td></tr></tbody></table></div></main></div></body></html>

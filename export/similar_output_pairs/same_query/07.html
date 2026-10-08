@@ -1,0 +1,563 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same query #7 — query 15033</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="on">Same query</a></nav></header><div class="wrap"><aside><a href="../same_query/01.html" class=""><span class="r">#1</span>query 15027<span class="x">156×</span></a><a href="../same_query/02.html" class=""><span class="r">#2</span>query 15034<span class="x">146×</span></a><a href="../same_query/03.html" class=""><span class="r">#3</span>query 15005<span class="x">88×</span></a><a href="../same_query/04.html" class=""><span class="r">#4</span>query 15054<span class="x">83×</span></a><a href="../same_query/05.html" class=""><span class="r">#5</span>query 15008<span class="x">73×</span></a><a href="../same_query/06.html" class=""><span class="r">#6</span>query 15010<span class="x">72×</span></a><a href="../same_query/07.html" class="on"><span class="r">#7</span>query 15033<span class="x">69×</span></a><a href="../same_query/08.html" class=""><span class="r">#8</span>query 15015<span class="x">64×</span></a><a href="../same_query/09.html" class=""><span class="r">#9</span>query 15049<span class="x">50×</span></a><a href="../same_query/10.html" class=""><span class="r">#10</span>query 15157<span class="x">50×</span></a><a href="../same_query/11.html" class=""><span class="r">#11</span>query 15011<span class="x">49×</span></a><a href="../same_query/12.html" class=""><span class="r">#12</span>query 15059<span class="x">47×</span></a><a href="../same_query/13.html" class=""><span class="r">#13</span>query 10018<span class="x">37×</span></a><a href="../same_query/14.html" class=""><span class="r">#14</span>query 10085<span class="x">37×</span></a><a href="../same_query/15.html" class=""><span class="r">#15</span>query 15013<span class="x">34×</span></a><a href="../same_query/16.html" class=""><span class="r">#16</span>query 15078<span class="x">34×</span></a><a href="../same_query/17.html" class=""><span class="r">#17</span>query 15265<span class="x">33×</span></a><a href="../same_query/18.html" class=""><span class="r">#18</span>query 15305<span class="x">33×</span></a><a href="../same_query/19.html" class=""><span class="r">#19</span>query 15075<span class="x">30×</span></a><a href="../same_query/20.html" class=""><span class="r">#20</span>query 15012<span class="x">29×</span></a></aside><main><h1>Same query #7: query 15033 — 69 copies</h1><div class="sub">copies of one SQL text (same sqlglot canonical form): the largest copy sets. Copies are the same work measured several times, so their energy spread is the measurement noise (model σ at the median: 0.005 J, laptop 2 slope energy).</div><div class="cards"><div class="card"><div class="k">copies</div><div class="v">69</div></div><div class="card"><div class="k">with energy</div><div class="v">69</div></div><div class="card"><div class="k">energy min</div><div class="v">0.572 J</div></div><div class="card"><div class="k">median</div><div class="v">0.578 J</div></div><div class="card"><div class="k">max</div><div class="v">0.593 J</div></div><div class="card"><div class="k">spread</div><div class="v">1.037×</div></div><div class="card"><div class="k">furthest copy</div><div class="v">2.8 σ</div></div><div class="card"><div class="k">distinct SQL texts</div><div class="v">35</div></div><div class="card"><div class="k">distinct outputs</div><div class="v">1</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div></div><p>Copies: 15033 15093 15121 15216 15268 15306 15320 15376 15391 15411 15489 15602 15722 15750 15832 15853 15922 15985 16056 16174 16269 16335 16368 16399 16420 16457 16462 16652 16718 16738 16774 16788 16807 16851 16853 17300 17314 17359 17402 17409 17504 17510 17515 17532 17610 17717 17792 17813 17939 18136 18220 18246 18280 18418 18500 18779 18811 18996 19003 19093 19141 19153 19165 19435 19689 19736 19780 19910 19935</p><p>Compared with T1 (the text most copies use), the other texts differ in:</p><ul><li>15 texts: names (table aliases, output column names or CTE names), besides any whitespace, comment or case changes</li><li>11 texts: only whitespace / line breaks</li><li>7 texts: only whitespace, comments and upper/lower case</li><li>1 text: only whitespace and comments</li></ul><h2>Every copy</h2><div class="scroll"><table class=""><thead><tr><th class="">query</th><th class="">SQL text</th><th class="n">energy (J)</th><th class="n">σ from median</th><th class="n">rows</th><th class="">same output</th><th class="">same plan</th><th class="n">plan ms</th></tr></thead><tbody><tr><td class="">15033</td><td class="">T8</td><td class="n">0.572</td><td class="n">-1.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">15093</td><td class="">T5</td><td class="n">0.577</td><td class="n">-0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15121</td><td class="">T6</td><td class="n">0.575</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15216</td><td class="">T2</td><td class="n">0.574</td><td class="n">-0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15268</td><td class="">T3</td><td class="n">0.582</td><td class="n">+0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">15306</td><td class="">T1</td><td class="n">0.576</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15320</td><td class="">T2</td><td class="n">0.580</td><td class="n">+0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15376</td><td class="">T9</td><td class="n">0.585</td><td class="n">+1.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15391</td><td class="">T4</td><td class="n">0.592</td><td class="n">+2.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">15411</td><td class="">T10</td><td class="n">0.576</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">38</td></tr><tr><td class="">15489</td><td class="">T11</td><td class="n">0.574</td><td class="n">-0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15602</td><td class="">T12</td><td class="n">0.577</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">15722</td><td class="">T5</td><td class="n">0.575</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">15750</td><td class="">T2</td><td class="n">0.585</td><td class="n">+1.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15832</td><td class="">T1</td><td class="n">0.581</td><td class="n">+0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">38</td></tr><tr><td class="">15853</td><td class="">T13</td><td class="n">0.578</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15922</td><td class="">T14</td><td class="n">0.576</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">15985</td><td class="">T5</td><td class="n">0.581</td><td class="n">+0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16056</td><td class="">T1</td><td class="n">0.580</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16174</td><td class="">T15</td><td class="n">0.574</td><td class="n">-0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16269</td><td class="">T7</td><td class="n">0.575</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">16335</td><td class="">T16</td><td class="n">0.576</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16368</td><td class="">T17</td><td class="n">0.580</td><td class="n">+0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16399</td><td class="">T4</td><td class="n">0.576</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16420</td><td class="">T1</td><td class="n">0.582</td><td class="n">+0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16457</td><td class="">T6</td><td class="n">0.585</td><td class="n">+1.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16462</td><td class="">T18</td><td class="n">0.574</td><td class="n">-0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">16652</td><td class="">T19</td><td class="n">0.574</td><td class="n">-0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16718</td><td class="">T4</td><td class="n">0.575</td><td class="n">-0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16738</td><td class="">T4</td><td class="n">0.582</td><td class="n">+0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">38</td></tr><tr><td class="">16774</td><td class="">T1</td><td class="n">0.584</td><td class="n">+1.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">16788</td><td class="">T2</td><td class="n">0.579</td><td class="n">+0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">16807</td><td class="">T20</td><td class="n">0.573</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">16851</td><td class="">T6</td><td class="n">0.584</td><td class="n">+1.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">16853</td><td class="">T4</td><td class="n">0.576</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17300</td><td class="">T21</td><td class="n">0.577</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17314</td><td class="">T22</td><td class="n">0.576</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17359</td><td class="">T23</td><td class="n">0.584</td><td class="n">+1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17402</td><td class="">T6</td><td class="n">0.578</td><td class="n">+0.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17409</td><td class="">T1</td><td class="n">0.584</td><td class="n">+1.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">17504</td><td class="">T2</td><td class="n">0.572</td><td class="n">-1.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17510</td><td class="">T24</td><td class="n">0.575</td><td class="n">-0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17515</td><td class="">T25</td><td class="n">0.579</td><td class="n">+0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17532</td><td class="">T26</td><td class="n">0.580</td><td class="n">+0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17610</td><td class="">T7</td><td class="n">0.591</td><td class="n">+2.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">17717</td><td class="">T27</td><td class="n">0.577</td><td class="n">-0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17792</td><td class="">T3</td><td class="n">0.582</td><td class="n">+0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17813</td><td class="">T3</td><td class="n">0.578</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">17939</td><td class="">T8</td><td class="n">0.578</td><td class="n">+0.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">18136</td><td class="">T28</td><td class="n">0.575</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">18220</td><td class="">T3</td><td class="n">0.577</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">18246</td><td class="">T3</td><td class="n">0.583</td><td class="n">+1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">18280</td><td class="">T2</td><td class="n">0.591</td><td class="n">+2.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">18418</td><td class="">T5</td><td class="n">0.581</td><td class="n">+0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">18500</td><td class="">T1</td><td class="n">0.579</td><td class="n">+0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">18779</td><td class="">T2</td><td class="n">0.577</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">18811</td><td class="">T3</td><td class="n">0.581</td><td class="n">+0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">18996</td><td class="">T29</td><td class="n">0.578</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">19003</td><td class="">T1</td><td class="n">0.583</td><td class="n">+0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">19093</td><td class="">T30</td><td class="n">0.580</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">19141</td><td class="">T9</td><td class="n">0.579</td><td class="n">+0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">19153</td><td class="">T31</td><td class="n">0.585</td><td class="n">+1.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">19165</td><td class="">T32</td><td class="n">0.576</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">19435</td><td class="">T1</td><td class="n">0.588</td><td class="n">+1.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">39</td></tr><tr><td class="">19689</td><td class="">T33</td><td class="n">0.576</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">19736</td><td class="">T3</td><td class="n">0.577</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">19780</td><td class="">T34</td><td class="n">0.574</td><td class="n">-0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">40</td></tr><tr><td class="">19910</td><td class="">T35</td><td class="n">0.579</td><td class="n">+0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">38</td></tr><tr><td class="">19935</td><td class="">T7</td><td class="n">0.593</td><td class="n">+2.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">38</td></tr></tbody></table></div><h2>The 35 distinct SQL texts</h2><div class="texts"><div class="q"><h3>T1 <span class="muted">— 9 copies: 15306 15832 16056 16420 16774 17409 18500 19003 19435</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T2 <span class="muted">— 7 copies: 15216 15320 15750 16788 17504 18280 18779</span></h3><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T3 <span class="muted">— 7 copies: 15268 17792 17813 18220 18246 18811 19736</span></h3><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T4 <span class="muted">— 5 copies: 15391 16399 16718 16738 16853</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T5 <span class="muted">— 4 copies: 15093 15722 15985 18418</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T6 <span class="muted">— 4 copies: 15121 16457 16851 17402</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T7 <span class="muted">— 3 copies: 16269 17610 19935</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T8 <span class="muted">— 2 copies: 15033 17939</span></h3><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.Score, 
+    P.ViewCount 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T9 <span class="muted">— 2 copies: 15376 19141</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    p.Score, 
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T10 <span class="muted">— 1 copy: 15411</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T11 <span class="muted">— 1 copy: 15489</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Owner, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T12 <span class="muted">— 1 copy: 15602</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T13 <span class="muted">— 1 copy: 15853</span></h3><pre>SELECT p.Id AS PostId, 
+       p.Title, 
+       p.CreationDate, 
+       u.DisplayName AS Author, 
+       p.Score, 
+       p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T14 <span class="muted">— 1 copy: 15922</span></h3><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS AuthorName,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T15 <span class="muted">— 1 copy: 16174</span></h3><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T16 <span class="muted">— 1 copy: 16335</span></h3><pre>SELECT
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount
+FROM
+    Posts p
+JOIN
+    Users u ON p.OwnerUserId = u.Id
+WHERE
+    p.PostTypeId = 1 
+ORDER BY
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T17 <span class="muted">— 1 copy: 16368</span></h3><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.Score, 
+    P.ViewCount 
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T18 <span class="muted">— 1 copy: 16462</span></h3><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.Score, 
+    P.ViewCount 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1  
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T19 <span class="muted">— 1 copy: 16652</span></h3><pre>SELECT 
+    P.Id AS PostId,
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS OwnerDisplayName,
+    P.Score,
+    P.ViewCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T20 <span class="muted">— 1 copy: 16807</span></h3><pre>SELECT 
+    p.Id AS PostID,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T21 <span class="muted">— 1 copy: 17300</span></h3><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerDisplayName, 
+    P.Score, 
+    P.ViewCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T22 <span class="muted">— 1 copy: 17314</span></h3><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS Owner, 
+    P.Score, 
+    P.ViewCount 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T23 <span class="muted">— 1 copy: 17359</span></h3><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T24 <span class="muted">— 1 copy: 17510</span></h3><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS Owner, 
+    P.Score,
+    P.ViewCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T25 <span class="muted">— 1 copy: 17515</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 /* Only Questions */ 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T26 <span class="muted">— 1 copy: 17532</span></h3><pre>SELECT 
+    p.Id AS PostId,
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerName,
+    p.Score,
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T27 <span class="muted">— 1 copy: 17717</span></h3><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerName, 
+    P.Score, 
+    P.ViewCount 
+FROM 
+    Posts P 
+JOIN 
+    Users U ON P.OwnerUserId = U.Id 
+WHERE 
+    P.PostTypeId = 1 
+ORDER BY 
+    P.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T28 <span class="muted">— 1 copy: 18136</span></h3><pre>SELECT p.Id AS PostId, p.Title, p.CreationDate, u.DisplayName AS OwnerName, p.Score, p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T29 <span class="muted">— 1 copy: 18996</span></h3><pre>SELECT 
+    P.Id AS PostId, 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS Author, 
+    P.Score, 
+    P.ViewCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1  
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T30 <span class="muted">— 1 copy: 19093</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T31 <span class="muted">— 1 copy: 19153</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Owner, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T32 <span class="muted">— 1 copy: 19165</span></h3><pre>SELECT 
+    p.Id AS PostId, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    p.Score, 
+    p.ViewCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+WHERE 
+    p.PostTypeId = 1 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T33 <span class="muted">— 1 copy: 19689</span></h3><pre>SELECT 
+    P.Id AS PostId,
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS OwnerDisplayName,
+    P.Score,
+    P.ViewCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+WHERE 
+    P.PostTypeId = 1  
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T34 <span class="muted">— 1 copy: 19780</span></h3><pre>SELECT 
+    p.Id AS PostID, 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    p.Score, 
+    p.ViewCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+WHERE 
+    p.PostTypeId = 1  
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T35 <span class="muted">— 1 copy: 19910</span></h3><pre>SELECT p.Id AS PostId, 
+       p.Title, 
+       p.CreationDate, 
+       u.DisplayName AS OwnerDisplayName, 
+       p.Score, 
+       p.ViewCount
+FROM Posts p
+JOIN Users u ON p.OwnerUserId = u.Id
+WHERE p.PostTypeId = 1 
+ORDER BY p.CreationDate DESC
+LIMIT 10;</pre></div></div><h2>Output (query 15033)</h2><div class="scroll"><table class="out"><thead><tr><th class="">postid</th><th class="">title</th><th class="">creationdate</th><th class="">ownerdisplayname</th><th class="">score</th><th class="">viewcount</th></tr></thead><tbody><tr><td class="">342707</td><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?</td><td class="">2024-09-30 22:49:25.743</td><td class="">J. Mini</td><td class="">0</td><td class="">50</td></tr><tr><td class="">342706</td><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class="">2024-09-30 22:05:14.587</td><td class="">Lucas David Ferrero</td><td class="">2</td><td class="">19</td></tr><tr><td class="">342704</td><td class="">Varbinary column taking lots of space</td><td class="">2024-09-30 18:22:14.783</td><td class="">PhillysDBA</td><td class="">-1</td><td class="">36</td></tr><tr><td class="">342703</td><td class="">Which DSE version is compatible to import Cassandra 4.x SSTables?</td><td class="">2024-09-30 17:53:03.78</td><td class="">Nahush</td><td class="">0</td><td class="">29</td></tr><tr><td class="">342702</td><td class="">Show SQL Execution Plan on Trace Replay</td><td class="">2024-09-30 16:38:40.863</td><td class="">Neil Laslett</td><td class="">0</td><td class="">34</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Nested Loop
+    Gather Merge
+      Sort [Sort Key=posts.creationdate DESC]
+        Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+    Memoize [Cache Key=posts.owneruserid]
+      Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></main></div></body></html>

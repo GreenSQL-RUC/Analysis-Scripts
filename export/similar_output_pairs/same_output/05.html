@@ -1,0 +1,421 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same output #5 — 5949 vs 32588</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="on">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_output/01.html" class=""><span class="r">#1</span>8669 vs 9931<span class="x">9.48×</span></a><a href="../same_output/02.html" class=""><span class="r">#2</span>12226 vs 14153<span class="x">8.81×</span></a><a href="../same_output/03.html" class=""><span class="r">#3</span>10271 vs 11575<span class="x">6.96×</span></a><a href="../same_output/04.html" class=""><span class="r">#4</span>11137 vs 14426<span class="x">6.28×</span></a><a href="../same_output/05.html" class="on"><span class="r">#5</span>5949 vs 32588<span class="x">5.94×</span></a><a href="../same_output/06.html" class=""><span class="r">#6</span>9422 vs 8123<span class="x">4.80×</span></a><a href="../same_output/07.html" class=""><span class="r">#7</span>15743 vs 16677<span class="x">4.48×</span></a><a href="../same_output/08.html" class=""><span class="r">#8</span>15388 vs 15893<span class="x">3.48×</span></a><a href="../same_output/09.html" class=""><span class="r">#9</span>16659 vs 17956<span class="x">3.15×</span></a><a href="../same_output/10.html" class=""><span class="r">#10</span>16513 vs 17599<span class="x">3.05×</span></a><a href="../same_output/11.html" class=""><span class="r">#11</span>10096 vs 13887<span class="x">2.93×</span></a><a href="../same_output/12.html" class=""><span class="r">#12</span>871 vs 9903<span class="x">2.93×</span></a><a href="../same_output/13.html" class=""><span class="r">#13</span>19557 vs 18654<span class="x">2.67×</span></a><a href="../same_output/14.html" class=""><span class="r">#14</span>18510 vs 17397<span class="x">2.62×</span></a><a href="../same_output/15.html" class=""><span class="r">#15</span>17350 vs 15577<span class="x">2.56×</span></a><a href="../same_output/16.html" class=""><span class="r">#16</span>18541 vs 15662<span class="x">2.53×</span></a><a href="../same_output/17.html" class=""><span class="r">#17</span>18603 vs 19785<span class="x">2.39×</span></a><a href="../same_output/18.html" class=""><span class="r">#18</span>9312 vs 6530<span class="x">2.35×</span></a><a href="../same_output/19.html" class=""><span class="r">#19</span>15403 vs 18524<span class="x">2.32×</span></a><a href="../same_output/20.html" class=""><span class="r">#20</span>19156 vs 16383<span class="x">2.27×</span></a></aside><main><h1>Same output #5: 5949 vs 32588 — 5.94×</h1><div class="sub">same output (same rows: identical, renamed or reordered columns, reordered rows); plans may differ. Ranked 5 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">2</div></div><div class="card"><div class="k">query files</div><div class="v">2</div></div><div class="card"><div class="k">energy min</div><div class="v">1.246 J</div></div><div class="card"><div class="k">median</div><div class="v">4.322 J</div></div><div class="card"><div class="k">max</div><div class="v">7.397 J</div></div><div class="card"><div class="k">gap</div><div class="v">5.94×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">2</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 5949</h3><dl class="f"><dt>energy</dt><dd>1.246 J ± 0.011</dd><dt>output</dt><dd>27 rows, 9 columns</dd><dt>plan</dt><dd>180 ms, 16 nodes, 41 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.Score,
+        p.CreationDate,
+        p.ViewCount,
+        p.OwnerUserId,
+        ROW_NUMBER() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC, p.ViewCount DESC) AS PostRank
+    FROM Posts p
+    WHERE p.PostTypeId = 1 
+),
+UserReputation AS (
+    SELECT 
+        u.Id AS UserId,
+        u.Reputation,
+        u.DisplayName,
+        COUNT(b.Id) AS BadgeCount
+    FROM Users u
+    LEFT JOIN Badges b ON u.Id = b.UserId
+    GROUP BY u.Id, u.Reputation, u.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        ur.UserId,
+        ur.Reputation,
+        ur.DisplayName,
+        ur.BadgeCount
+    FROM UserReputation ur
+    WHERE ur.Reputation &gt; 1000 
+    ORDER BY ur.Reputation DESC
+    LIMIT 10 
+)
+SELECT 
+    tp.UserId,
+    tp.DisplayName,
+    tp.Reputation,
+    tp.BadgeCount,
+    rp.PostId,
+    rp.Title,
+    rp.Score,
+    rp.CreationDate,
+    rp.ViewCount
+FROM TopUsers tp
+JOIN RankedPosts rp ON tp.UserId = rp.OwnerUserId
+WHERE rp.PostRank &lt;= 3 
+ORDER BY tp.Reputation DESC, rp.Score DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">userid</th><th class="">displayname</th><th class="">reputation</th><th class="">badgecount</th><th class="">postid</th><th class="">title</th><th class="">score</th><th class="">creationdate</th><th class="">viewcount</th></tr></thead><tbody><tr><td class="">877</td><td class="">RolandoMySQLDBA</td><td class="">183985</td><td class="">880</td><td class="">13361</td><td class="">MySQL : Why are there &quot;test&quot; entries in mysql.db?</td><td class="">36</td><td class="">2012-02-17 20:33:57.767</td><td class="">9471</td></tr><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">181258</td><td class="">1048</td><td class="">48052</td><td class="">What event information can I get by default from SQL Server?</td><td class="">64</td><td class="">2013-08-13 16:14:58.167</td><td class="">23338</td></tr><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">181258</td><td class="">1048</td><td class="">90033</td><td class="">How do I drop all constraints from all tables?</td><td class="">37</td><td class="">2015-01-23 18:08:51.587</td><td class="">83700</td></tr><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">181258</td><td class="">1048</td><td class="">166771</td><td class="">What date/time literal formats are LANGUAGE and DATEFORMAT safe?</td><td class="">29</td><td class="">2017-03-10 02:47:32.743</td><td class="">8177</td></tr><tr><td class="">3684</td><td class="">Erwin Brandstetter</td><td class="">180111</td><td class="">1091</td><td class="">16409</td><td class="">USING construct in JOIN clause can introduce optimization barriers in certain cases?</td><td class="">40</td><td class="">2012-04-12 08:06:54.72</td><td class="">18340</td></tr></tbody></table></div><p class="muted">first 5 of 27 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=q.reputation DESC, posts.score DESC]
+  Merge Join [Merge Cond=(posts.owneruserid = q.userid)]
+    WindowAgg [Run Condition=(row_number() OVER w1 &lt;= 3); Window=w1 AS (PARTITION BY posts.owneruserid ORDER BY posts.score, posts.viewcount ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=posts.owneruserid, posts.score DESC, posts.viewcount DESC]
+        Seq Scan on posts [Filter=(posttypeid = 1)]
+    Sort [Sort Key=q.userid]
+      Subquery Scan
+        Limit
+          Sort [Sort Key=users.reputation DESC]
+            GroupAggregate [Group Key=users.id]
+              Gather Merge
+                Sort [Sort Key=users.id]
+                  Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]
+                    Parallel Seq Scan on badges
+                    Parallel Hash
+                      Parallel Seq Scan on users [Filter=(reputation &gt; 1000)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 32588</h3><dl class="f"><dt>energy</dt><dd>7.397 J ± 0.066</dd><dt>output</dt><dd>27 rows, 9 columns</dd><dt>plan</dt><dd>767 ms, 19 nodes, 51 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        ROW_NUMBER() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank,
+        p.OwnerUserId
+    FROM 
+        Posts p
+    WHERE 
+        p.PostTypeId = 1 
+),
+UserBadges AS (
+    SELECT 
+        u.Id AS UserId,
+        COUNT(b.Id) AS TotalBadges,
+        SUM(CASE WHEN b.Class = 1 THEN 1 ELSE 0 END) AS GoldBadges,
+        SUM(CASE WHEN b.Class = 2 THEN 1 ELSE 0 END) AS SilverBadges,
+        SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges
+    FROM 
+        Users u
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    GROUP BY 
+        u.Id
+),
+TopUsers AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        u.Reputation,
+        COALESCE(ub.TotalBadges, 0) AS BadgeCount,
+        COALESCE(ub.GoldBadges, 0) AS GoldBadges,
+        COALESCE(ub.SilverBadges, 0) AS SilverBadges,
+        COALESCE(ub.BronzeBadges, 0) AS BronzeBadges
+    FROM 
+        Users u
+    LEFT JOIN 
+        UserBadges ub ON u.Id = ub.UserId
+    ORDER BY 
+        u.Reputation DESC
+    LIMIT 10
+)
+SELECT 
+    tu.UserId,
+    tu.DisplayName,
+    tu.Reputation,
+    tu.BadgeCount,
+    rp.PostId,
+    rp.Title,
+    rp.CreationDate,
+    rp.Score,
+    rp.ViewCount
+FROM 
+    TopUsers tu
+LEFT JOIN 
+    RankedPosts rp ON tu.UserId = rp.OwnerUserId
+WHERE 
+    rp.Rank &lt;= 3 
+ORDER BY 
+    tu.Reputation DESC, rp.Score DESC;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">userid</th><th class="">displayname</th><th class="">reputation</th><th class="">badgecount</th><th class="">postid</th><th class="">title</th><th class="">creationdate</th><th class="">score</th><th class="">viewcount</th></tr></thead><tbody><tr><td class="">877</td><td class="">RolandoMySQLDBA</td><td class="">183985</td><td class="">880</td><td class="">13361</td><td class="">MySQL : Why are there &quot;test&quot; entries in mysql.db?</td><td class="">2012-02-17 20:33:57.767</td><td class="">36</td><td class="">9471</td></tr><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">181258</td><td class="">1048</td><td class="">48052</td><td class="">What event information can I get by default from SQL Server?</td><td class="">2013-08-13 16:14:58.167</td><td class="">64</td><td class="">23338</td></tr><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">181258</td><td class="">1048</td><td class="">90033</td><td class="">How do I drop all constraints from all tables?</td><td class="">2015-01-23 18:08:51.587</td><td class="">37</td><td class="">83700</td></tr><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">181258</td><td class="">1048</td><td class="">166771</td><td class="">What date/time literal formats are LANGUAGE and DATEFORMAT safe?</td><td class="">2017-03-10 02:47:32.743</td><td class="">29</td><td class="">8177</td></tr><tr><td class="">3684</td><td class="">Erwin Brandstetter</td><td class="">180111</td><td class="">1091</td><td class="">16409</td><td class="">USING construct in JOIN clause can introduce optimization barriers in certain cases?</td><td class="">2012-04-12 08:06:54.72</td><td class="">40</td><td class="">18340</td></tr></tbody></table></div><p class="muted">first 5 of 27 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=q.reputation DESC, posts.score DESC]
+  Merge Join [Merge Cond=(posts.owneruserid = q.userid)]
+    WindowAgg [Run Condition=(row_number() OVER w1 &lt;= 3); Window=w1 AS (PARTITION BY posts.owneruserid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=posts.owneruserid, posts.score DESC, posts.creationdate DESC]
+        Seq Scan on posts [Filter=(posttypeid = 1)]
+    Sort [Sort Key=q.userid]
+      Subquery Scan
+        Limit
+          Gather Merge
+            Sort [Sort Key=users.reputation DESC]
+              Hash Left Join [Hash Cond=(users.id = q.userid)]
+                Parallel Seq Scan on users
+                Hash
+                  Subquery Scan
+                    HashAggregate [Group Key=users.id]
+                      Hash Right Join [Hash Cond=(badges.userid = users.id)]
+                        Seq Scan on badges
+                        Hash
+                          Index Only Scan on users</pre></details></div></div><h2>Plan difference</h2><pre>--- 5949
++++ 32588
+@@ -2,4 +2,4 @@
+   Merge Join [Merge Cond=(posts.owneruserid = q.userid)]
+<span class="d">-    WindowAgg [Run Condition=(row_number() OVER w1 &lt;= 3); Window=w1 AS (PARTITION BY posts.owneruserid ORDER BY posts.score, posts.viewcount ROWS UNBOUNDED PRECEDING)]</span>
+<span class="d">-      Sort [Sort Key=posts.owneruserid, posts.score DESC, posts.viewcount DESC]</span>
+<span class="a">+    WindowAgg [Run Condition=(row_number() OVER w1 &lt;= 3); Window=w1 AS (PARTITION BY posts.owneruserid ORDER BY posts.score, posts.creationdate ROWS UNBOUNDED PRECEDING)]</span>
+<span class="a">+      Sort [Sort Key=posts.owneruserid, posts.score DESC, posts.creationdate DESC]</span>
+         Seq Scan on posts [Filter=(posttypeid = 1)]
+@@ -8,9 +8,12 @@
+         Limit
+<span class="d">-          Sort [Sort Key=users.reputation DESC]</span>
+<span class="d">-            GroupAggregate [Group Key=users.id]</span>
+<span class="d">-              Gather Merge</span>
+<span class="d">-                Sort [Sort Key=users.id]</span>
+<span class="d">-                  Parallel Hash Right Join [Hash Cond=(badges.userid = users.id)]</span>
+<span class="d">-                    Parallel Seq Scan on badges</span>
+<span class="d">-                    Parallel Hash</span>
+<span class="d">-                      Parallel Seq Scan on users [Filter=(reputation &gt; 1000)]</span>
+<span class="a">+          Gather Merge</span>
+<span class="a">+            Sort [Sort Key=users.reputation DESC]</span>
+<span class="a">+              Hash Left Join [Hash Cond=(users.id = q.userid)]</span>
+<span class="a">+                Parallel Seq Scan on users</span>
+<span class="a">+                Hash</span>
+<span class="a">+                  Subquery Scan</span>
+<span class="a">+                    HashAggregate [Group Key=users.id]</span>
+<span class="a">+                      Hash Right Join [Hash Cond=(badges.userid = users.id)]</span>
+<span class="a">+                        Seq Scan on badges</span>
+<span class="a">+                        Hash</span>
+<span class="a">+                          Index Only Scan on users</span></pre><details><summary>SQL difference</summary><pre>--- 5949
++++ 32588
+@@ -4,19 +4,25 @@
+         p.Title,
+<span class="a">+        p.CreationDate,</span>
+         p.Score,
+<span class="d">-        p.CreationDate,</span>
+         p.ViewCount,
+<span class="d">-        p.OwnerUserId,</span>
+<span class="d">-        ROW_NUMBER() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC, p.ViewCount DESC) AS PostRank</span>
+<span class="d">-    FROM Posts p</span>
+<span class="d">-    WHERE p.PostTypeId = 1 </span>
+<span class="a">+        ROW_NUMBER() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank,</span>
+<span class="a">+        p.OwnerUserId</span>
+<span class="a">+    FROM </span>
+<span class="a">+        Posts p</span>
+<span class="a">+    WHERE </span>
+<span class="a">+        p.PostTypeId = 1 </span>
+ ),
+<span class="d">-UserReputation AS (</span>
+<span class="a">+UserBadges AS (</span>
+     SELECT 
+         u.Id AS UserId,
+<span class="d">-        u.Reputation,</span>
+<span class="d">-        u.DisplayName,</span>
+<span class="d">-        COUNT(b.Id) AS BadgeCount</span>
+<span class="d">-    FROM Users u</span>
+<span class="d">-    LEFT JOIN Badges b ON u.Id = b.UserId</span>
+<span class="d">-    GROUP BY u.Id, u.Reputation, u.DisplayName</span>
+<span class="a">+        COUNT(b.Id) AS TotalBadges,</span>
+<span class="a">+        SUM(CASE WHEN b.Class = 1 THEN 1 ELSE 0 END) AS GoldBadges,</span>
+<span class="a">+        SUM(CASE WHEN b.Class = 2 THEN 1 ELSE 0 END) AS SilverBadges,</span>
+<span class="a">+        SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges</span>
+<span class="a">+    FROM </span>
+<span class="a">+        Users u</span>
+<span class="a">+    LEFT JOIN </span>
+<span class="a">+        Badges b ON u.Id = b.UserId</span>
+<span class="a">+    GROUP BY </span>
+<span class="a">+        u.Id</span>
+ ),
+@@ -24,24 +30,34 @@
+     SELECT 
+<span class="d">-        ur.UserId,</span>
+<span class="d">-        ur.Reputation,</span>
+<span class="d">-        ur.DisplayName,</span>
+<span class="d">-        ur.BadgeCount</span>
+<span class="d">-    FROM UserReputation ur</span>
+<span class="d">-    WHERE ur.Reputation &gt; 1000 </span>
+<span class="d">-    ORDER BY ur.Reputation DESC</span>
+<span class="d">-    LIMIT 10 </span>
+<span class="a">+        u.Id AS UserId,</span>
+<span class="a">+        u.DisplayName,</span>
+<span class="a">+        u.Reputation,</span>
+<span class="a">+        COALESCE(ub.TotalBadges, 0) AS BadgeCount,</span>
+<span class="a">+        COALESCE(ub.GoldBadges, 0) AS GoldBadges,</span>
+<span class="a">+        COALESCE(ub.SilverBadges, 0) AS SilverBadges,</span>
+<span class="a">+        COALESCE(ub.BronzeBadges, 0) AS BronzeBadges</span>
+<span class="a">+    FROM </span>
+<span class="a">+        Users u</span>
+<span class="a">+    LEFT JOIN </span>
+<span class="a">+        UserBadges ub ON u.Id = ub.UserId</span>
+<span class="a">+    ORDER BY </span>
+<span class="a">+        u.Reputation DESC</span>
+<span class="a">+    LIMIT 10</span>
+ )
+ SELECT 
+<span class="d">-    tp.UserId,</span>
+<span class="d">-    tp.DisplayName,</span>
+<span class="d">-    tp.Reputation,</span>
+<span class="d">-    tp.BadgeCount,</span>
+<span class="a">+    tu.UserId,</span>
+<span class="a">+    tu.DisplayName,</span>
+<span class="a">+    tu.Reputation,</span>
+<span class="a">+    tu.BadgeCount,</span>
+     rp.PostId,
+     rp.Title,
+<span class="a">+    rp.CreationDate,</span>
+     rp.Score,
+<span class="d">-    rp.CreationDate,</span>
+     rp.ViewCount
+<span class="d">-FROM TopUsers tp</span>
+<span class="d">-JOIN RankedPosts rp ON tp.UserId = rp.OwnerUserId</span>
+<span class="d">-WHERE rp.PostRank &lt;= 3 </span>
+<span class="d">-ORDER BY tp.Reputation DESC, rp.Score DESC;</span>
+<span class="a">+FROM </span>
+<span class="a">+    TopUsers tu</span>
+<span class="a">+LEFT JOIN </span>
+<span class="a">+    RankedPosts rp ON tu.UserId = rp.OwnerUserId</span>
+<span class="a">+WHERE </span>
+<span class="a">+    rp.Rank &lt;= 3 </span>
+<span class="a">+ORDER BY </span>
+<span class="a">+    tu.Reputation DESC, rp.Score DESC;</span></pre></details><h2>All 2 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">5949</td><td class="n">1</td><td class="n">1.246</td><td class="n">1.00</td><td class="n">27</td><td class="n">9</td><td class="n">180</td><td class="n">41</td><td class="">3861ad20</td><td class=""><details><summary>show</summary><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.Score,
+        p.CreationDate,
+        p.ViewCount,
+        p.OwnerUserId,
+        ROW_NUMBER() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC, p.ViewCount DESC) AS PostRank
+    FROM Posts p
+    WHERE p.PostTypeId = 1 
+),
+UserReputation AS (
+    SELECT 
+        u.Id AS UserId,
+        u.Reputation,
+        u.DisplayName,
+        COUNT(b.Id) AS BadgeCount
+    FROM Users u
+    LEFT JOIN Badges b ON u.Id = b.UserId
+    GROUP BY u.Id, u.Reputation, u.DisplayName
+),
+TopUsers AS (
+    SELECT 
+        ur.UserId,
+        ur.Reputation,
+        ur.DisplayName,
+        ur.BadgeCount
+    FROM UserReputation ur
+    WHERE ur.Reputation &gt; 1000 
+    ORDER BY ur.Reputation DESC
+    LIMIT 10 
+)
+SELECT 
+    tp.UserId,
+    tp.DisplayName,
+    tp.Reputation,
+    tp.BadgeCount,
+    rp.PostId,
+    rp.Title,
+    rp.Score,
+    rp.CreationDate,
+    rp.ViewCount
+FROM TopUsers tp
+JOIN RankedPosts rp ON tp.UserId = rp.OwnerUserId
+WHERE rp.PostRank &lt;= 3 
+ORDER BY tp.Reputation DESC, rp.Score DESC;</pre></details></td></tr><tr><td class="">32588</td><td class="n">1</td><td class="n">7.397</td><td class="n">5.94</td><td class="n">27</td><td class="n">9</td><td class="n">767</td><td class="n">51</td><td class="">b612e698</td><td class=""><details><summary>show</summary><pre>WITH RankedPosts AS (
+    SELECT 
+        p.Id AS PostId,
+        p.Title,
+        p.CreationDate,
+        p.Score,
+        p.ViewCount,
+        ROW_NUMBER() OVER (PARTITION BY p.OwnerUserId ORDER BY p.Score DESC, p.CreationDate DESC) AS Rank,
+        p.OwnerUserId
+    FROM 
+        Posts p
+    WHERE 
+        p.PostTypeId = 1 
+),
+UserBadges AS (
+    SELECT 
+        u.Id AS UserId,
+        COUNT(b.Id) AS TotalBadges,
+        SUM(CASE WHEN b.Class = 1 THEN 1 ELSE 0 END) AS GoldBadges,
+        SUM(CASE WHEN b.Class = 2 THEN 1 ELSE 0 END) AS SilverBadges,
+        SUM(CASE WHEN b.Class = 3 THEN 1 ELSE 0 END) AS BronzeBadges
+    FROM 
+        Users u
+    LEFT JOIN 
+        Badges b ON u.Id = b.UserId
+    GROUP BY 
+        u.Id
+),
+TopUsers AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        u.Reputation,
+        COALESCE(ub.TotalBadges, 0) AS BadgeCount,
+        COALESCE(ub.GoldBadges, 0) AS GoldBadges,
+        COALESCE(ub.SilverBadges, 0) AS SilverBadges,
+        COALESCE(ub.BronzeBadges, 0) AS BronzeBadges
+    FROM 
+        Users u
+    LEFT JOIN 
+        UserBadges ub ON u.Id = ub.UserId
+    ORDER BY 
+        u.Reputation DESC
+    LIMIT 10
+)
+SELECT 
+    tu.UserId,
+    tu.DisplayName,
+    tu.Reputation,
+    tu.BadgeCount,
+    rp.PostId,
+    rp.Title,
+    rp.CreationDate,
+    rp.Score,
+    rp.ViewCount
+FROM 
+    TopUsers tu
+LEFT JOIN 
+    RankedPosts rp ON tu.UserId = rp.OwnerUserId
+WHERE 
+    rp.Rank &lt;= 3 
+ORDER BY 
+    tu.Reputation DESC, rp.Score DESC;</pre></details></td></tr></tbody></table></div></main></div></body></html>

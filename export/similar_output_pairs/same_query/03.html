@@ -1,0 +1,1344 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same query #3 — query 15005</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="on">Same query</a></nav></header><div class="wrap"><aside><a href="../same_query/01.html" class=""><span class="r">#1</span>query 15027<span class="x">156×</span></a><a href="../same_query/02.html" class=""><span class="r">#2</span>query 15034<span class="x">146×</span></a><a href="../same_query/03.html" class="on"><span class="r">#3</span>query 15005<span class="x">88×</span></a><a href="../same_query/04.html" class=""><span class="r">#4</span>query 15054<span class="x">83×</span></a><a href="../same_query/05.html" class=""><span class="r">#5</span>query 15008<span class="x">73×</span></a><a href="../same_query/06.html" class=""><span class="r">#6</span>query 15010<span class="x">72×</span></a><a href="../same_query/07.html" class=""><span class="r">#7</span>query 15033<span class="x">69×</span></a><a href="../same_query/08.html" class=""><span class="r">#8</span>query 15015<span class="x">64×</span></a><a href="../same_query/09.html" class=""><span class="r">#9</span>query 15049<span class="x">50×</span></a><a href="../same_query/10.html" class=""><span class="r">#10</span>query 15157<span class="x">50×</span></a><a href="../same_query/11.html" class=""><span class="r">#11</span>query 15011<span class="x">49×</span></a><a href="../same_query/12.html" class=""><span class="r">#12</span>query 15059<span class="x">47×</span></a><a href="../same_query/13.html" class=""><span class="r">#13</span>query 10018<span class="x">37×</span></a><a href="../same_query/14.html" class=""><span class="r">#14</span>query 10085<span class="x">37×</span></a><a href="../same_query/15.html" class=""><span class="r">#15</span>query 15013<span class="x">34×</span></a><a href="../same_query/16.html" class=""><span class="r">#16</span>query 15078<span class="x">34×</span></a><a href="../same_query/17.html" class=""><span class="r">#17</span>query 15265<span class="x">33×</span></a><a href="../same_query/18.html" class=""><span class="r">#18</span>query 15305<span class="x">33×</span></a><a href="../same_query/19.html" class=""><span class="r">#19</span>query 15075<span class="x">30×</span></a><a href="../same_query/20.html" class=""><span class="r">#20</span>query 15012<span class="x">29×</span></a></aside><main><h1>Same query #3: query 15005 — 88 copies</h1><div class="sub">copies of one SQL text (same sqlglot canonical form): the largest copy sets. Copies are the same work measured several times, so their energy spread is the measurement noise (model σ at the median: 0.032 J, laptop 2 slope energy).</div><div class="cards"><div class="card"><div class="k">copies</div><div class="v">88</div></div><div class="card"><div class="k">with energy</div><div class="v">88</div></div><div class="card"><div class="k">energy min</div><div class="v">3.602 J</div></div><div class="card"><div class="k">median</div><div class="v">3.638 J</div></div><div class="card"><div class="k">max</div><div class="v">3.722 J</div></div><div class="card"><div class="k">spread</div><div class="v">1.033×</div></div><div class="card"><div class="k">furthest copy</div><div class="v">2.6 σ</div></div><div class="card"><div class="k">distinct SQL texts</div><div class="v">60</div></div><div class="card"><div class="k">distinct outputs</div><div class="v">1</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div></div><p>Copies: 15005 15023 15029 15100 15135 15168 15226 15269 15270 15273 15428 15460 15514 15532 15561 15667 15703 15707 15731 15769 15783 15840 15925 15955 15980 16094 16137 16154 16176 16225 16245 16273 16313 16386 16393 16430 16468 16499 16527 16586 16781 16802 16814 16829 16927 16946 16960 17162 17186 17191 17241 17264 17295 17348 17355 17412 17540 17547 17619 17655 17659 17672 17703 17704 17714 17878 17994 18132 18168 18236 18239 18364 18403 18745 18771 18810 19130 19321 19365 19366 19412 19560 19605 19714 19738 19786 19900 19978</p><p>Compared with T1 (the text most copies use), the other texts differ in:</p><ul><li>52 texts: names (table aliases, output column names or CTE names), besides any whitespace, comment or case changes</li><li>5 texts: only whitespace / line breaks</li><li>2 texts: only whitespace, comments and upper/lower case</li></ul><h2>Every copy</h2><div class="scroll"><table class=""><thead><tr><th class="">query</th><th class="">SQL text</th><th class="n">energy (J)</th><th class="n">σ from median</th><th class="n">rows</th><th class="">same output</th><th class="">same plan</th><th class="n">plan ms</th></tr></thead><tbody><tr><td class="">15005</td><td class="">T9</td><td class="n">3.629</td><td class="n">-0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">339</td></tr><tr><td class="">15023</td><td class="">T10</td><td class="n">3.722</td><td class="n">+2.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">15029</td><td class="">T2</td><td class="n">3.635</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">329</td></tr><tr><td class="">15100</td><td class="">T14</td><td class="n">3.630</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">15135</td><td class="">T15</td><td class="n">3.604</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">341</td></tr><tr><td class="">15168</td><td class="">T16</td><td class="n">3.624</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">15226</td><td class="">T5</td><td class="n">3.650</td><td class="n">+0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">334</td></tr><tr><td class="">15269</td><td class="">T17</td><td class="n">3.661</td><td class="n">+0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">341</td></tr><tr><td class="">15270</td><td class="">T6</td><td class="n">3.648</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">15273</td><td class="">T18</td><td class="n">3.663</td><td class="n">+0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">15428</td><td class="">T19</td><td class="n">3.664</td><td class="n">+0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">334</td></tr><tr><td class="">15460</td><td class="">T1</td><td class="n">3.633</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">332</td></tr><tr><td class="">15514</td><td class="">T20</td><td class="n">3.632</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">15532</td><td class="">T21</td><td class="n">3.613</td><td class="n">-0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">15561</td><td class="">T7</td><td class="n">3.654</td><td class="n">+0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">15667</td><td class="">T22</td><td class="n">3.669</td><td class="n">+1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">15703</td><td class="">T9</td><td class="n">3.630</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">343</td></tr><tr><td class="">15707</td><td class="">T23</td><td class="n">3.602</td><td class="n">-1.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">15731</td><td class="">T3</td><td class="n">3.626</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">341</td></tr><tr><td class="">15769</td><td class="">T2</td><td class="n">3.606</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">15783</td><td class="">T11</td><td class="n">3.604</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">15840</td><td class="">T24</td><td class="n">3.625</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">342</td></tr><tr><td class="">15925</td><td class="">T25</td><td class="n">3.625</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">15955</td><td class="">T4</td><td class="n">3.695</td><td class="n">+1.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">334</td></tr><tr><td class="">15980</td><td class="">T26</td><td class="n">3.623</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">337</td></tr><tr><td class="">16094</td><td class="">T27</td><td class="n">3.697</td><td class="n">+1.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">16137</td><td class="">T28</td><td class="n">3.644</td><td class="n">+0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">16154</td><td class="">T4</td><td class="n">3.665</td><td class="n">+0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">16176</td><td class="">T1</td><td class="n">3.637</td><td class="n">-0.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">334</td></tr><tr><td class="">16225</td><td class="">T10</td><td class="n">3.628</td><td class="n">-0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">16245</td><td class="">T2</td><td class="n">3.638</td><td class="n">+0.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">337</td></tr><tr><td class="">16273</td><td class="">T12</td><td class="n">3.631</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">16313</td><td class="">T29</td><td class="n">3.609</td><td class="n">-0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">341</td></tr><tr><td class="">16386</td><td class="">T30</td><td class="n">3.655</td><td class="n">+0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">16393</td><td class="">T31</td><td class="n">3.666</td><td class="n">+0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">16430</td><td class="">T32</td><td class="n">3.636</td><td class="n">-0.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">338</td></tr><tr><td class="">16468</td><td class="">T33</td><td class="n">3.631</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">342</td></tr><tr><td class="">16499</td><td class="">T7</td><td class="n">3.634</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">337</td></tr><tr><td class="">16527</td><td class="">T34</td><td class="n">3.628</td><td class="n">-0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">16586</td><td class="">T1</td><td class="n">3.662</td><td class="n">+0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">16781</td><td class="">T35</td><td class="n">3.642</td><td class="n">+0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">337</td></tr><tr><td class="">16802</td><td class="">T2</td><td class="n">3.618</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">16814</td><td class="">T36</td><td class="n">3.645</td><td class="n">+0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">339</td></tr><tr><td class="">16829</td><td class="">T3</td><td class="n">3.640</td><td class="n">+0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">16927</td><td class="">T1</td><td class="n">3.687</td><td class="n">+1.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">341</td></tr><tr><td class="">16946</td><td class="">T2</td><td class="n">3.608</td><td class="n">-0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">337</td></tr><tr><td class="">16960</td><td class="">T37</td><td class="n">3.622</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">17162</td><td class="">T38</td><td class="n">3.651</td><td class="n">+0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">17186</td><td class="">T39</td><td class="n">3.638</td><td class="n">+0.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">339</td></tr><tr><td class="">17191</td><td class="">T5</td><td class="n">3.671</td><td class="n">+1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">17241</td><td class="">T6</td><td class="n">3.607</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">332</td></tr><tr><td class="">17264</td><td class="">T40</td><td class="n">3.643</td><td class="n">+0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">328</td></tr><tr><td class="">17295</td><td class="">T7</td><td class="n">3.620</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">334</td></tr><tr><td class="">17348</td><td class="">T1</td><td class="n">3.619</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">339</td></tr><tr><td class="">17355</td><td class="">T41</td><td class="n">3.697</td><td class="n">+1.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">329</td></tr><tr><td class="">17412</td><td class="">T13</td><td class="n">3.653</td><td class="n">+0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">17540</td><td class="">T42</td><td class="n">3.679</td><td class="n">+1.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">17547</td><td class="">T43</td><td class="n">3.627</td><td class="n">-0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">339</td></tr><tr><td class="">17619</td><td class="">T11</td><td class="n">3.690</td><td class="n">+1.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">17655</td><td class="">T44</td><td class="n">3.652</td><td class="n">+0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">17659</td><td class="">T6</td><td class="n">3.653</td><td class="n">+0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">17672</td><td class="">T4</td><td class="n">3.606</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">17703</td><td class="">T45</td><td class="n">3.626</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">332</td></tr><tr><td class="">17704</td><td class="">T12</td><td class="n">3.635</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">17714</td><td class="">T46</td><td class="n">3.650</td><td class="n">+0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">330</td></tr><tr><td class="">17878</td><td class="">T47</td><td class="n">3.637</td><td class="n">-0.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">17994</td><td class="">T3</td><td class="n">3.664</td><td class="n">+0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">18132</td><td class="">T3</td><td class="n">3.619</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">334</td></tr><tr><td class="">18168</td><td class="">T48</td><td class="n">3.638</td><td class="n">+0.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">339</td></tr><tr><td class="">18236</td><td class="">T8</td><td class="n">3.642</td><td class="n">+0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">330</td></tr><tr><td class="">18239</td><td class="">T49</td><td class="n">3.633</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">327</td></tr><tr><td class="">18364</td><td class="">T5</td><td class="n">3.665</td><td class="n">+0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">338</td></tr><tr><td class="">18403</td><td class="">T50</td><td class="n">3.666</td><td class="n">+0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">333</td></tr><tr><td class="">18745</td><td class="">T1</td><td class="n">3.624</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">18771</td><td class="">T51</td><td class="n">3.625</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">18810</td><td class="">T52</td><td class="n">3.668</td><td class="n">+0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">332</td></tr><tr><td class="">19130</td><td class="">T53</td><td class="n">3.628</td><td class="n">-0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">342</td></tr><tr><td class="">19321</td><td class="">T54</td><td class="n">3.647</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">334</td></tr><tr><td class="">19365</td><td class="">T13</td><td class="n">3.634</td><td class="n">-0.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">336</td></tr><tr><td class="">19366</td><td class="">T55</td><td class="n">3.645</td><td class="n">+0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">339</td></tr><tr><td class="">19412</td><td class="">T56</td><td class="n">3.606</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">19560</td><td class="">T57</td><td class="n">3.691</td><td class="n">+1.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">331</td></tr><tr><td class="">19605</td><td class="">T58</td><td class="n">3.605</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr><tr><td class="">19714</td><td class="">T8</td><td class="n">3.651</td><td class="n">+0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">337</td></tr><tr><td class="">19738</td><td class="">T8</td><td class="n">3.607</td><td class="n">-1.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">338</td></tr><tr><td class="">19786</td><td class="">T4</td><td class="n">3.664</td><td class="n">+0.8</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">334</td></tr><tr><td class="">19900</td><td class="">T59</td><td class="n">3.668</td><td class="n">+0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">339</td></tr><tr><td class="">19978</td><td class="">T60</td><td class="n">3.647</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">335</td></tr></tbody></table></div><h2>The 60 distinct SQL texts</h2><div class="texts"><div class="q"><h3>T1 <span class="muted">— 6 copies: 15460 16176 16586 16927 17348 18745</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T2 <span class="muted">— 5 copies: 15029 15769 16245 16802 16946</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T3 <span class="muted">— 4 copies: 15731 16829 17994 18132</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T4 <span class="muted">— 4 copies: 15955 16154 17672 19786</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T5 <span class="muted">— 3 copies: 15226 17191 18364</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T6 <span class="muted">— 3 copies: 15270 17241 17659</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T7 <span class="muted">— 3 copies: 15561 16499 17295</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T8 <span class="muted">— 3 copies: 18236 19714 19738</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T9 <span class="muted">— 2 copies: 15005 15703</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T10 <span class="muted">— 2 copies: 15023 16225</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T11 <span class="muted">— 2 copies: 15783 17619</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Owner,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T12 <span class="muted">— 2 copies: 16273 17704</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T13 <span class="muted">— 2 copies: 17412 19365</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T14 <span class="muted">— 1 copy: 15100</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Owner,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T15 <span class="muted">— 1 copy: 15135</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T16 <span class="muted">— 1 copy: 15168</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T17 <span class="muted">— 1 copy: 15269</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T18 <span class="muted">— 1 copy: 15273</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.voteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount, 
+    SUM(CASE WHEN v.voteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T19 <span class="muted">— 1 copy: 15428</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T20 <span class="muted">— 1 copy: 15514</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T21 <span class="muted">— 1 copy: 15532</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T22 <span class="muted">— 1 copy: 15667</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T23 <span class="muted">— 1 copy: 15707</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T24 <span class="muted">— 1 copy: 15840</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS Upvotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS Downvotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T25 <span class="muted">— 1 copy: 15925</span></h3><pre>SELECT
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM
+    Posts p
+JOIN
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN
+    Comments c ON p.Id = c.PostId
+LEFT JOIN
+    Votes v ON p.Id = v.PostId
+WHERE
+    p.PostTypeId = 1  
+GROUP BY
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T26 <span class="muted">— 1 copy: 15980</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T27 <span class="muted">— 1 copy: 16094</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T28 <span class="muted">— 1 copy: 16137</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T29 <span class="muted">— 1 copy: 16313</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T30 <span class="muted">— 1 copy: 16386</span></h3><pre>SELECT 
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS OwnerName,
+    COUNT(C.Id) AS CommentCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    P.Title, P.CreationDate, U.DisplayName
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T31 <span class="muted">— 1 copy: 16393</span></h3><pre>SELECT 
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS Author,
+    COUNT(C.Id) AS CommentCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS Upvotes,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS Downvotes
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1
+GROUP BY 
+    P.Title, P.CreationDate, U.DisplayName
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T32 <span class="muted">— 1 copy: 16430</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T33 <span class="muted">— 1 copy: 16468</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Owner, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T34 <span class="muted">— 1 copy: 16527</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN vt.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN vt.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes vt ON p.Id = vt.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T35 <span class="muted">— 1 copy: 16781</span></h3><pre>SELECT 
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS Owner,
+    COUNT(C.Id) AS CommentCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1  
+GROUP BY 
+    P.Title, P.CreationDate, U.DisplayName
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T36 <span class="muted">— 1 copy: 16814</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T37 <span class="muted">— 1 copy: 16960</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerDisplayName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 
+    10;</pre></div><div class="q"><h3>T38 <span class="muted">— 1 copy: 17162</span></h3><pre>SELECT 
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS Author,
+    COUNT(C.Id) AS CommentCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    P.Title, P.CreationDate, U.DisplayName
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T39 <span class="muted">— 1 copy: 17186</span></h3><pre>SELECT 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS OwnerDisplayName, 
+    COUNT(C.Id) AS CommentCount, 
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    P.Title, P.CreationDate, U.DisplayName
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T40 <span class="muted">— 1 copy: 17264</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T41 <span class="muted">— 1 copy: 17355</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 
+    10;</pre></div><div class="q"><h3>T42 <span class="muted">— 1 copy: 17540</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T43 <span class="muted">— 1 copy: 17547</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T44 <span class="muted">— 1 copy: 17655</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS Upvotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS Downvotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T45 <span class="muted">— 1 copy: 17703</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T46 <span class="muted">— 1 copy: 17714</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T47 <span class="muted">— 1 copy: 17878</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T48 <span class="muted">— 1 copy: 18168</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T49 <span class="muted">— 1 copy: 18239</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Owner, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T50 <span class="muted">— 1 copy: 18403</span></h3><pre>SELECT
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS Author,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM
+    Posts p
+JOIN
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN
+    Comments c ON p.Id = c.PostId
+LEFT JOIN
+    Votes v ON p.Id = v.PostId
+WHERE
+    p.PostTypeId = 1  
+GROUP BY
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T51 <span class="muted">— 1 copy: 18771</span></h3><pre>SELECT 
+    P.Title, 
+    P.CreationDate, 
+    U.DisplayName AS Author,
+    COUNT(C.Id) AS CommentCount, 
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1  
+GROUP BY 
+    P.Title, P.CreationDate, U.DisplayName
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T52 <span class="muted">— 1 copy: 18810</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T53 <span class="muted">— 1 copy: 19130</span></h3><pre>SELECT 
+    P.Title,
+    P.CreationDate,
+    U.DisplayName AS OwnerDisplayName,
+    COUNT(C.Id) AS CommentCount,
+    SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts P
+JOIN 
+    Users U ON P.OwnerUserId = U.Id
+LEFT JOIN 
+    Comments C ON P.Id = C.PostId
+LEFT JOIN 
+    Votes V ON P.Id = V.PostId
+WHERE 
+    P.PostTypeId = 1 
+GROUP BY 
+    P.Title, P.CreationDate, U.DisplayName
+ORDER BY 
+    P.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T54 <span class="muted">— 1 copy: 19321</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T55 <span class="muted">— 1 copy: 19366</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T56 <span class="muted">— 1 copy: 19412</span></h3><pre>SELECT 
+    p.Title,
+    p.CreationDate,
+    u.DisplayName AS OwnerName,
+    COUNT(c.Id) AS CommentCount,
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1  
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T57 <span class="muted">— 1 copy: 19560</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS Author, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVotes, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVotes 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId 
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T58 <span class="muted">— 1 copy: 19605</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div><div class="q"><h3>T59 <span class="muted">— 1 copy: 19900</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount, 
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount 
+FROM 
+    Posts p 
+JOIN 
+    Users u ON p.OwnerUserId = u.Id 
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId 
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId 
+WHERE 
+    p.PostTypeId = 1   
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName 
+ORDER BY 
+    p.CreationDate DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T60 <span class="muted">— 1 copy: 19978</span></h3><pre>SELECT 
+    p.Title, 
+    p.CreationDate, 
+    u.DisplayName AS OwnerDisplayName, 
+    COUNT(c.Id) AS CommentCount, 
+    SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END) AS UpVoteCount,
+    SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END) AS DownVoteCount
+FROM 
+    Posts p
+JOIN 
+    Users u ON p.OwnerUserId = u.Id
+LEFT JOIN 
+    Comments c ON p.Id = c.PostId
+LEFT JOIN 
+    Votes v ON p.Id = v.PostId
+WHERE 
+    p.PostTypeId = 1 
+GROUP BY 
+    p.Title, p.CreationDate, u.DisplayName
+ORDER BY 
+    p.CreationDate DESC
+LIMIT 10;</pre></div></div><h2>Output (query 15005)</h2><div class="scroll"><table class="out"><thead><tr><th class="">title</th><th class="">creationdate</th><th class="">author</th><th class="">commentcount</th><th class="">upvotes</th><th class="">downvotes</th></tr></thead><tbody><tr><td class="">SSMS&#x27;s GUI and dbatools produce different scripts for restoring databases in full recovery mode, what practical differences do they have?</td><td class="">2024-09-30 22:49:25.743</td><td class="">J. Mini</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">Primary Key data type suggestion for MySQL for an application that depends in a external system. unsigned bigint vs varchar data type in primary keys</td><td class="">2024-09-30 22:05:14.587</td><td class="">Lucas David Ferrero</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">Varbinary column taking lots of space</td><td class="">2024-09-30 18:22:14.783</td><td class="">PhillysDBA</td><td class="">0</td><td class="">0</td><td class="">1</td></tr><tr><td class="">Which DSE version is compatible to import Cassandra 4.x SSTables?</td><td class="">2024-09-30 17:53:03.78</td><td class="">Nahush</td><td class="">0</td><td class="">0</td><td class="">0</td></tr><tr><td class="">Show SQL Execution Plan on Trace Replay</td><td class="">2024-09-30 16:38:40.863</td><td class="">Neil Laslett</td><td class="">0</td><td class="">0</td><td class="">0</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  GroupAggregate [Group Key=posts.creationdate, posts.title, users.displayname]
+    Incremental Sort [Sort Key=posts.creationdate DESC, posts.title, users.displayname; Presorted Key=posts.creationdate, posts.title]
+      Nested Loop
+        Gather Merge
+          Sort [Sort Key=posts.creationdate DESC, posts.title]
+            Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+              Parallel Seq Scan on votes
+              Parallel Hash
+                Parallel Hash Right Join [Hash Cond=(comments.postid = posts.id)]
+                  Parallel Seq Scan on comments
+                  Parallel Hash
+                    Parallel Seq Scan on posts [Filter=(posttypeid = 1)]
+        Memoize [Cache Key=posts.owneruserid]
+          Index Scan on users [Index Cond=(id = posts.owneruserid)]</pre></details></main></div></body></html>

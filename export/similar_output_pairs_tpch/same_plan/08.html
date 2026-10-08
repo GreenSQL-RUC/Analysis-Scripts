@@ -1,0 +1,260 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan #8 — 18592 vs 16367</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="on">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan/01.html" class=""><span class="r">#1</span>16132 vs 29082<span class="x">3.38×</span></a><a href="../same_plan/02.html" class=""><span class="r">#2</span>17461 vs 17863<span class="x">2.72×</span></a><a href="../same_plan/03.html" class=""><span class="r">#3</span>18987 vs 28977<span class="x">1.84×</span></a><a href="../same_plan/04.html" class=""><span class="r">#4</span>18877 vs 13642<span class="x">1.65×</span></a><a href="../same_plan/05.html" class=""><span class="r">#5</span>16696 vs 11049<span class="x">1.62×</span></a><a href="../same_plan/06.html" class=""><span class="r">#6</span>19155 vs 10228<span class="x">1.60×</span></a><a href="../same_plan/07.html" class=""><span class="r">#7</span>17158 vs 10090<span class="x">1.51×</span></a><a href="../same_plan/08.html" class="on"><span class="r">#8</span>18592 vs 16367<span class="x">1.51×</span></a><a href="../same_plan/09.html" class=""><span class="r">#9</span>17862 vs 14477<span class="x">1.49×</span></a><a href="../same_plan/10.html" class=""><span class="r">#10</span>15003 vs 16046<span class="x">1.49×</span></a><a href="../same_plan/11.html" class=""><span class="r">#11</span>11321 vs 13903<span class="x">1.46×</span></a><a href="../same_plan/12.html" class=""><span class="r">#12</span>18827 vs 16240<span class="x">1.45×</span></a><a href="../same_plan/13.html" class=""><span class="r">#13</span>11863 vs 14184<span class="x">1.45×</span></a><a href="../same_plan/14.html" class=""><span class="r">#14</span>14342 vs 13377<span class="x">1.44×</span></a><a href="../same_plan/15.html" class=""><span class="r">#15</span>12784 vs 13071<span class="x">1.43×</span></a><a href="../same_plan/16.html" class=""><span class="r">#16</span>18695 vs 17877<span class="x">1.42×</span></a><a href="../same_plan/17.html" class=""><span class="r">#17</span>16850 vs 11845<span class="x">1.40×</span></a><a href="../same_plan/18.html" class=""><span class="r">#18</span>15305 vs 13444<span class="x">1.38×</span></a><a href="../same_plan/19.html" class=""><span class="r">#19</span>19661 vs 18275<span class="x">1.35×</span></a><a href="../same_plan/20.html" class=""><span class="r">#20</span>17756 vs 15954<span class="x">1.33×</span></a></aside><main><h1>Same plan #8: 18592 vs 16367 — 1.51×</h1><div class="sub">same plan (operators, tables and conditions); outputs may differ. Ranked 8 of 20 by the energy gap within the group (most expensive / cheapest). Energy: SQLStorm single-copy energy (laptop 1) per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">15</div></div><div class="card"><div class="k">query files</div><div class="v">67</div></div><div class="card"><div class="k">energy min</div><div class="v">33.655 J</div></div><div class="card"><div class="k">median</div><div class="v">43.959 J</div></div><div class="card"><div class="k">max</div><div class="v">50.755 J</div></div><div class="card"><div class="k">gap</div><div class="v">1.51×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">7</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 18592</h3><dl class="f"><dt>energy</dt><dd>33.655 J ± 0.191</dd><dt>output</dt><dd>10 rows, 2 columns</dd><dt>plan</dt><dd>3045 ms, 9 nodes, 117 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity_sold 
+FROM 
+    lineitem l 
+JOIN 
+    part p ON l.l_partkey = p.p_partkey 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity_sold DESC 
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">p_name</th><th class="">total_quantity_sold</th></tr></thead><tbody><tr><td class="">blush burlywood red blanched olive</td><td class="">1720.00</td></tr><tr><td class="">azure lime rosy peru powder</td><td class="">1677.00</td></tr><tr><td class="">dodger sienna orange khaki lace</td><td class="">1642.00</td></tr><tr><td class="">yellow snow bisque dodger drab</td><td class="">1562.00</td></tr><tr><td class="">rose red purple salmon sandy</td><td class="">1553.00</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum(lineitem.l_quantity)) DESC]
+    Finalize HashAggregate [Group Key=part.p_name]
+      Gather
+        Partial HashAggregate [Group Key=part.p_name]
+          Parallel Hash Join [Hash Cond=(lineitem.l_partkey = part.p_partkey)]
+            Parallel Seq Scan on lineitem
+            Parallel Hash
+              Parallel Seq Scan on part</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 16367</h3><dl class="f"><dt>energy</dt><dd>50.755 J ± 0.287</dd><dt>output</dt><dd>10 rows, 3 columns</dd><dt>plan</dt><dd>4404 ms, 9 nodes, 122 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice * (1 - l.l_discount)) AS avg_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_name
+ORDER BY
+    total_quantity DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">p_name</th><th class="">total_quantity</th><th class="">avg_price</th></tr></thead><tbody><tr><td class="">blush burlywood red blanched olive</td><td class="">1720.00</td><td class="">40487.239262711864</td></tr><tr><td class="">azure lime rosy peru powder</td><td class="">1677.00</td><td class="">35500.927701388889</td></tr><tr><td class="">dodger sienna orange khaki lace</td><td class="">1642.00</td><td class="">32645.279183673469</td></tr><tr><td class="">yellow snow bisque dodger drab</td><td class="">1562.00</td><td class="">48743.325180392157</td></tr><tr><td class="">rose red purple salmon sandy</td><td class="">1553.00</td><td class="">50143.824147368421</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum(lineitem.l_quantity)) DESC]
+    Finalize HashAggregate [Group Key=part.p_name]
+      Gather
+        Partial HashAggregate [Group Key=part.p_name]
+          Parallel Hash Join [Hash Cond=(lineitem.l_partkey = part.p_partkey)]
+            Parallel Seq Scan on lineitem
+            Parallel Hash
+              Parallel Seq Scan on part</pre></details></div></div><p class="muted">Both run the same plan; the plan text does not show LIMIT values or output expressions, which is where same-plan queries differ.</p><details><summary>SQL difference</summary><pre>--- 18592
++++ 16367
+@@ -1,12 +1,13 @@
+<span class="d">-SELECT </span>
+<span class="d">-    p.p_name, </span>
+<span class="d">-    SUM(l.l_quantity) AS total_quantity_sold </span>
+<span class="d">-FROM </span>
+<span class="d">-    lineitem l </span>
+<span class="d">-JOIN </span>
+<span class="d">-    part p ON l.l_partkey = p.p_partkey </span>
+<span class="d">-GROUP BY </span>
+<span class="d">-    p.p_name </span>
+<span class="d">-ORDER BY </span>
+<span class="d">-    total_quantity_sold DESC </span>
+<span class="a">+SELECT</span>
+<span class="a">+    p.p_name,</span>
+<span class="a">+    SUM(l.l_quantity) AS total_quantity,</span>
+<span class="a">+    AVG(l.l_extendedprice * (1 - l.l_discount)) AS avg_price</span>
+<span class="a">+FROM</span>
+<span class="a">+    part p</span>
+<span class="a">+JOIN</span>
+<span class="a">+    lineitem l ON p.p_partkey = l.l_partkey</span>
+<span class="a">+GROUP BY</span>
+<span class="a">+    p.p_name</span>
+<span class="a">+ORDER BY</span>
+<span class="a">+    total_quantity DESC</span>
+ LIMIT 10;</pre></details><h2>All 15 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">18592</td><td class="n">1</td><td class="n">33.655</td><td class="n">1.00</td><td class="n">10</td><td class="n">2</td><td class="n">3045</td><td class="n">117</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity_sold 
+FROM 
+    lineitem l 
+JOIN 
+    part p ON l.l_partkey = p.p_partkey 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity_sold DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">15010</td><td class="n">16</td><td class="n">33.939</td><td class="n">1.01</td><td class="n">10</td><td class="n">2</td><td class="n">3019</td><td class="n">117</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18604</td><td class="n">1</td><td class="n">33.951</td><td class="n">1.01</td><td class="n">10</td><td class="n">2</td><td class="n">3048</td><td class="n">117</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT p.p_name, SUM(l.l_quantity) AS total_quantity
+FROM part p
+JOIN lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY p.p_name
+ORDER BY total_quantity DESC
+FETCH FIRST 10 ROWS ONLY;</pre></details></td></tr><tr><td class="">17168</td><td class="n">1</td><td class="n">33.973</td><td class="n">1.01</td><td class="n">10</td><td class="n">2</td><td class="n">3031</td><td class="n">117</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT p_name, SUM(l_quantity) AS total_quantity
+FROM part p
+JOIN lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY p_name
+ORDER BY total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15021</td><td class="n">7</td><td class="n">34.118</td><td class="n">1.01</td><td class="n">10</td><td class="n">2</td><td class="n">3022</td><td class="n">117</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT p_name, SUM(l_quantity) AS total_quantity
+FROM part
+JOIN lineitem ON part.p_partkey = lineitem.l_partkey
+GROUP BY p_name
+ORDER BY total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16146</td><td class="n">1</td><td class="n">34.126</td><td class="n">1.01</td><td class="n">10</td><td class="n">2</td><td class="n">3027</td><td class="n">117</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT p_name, SUM(l_quantity) AS total_quantity
+FROM part p
+JOIN lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY p.p_name
+ORDER BY total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">19823</td><td class="n">1</td><td class="n">34.283</td><td class="n">1.02</td><td class="n">10</td><td class="n">2</td><td class="n">3028</td><td class="n">117</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT p.p_name, SUM(lineitem.l_quantity) AS total_quantity
+FROM part p
+JOIN lineitem ON p.p_partkey = lineitem.l_partkey
+GROUP BY p.p_name
+ORDER BY total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15140</td><td class="n">3</td><td class="n">43.959</td><td class="n">1.31</td><td class="n">10</td><td class="n">3</td><td class="n">4052</td><td class="n">122</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(p.p_retailprice) AS avg_retailprice
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_name
+ORDER BY
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">17006</td><td class="n">3</td><td class="n">44.076</td><td class="n">1.31</td><td class="n">10</td><td class="n">3</td><td class="n">4030</td><td class="n">123</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_discount) AS average_discount
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">15006</td><td class="n">11</td><td class="n">44.965</td><td class="n">1.34</td><td class="n">10</td><td class="n">3</td><td class="n">4157</td><td class="n">122</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">18418</td><td class="n">1</td><td class="n">45.028</td><td class="n">1.34</td><td class="n">10</td><td class="n">3</td><td class="n">4149</td><td class="n">123</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p_name, 
+    SUM(l_quantity) AS total_quantity, 
+    AVG(l_extendedprice) AS avg_price 
+FROM 
+    part 
+JOIN 
+    lineitem ON part.p_partkey = lineitem.l_partkey 
+GROUP BY 
+    p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">14993</td><td class="n">1</td><td class="n">45.101</td><td class="n">1.34</td><td class="n">100</td><td class="n">3</td><td class="n">4189</td><td class="n">122</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 100;</pre></details></td></tr><tr><td class="">13395</td><td class="n">18</td><td class="n">45.189</td><td class="n">1.34</td><td class="n">10</td><td class="n">3</td><td class="n">4207</td><td class="n">123</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">17764</td><td class="n">1</td><td class="n">45.212</td><td class="n">1.34</td><td class="n">10</td><td class="n">3</td><td class="n">4140</td><td class="n">124</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p_name, 
+    SUM(l_quantity) AS total_quantity, 
+    SUM(l_extendedprice) AS total_extended_price
+FROM 
+    part
+JOIN 
+    lineitem ON part.p_partkey = lineitem.l_partkey
+GROUP BY 
+    p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">16367</td><td class="n">1</td><td class="n">50.755</td><td class="n">1.51</td><td class="n">10</td><td class="n">3</td><td class="n">4404</td><td class="n">122</td><td class="">30fcbe1c</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    AVG(l.l_extendedprice * (1 - l.l_discount)) AS avg_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_name
+ORDER BY
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr></tbody></table></div></main></div></body></html>

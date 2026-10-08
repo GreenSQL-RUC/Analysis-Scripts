@@ -1,0 +1,432 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #4 — 9855 vs 29614</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm StackOverflow<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>12857 vs 12074<span class="x">14.77×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>11119 vs 16363<span class="x">11.09×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14843 vs 11239<span class="x">9.77×</span></a><a href="../same_plan_shape/04.html" class="on"><span class="r">#4</span>9855 vs 29614<span class="x">8.97×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>17350 vs 17462<span class="x">8.66×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>11370 vs 11796<span class="x">7.23×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>9160 vs 26465<span class="x">7.23×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>16304 vs 18193<span class="x">6.73×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>17974 vs 12531<span class="x">6.30×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>14104 vs 10365<span class="x">6.11×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>31099 vs 5746<span class="x">5.23×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>11375 vs 18573<span class="x">4.92×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>10008 vs 13752<span class="x">3.86×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>12471 vs 10668<span class="x">3.73×</span></a><a href="../same_plan_shape/15.html" class=""><span class="r">#15</span>11976 vs 7246<span class="x">3.72×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>826 vs 4675<span class="x">3.70×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11608 vs 13924<span class="x">3.64×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>10621 vs 11860<span class="x">3.58×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>14332 vs 12039<span class="x">3.39×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>7835 vs 6505<span class="x">3.15×</span></a></aside><main><h1>Same plan shape #4: 9855 vs 29614 — 8.97×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 4 of 20 by the energy gap within the group (most expensive / cheapest). Energy: laptop 2 slope energy per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">2</div></div><div class="card"><div class="k">query files</div><div class="v">2</div></div><div class="card"><div class="k">energy min</div><div class="v">2.692 J</div></div><div class="card"><div class="k">median</div><div class="v">13.425 J</div></div><div class="card"><div class="k">max</div><div class="v">24.158 J</div></div><div class="card"><div class="k">gap</div><div class="v">8.97×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">2</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">2</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 9855</h3><dl class="f"><dt>energy</dt><dd>2.692 J ± 0.024</dd><dt>output</dt><dd>5 rows, 8 columns</dd><dt>plan</dt><dd>218 ms, 18 nodes, 43 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>WITH UserPostStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        COALESCE(SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END), 0) AS UpVoteCount,
+        COALESCE(SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END), 0) AS DownVoteCount
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    WHERE 
+        u.Reputation &gt; 1000
+    GROUP BY 
+        u.Id, u.DisplayName
+), RankedUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        PostCount,
+        AnswerCount,
+        QuestionCount,
+        UpVoteCount,
+        DownVoteCount,
+        RANK() OVER (ORDER BY PostCount DESC) AS PostRank,
+        RANK() OVER (ORDER BY UpVoteCount DESC) AS UpVoteRank
+    FROM 
+        UserPostStats
+), CombinedRanked AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        PostCount,
+        AnswerCount,
+        QuestionCount,
+        UpVoteCount,
+        DownVoteCount,
+        PostRank,
+        UpVoteRank,
+        (PostRank + UpVoteRank) AS CombinedRank
+    FROM 
+        RankedUsers
+)
+SELECT 
+    UserId,
+    DisplayName,
+    PostCount,
+    AnswerCount,
+    QuestionCount,
+    UpVoteCount,
+    DownVoteCount,
+    CombinedRank
+FROM 
+    CombinedRanked
+WHERE 
+    CombinedRank &lt;= 10
+ORDER BY 
+    CombinedRank;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">userid</th><th class="">displayname</th><th class="">postcount</th><th class="">answercount</th><th class="">questioncount</th><th class="">upvotecount</th><th class="">downvotecount</th><th class="">combinedrank</th></tr></thead><tbody><tr><td class="">1186</td><td class="">Aaron Bertrand</td><td class="">18148</td><td class="">17972</td><td class="">164</td><td class="">16630</td><td class="">50</td><td class="">2</td></tr><tr><td class="">877</td><td class="">RolandoMySQLDBA</td><td class="">17909</td><td class="">17735</td><td class="">38</td><td class="">15704</td><td class="">52</td><td class="">4</td></tr><tr><td class="">3684</td><td class="">Erwin Brandstetter</td><td class="">17292</td><td class="">17078</td><td class="">177</td><td class="">15683</td><td class="">15</td><td class="">6</td></tr><tr><td class="">1192</td><td class="">Paul White</td><td class="">13862</td><td class="">13099</td><td class="">551</td><td class="">12695</td><td class="">16</td><td class="">8</td></tr><tr><td class="">993</td><td class="">ypercubeᵀᴹ</td><td class="">10149</td><td class="">10051</td><td class="">89</td><td class="">8992</td><td class="">20</td><td class="">10</td></tr></tbody></table></div><p class="muted">first 5 of 5 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=((q.postrank + q.upvoterank))]
+  Subquery Scan [Filter=((q.postrank + q.upvoterank) &lt;= 10)]
+    WindowAgg [Window=w2 AS (ORDER BY q.postcount ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=q.postcount DESC]
+        WindowAgg [Window=w1 AS (ORDER BY q.upvotecount ROWS UNBOUNDED PRECEDING)]
+          Sort [Sort Key=q.upvotecount DESC]
+            Subquery Scan
+              Finalize GroupAggregate [Group Key=users.id]
+                Gather Merge
+                  Partial GroupAggregate [Group Key=users.id]
+                    Sort [Sort Key=users.id]
+                      Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+                        Parallel Seq Scan on votes
+                        Parallel Hash
+                          Parallel Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+                            Parallel Seq Scan on posts
+                            Parallel Hash
+                              Parallel Seq Scan on users [Filter=(reputation &gt; 1000)]</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 29614</h3><dl class="f"><dt>energy</dt><dd>24.158 J ± 0.215</dd><dt>output</dt><dd>852 rows, 9 columns</dd><dt>plan</dt><dd>1901 ms, 18 nodes, 281 k buffers, 2 parallel workers</dd></dl><b>SQL</b><pre>WITH UserStatistics AS (
+    SELECT 
+        U.Id AS UserId,
+        U.DisplayName,
+        SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+        SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+        SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,
+        SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,
+        COALESCE(AVG(LENGTH(CASE WHEN P.Body IS NOT NULL THEN P.Body END)), 0) AS AvgPostLength
+    FROM 
+        Users U
+    LEFT JOIN 
+        Posts P ON U.Id = P.OwnerUserId
+    LEFT JOIN 
+        Votes V ON P.Id = V.PostId
+    WHERE 
+        U.Reputation &gt; 1000 
+    GROUP BY 
+        U.Id, U.DisplayName
+),
+TopUserStats AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        TotalQuestions,
+        TotalAnswers,
+        TotalUpVotes,
+        TotalDownVotes,
+        AvgPostLength,
+        RANK() OVER (ORDER BY TotalAnswers DESC) AS AnswerRank,
+        RANK() OVER (ORDER BY TotalUpVotes DESC) AS UpVoteRank
+    FROM 
+        UserStatistics
+)
+SELECT 
+    T.DisplayName,
+    T.TotalQuestions,
+    T.TotalAnswers,
+    T.TotalUpVotes,
+    T.TotalDownVotes,
+    T.AvgPostLength,
+    T.AnswerRank,
+    T.UpVoteRank,
+    CASE 
+        WHEN T.AnswerRank &lt;= 10 THEN &#x27;Top Contributor&#x27;
+        WHEN T.UpVoteRank &lt;= 10 THEN &#x27;Popular User&#x27;
+        ELSE &#x27;Regular User&#x27;
+    END AS UserCategory
+FROM 
+    TopUserStats T
+WHERE 
+    T.TotalAnswers &gt; 0 OR T.TotalUpVotes &gt; 0
+ORDER BY 
+    T.UpVoteRank, T.AnswerRank;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">displayname</th><th class="">totalquestions</th><th class="">totalanswers</th><th class="">totalupvotes</th><th class="">totaldownvotes</th><th class="">avgpostlength</th><th class="">answerrank</th><th class="">upvoterank</th><th class="">usercategory</th></tr></thead><tbody><tr><td class="">Aaron Bertrand</td><td class="">164</td><td class="">17972</td><td class="">16630</td><td class="">50</td><td class="">2097.9155278818602601</td><td class="">1</td><td class="">1</td><td class="">Top Contributor</td></tr><tr><td class="">RolandoMySQLDBA</td><td class="">38</td><td class="">17735</td><td class="">15704</td><td class="">52</td><td class="">2895.7399631470210509</td><td class="">2</td><td class="">2</td><td class="">Top Contributor</td></tr><tr><td class="">Erwin Brandstetter</td><td class="">177</td><td class="">17078</td><td class="">15683</td><td class="">15</td><td class="">3376.2280823502197548</td><td class="">3</td><td class="">3</td><td class="">Top Contributor</td></tr><tr><td class="">Paul White</td><td class="">551</td><td class="">13099</td><td class="">12695</td><td class="">16</td><td class="">3111.0815178184966094</td><td class="">4</td><td class="">4</td><td class="">Top Contributor</td></tr><tr><td class="">ypercubeᵀᴹ</td><td class="">89</td><td class="">10051</td><td class="">8992</td><td class="">20</td><td class="">1584.6730712385456695</td><td class="">5</td><td class="">5</td><td class="">Top Contributor</td></tr></tbody></table></div><p class="muted">first 5 of 852 rows</p><details><summary>Plan</summary><pre>Sort [Sort Key=q.upvoterank, q.answerrank]
+  Subquery Scan [Filter=((q.totalanswers &gt; 0) OR (q.totalupvotes &gt; 0))]
+    WindowAgg [Window=w2 AS (ORDER BY q.totalanswers ROWS UNBOUNDED PRECEDING)]
+      Sort [Sort Key=q.totalanswers DESC]
+        WindowAgg [Window=w1 AS (ORDER BY q.totalupvotes ROWS UNBOUNDED PRECEDING)]
+          Sort [Sort Key=q.totalupvotes DESC]
+            Subquery Scan
+              Finalize GroupAggregate [Group Key=users.id]
+                Gather Merge
+                  Partial GroupAggregate [Group Key=users.id]
+                    Sort [Sort Key=users.id]
+                      Parallel Hash Right Join [Hash Cond=(votes.postid = posts.id)]
+                        Parallel Seq Scan on votes
+                        Parallel Hash
+                          Parallel Hash Right Join [Hash Cond=(posts.owneruserid = users.id)]
+                            Parallel Seq Scan on posts
+                            Parallel Hash
+                              Parallel Seq Scan on users [Filter=(reputation &gt; 1000)]</pre></details></div></div><h2>Plan difference</h2><pre>--- 9855
++++ 29614
+@@ -1,7 +1,7 @@
+<span class="d">-Sort [Sort Key=((q.postrank + q.upvoterank))]</span>
+<span class="d">-  Subquery Scan [Filter=((q.postrank + q.upvoterank) &lt;= 10)]</span>
+<span class="d">-    WindowAgg [Window=w2 AS (ORDER BY q.postcount ROWS UNBOUNDED PRECEDING)]</span>
+<span class="d">-      Sort [Sort Key=q.postcount DESC]</span>
+<span class="d">-        WindowAgg [Window=w1 AS (ORDER BY q.upvotecount ROWS UNBOUNDED PRECEDING)]</span>
+<span class="d">-          Sort [Sort Key=q.upvotecount DESC]</span>
+<span class="a">+Sort [Sort Key=q.upvoterank, q.answerrank]</span>
+<span class="a">+  Subquery Scan [Filter=((q.totalanswers &gt; 0) OR (q.totalupvotes &gt; 0))]</span>
+<span class="a">+    WindowAgg [Window=w2 AS (ORDER BY q.totalanswers ROWS UNBOUNDED PRECEDING)]</span>
+<span class="a">+      Sort [Sort Key=q.totalanswers DESC]</span>
+<span class="a">+        WindowAgg [Window=w1 AS (ORDER BY q.totalupvotes ROWS UNBOUNDED PRECEDING)]</span>
+<span class="a">+          Sort [Sort Key=q.totalupvotes DESC]</span>
+             Subquery Scan</pre><details><summary>SQL difference</summary><pre>--- 9855
++++ 29614
+@@ -1,21 +1,22 @@
+<span class="d">-WITH UserPostStats AS (</span>
+<span class="a">+WITH UserStatistics AS (</span>
+     SELECT 
+<span class="d">-        u.Id AS UserId,</span>
+<span class="d">-        u.DisplayName,</span>
+<span class="d">-        COUNT(p.Id) AS PostCount,</span>
+<span class="d">-        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,</span>
+<span class="d">-        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,</span>
+<span class="d">-        COALESCE(SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END), 0) AS UpVoteCount,</span>
+<span class="d">-        COALESCE(SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END), 0) AS DownVoteCount</span>
+<span class="a">+        U.Id AS UserId,</span>
+<span class="a">+        U.DisplayName,</span>
+<span class="a">+        SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,</span>
+<span class="a">+        SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,</span>
+<span class="a">+        SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,</span>
+<span class="a">+        SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,</span>
+<span class="a">+        COALESCE(AVG(LENGTH(CASE WHEN P.Body IS NOT NULL THEN P.Body END)), 0) AS AvgPostLength</span>
+     FROM 
+<span class="d">-        Users u</span>
+<span class="a">+        Users U</span>
+     LEFT JOIN 
+<span class="d">-        Posts p ON u.Id = p.OwnerUserId</span>
+<span class="a">+        Posts P ON U.Id = P.OwnerUserId</span>
+     LEFT JOIN 
+<span class="d">-        Votes v ON p.Id = v.PostId</span>
+<span class="a">+        Votes V ON P.Id = V.PostId</span>
+     WHERE 
+<span class="d">-        u.Reputation &gt; 1000</span>
+<span class="a">+        U.Reputation &gt; 1000 </span>
+     GROUP BY 
+<span class="d">-        u.Id, u.DisplayName</span>
+<span class="d">-), RankedUsers AS (</span>
+<span class="a">+        U.Id, U.DisplayName</span>
+<span class="a">+),</span>
+<span class="a">+TopUserStats AS (</span>
+     SELECT 
+@@ -23,40 +24,31 @@
+         DisplayName,
+<span class="d">-        PostCount,</span>
+<span class="d">-        AnswerCount,</span>
+<span class="d">-        QuestionCount,</span>
+<span class="d">-        UpVoteCount,</span>
+<span class="d">-        DownVoteCount,</span>
+<span class="d">-        RANK() OVER (ORDER BY PostCount DESC) AS PostRank,</span>
+<span class="d">-        RANK() OVER (ORDER BY UpVoteCount DESC) AS UpVoteRank</span>
+<span class="a">+        TotalQuestions,</span>
+<span class="a">+        TotalAnswers,</span>
+<span class="a">+        TotalUpVotes,</span>
+<span class="a">+        TotalDownVotes,</span>
+<span class="a">+        AvgPostLength,</span>
+<span class="a">+        RANK() OVER (ORDER BY TotalAnswers DESC) AS AnswerRank,</span>
+<span class="a">+        RANK() OVER (ORDER BY TotalUpVotes DESC) AS UpVoteRank</span>
+     FROM 
+<span class="d">-        UserPostStats</span>
+<span class="d">-), CombinedRanked AS (</span>
+<span class="d">-    SELECT </span>
+<span class="d">-        UserId,</span>
+<span class="d">-        DisplayName,</span>
+<span class="d">-        PostCount,</span>
+<span class="d">-        AnswerCount,</span>
+<span class="d">-        QuestionCount,</span>
+<span class="d">-        UpVoteCount,</span>
+<span class="d">-        DownVoteCount,</span>
+<span class="d">-        PostRank,</span>
+<span class="d">-        UpVoteRank,</span>
+<span class="d">-        (PostRank + UpVoteRank) AS CombinedRank</span>
+<span class="d">-    FROM </span>
+<span class="d">-        RankedUsers</span>
+<span class="a">+        UserStatistics</span>
+ )
+ SELECT 
+<span class="d">-    UserId,</span>
+<span class="d">-    DisplayName,</span>
+<span class="d">-    PostCount,</span>
+<span class="d">-    AnswerCount,</span>
+<span class="d">-    QuestionCount,</span>
+<span class="d">-    UpVoteCount,</span>
+<span class="d">-    DownVoteCount,</span>
+<span class="d">-    CombinedRank</span>
+<span class="a">+    T.DisplayName,</span>
+<span class="a">+    T.TotalQuestions,</span>
+<span class="a">+    T.TotalAnswers,</span>
+<span class="a">+    T.TotalUpVotes,</span>
+<span class="a">+    T.TotalDownVotes,</span>
+<span class="a">+    T.AvgPostLength,</span>
+<span class="a">+    T.AnswerRank,</span>
+<span class="a">+    T.UpVoteRank,</span>
+<span class="a">+    CASE </span>
+<span class="a">+        WHEN T.AnswerRank &lt;= 10 THEN &#x27;Top Contributor&#x27;</span>
+<span class="a">+        WHEN T.UpVoteRank &lt;= 10 THEN &#x27;Popular User&#x27;</span>
+<span class="a">+        ELSE &#x27;Regular User&#x27;</span>
+<span class="a">+    END AS UserCategory</span>
+ FROM 
+<span class="d">-    CombinedRanked</span>
+<span class="a">+    TopUserStats T</span>
+ WHERE 
+<span class="d">-    CombinedRank &lt;= 10</span>
+<span class="a">+    T.TotalAnswers &gt; 0 OR T.TotalUpVotes &gt; 0</span>
+ ORDER BY 
+<span class="d">-    CombinedRank;</span>
+<span class="a">+    T.UpVoteRank, T.AnswerRank;</span></pre></details><h2>All 2 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">9855</td><td class="n">1</td><td class="n">2.692</td><td class="n">1.00</td><td class="n">5</td><td class="n">8</td><td class="n">218</td><td class="n">43</td><td class="">8f962195</td><td class=""><details><summary>show</summary><pre>WITH UserPostStats AS (
+    SELECT 
+        u.Id AS UserId,
+        u.DisplayName,
+        COUNT(p.Id) AS PostCount,
+        SUM(CASE WHEN p.PostTypeId = 2 THEN 1 ELSE 0 END) AS AnswerCount,
+        SUM(CASE WHEN p.PostTypeId = 1 THEN 1 ELSE 0 END) AS QuestionCount,
+        COALESCE(SUM(CASE WHEN v.VoteTypeId = 2 THEN 1 ELSE 0 END), 0) AS UpVoteCount,
+        COALESCE(SUM(CASE WHEN v.VoteTypeId = 3 THEN 1 ELSE 0 END), 0) AS DownVoteCount
+    FROM 
+        Users u
+    LEFT JOIN 
+        Posts p ON u.Id = p.OwnerUserId
+    LEFT JOIN 
+        Votes v ON p.Id = v.PostId
+    WHERE 
+        u.Reputation &gt; 1000
+    GROUP BY 
+        u.Id, u.DisplayName
+), RankedUsers AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        PostCount,
+        AnswerCount,
+        QuestionCount,
+        UpVoteCount,
+        DownVoteCount,
+        RANK() OVER (ORDER BY PostCount DESC) AS PostRank,
+        RANK() OVER (ORDER BY UpVoteCount DESC) AS UpVoteRank
+    FROM 
+        UserPostStats
+), CombinedRanked AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        PostCount,
+        AnswerCount,
+        QuestionCount,
+        UpVoteCount,
+        DownVoteCount,
+        PostRank,
+        UpVoteRank,
+        (PostRank + UpVoteRank) AS CombinedRank
+    FROM 
+        RankedUsers
+)
+SELECT 
+    UserId,
+    DisplayName,
+    PostCount,
+    AnswerCount,
+    QuestionCount,
+    UpVoteCount,
+    DownVoteCount,
+    CombinedRank
+FROM 
+    CombinedRanked
+WHERE 
+    CombinedRank &lt;= 10
+ORDER BY 
+    CombinedRank;</pre></details></td></tr><tr><td class="">29614</td><td class="n">1</td><td class="n">24.158</td><td class="n">8.97</td><td class="n">852</td><td class="n">9</td><td class="n">1901</td><td class="n">281</td><td class="">0bb586a1</td><td class=""><details><summary>show</summary><pre>WITH UserStatistics AS (
+    SELECT 
+        U.Id AS UserId,
+        U.DisplayName,
+        SUM(CASE WHEN P.PostTypeId = 2 THEN 1 ELSE 0 END) AS TotalAnswers,
+        SUM(CASE WHEN P.PostTypeId = 1 THEN 1 ELSE 0 END) AS TotalQuestions,
+        SUM(CASE WHEN V.VoteTypeId = 2 THEN 1 ELSE 0 END) AS TotalUpVotes,
+        SUM(CASE WHEN V.VoteTypeId = 3 THEN 1 ELSE 0 END) AS TotalDownVotes,
+        COALESCE(AVG(LENGTH(CASE WHEN P.Body IS NOT NULL THEN P.Body END)), 0) AS AvgPostLength
+    FROM 
+        Users U
+    LEFT JOIN 
+        Posts P ON U.Id = P.OwnerUserId
+    LEFT JOIN 
+        Votes V ON P.Id = V.PostId
+    WHERE 
+        U.Reputation &gt; 1000 
+    GROUP BY 
+        U.Id, U.DisplayName
+),
+TopUserStats AS (
+    SELECT 
+        UserId,
+        DisplayName,
+        TotalQuestions,
+        TotalAnswers,
+        TotalUpVotes,
+        TotalDownVotes,
+        AvgPostLength,
+        RANK() OVER (ORDER BY TotalAnswers DESC) AS AnswerRank,
+        RANK() OVER (ORDER BY TotalUpVotes DESC) AS UpVoteRank
+    FROM 
+        UserStatistics
+)
+SELECT 
+    T.DisplayName,
+    T.TotalQuestions,
+    T.TotalAnswers,
+    T.TotalUpVotes,
+    T.TotalDownVotes,
+    T.AvgPostLength,
+    T.AnswerRank,
+    T.UpVoteRank,
+    CASE 
+        WHEN T.AnswerRank &lt;= 10 THEN &#x27;Top Contributor&#x27;
+        WHEN T.UpVoteRank &lt;= 10 THEN &#x27;Popular User&#x27;
+        ELSE &#x27;Regular User&#x27;
+    END AS UserCategory
+FROM 
+    TopUserStats T
+WHERE 
+    T.TotalAnswers &gt; 0 OR T.TotalUpVotes &gt; 0
+ORDER BY 
+    T.UpVoteRank, T.AnswerRank;</pre></details></td></tr></tbody></table></div></main></div></body></html>

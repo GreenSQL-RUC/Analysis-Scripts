@@ -1,0 +1,350 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same query #3 — query 10153</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="on">Same query</a></nav></header><div class="wrap"><aside><a href="../same_query/01.html" class=""><span class="r">#1</span>query 10473<span class="x">48×</span></a><a href="../same_query/02.html" class=""><span class="r">#2</span>query 10133<span class="x">26×</span></a><a href="../same_query/03.html" class="on"><span class="r">#3</span>query 10153<span class="x">22×</span></a><a href="../same_query/04.html" class=""><span class="r">#4</span>query 13596<span class="x">22×</span></a><a href="../same_query/05.html" class=""><span class="r">#5</span>query 10370<span class="x">20×</span></a><a href="../same_query/06.html" class=""><span class="r">#6</span>query 10567<span class="x">20×</span></a><a href="../same_query/07.html" class=""><span class="r">#7</span>query 15074<span class="x">19×</span></a><a href="../same_query/08.html" class=""><span class="r">#8</span>query 13395<span class="x">18×</span></a><a href="../same_query/09.html" class=""><span class="r">#9</span>query 15012<span class="x">18×</span></a><a href="../same_query/10.html" class=""><span class="r">#10</span>query 10062<span class="x">17×</span></a><a href="../same_query/11.html" class=""><span class="r">#11</span>query 15005<span class="x">17×</span></a><a href="../same_query/12.html" class=""><span class="r">#12</span>query 10004<span class="x">16×</span></a><a href="../same_query/13.html" class=""><span class="r">#13</span>query 10220<span class="x">16×</span></a><a href="../same_query/14.html" class=""><span class="r">#14</span>query 10301<span class="x">16×</span></a><a href="../same_query/15.html" class=""><span class="r">#15</span>query 15010<span class="x">16×</span></a><a href="../same_query/16.html" class=""><span class="r">#16</span>query 10025<span class="x">15×</span></a><a href="../same_query/17.html" class=""><span class="r">#17</span>query 10111<span class="x">15×</span></a><a href="../same_query/18.html" class=""><span class="r">#18</span>query 10137<span class="x">15×</span></a><a href="../same_query/19.html" class=""><span class="r">#19</span>query 15089<span class="x">15×</span></a><a href="../same_query/20.html" class=""><span class="r">#20</span>query 10021<span class="x">14×</span></a></aside><main><h1>Same query #3: query 10153 — 22 copies</h1><div class="sub">copies of one SQL text (same sqlglot canonical form): the largest copy sets. Copies are the same work measured several times, so their energy spread is the measurement noise (model σ at the median: 0.262 J, SQLStorm single-copy energy (laptop 1)).</div><div class="cards"><div class="card"><div class="k">copies</div><div class="v">22</div></div><div class="card"><div class="k">with energy</div><div class="v">22</div></div><div class="card"><div class="k">energy min</div><div class="v">45.820 J</div></div><div class="card"><div class="k">median</div><div class="v">46.318 J</div></div><div class="card"><div class="k">max</div><div class="v">46.857 J</div></div><div class="card"><div class="k">spread</div><div class="v">1.023×</div></div><div class="card"><div class="k">furthest copy</div><div class="v">2.1 σ</div></div><div class="card"><div class="k">distinct SQL texts</div><div class="v">22</div></div><div class="card"><div class="k">distinct outputs</div><div class="v">1</div></div><div class="card"><div class="k">distinct plans</div><div class="v">1</div></div></div><p>Copies: 10153 10203 10222 10941 10949 11033 11796 12104 12363 13027 13500 13589 15047 15211 15388 15499 15631 16006 16888 16909 17723 19423</p><p>Compared with T1 (the text most copies use), the other texts differ in:</p><ul><li>13 texts: names (table aliases, output column names or CTE names), besides any whitespace, comment or case changes</li><li>7 texts: only whitespace, comments and upper/lower case</li><li>1 text: only whitespace / line breaks</li></ul><h2>Every copy</h2><div class="scroll"><table class=""><thead><tr><th class="">query</th><th class="">SQL text</th><th class="n">energy (J)</th><th class="n">σ from median</th><th class="n">rows</th><th class="">same output</th><th class="">same plan</th><th class="n">plan ms</th></tr></thead><tbody><tr><td class="">10153</td><td class="">T1</td><td class="n">46.857</td><td class="n">+2.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4173</td></tr><tr><td class="">10203</td><td class="">T2</td><td class="n">46.419</td><td class="n">+0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4192</td></tr><tr><td class="">10222</td><td class="">T3</td><td class="n">46.230</td><td class="n">-0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4221</td></tr><tr><td class="">10941</td><td class="">T4</td><td class="n">46.383</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4216</td></tr><tr><td class="">10949</td><td class="">T5</td><td class="n">46.608</td><td class="n">+1.1</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4186</td></tr><tr><td class="">11033</td><td class="">T6</td><td class="n">46.844</td><td class="n">+2.0</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4191</td></tr><tr><td class="">11796</td><td class="">T7</td><td class="n">46.449</td><td class="n">+0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4119</td></tr><tr><td class="">12104</td><td class="">T8</td><td class="n">45.820</td><td class="n">-1.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4146</td></tr><tr><td class="">12363</td><td class="">T9</td><td class="n">46.398</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4150</td></tr><tr><td class="">13027</td><td class="">T10</td><td class="n">46.009</td><td class="n">-1.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4189</td></tr><tr><td class="">13500</td><td class="">T11</td><td class="n">46.212</td><td class="n">-0.4</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4189</td></tr><tr><td class="">13589</td><td class="">T12</td><td class="n">46.086</td><td class="n">-0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4210</td></tr><tr><td class="">15047</td><td class="">T13</td><td class="n">46.261</td><td class="n">-0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4176</td></tr><tr><td class="">15211</td><td class="">T14</td><td class="n">46.494</td><td class="n">+0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4191</td></tr><tr><td class="">15388</td><td class="">T15</td><td class="n">46.074</td><td class="n">-0.9</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4197</td></tr><tr><td class="">15499</td><td class="">T16</td><td class="n">46.131</td><td class="n">-0.7</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4199</td></tr><tr><td class="">15631</td><td class="">T17</td><td class="n">46.375</td><td class="n">+0.2</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4196</td></tr><tr><td class="">16006</td><td class="">T18</td><td class="n">46.200</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4203</td></tr><tr><td class="">16888</td><td class="">T19</td><td class="n">46.166</td><td class="n">-0.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4162</td></tr><tr><td class="">16909</td><td class="">T20</td><td class="n">46.176</td><td class="n">-0.5</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4171</td></tr><tr><td class="">17723</td><td class="">T21</td><td class="n">46.738</td><td class="n">+1.6</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4110</td></tr><tr><td class="">19423</td><td class="">T22</td><td class="n">46.385</td><td class="n">+0.3</td><td class="n">10</td><td class=""><span class="ok">yes</span></td><td class=""><span class="ok">yes</span></td><td class="n">4188</td></tr></tbody></table></div><h2>The 22 distinct SQL texts</h2><div class="texts"><div class="q"><h3>T1 <span class="muted">— 1 copy: 10153</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    sum(l.l_quantity) AS total_quantity, 
+    sum(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></div><div class="q"><h3>T2 <span class="muted">— 1 copy: 10203</span></h3><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></div><div class="q"><h3>T3 <span class="muted">— 1 copy: 10222</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></div><div class="q"><h3>T4 <span class="muted">— 1 copy: 10941</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T5 <span class="muted">— 1 copy: 10949</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_sales
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_sales DESC
+LIMIT 10;</pre></div><div class="q"><h3>T6 <span class="muted">— 1 copy: 11033</span></h3><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></div><div class="q"><h3>T7 <span class="muted">— 1 copy: 11796</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></div><div class="q"><h3>T8 <span class="muted">— 1 copy: 12104</span></h3><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    part AS p
+JOIN
+    lineitem AS l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></div><div class="q"><h3>T9 <span class="muted">— 1 copy: 12363</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_extended_price DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T10 <span class="muted">— 1 copy: 13027</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></div><div class="q"><h3>T11 <span class="muted">— 1 copy: 13500</span></h3><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T12 <span class="muted">— 1 copy: 13589</span></h3><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_price DESC
+LIMIT 10;</pre></div><div class="q"><h3>T13 <span class="muted">— 1 copy: 15047</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_extended_price DESC
+LIMIT 10;</pre></div><div class="q"><h3>T14 <span class="muted">— 1 copy: 15211</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    total_extended_price DESC
+LIMIT 10;</pre></div><div class="q"><h3>T15 <span class="muted">— 1 copy: 15388</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    sum(l.l_quantity) AS total_quantity, 
+    sum(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T16 <span class="muted">— 1 copy: 15499</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_sales 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_sales DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T17 <span class="muted">— 1 copy: 15631</span></h3><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_sales
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_sales DESC
+LIMIT 10;</pre></div><div class="q"><h3>T18 <span class="muted">— 1 copy: 16006</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_price DESC
+LIMIT 10;</pre></div><div class="q"><h3>T19 <span class="muted">— 1 copy: 16888</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_sales 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_partkey, 
+    p.p_name 
+ORDER BY 
+    total_sales DESC 
+LIMIT 10;</pre></div><div class="q"><h3>T20 <span class="muted">— 1 copy: 16909</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_sales
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    total_sales DESC
+LIMIT 10;</pre></div><div class="q"><h3>T21 <span class="muted">— 1 copy: 17723</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(li.l_quantity) AS total_quantity, 
+    SUM(li.l_extendedprice) AS total_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem li ON p.p_partkey = li.l_partkey
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_extended_price DESC
+LIMIT 10;</pre></div><div class="q"><h3>T22 <span class="muted">— 1 copy: 19423</span></h3><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_price DESC 
+LIMIT 10;</pre></div></div><h2>Output (query 10153)</h2><div class="scroll"><table class="out"><thead><tr><th class="">p_partkey</th><th class="">p_name</th><th class="">total_quantity</th><th class="">total_revenue</th></tr></thead><tbody><tr><td class="">49981</td><td class="">rose red purple salmon sandy</td><td class="">1553.00</td><td class="">2998811.94</td></tr><tr><td class="">151990</td><td class="">white blanched ghost sienna snow</td><td class="">1422.00</td><td class="">2903709.78</td></tr><tr><td class="">67973</td><td class="">smoke turquoise purple forest chocolate</td><td class="">1477.00</td><td class="">2866812.69</td></tr><tr><td class="">173988</td><td class="">orchid antique peru purple thistle</td><td class="">1388.00</td><td class="">2862028.24</td></tr><tr><td class="">194995</td><td class="">burlywood orange sienna forest chocolate</td><td class="">1368.00</td><td class="">2859106.32</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum(lineitem.l_extendedprice)) DESC]
+    Finalize HashAggregate [Group Key=part.p_partkey, part.p_name]
+      Gather
+        Partial HashAggregate [Group Key=part.p_partkey, part.p_name]
+          Parallel Hash Join [Hash Cond=(lineitem.l_partkey = part.p_partkey)]
+            Parallel Seq Scan on lineitem
+            Parallel Hash
+              Parallel Seq Scan on part</pre></details></main></div></body></html>

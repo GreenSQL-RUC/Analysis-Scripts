@@ -1,0 +1,2047 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Same plan shape #15 — 10359 vs 12442</title><style>
+:root { --bg:#ffffff; --fg:#1f2328; --muted:#59636e; --line:#d1d9e0; --panel:#f6f8fa; --accent:#0969da;
+        --accent-bg:#ddf4ff; --cheap:#1a7f37; --dear:#cf222e; --add:#dafbe1; --del:#ffebe9; --code:#f6f8fa; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9198a1; --line:#3d444d; --panel:#151b23; --accent:#4493f8;
+          --accent-bg:#121d2f; --cheap:#3fb950; --dear:#f85149; --add:#12261e; --del:#25171c; --code:#151b23; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+header { position:sticky; top:0; z-index:5; background:var(--panel); border-bottom:1px solid var(--line); }
+.brand { padding:10px 20px 0; font-weight:600; }
+.brand small { color:var(--muted); font-weight:400; margin-left:8px; }
+nav.tabs { display:flex; gap:4px; padding:8px 16px 0; flex-wrap:wrap; }
+nav.tabs a { padding:7px 14px; border:1px solid transparent; border-bottom:none; border-radius:6px 6px 0 0; color:var(--fg); }
+nav.tabs a.on { background:var(--bg); border-color:var(--line); font-weight:600; margin-bottom:-1px; }
+.wrap { display:flex; min-height:calc(100vh - 80px); }
+aside { width:250px; flex:none; border-right:1px solid var(--line); padding:12px 0; position:sticky; top:80px;
+        align-self:flex-start; max-height:calc(100vh - 80px); overflow:auto; }
+aside a { display:block; padding:5px 16px; color:var(--fg); font-size:13px; border-left:3px solid transparent; }
+aside a .r { color:var(--muted); display:inline-block; width:30px; }
+aside a .x { float:right; color:var(--muted); }
+aside a.on { background:var(--accent-bg); border-left-color:var(--accent); font-weight:600; }
+main { flex:1; min-width:0; padding:20px 28px 60px; max-width:1500px; }
+h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:17px; margin:28px 0 10px; border-bottom:1px solid var(--line);
+padding-bottom:4px; } h3 { font-size:15px; margin:0 0 8px; }
+.sub { color:var(--muted); margin-bottom:16px; }
+.cards { display:flex; flex-wrap:wrap; gap:10px; margin:12px 0; }
+.card { border:1px solid var(--line); border-radius:8px; padding:8px 14px; background:var(--panel); min-width:120px; }
+.card .k { color:var(--muted); font-size:12px; } .card .v { font-size:18px; font-weight:600; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media (max-width:1100px) { .two { grid-template-columns:1fr; } aside { display:none; } }
+.q { border:1px solid var(--line); border-radius:8px; padding:14px; min-width:0; }
+.q.cheap { border-top:4px solid var(--cheap); } .q.dear { border-top:4px solid var(--dear); }
+.tag { display:inline-block; font-size:12px; padding:1px 8px; border-radius:10px; background:var(--panel);
+       border:1px solid var(--line); margin-right:6px; }
+.tag.cheap { color:var(--cheap); } .tag.dear { color:var(--dear); }
+dl.f { display:grid; grid-template-columns:max-content 1fr; gap:2px 12px; margin:8px 0; font-size:13px; }
+dl.f dt { color:var(--muted); } dl.f dd { margin:0; }
+pre { background:var(--code); border:1px solid var(--line); border-radius:6px; padding:10px 12px; overflow:auto;
+      max-height:460px; font:12.5px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace; margin:6px 0 12px; }
+pre .a { background:var(--add); display:block; } pre .d { background:var(--del); display:block; }
+table { border-collapse:collapse; font-size:13px; margin:6px 0 14px; }
+th, td { border:1px solid var(--line); padding:4px 8px; text-align:left; vertical-align:top; }
+th { background:var(--panel); font-weight:600; }
+td.n, th.n { text-align:right; font-variant-numeric:tabular-nums; }
+.scroll { overflow:auto; max-width:100%; }
+.out td { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+details { margin:6px 0; } summary { cursor:pointer; color:var(--accent); }
+.bad { color:var(--dear); font-weight:600; } .ok { color:var(--cheap); }
+.texts { display:grid; grid-template-columns:repeat(auto-fill,minmax(440px,1fr)); gap:14px; }
+.texts .q h3 { font-size:14px; } .muted { color:var(--muted); }
+</style></head><body><header><div class="brand">SQLStorm TPC-H<small>queries with the same plan, output or SQL — energy compared</small></div><nav class="tabs"><a href="../index.html" class="">Overview</a><a href="../same_plan/01.html" class="">Same plan</a><a href="../same_plan_shape/01.html" class="on">Same plan shape</a><a href="../same_output/01.html" class="">Same output</a><a href="../same_query/01.html" class="">Same query</a></nav></header><div class="wrap"><aside><a href="../same_plan_shape/01.html" class=""><span class="r">#1</span>11504 vs 10324<span class="x">84.29×</span></a><a href="../same_plan_shape/02.html" class=""><span class="r">#2</span>28628 vs 29724<span class="x">59.54×</span></a><a href="../same_plan_shape/03.html" class=""><span class="r">#3</span>14417 vs 10616<span class="x">56.86×</span></a><a href="../same_plan_shape/04.html" class=""><span class="r">#4</span>25619 vs 25363<span class="x">49.48×</span></a><a href="../same_plan_shape/05.html" class=""><span class="r">#5</span>26744 vs 12506<span class="x">47.33×</span></a><a href="../same_plan_shape/06.html" class=""><span class="r">#6</span>12981 vs 11646<span class="x">45.98×</span></a><a href="../same_plan_shape/07.html" class=""><span class="r">#7</span>26270 vs 25070<span class="x">42.65×</span></a><a href="../same_plan_shape/08.html" class=""><span class="r">#8</span>7408 vs 11887<span class="x">33.88×</span></a><a href="../same_plan_shape/09.html" class=""><span class="r">#9</span>29222 vs 27828<span class="x">29.28×</span></a><a href="../same_plan_shape/10.html" class=""><span class="r">#10</span>27240 vs 26970<span class="x">26.77×</span></a><a href="../same_plan_shape/11.html" class=""><span class="r">#11</span>29217 vs 27093<span class="x">25.70×</span></a><a href="../same_plan_shape/12.html" class=""><span class="r">#12</span>14211 vs 11418<span class="x">25.30×</span></a><a href="../same_plan_shape/13.html" class=""><span class="r">#13</span>27184 vs 28416<span class="x">25.23×</span></a><a href="../same_plan_shape/14.html" class=""><span class="r">#14</span>10100 vs 11629<span class="x">23.84×</span></a><a href="../same_plan_shape/15.html" class="on"><span class="r">#15</span>10359 vs 12442<span class="x">22.92×</span></a><a href="../same_plan_shape/16.html" class=""><span class="r">#16</span>25129 vs 27475<span class="x">22.41×</span></a><a href="../same_plan_shape/17.html" class=""><span class="r">#17</span>11755 vs 13924<span class="x">21.81×</span></a><a href="../same_plan_shape/18.html" class=""><span class="r">#18</span>26702 vs 27519<span class="x">21.17×</span></a><a href="../same_plan_shape/19.html" class=""><span class="r">#19</span>15944 vs 11546<span class="x">21.00×</span></a><a href="../same_plan_shape/20.html" class=""><span class="r">#20</span>14391 vs 10243<span class="x">20.45×</span></a></aside><main><h1>Same plan shape #15: 10359 vs 12442 — 22.92×</h1><div class="sub">same plan shape (operators and tables); conditions and outputs may differ. Ranked 15 of 20 by the energy gap within the group (most expensive / cheapest). Energy: SQLStorm single-copy energy (laptop 1) per copy; a variant's energy is the median over its copies.</div><div class="cards"><div class="card"><div class="k">variants</div><div class="v">82</div></div><div class="card"><div class="k">query files</div><div class="v">190</div></div><div class="card"><div class="k">energy min</div><div class="v">1.849 J</div></div><div class="card"><div class="k">median</div><div class="v">31.744 J</div></div><div class="card"><div class="k">max</div><div class="v">42.388 J</div></div><div class="card"><div class="k">gap</div><div class="v">22.92×</div></div><div class="card"><div class="k">distinct plans</div><div class="v">51</div></div><div class="card"><div class="k">plan shapes</div><div class="v">1</div></div><div class="card"><div class="k">exact outputs (order counts)</div><div class="v">48</div></div></div><h2>Cheapest and most expensive</h2><div class="two"><div class="q cheap"><h3><span class="tag cheap">cheapest</span>query 10359</h3><dl class="f"><dt>energy</dt><dd>1.849 J ± 0.017</dd><dt>copies</dt><dd>10359 13261 13933</dd><dt>output</dt><dd>0 rows, 3 columns</dd><dt>plan</dt><dd>115 ms, 19 nodes, 4 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;Asia&#x27;
+GROUP BY
+    p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">p_name</th><th class="">total_quantity</th><th class="">total_revenue</th></tr></thead><tbody></tbody></table></div><p class="muted">first 0 of 0 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum(lineitem.l_extendedprice)) DESC]
+    Finalize HashAggregate [Group Key=part.p_name]
+      Gather
+        Partial HashAggregate [Group Key=part.p_name]
+          Parallel Hash Join [Hash Cond=(lineitem.l_partkey = part.p_partkey)]
+            Nested Loop
+              Hash Join [Hash Cond=(partsupp.ps_suppkey = supplier.s_suppkey)]
+                Parallel Index Only Scan on partsupp
+                Hash
+                  Nested Loop
+                    Nested Loop [Join Filter=(nation.n_regionkey = region.r_regionkey)]
+                      Seq Scan on region [Filter=(r_name = &#x27;Asia&#x27;)]
+                      Seq Scan on nation
+                    Bitmap Heap Scan on supplier [Recheck Cond=(s_nationkey = nation.n_nationkey)]
+                      Bitmap Index Scan on ixtest_supplier_nationkey [Index Cond=(s_nationkey = nation.n_nationkey)]
+              Index Scan on lineitem [Index Cond=(l_partkey = partsupp.ps_partkey)]
+            Parallel Hash
+              Parallel Seq Scan on part</pre></details></div><div class="q dear"><h3><span class="tag dear">most expensive</span>query 12442</h3><dl class="f"><dt>energy</dt><dd>42.388 J ± 0.240</dd><dt>output</dt><dd>10 rows, 7 columns</dd><dt>plan</dt><dd>2549 ms, 19 nodes, 5171 k buffers, 4 parallel workers</dd></dl><b>SQL</b><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    p.p_mfgr,
+    p.p_brand,
+    p.p_type,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AFRICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_mfgr, p.p_brand, p.p_type
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre><b>Output</b><div class="scroll"><table class="out"><thead><tr><th class="">p_partkey</th><th class="">p_name</th><th class="">p_mfgr</th><th class="">p_brand</th><th class="">p_type</th><th class="">total_quantity</th><th class="">total_revenue</th></tr></thead><tbody><tr><td class="">167835</td><td class="">orchid sandy cyan indian saddle</td><td class="">Manufacturer#5           </td><td class="">Brand#54  </td><td class="">ECONOMY ANODIZED TIN</td><td class="">4612.00</td><td class="">8324348.4576</td></tr><tr><td class="">173782</td><td class="">sandy light blush maroon ghost</td><td class="">Manufacturer#3           </td><td class="">Brand#35  </td><td class="">PROMO PLATED BRASS</td><td class="">4632.00</td><td class="">8115103.2464</td></tr><tr><td class="">167946</td><td class="">royal chiffon blush turquoise forest</td><td class="">Manufacturer#4           </td><td class="">Brand#42  </td><td class="">ECONOMY ANODIZED NICKEL</td><td class="">4160.00</td><td class="">8026839.8216</td></tr><tr><td class="">189979</td><td class="">dodger peru brown seashell spring</td><td class="">Manufacturer#4           </td><td class="">Brand#43  </td><td class="">STANDARD PLATED TIN</td><td class="">4040.00</td><td class="">7944513.7648</td></tr><tr><td class="">36844</td><td class="">violet slate mint steel cornflower</td><td class="">Manufacturer#1           </td><td class="">Brand#11  </td><td class="">SMALL BRUSHED STEEL</td><td class="">4596.00</td><td class="">7746084.1312</td></tr></tbody></table></div><p class="muted">first 5 of 10 rows</p><details><summary>Plan</summary><pre>Limit
+  Sort [Sort Key=(sum((lineitem.l_extendedprice * (&#x27;1&#x27;::numeric - lineitem.l_discount)))) DESC]
+    Finalize HashAggregate [Group Key=part.p_partkey, part.p_name, part.p_mfgr, part.p_brand, part.p_type]
+      Gather
+        Partial HashAggregate [Group Key=part.p_partkey, part.p_name, part.p_mfgr, part.p_brand, part.p_type]
+          Parallel Hash Join [Hash Cond=(lineitem.l_partkey = part.p_partkey)]
+            Nested Loop
+              Hash Join [Hash Cond=(partsupp.ps_suppkey = supplier.s_suppkey)]
+                Parallel Index Only Scan on partsupp
+                Hash
+                  Nested Loop
+                    Nested Loop [Join Filter=(nation.n_regionkey = region.r_regionkey)]
+                      Seq Scan on region [Filter=(r_name = &#x27;AFRICA&#x27;)]
+                      Seq Scan on nation
+                    Bitmap Heap Scan on supplier [Recheck Cond=(s_nationkey = nation.n_nationkey)]
+                      Bitmap Index Scan on ixtest_supplier_nationkey [Index Cond=(s_nationkey = nation.n_nationkey)]
+              Index Scan on lineitem [Index Cond=(l_partkey = partsupp.ps_partkey)]
+            Parallel Hash
+              Parallel Seq Scan on part</pre></details></div></div><h2>Plan difference</h2><pre>--- 10359
++++ 12442
+@@ -1,6 +1,6 @@
+ Limit
+<span class="d">-  Sort [Sort Key=(sum(lineitem.l_extendedprice)) DESC]</span>
+<span class="d">-    Finalize HashAggregate [Group Key=part.p_name]</span>
+<span class="a">+  Sort [Sort Key=(sum((lineitem.l_extendedprice * (&#x27;1&#x27;::numeric - lineitem.l_discount)))) DESC]</span>
+<span class="a">+    Finalize HashAggregate [Group Key=part.p_partkey, part.p_name, part.p_mfgr, part.p_brand, part.p_type]</span>
+       Gather
+<span class="d">-        Partial HashAggregate [Group Key=part.p_name]</span>
+<span class="a">+        Partial HashAggregate [Group Key=part.p_partkey, part.p_name, part.p_mfgr, part.p_brand, part.p_type]</span>
+           Parallel Hash Join [Hash Cond=(lineitem.l_partkey = part.p_partkey)]
+@@ -12,3 +12,3 @@
+                     Nested Loop [Join Filter=(nation.n_regionkey = region.r_regionkey)]
+<span class="d">-                      Seq Scan on region [Filter=(r_name = &#x27;Asia&#x27;)]</span>
+<span class="a">+                      Seq Scan on region [Filter=(r_name = &#x27;AFRICA&#x27;)]</span>
+                       Seq Scan on nation</pre><details><summary>SQL difference</summary><pre>--- 10359
++++ 12442
+@@ -1,22 +1,26 @@
+<span class="d">-SELECT</span>
+<span class="a">+SELECT </span>
+<span class="a">+    p.p_partkey,</span>
+     p.p_name,
+<span class="a">+    p.p_mfgr,</span>
+<span class="a">+    p.p_brand,</span>
+<span class="a">+    p.p_type,</span>
+     SUM(l.l_quantity) AS total_quantity,
+<span class="d">-    SUM(l.l_extendedprice) AS total_revenue</span>
+<span class="d">-FROM</span>
+<span class="a">+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue</span>
+<span class="a">+FROM </span>
+     part p
+<span class="d">-JOIN</span>
+<span class="a">+JOIN </span>
+     lineitem l ON p.p_partkey = l.l_partkey
+<span class="d">-JOIN</span>
+<span class="a">+JOIN </span>
+     partsupp ps ON p.p_partkey = ps.ps_partkey
+<span class="d">-JOIN</span>
+<span class="a">+JOIN </span>
+     supplier s ON ps.ps_suppkey = s.s_suppkey
+<span class="d">-JOIN</span>
+<span class="a">+JOIN </span>
+     nation n ON s.s_nationkey = n.n_nationkey
+<span class="d">-JOIN</span>
+<span class="a">+JOIN </span>
+     region r ON n.n_regionkey = r.r_regionkey
+<span class="d">-WHERE</span>
+<span class="d">-    r.r_name = &#x27;Asia&#x27;</span>
+<span class="d">-GROUP BY</span>
+<span class="d">-    p.p_name</span>
+<span class="d">-ORDER BY</span>
+<span class="a">+WHERE </span>
+<span class="a">+    r.r_name = &#x27;AFRICA&#x27;</span>
+<span class="a">+GROUP BY </span>
+<span class="a">+    p.p_partkey, p.p_name, p.p_mfgr, p.p_brand, p.p_type</span>
+<span class="a">+ORDER BY </span>
+     total_revenue DESC</pre></details><h2>All 82 variants, cheapest first</h2><div class="scroll"><table class=""><thead><tr><th class="">variant</th><th class="n">copies</th><th class="n">energy (J)</th><th class="n">× cheapest</th><th class="n">rows</th><th class="n">columns</th><th class="n">plan ms</th><th class="n">buffers (k)</th><th class="">plan key</th><th class="">SQL</th></tr></thead><tbody><tr><td class="">10359</td><td class="n">3</td><td class="n">1.849</td><td class="n">1.00</td><td class="n">0</td><td class="n">3</td><td class="n">115</td><td class="n">4</td><td class="">8948f35c</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;Asia&#x27;
+GROUP BY
+    p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11134</td><td class="n">1</td><td class="n">1.855</td><td class="n">1.00</td><td class="n">0</td><td class="n">3</td><td class="n">117</td><td class="n">4</td><td class="">d30cbeda</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;Europe&#x27; 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">11161</td><td class="n">2</td><td class="n">1.861</td><td class="n">1.01</td><td class="n">0</td><td class="n">3</td><td class="n">120</td><td class="n">4</td><td class="">6ba4c05f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Europe&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11839</td><td class="n">1</td><td class="n">1.863</td><td class="n">1.01</td><td class="n">0</td><td class="n">3</td><td class="n">118</td><td class="n">4</td><td class="">e2a370a3</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Africa&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10794</td><td class="n">1</td><td class="n">1.865</td><td class="n">1.01</td><td class="n">0</td><td class="n">3</td><td class="n">125</td><td class="n">4</td><td class="">6ba4c05f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    nation n ON n.n_nationkey = s.s_nationkey
+JOIN 
+    region r ON r.r_regionkey = n.n_regionkey
+WHERE 
+    r.r_name = &#x27;Europe&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14014</td><td class="n">1</td><td class="n">1.869</td><td class="n">1.01</td><td class="n">0</td><td class="n">3</td><td class="n">120</td><td class="n">4</td><td class="">97fbb39e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice) AS total_sales
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Europe&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_sales DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10429</td><td class="n">4</td><td class="n">1.873</td><td class="n">1.01</td><td class="n">0</td><td class="n">4</td><td class="n">125</td><td class="n">4</td><td class="">97fbb39e</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;Europe&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10103</td><td class="n">1</td><td class="n">1.878</td><td class="n">1.02</td><td class="n">0</td><td class="n">4</td><td class="n">121</td><td class="n">4</td><td class="">1cc1591e</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;REGION_NAME&#x27; 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">11070</td><td class="n">6</td><td class="n">1.879</td><td class="n">1.02</td><td class="n">0</td><td class="n">4</td><td class="n">121</td><td class="n">4</td><td class="">582ccab0</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;Asia&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12802</td><td class="n">1</td><td class="n">1.881</td><td class="n">1.02</td><td class="n">0</td><td class="n">4</td><td class="n">116</td><td class="n">4</td><td class="">763d885d</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;Asia&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12999</td><td class="n">1</td><td class="n">1.884</td><td class="n">1.02</td><td class="n">0</td><td class="n">3</td><td class="n">116</td><td class="n">4</td><td class="">8a540ee0</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Europe&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10713</td><td class="n">2</td><td class="n">1.892</td><td class="n">1.02</td><td class="n">0</td><td class="n">3</td><td class="n">123</td><td class="n">4</td><td class="">c382cda7</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;Asia&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12966</td><td class="n">1</td><td class="n">1.896</td><td class="n">1.03</td><td class="n">0</td><td class="n">3</td><td class="n">128</td><td class="n">4</td><td class="">11d36969</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;NORTH AMERICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14172</td><td class="n">1</td><td class="n">1.920</td><td class="n">1.04</td><td class="n">0</td><td class="n">4</td><td class="n">119</td><td class="n">4</td><td class="">a4c62862</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;REGIONNAME&#x27; 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">12846</td><td class="n">1</td><td class="n">1.929</td><td class="n">1.04</td><td class="n">0</td><td class="n">3</td><td class="n">120</td><td class="n">4</td><td class="">426a6376</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Africa&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10145</td><td class="n">1</td><td class="n">1.938</td><td class="n">1.05</td><td class="n">0</td><td class="n">3</td><td class="n">117</td><td class="n">4</td><td class="">f9603023</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Europe&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12515</td><td class="n">1</td><td class="n">1.948</td><td class="n">1.05</td><td class="n">0</td><td class="n">4</td><td class="n">128</td><td class="n">4</td><td class="">3f977ba8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    p.p_brand,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Asia&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10609</td><td class="n">1</td><td class="n">1.952</td><td class="n">1.06</td><td class="n">0</td><td class="n">4</td><td class="n">124</td><td class="n">4</td><td class="">acab767f</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_brand, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_sales
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;REGION_NAME&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    total_sales DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10957</td><td class="n">1</td><td class="n">1.967</td><td class="n">1.06</td><td class="n">0</td><td class="n">2</td><td class="n">119</td><td class="n">4</td><td class="">8a540ee0</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;Europe&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10151</td><td class="n">1</td><td class="n">1.972</td><td class="n">1.07</td><td class="n">0</td><td class="n">4</td><td class="n">127</td><td class="n">4</td><td class="">7ef7aee9</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    p.p_brand,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;Europe&#x27;
+GROUP BY
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14378</td><td class="n">1</td><td class="n">24.983</td><td class="n">13.51</td><td class="n">10</td><td class="n">3</td><td class="n">1752</td><td class="n">5296</td><td class="">b2f0cc35</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    lineitem l
+JOIN
+    partsupp ps ON l.l_partkey = ps.ps_partkey
+JOIN
+    part p ON ps.ps_partkey = p.p_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;ASIA&#x27; AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12753</td><td class="n">1</td><td class="n">28.811</td><td class="n">15.58</td><td class="n">10</td><td class="n">2</td><td class="n">1827</td><td class="n">5259</td><td class="">8ea3d917</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    lineitem l
+JOIN 
+    partsupp ps ON l.l_partkey = ps.ps_partkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27; 
+    AND l.l_shipdate &gt;= DATE &#x27;1996-01-01&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12420</td><td class="n">2</td><td class="n">28.993</td><td class="n">15.68</td><td class="n">10</td><td class="n">2</td><td class="n">1904</td><td class="n">5259</td><td class="">3690cf26</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice) AS total_revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27; 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">10506</td><td class="n">2</td><td class="n">29.069</td><td class="n">15.72</td><td class="n">10</td><td class="n">2</td><td class="n">1907</td><td class="n">5296</td><td class="">9d561be8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11399</td><td class="n">1</td><td class="n">29.378</td><td class="n">15.88</td><td class="n">10</td><td class="n">3</td><td class="n">1955</td><td class="n">5171</td><td class="">a0a44d83</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AFRICA&#x27;
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10019</td><td class="n">1</td><td class="n">29.783</td><td class="n">16.10</td><td class="n">10</td><td class="n">3</td><td class="n">1977</td><td class="n">5296</td><td class="">e18123a8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    nation n ON n.n_nationkey = s.s_nationkey
+JOIN 
+    region r ON r.r_regionkey = n.n_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10279</td><td class="n">6</td><td class="n">29.910</td><td class="n">16.17</td><td class="n">10</td><td class="n">3</td><td class="n">1957</td><td class="n">5296</td><td class="">e18123a8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; 
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">11326</td><td class="n">1</td><td class="n">30.402</td><td class="n">16.44</td><td class="n">10</td><td class="n">3</td><td class="n">2013</td><td class="n">5171</td><td class="">92259742</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AFRICA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14503</td><td class="n">1</td><td class="n">30.555</td><td class="n">16.52</td><td class="n">10</td><td class="n">3</td><td class="n">2036</td><td class="n">5296</td><td class="">db455f10</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC, 
+    total_extended_price DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12318</td><td class="n">1</td><td class="n">30.575</td><td class="n">16.53</td><td class="n">10</td><td class="n">3</td><td class="n">2022</td><td class="n">5259</td><td class="">3690cf26</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue 
+FROM 
+    lineitem l 
+JOIN 
+    partsupp ps ON l.l_partkey = ps.ps_partkey 
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27; 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">12018</td><td class="n">1</td><td class="n">30.708</td><td class="n">16.60</td><td class="n">10</td><td class="n">3</td><td class="n">2060</td><td class="n">5296</td><td class="">9d561be8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    nation n ON n.n_nationkey = s.s_nationkey
+JOIN 
+    region r ON r.r_regionkey = n.n_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10175</td><td class="n">7</td><td class="n">30.777</td><td class="n">16.64</td><td class="n">10</td><td class="n">3</td><td class="n">2033</td><td class="n">5259</td><td class="">3690cf26</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10322</td><td class="n">5</td><td class="n">30.832</td><td class="n">16.67</td><td class="n">10</td><td class="n">3</td><td class="n">2063</td><td class="n">5296</td><td class="">88db7789</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10021</td><td class="n">14</td><td class="n">31.000</td><td class="n">16.76</td><td class="n">10</td><td class="n">3</td><td class="n">2047</td><td class="n">5296</td><td class="">9d561be8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12562</td><td class="n">3</td><td class="n">31.104</td><td class="n">16.82</td><td class="n">10</td><td class="n">3</td><td class="n">2063</td><td class="n">5296</td><td class="">88db7789</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10795</td><td class="n">1</td><td class="n">31.193</td><td class="n">16.87</td><td class="n">10</td><td class="n">3</td><td class="n">2059</td><td class="n">5296</td><td class="">9d561be8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    lineitem l
+JOIN 
+    partsupp ps ON l.l_partkey = ps.ps_partkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12758</td><td class="n">1</td><td class="n">31.205</td><td class="n">16.87</td><td class="n">10</td><td class="n">4</td><td class="n">2070</td><td class="n">5171</td><td class="">a0a44d83</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;AFRICA&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11745</td><td class="n">1</td><td class="n">31.245</td><td class="n">16.89</td><td class="n">100</td><td class="n">3</td><td class="n">2041</td><td class="n">5296</td><td class="">88db7789</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 100;</pre></details></td></tr><tr><td class="">11082</td><td class="n">3</td><td class="n">31.334</td><td class="n">16.94</td><td class="n">10</td><td class="n">3</td><td class="n">2076</td><td class="n">5389</td><td class="">039ea70b</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11807</td><td class="n">1</td><td class="n">31.493</td><td class="n">17.03</td><td class="n">10</td><td class="n">4</td><td class="n">2022</td><td class="n">5171</td><td class="">08f3ad4a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_brand, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AFRICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12913</td><td class="n">1</td><td class="n">31.642</td><td class="n">17.11</td><td class="n">10</td><td class="n">4</td><td class="n">2086</td><td class="n">5259</td><td class="">d4cf1ba2</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27;
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10589</td><td class="n">5</td><td class="n">31.846</td><td class="n">17.22</td><td class="n">10</td><td class="n">4</td><td class="n">2081</td><td class="n">5259</td><td class="">7b6b878d</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10055</td><td class="n">13</td><td class="n">31.858</td><td class="n">17.23</td><td class="n">10</td><td class="n">4</td><td class="n">2097</td><td class="n">5296</td><td class="">e18123a8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11943</td><td class="n">2</td><td class="n">31.966</td><td class="n">17.28</td><td class="n">10</td><td class="n">4</td><td class="n">2120</td><td class="n">5296</td><td class="">e18123a8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    nation n ON n.n_nationkey = s.s_nationkey
+JOIN 
+    region r ON r.r_regionkey = n.n_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11300</td><td class="n">1</td><td class="n">32.023</td><td class="n">17.31</td><td class="n">10</td><td class="n">4</td><td class="n">2089</td><td class="n">5259</td><td class="">7b6b878d</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    sum(l.l_quantity) AS total_quantity,
+    sum(l.l_extendedprice) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;EUROPE&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10242</td><td class="n">4</td><td class="n">32.036</td><td class="n">17.32</td><td class="n">10</td><td class="n">4</td><td class="n">2100</td><td class="n">5296</td><td class="">09678a8b</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12658</td><td class="n">1</td><td class="n">32.078</td><td class="n">17.34</td><td class="n">10</td><td class="n">4</td><td class="n">2094</td><td class="n">5296</td><td class="">e18123a8</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10989</td><td class="n">1</td><td class="n">32.111</td><td class="n">17.36</td><td class="n">10</td><td class="n">4</td><td class="n">2070</td><td class="n">5296</td><td class="">3a267ace</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_brand, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11980</td><td class="n">1</td><td class="n">32.406</td><td class="n">17.52</td><td class="n">10</td><td class="n">4</td><td class="n">2167</td><td class="n">5389</td><td class="">310d0b2c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_extended_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27; 
+GROUP BY 
+    p.p_partkey, p.p_name 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">10943</td><td class="n">1</td><td class="n">32.467</td><td class="n">17.55</td><td class="n">10</td><td class="n">4</td><td class="n">2130</td><td class="n">5389</td><td class="">ae3d5613</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">13450</td><td class="n">1</td><td class="n">32.561</td><td class="n">17.61</td><td class="n">10</td><td class="n">4</td><td class="n">2090</td><td class="n">5389</td><td class="">87e27b2a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    p.p_brand,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11062</td><td class="n">1</td><td class="n">33.213</td><td class="n">17.96</td><td class="n">10</td><td class="n">5</td><td class="n">2113</td><td class="n">5296</td><td class="">57237bec</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_brand, 
+    p.p_type, 
+    p.p_size, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_brand, p.p_type, p.p_size
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11631</td><td class="n">1</td><td class="n">33.730</td><td class="n">18.24</td><td class="n">10</td><td class="n">4</td><td class="n">2156</td><td class="n">5389</td><td class="">23eb6f9c</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    p.p_brand,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY 
+    p.p_name, p.p_brand
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11715</td><td class="n">2</td><td class="n">33.792</td><td class="n">18.27</td><td class="n">10</td><td class="n">5</td><td class="n">2185</td><td class="n">5296</td><td class="">3a267ace</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_brand, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;ASIA&#x27; 
+GROUP BY 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_brand 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">12359</td><td class="n">1</td><td class="n">33.896</td><td class="n">18.33</td><td class="n">10</td><td class="n">2</td><td class="n">2122</td><td class="n">5296</td><td class="">6d9d2205</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    lineitem l
+JOIN 
+    partsupp ps ON l.l_partkey = ps.ps_partkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11601</td><td class="n">1</td><td class="n">33.995</td><td class="n">18.38</td><td class="n">10</td><td class="n">2</td><td class="n">2083</td><td class="n">5259</td><td class="">c9869676</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11346</td><td class="n">3</td><td class="n">34.039</td><td class="n">18.40</td><td class="n">10</td><td class="n">3</td><td class="n">2120</td><td class="n">5171</td><td class="">b21d8da9</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AFRICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10178</td><td class="n">6</td><td class="n">34.085</td><td class="n">18.43</td><td class="n">10</td><td class="n">2</td><td class="n">2145</td><td class="n">5296</td><td class="">6d9d2205</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14697</td><td class="n">1</td><td class="n">34.386</td><td class="n">18.59</td><td class="n">10</td><td class="n">5</td><td class="n">2215</td><td class="n">5259</td><td class="">41804176</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_mfgr, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice) AS total_revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27; 
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_mfgr 
+ORDER BY 
+    total_revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">11638</td><td class="n">1</td><td class="n">34.600</td><td class="n">18.71</td><td class="n">10</td><td class="n">5</td><td class="n">2212</td><td class="n">5389</td><td class="">87e27b2a</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    p.p_brand,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_extended_price
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY
+    total_extended_price DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10218</td><td class="n">6</td><td class="n">34.607</td><td class="n">18.71</td><td class="n">10</td><td class="n">3</td><td class="n">2159</td><td class="n">5259</td><td class="">041e835a</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE
+    r.r_name = &#x27;EUROPE&#x27;
+GROUP BY
+    p.p_partkey, p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">13748</td><td class="n">1</td><td class="n">34.681</td><td class="n">18.75</td><td class="n">10</td><td class="n">3</td><td class="n">2162</td><td class="n">5296</td><td class="">67366b90</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    lineitem l
+JOIN 
+    part p ON l.l_partkey = p.p_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11777</td><td class="n">1</td><td class="n">34.787</td><td class="n">18.81</td><td class="n">10</td><td class="n">3</td><td class="n">2154</td><td class="n">5296</td><td class="">67366b90</td><td class=""><details><summary>show</summary><pre>SELECT
+    p.p_partkey,
+    p.p_name,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM
+    part p
+JOIN
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN
+    supplier s ON s.s_suppkey = ps.ps_suppkey
+JOIN
+    nation n ON n.n_nationkey = s.s_nationkey
+JOIN
+    region r ON r.r_regionkey = n.n_regionkey
+WHERE
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY
+    p.p_partkey,
+    p.p_name
+ORDER BY
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12112</td><td class="n">1</td><td class="n">34.800</td><td class="n">18.82</td><td class="n">10</td><td class="n">3</td><td class="n">2175</td><td class="n">5296</td><td class="">67366b90</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    lineitem l
+JOIN 
+    partsupp ps ON l.l_partkey = ps.ps_partkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12869</td><td class="n">1</td><td class="n">34.820</td><td class="n">18.83</td><td class="n">10</td><td class="n">2</td><td class="n">2147</td><td class="n">5389</td><td class="">67a59d77</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11815</td><td class="n">1</td><td class="n">34.836</td><td class="n">18.84</td><td class="n">10</td><td class="n">5</td><td class="n">2244</td><td class="n">5389</td><td class="">f7d4e1f9</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_brand, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_extendedprice) AS avg_price 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27; 
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand 
+ORDER BY 
+    total_quantity DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">10062</td><td class="n">17</td><td class="n">34.868</td><td class="n">18.85</td><td class="n">10</td><td class="n">3</td><td class="n">2158</td><td class="n">5296</td><td class="">67366b90</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">13632</td><td class="n">1</td><td class="n">35.028</td><td class="n">18.94</td><td class="n">10</td><td class="n">5</td><td class="n">2221</td><td class="n">5389</td><td class="">0f2fbe58</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    p.p_mfgr,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_mfgr
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12859</td><td class="n">1</td><td class="n">35.121</td><td class="n">18.99</td><td class="n">10</td><td class="n">5</td><td class="n">2241</td><td class="n">5296</td><td class="">44107d1b</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_retailprice, 
+    SUM(l.l_quantity) AS total_quantity, 
+    AVG(l.l_discount) AS average_discount
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_retailprice
+ORDER BY 
+    total_quantity DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10439</td><td class="n">4</td><td class="n">35.565</td><td class="n">19.23</td><td class="n">10</td><td class="n">3</td><td class="n">2192</td><td class="n">5389</td><td class="">71592f97</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10294</td><td class="n">1</td><td class="n">35.586</td><td class="n">19.24</td><td class="n">10</td><td class="n">3</td><td class="n">2259</td><td class="n">5296</td><td class="">6d9d2205</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    lineitem l
+JOIN 
+    partsupp ps ON l.l_partkey = ps.ps_partkey
+JOIN 
+    part p ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11023</td><td class="n">2</td><td class="n">35.731</td><td class="n">19.32</td><td class="n">10</td><td class="n">3</td><td class="n">2246</td><td class="n">5296</td><td class="">6d9d2205</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_name
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14962</td><td class="n">1</td><td class="n">36.243</td><td class="n">19.60</td><td class="n">10</td><td class="n">3</td><td class="n">2270</td><td class="n">5389</td><td class="">67a59d77</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue 
+FROM 
+    part p 
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey 
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey 
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey 
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey 
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey 
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27; 
+GROUP BY 
+    p.p_name 
+ORDER BY 
+    revenue DESC 
+LIMIT 10;</pre></details></td></tr><tr><td class="">11837</td><td class="n">1</td><td class="n">36.262</td><td class="n">19.61</td><td class="n">10</td><td class="n">4</td><td class="n">2253</td><td class="n">5171</td><td class="">b21d8da9</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AFRICA&#x27;
+GROUP BY 
+    p.p_partkey, 
+    p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">10758</td><td class="n">1</td><td class="n">36.484</td><td class="n">19.73</td><td class="n">10</td><td class="n">6</td><td class="n">2247</td><td class="n">5296</td><td class="">7c161283</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    p.p_mfgr,
+    p.p_brand,
+    p.p_type,
+    SUM(l.l_extendedprice) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_mfgr, p.p_brand, p.p_type
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11347</td><td class="n">2</td><td class="n">36.534</td><td class="n">19.75</td><td class="n">10</td><td class="n">4</td><td class="n">2305</td><td class="n">5259</td><td class="">041e835a</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;EUROPE&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11434</td><td class="n">5</td><td class="n">36.686</td><td class="n">19.84</td><td class="n">10</td><td class="n">4</td><td class="n">2251</td><td class="n">5296</td><td class="">64bf9c32</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    p.p_brand, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12898</td><td class="n">1</td><td class="n">36.704</td><td class="n">19.85</td><td class="n">10</td><td class="n">4</td><td class="n">2256</td><td class="n">5296</td><td class="">64bf9c32</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    p.p_brand,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    nation n ON n.n_nationkey = s.s_nationkey
+JOIN 
+    region r ON r.r_regionkey = n.n_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11003</td><td class="n">5</td><td class="n">36.723</td><td class="n">19.86</td><td class="n">10</td><td class="n">4</td><td class="n">2300</td><td class="n">5296</td><td class="">67366b90</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity, 
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_sales
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_sales DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">11662</td><td class="n">1</td><td class="n">36.829</td><td class="n">19.91</td><td class="n">10</td><td class="n">4</td><td class="n">2253</td><td class="n">5296</td><td class="">64bf9c32</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    p.p_brand,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON ps.ps_partkey = p.p_partkey
+JOIN 
+    supplier s ON s.s_suppkey = ps.ps_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;ASIA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_brand
+ORDER BY 
+    revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">14550</td><td class="n">1</td><td class="n">37.641</td><td class="n">20.35</td><td class="n">10</td><td class="n">4</td><td class="n">2341</td><td class="n">5389</td><td class="">71592f97</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey, 
+    p.p_name, 
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AMERICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr><tr><td class="">12442</td><td class="n">1</td><td class="n">42.388</td><td class="n">22.92</td><td class="n">10</td><td class="n">7</td><td class="n">2549</td><td class="n">5171</td><td class="">36f83921</td><td class=""><details><summary>show</summary><pre>SELECT 
+    p.p_partkey,
+    p.p_name,
+    p.p_mfgr,
+    p.p_brand,
+    p.p_type,
+    SUM(l.l_quantity) AS total_quantity,
+    SUM(l.l_extendedprice * (1 - l.l_discount)) AS total_revenue
+FROM 
+    part p
+JOIN 
+    lineitem l ON p.p_partkey = l.l_partkey
+JOIN 
+    partsupp ps ON p.p_partkey = ps.ps_partkey
+JOIN 
+    supplier s ON ps.ps_suppkey = s.s_suppkey
+JOIN 
+    nation n ON s.s_nationkey = n.n_nationkey
+JOIN 
+    region r ON n.n_regionkey = r.r_regionkey
+WHERE 
+    r.r_name = &#x27;AFRICA&#x27;
+GROUP BY 
+    p.p_partkey, p.p_name, p.p_mfgr, p.p_brand, p.p_type
+ORDER BY 
+    total_revenue DESC
+LIMIT 10;</pre></details></td></tr></tbody></table></div></main></div></body></html>
