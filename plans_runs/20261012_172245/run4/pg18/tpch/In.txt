@@ -1,0 +1,53 @@
+                                                                    QUERY PLAN                                                                    
+--------------------------------------------------------------------------------------------------------------------------------------------------
+ GroupAggregate  (cost=23397.51..23401.73 rows=125 width=92) (actual rows=25.00 loops=1)
+   Group Key: r.r_name, n.n_name
+   Buffers: shared hit=1556716 read=1323949, temp read=18452 written=18478
+   ->  Sort  (cost=23397.51..23397.89 rows=152 width=68) (actual rows=913927.00 loops=1)
+         Sort Key: r.r_name, n.n_name, o.o_orderkey
+         Sort Method: external merge  Disk: 72512kB
+         Buffers: shared hit=1556716 read=1323949, temp read=18452 written=18478
+         ->  Nested Loop  (cost=20050.49..23392.00 rows=152 width=68) (actual rows=913927.00 loops=1)
+               Buffers: shared hit=1556710 read=1323949, temp read=331 written=332
+               ->  Nested Loop  (cost=20050.05..23276.92 rows=38 width=56) (actual rows=228637.00 loops=1)
+                     Buffers: shared hit=1047334 read=905799, temp read=331 written=332
+                     ->  Hash Join  (cost=20049.63..23237.47 rows=25 width=56) (actual rows=150000.00 loops=1)
+                           Hash Cond: (n.n_regionkey = r.r_regionkey)
+                           Buffers: shared read=3602, temp read=331 written=332
+                           ->  Hash Join  (cost=20048.51..23236.01 rows=25 width=34) (actual rows=150000.00 loops=1)
+                                 Hash Cond: (c.c_nationkey = n.n_nationkey)
+                                 Buffers: shared read=3601, temp read=331 written=332
+                                 ->  Unique  (cost=20046.95..21171.95 rows=150000 width=8) (actual rows=150000.00 loops=1)
+                                       Buffers: shared read=3600, temp read=331 written=332
+                                       ->  Sort  (cost=20046.95..20421.95 rows=150000 width=8) (actual rows=150000.00 loops=1)
+                                             Sort Key: c.c_nationkey, c.c_custkey
+                                             Sort Method: external merge  Disk: 2648kB
+                                             Buffers: shared read=3600, temp read=331 written=332
+                                             ->  Seq Scan on customer c  (cost=0.00..5100.00 rows=150000 width=8) (actual rows=150000.00 loops=1)
+                                                   Buffers: shared read=3600
+                                 ->  Hash  (cost=1.25..1.25 rows=25 width=34) (actual rows=25.00 loops=1)
+                                       Buckets: 1024  Batches: 1  Memory Usage: 10kB
+                                       Buffers: shared read=1
+                                       ->  Seq Scan on nation n  (cost=0.00..1.25 rows=25 width=34) (actual rows=25.00 loops=1)
+                                             Buffers: shared read=1
+                           ->  Hash  (cost=1.05..1.05 rows=5 width=30) (actual rows=5.00 loops=1)
+                                 Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                 Buffers: shared read=1
+                                 ->  Seq Scan on region r  (cost=0.00..1.05 rows=5 width=30) (actual rows=5.00 loops=1)
+                                       Buffers: shared read=1
+                     ->  Index Scan using idx_orders_cust on orders o  (cost=0.43..1.55 rows=3 width=8) (actual rows=1.52 loops=150000)
+                           Index Cond: (o_custkey = c.c_custkey)
+                           Filter: ((o_orderdate >= '1995-01-01'::date) AND (o_orderdate < '1996-01-01'::date))
+                           Rows Removed by Filter: 8
+                           Index Searches: 150000
+                           Buffers: shared hit=1047334 read=902197
+               ->  Index Scan using idx_lineitem_order on lineitem l  (cost=0.43..2.87 rows=16 width=16) (actual rows=4.00 loops=228637)
+                     Index Cond: (l_orderkey = o.o_orderkey)
+                     Index Searches: 228637
+                     Buffers: shared hit=509376 read=418150
+ Planning:
+   Buffers: shared hit=179 read=51
+ Planning Time: 1.137 ms
+ Execution Time: 9436.788 ms
+(49 rows)
+

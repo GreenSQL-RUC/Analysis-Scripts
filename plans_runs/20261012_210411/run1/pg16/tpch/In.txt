@@ -1,0 +1,51 @@
+                                                                      QUERY PLAN                                                                       
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ GroupAggregate  (cost=11269423699.71..11269622685.90 rows=125 width=92) (actual rows=25 loops=1)
+   Group Key: r.r_name, n.n_name
+   Buffers: shared hit=16506829152 read=135117, temp read=18122 written=18149
+   ->  Sort  (cost=11269423699.71..11269452126.09 rows=11370550 width=68) (actual rows=913927 loops=1)
+         Sort Key: r.r_name, n.n_name, o.o_orderkey
+         Sort Method: external merge  Disk: 72520kB
+         Buffers: shared hit=16506829152 read=135117, temp read=18122 written=18149
+         ->  Nested Loop  (cost=0.43..11266692025.05 rows=11370550 width=68) (actual rows=913927 loops=1)
+               Buffers: shared hit=16506829146 read=135117
+               ->  Nested Loop  (cost=0.00..11258185083.74 rows=2842062 width=56) (actual rows=228637 loops=1)
+                     Join Filter: (r.r_regionkey = n.n_regionkey)
+                     Rows Removed by Join Filter: 914548
+                     Buffers: shared hit=16506010599 read=26138
+                     ->  Nested Loop  (cost=0.00..11257971928.02 rows=2842062 width=34) (actual rows=228637 loops=1)
+                           Join Filter: (SubPlan 1)
+                           Rows Removed by Join Filter: 5487288
+                           Buffers: shared hit=16506010599 read=26137
+                           ->  Seq Scan on orders o  (cost=0.00..48636.00 rows=227365 width=8) (actual rows=228637 loops=1)
+                                 Filter: ((o_orderdate >= '1995-01-01'::date) AND (o_orderdate < '1996-01-01'::date))
+                                 Rows Removed by Filter: 1271363
+                                 Buffers: shared read=26136
+                           ->  Materialize  (cost=0.00..1.38 rows=25 width=34) (actual rows=25 loops=228637)
+                                 Buffers: shared read=1
+                                 ->  Seq Scan on nation n  (cost=0.00..1.25 rows=25 width=34) (actual rows=25 loops=1)
+                                       Buffers: shared read=1
+                           SubPlan 1
+                             ->  Bitmap Heap Scan on customer c  (cost=70.80..3875.36 rows=6000 width=4) (actual rows=5880 loops=5715925)
+                                   Recheck Cond: (c_nationkey = n.n_nationkey)
+                                   Heap Blocks: exact=16465999124
+                                   Buffers: shared hit=16506010599
+                                   ->  Bitmap Index Scan on idx_customer_nation  (cost=0.00..69.30 rows=6000 width=0) (actual rows=6000 loops=5715925)
+                                         Index Cond: (c_nationkey = n.n_nationkey)
+                                         Buffers: shared hit=40011475
+                     ->  Materialize  (cost=0.00..1.07 rows=5 width=30) (actual rows=5 loops=228637)
+                           Buffers: shared read=1
+                           ->  Seq Scan on region r  (cost=0.00..1.05 rows=5 width=30) (actual rows=5 loops=1)
+                                 Buffers: shared read=1
+               ->  Index Scan using idx_lineitem_order on lineitem l  (cost=0.43..2.84 rows=15 width=16) (actual rows=4 loops=228637)
+                     Index Cond: (l_orderkey = o.o_orderkey)
+                     Buffers: shared hit=818547 read=108979
+ Planning:
+   Buffers: shared hit=142 read=41
+ Planning Time: 0.804 ms
+ JIT:
+   Functions: 35
+   Options: Inlining true, Optimization true, Expressions true, Deforming true
+ Execution Time: 15345047.579 ms
+(47 rows)
+

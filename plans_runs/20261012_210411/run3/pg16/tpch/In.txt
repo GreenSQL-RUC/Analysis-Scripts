@@ -1,0 +1,5 @@
+psql:/tmp/plan_builder_19827.sql:26: FATAL:  terminating connection due to administrator command
+psql:/tmp/plan_builder_19827.sql:26: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+psql:/tmp/plan_builder_19827.sql:26: error: connection to server was lost
